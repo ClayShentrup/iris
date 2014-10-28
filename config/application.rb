@@ -14,6 +14,8 @@ require "sprockets/railtie"
 # Doing this instead.
 #   http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
 
+require 'sass-rails'
+
 module Comparitron
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
@@ -29,8 +31,9 @@ module Comparitron
     # config.i18n.default_locale = :de
 
     config.generators do |g|
-      g.test_framework :rspec
+      config.sass.preferred_syntax = :sass
       g.helper false
+      g.test_framework :rspec
     end
   end
 end
