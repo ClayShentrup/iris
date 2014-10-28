@@ -13,7 +13,9 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 # Doing this instead.
 #   http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
+# Bundler.require(*Rails.groups)
 
+require 'haml-rails'
 require 'sass-rails'
 
 module Comparitron
@@ -31,9 +33,14 @@ module Comparitron
     # config.i18n.default_locale = :de
 
     config.generators do |g|
-      config.sass.preferred_syntax = :sass
+      g.assets false
       g.helper false
-      g.test_framework :rspec
+
+      g.template_engine :haml
+      config.sass.preferred_syntax = :sass
+
+      g.test_framework :rspec,
+        view_specs: false
     end
   end
 end
