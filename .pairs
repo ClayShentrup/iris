@@ -1,0 +1,19 @@
+pairs:
+  # <initials>: <Firstname> <Lastname>[; <email-id>]
+  cj: Chris Joel
+  sk: Sean Knox
+  cs: Clay Shentrup
+  eb: Elli Balcomb
+  jh: Jona Haga-Camacho
+  sg: Stefan Grönke
+  rw: Ryan Wood
+  ne: Nolan Ehrstrom
+  lw: Luke Wilson
+  jb: Jorge Bejar
+  sb: Sebastian Beceiro
+  fr: Fabian Rodriguez
+email:
+  prefix: pair
+  domain: dabohealth.com
+  no_solo_prefix: true
+#global: true
