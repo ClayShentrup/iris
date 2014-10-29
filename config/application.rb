@@ -15,8 +15,9 @@ require "sprockets/railtie"
 #   http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
 # Bundler.require(*Rails.groups)
 
-require 'haml-rails'
-require 'sass-rails'
+# Dependencies for assets:precompile
+require 'jquery-rails'
+require 'turbolinks'
 
 module Comparitron
   class Application < Rails::Application
@@ -36,7 +37,10 @@ module Comparitron
       g.assets false
       g.helper false
 
+      require 'haml-rails'
       g.template_engine :haml
+
+      require 'sass-rails'
       config.sass.preferred_syntax = :sass
 
       g.test_framework :rspec,
