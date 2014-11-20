@@ -1,4 +1,14 @@
 class Api::HospitalsController < ApplicationController
+  respond_to :json
+
+  before_filter :ensure_json_request
+
+  # Not sure we want it
+  def ensure_json_request
+    return if params[:format] == "json" || request.headers["Accept"] =~ /json/
+    render :nothing => true, :status => 406
+  end
+
   def index
     q = params[:q]
 
@@ -8,9 +18,5 @@ class Api::HospitalsController < ApplicationController
       else
         Hospital.all
       end
-
-    respond_to do |format|
-      format.json { render json: @hospitals }
-    end
   end
 end

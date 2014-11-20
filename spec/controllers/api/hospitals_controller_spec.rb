@@ -22,20 +22,20 @@ describe Api::HospitalsController do
       )
     end
 
-    it "should return the right hospital" do
+    it "returns the right hospital" do
       get :index, :format => :json, :q => 'hospital'
 
       expect(assigns(:hospitals).size).to eq(1)
       expect(assigns(:hospitals).first.provider_id).to eq('some provider id')
     end
 
-    it "should return everything if correct query param is not set" do
-      get :index, :format => :json, :a => 'one'
+    it "returns everything if correct query param is not set" do
+      get :index, :format => :json
 
       expect(assigns(:hospitals).map(&:provider_id)).to eq(Hospital.all.map(&:provider_id))
     end
 
-    it "should return empty response if nothing is found" do
+    it "returns an empty response if nothing is found" do
       get :index, :format => :json, :q => 'something random'
 
       expect(assigns(:hospitals)).to eq([])

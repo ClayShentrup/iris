@@ -13,11 +13,12 @@ require "sprockets/railtie"
 # you've limited to :test, :development, or :production.
 # Doing this instead.
 #   http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
-# Bundler.require(*Rails.groups)
+Bundler.require(*Rails.groups)
 
 # Dependencies for assets:precompile
 require 'jquery-rails'
 require 'turbolinks'
+require 'rabl'
 
 module Comparitron
   class Application < Rails::Application
