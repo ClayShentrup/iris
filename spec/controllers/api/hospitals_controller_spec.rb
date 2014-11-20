@@ -23,7 +23,7 @@ describe Api::HospitalsController do
     end
 
     it "should return the right hospital" do
-      get :index, :format => :json, :q => 'one'
+      get :index, :format => :json, :q => 'hospital'
 
       expect(assigns(:hospitals).size).to eq(1)
       expect(assigns(:hospitals).first.provider_id).to eq('some provider id')

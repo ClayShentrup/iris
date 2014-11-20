@@ -4,7 +4,7 @@ class Api::HospitalsController < ApplicationController
 
     @hospitals =
       if q.present?
-        Hospital.where("LOWER(name) LIKE :name", name: "#{q.downcase}%")
+        Hospital.where("LOWER(name) LIKE :name", name: "%#{q.downcase}%")
       else
         Hospital.all
       end
