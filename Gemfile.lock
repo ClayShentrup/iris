@@ -70,6 +70,8 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-nav (0.2.4)
+      pry (>= 0.9.10, < 0.11.0)
     rabl (0.11.0)
       activesupport (>= 2.3.14)
     rack (1.5.2)
@@ -160,6 +162,7 @@ DEPENDENCIES
   jquery-rails
   pg
   pry
+  pry-nav
   rabl
   rails
   rails_12factor

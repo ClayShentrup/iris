@@ -34,6 +34,7 @@ gem 'active_model_serializers'
 gem 'soda-ruby', require: 'soda'
 gem 'rabl'
 gem 'pry'
+gem 'pry-nav'
 
 group :development, :test do
   gem 'rspec-rails'
