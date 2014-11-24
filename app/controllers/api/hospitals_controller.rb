@@ -4,13 +4,15 @@ class Api::HospitalsController < ApplicationController
   before_action ControllerFilters::EnsureJsonRequest
 
   def index
-    q = params.require(:q)
-
     @hospitals =
-      if q.present?
-        Hospital.where("LOWER(name) LIKE :name", name: "%#{q.downcase}%")
+      if query.present?
+        Hospital.where("LOWER(name) LIKE :name", name: "%#{query.downcase}%")
       else
         Hospital.all
       end
+  end
+
+  def query
+    params.permit(:q).fetch(:q, nil)
   end
 end
