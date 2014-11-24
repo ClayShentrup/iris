@@ -1,6 +1,9 @@
 require 'rails_helper'
+require 'support/shared_examples/json_controller'
 
 describe Api::HospitalsController do
+  it_behaves_like 'a controller which ensures a JSON request'
+
   describe "index" do
     before do
       Hospital.create(
@@ -39,6 +42,10 @@ describe Api::HospitalsController do
       get :index, :format => :json, :q => 'something random'
 
       expect(assigns(:hospitals)).to eq([])
+    end
+
+    it 'fails with an HTML request' do
+      get :index, q: 'some query'
     end
   end
 end

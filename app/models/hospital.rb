@@ -1,5 +1,4 @@
 class Hospital < ActiveRecord::Base
-
   validates_uniqueness_of :provider_id
 
   def self.from_hashie_mash(row)

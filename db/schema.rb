@@ -24,4 +24,5 @@ ActiveRecord::Schema.define(version: 20141120053438) do
     t.string  "state",         limit: nil
     t.string  "city",          limit: nil
   end
+
 end
