@@ -29,7 +29,6 @@ gem 'sdoc', group: :doc
 gem 'spring', group: :development
 
 gem 'haml-rails'
-
 gem 'active_model_serializers'
 
 gem 'soda-ruby', require: 'soda'
