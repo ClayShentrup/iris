@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'support/shared_examples/json_controller'
 
-describe Api::HospitalsController do
+RSpec.describe Api::HospitalsController do
   it_behaves_like 'a controller which ensures a JSON request'
 
   describe "index" do

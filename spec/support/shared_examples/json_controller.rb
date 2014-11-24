@@ -1,4 +1,4 @@
-shared_examples 'a controller which ensures a JSON request' do
+RSpec.shared_examples 'a controller which ensures a JSON request' do
   controller do
     def custom
       render json: { foo: :bar }

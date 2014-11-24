@@ -1,6 +1,6 @@
 require "rails_helper"
 
-describe Hospital do
+RSpec.describe Hospital do
   it "should have core hospital info" do
     h = Hospital.create(
       :name => 'fake hospital',

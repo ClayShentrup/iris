@@ -1,3 +1,4 @@
 --order rand
 --color
 --require spec_helper
+--order random
