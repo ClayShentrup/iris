@@ -1,16 +1,14 @@
 module HospitalsImporter
-  DOMAIN = "data.medicare.gov"
   DATASET_ID = "xubh-q36u"
-  PAGE_SIZE = 1000
 
   def self.perform
-    client = SODA::Client.new(domain: DOMAIN)
+    client = HospitalsImporter::SimpleSodoaClient.new(dataset_id: DATASET_ID)
     counter = 0
 
     total_rows = 0
 
     while true
-      response = client.get DATASET_ID, {"$limit" => PAGE_SIZE, "$offset" => counter * PAGE_SIZE}
+      response = client.get(offset: counter * PAGE_SIZE)
 
       break if response.size == 0
 

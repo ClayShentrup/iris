@@ -39,6 +39,11 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 
+group :test do
+  gem 'vcr'
+  gem 'webmock'
+end
+
 group :production do
   gem 'rails_12factor'
 end
