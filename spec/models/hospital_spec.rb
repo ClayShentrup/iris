@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe Hospital do
   it "should have core hospital info" do
-    h = Hospital.create(
+    h = FactoryGirl.create(:hospital,
       :name => 'fake hospital',
       :zip_code => '94114',
       :hospital_type => 'fake hospital type',
@@ -42,7 +42,7 @@ RSpec.describe Hospital do
     end
 
     it "should update the info if the hospital is found" do
-      Hospital.create(
+      FactoryGirl.create(:hospital,
         :name => 'old name',
         :zip_code => '94114',
         :hospital_type => 'some type',

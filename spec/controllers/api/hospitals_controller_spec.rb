@@ -6,7 +6,7 @@ RSpec.describe Api::HospitalsController do
 
   describe "index" do
     before do
-      Hospital.create(
+      FactoryGirl.create(:hospital,
         :name => 'one hospital',
         :zip_code => '94114',
         :hospital_type => 'some type',
@@ -15,11 +15,10 @@ RSpec.describe Api::HospitalsController do
         :city => 'SOME CITY'
       )
 
-      Hospital.create(
+      FactoryGirl.create(:hospital,
         :name => 'old name',
         :zip_code => '94114',
         :hospital_type => 'some type',
-        :provider_id => 'some provider id',
         :state => 'CA',
         :city => 'SOME CITY'
       )
