@@ -58,4 +58,30 @@ RSpec.describe Hospital do
       expect(Hospital.first.name).to eq('xyz')
     end
   end
+
+  describe '.search' do
+    let!(:east_side_hospital) do
+      create(:hospital, name: 'East Side Hospital')
+    end
+    let!(:west_side_hospital) do
+      create(:hospital, name: 'West Side Hospital')
+    end
+    let!(:north_side_hospital) do
+      create(:hospital, name: 'North Side Hospital')
+    end
+
+    it 'finds only matching records, without case sensitivity' do
+      expect(described_class.search('wEsT')).to eq [
+        west_side_hospital
+      ]
+    end
+
+    it 'finds all records if no query is specified' do
+      expect(described_class.search(nil)).to match_array [
+        east_side_hospital,
+        west_side_hospital,
+        north_side_hospital
+      ]
+    end
+  end
 end

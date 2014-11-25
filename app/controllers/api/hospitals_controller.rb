@@ -4,12 +4,7 @@ class Api::HospitalsController < ApplicationController
   before_action ControllerFilters::EnsureJsonRequest
 
   def index
-    @hospitals =
-      if query.present?
-        Hospital.where("LOWER(name) LIKE :name", name: "%#{query.downcase}%")
-      else
-        Hospital.all
-      end
+    @hospitals = Hospital.search(query)
   end
 
   def query

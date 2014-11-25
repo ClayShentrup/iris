@@ -15,4 +15,8 @@ class Hospital < ActiveRecord::Base
 
     hospital.save if hospital.changed?
   end
+
+  def self.search(query)
+    where('LOWER(name) LIKE LOWER(:query)', query: "%#{query}%")
+  end
 end

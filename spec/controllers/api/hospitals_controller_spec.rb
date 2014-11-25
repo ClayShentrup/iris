@@ -4,47 +4,21 @@ require 'support/shared_examples/json_controller'
 RSpec.describe Api::HospitalsController do
   it_behaves_like 'a controller which ensures a JSON request'
 
-  describe "index" do
+  describe 'index' do
+    let(:query) { 'Foo' }
+    let(:hospitals) { build_stubbed_pair(:hospital) }
+
     before do
-      FactoryGirl.create(:hospital,
-        :name => 'one hospital',
-        :zip_code => '94114',
-        :hospital_type => 'some type',
-        :provider_id => 'some provider id',
-        :state => 'CA',
-        :city => 'SOME CITY'
-      )
-
-      FactoryGirl.create(:hospital,
-        :name => 'old name',
-        :zip_code => '94114',
-        :hospital_type => 'some type',
-        :state => 'CA',
-        :city => 'SOME CITY'
-      )
+      allow(Hospital).to receive(:search).with(query).and_return(hospitals)
+      get :index, format: :json, q: query
     end
 
-    it "returns the right hospital" do
-      get :index, :format => :json, :q => 'hospital'
-
-      expect(assigns(:hospitals).size).to eq(1)
-      expect(assigns(:hospitals).first.provider_id).to eq('some provider id')
+    it 'sets the hospitals' do
+      expect(assigns(:hospitals)).to be hospitals
     end
 
-    it "returns everything if correct query param is not set" do
-      get :index, :format => :json
-
-      expect(assigns(:hospitals).map(&:provider_id)).to eq(Hospital.all.map(&:provider_id))
-    end
-
-    it "returns an empty response if nothing is found" do
-      get :index, :format => :json, :q => 'something random'
-
-      expect(assigns(:hospitals)).to eq([])
-    end
-
-    it 'fails with an HTML request' do
-      get :index, q: 'some query'
+    it 'is successful' do
+      expect(response).to be_successful
     end
   end
 end
