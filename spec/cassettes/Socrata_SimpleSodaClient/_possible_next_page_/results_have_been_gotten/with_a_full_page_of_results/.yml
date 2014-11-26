@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$SELECT=provider_id,hospital_name,hospital_type,city,state,zip_code&$limit=1000&$offset=2
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$SELECT=provider_id,hospital_name&$limit=3&$offset=3
     body:
       encoding: UTF-8
       string: 'null'
@@ -24,7 +24,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Tue, 25 Nov 2014 23:52:36 GMT
+      - Wed, 26 Nov 2014 19:30:20 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -34,47 +34,35 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       Last-Modified:
-      - Mon, 27 Oct 2014 21:52:48 PDT
+      - Tue, 28 Oct 2014 04:52:48 UTC
       X-Soda2-Warning:
       - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
       X-Soda2-Fields:
-      - '["hospital_name",":updated_at","zip_code","provider_id","state","hospital_type",":id",":created_at","city"]'
+      - '["hospital_name",":updated_at","provider_id",":id",":created_at"]'
       X-Soda2-Types:
-      - '["text","meta_data","text","text","text","text","meta_data","meta_data","text"]'
+      - '["text","meta_data","text","meta_data","meta_data"]'
       X-Soda2-Legacy-Types:
       - 'true'
       X-Socrata-Region:
       - production
       Age:
-      - '0'
+      - '2'
     body:
       encoding: UTF-8
       string: |-
         [ {
-          "hospital_name" : "ELIZA COFFEE MEMORIAL HOSPITAL",
-          "zip_code" : "35631",
-          "provider_id" : "010006",
-          "state" : "AL",
-          "hospital_type" : "Acute Care Hospitals",
-          "city" : "FLORENCE"
-        }
-        , {
           "hospital_name" : "MIZELL MEMORIAL HOSPITAL",
-          "zip_code" : "36467",
-          "provider_id" : "010007",
-          "state" : "AL",
-          "hospital_type" : "Acute Care Hospitals",
-          "city" : "OPP"
+          "provider_id" : "010007"
         }
         , {
           "hospital_name" : "CRENSHAW COMMUNITY HOSPITAL",
-          "zip_code" : "36049",
-          "provider_id" : "010008",
-          "state" : "AL",
-          "hospital_type" : "Acute Care Hospitals",
-          "city" : "LUVERNE"
+          "provider_id" : "010008"
+        }
+        , {
+          "hospital_name" : "ST VINCENT'S EAST",
+          "provider_id" : "010011"
         }
          ]
-    http_version:
-  recorded_at: Tue, 25 Nov 2014 23:52:36 GMT
+    http_version: 
+  recorded_at: Wed, 26 Nov 2014 19:30:20 GMT
 recorded_with: VCR 2.9.3

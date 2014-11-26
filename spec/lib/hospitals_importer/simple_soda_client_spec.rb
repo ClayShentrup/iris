@@ -1,35 +1,63 @@
-require 'hospitals_importer/simple_soda_client'
+require 'socrata/simple_soda_client'
 require 'support/vcr_setup'
 
-RSpec.describe HospitalsImporter::SimpleSodaClient, :vcr do
-  subject { described_class.new(dataset_id: 'xubh-q36u') }
+RSpec.describe Socrata::SimpleSodaClient, :vcr do
+  subject do
+    described_class.new(
+      dataset_id: 'xubh-q36u',
+      required_fields: %w[
+        provider_id
+        hospital_name
+      ]
+    )
+  end
+  let(:page) { 2 }
 
-  it 'gets records for the specified page' do
-    expect(subject.get(offset: 2).map(&:to_h)).to eq [
-      {
-        'hospital_name' => 'ELIZA COFFEE MEMORIAL HOSPITAL',
-        'zip_code' => '35631',
-        'provider_id' => '010006',
-        'state' => 'AL',
-        'hospital_type' => 'Acute Care Hospitals',
-        'city' => 'FLORENCE',
-      },
-      {
-        'hospital_name' => 'MIZELL MEMORIAL HOSPITAL',
-        'zip_code' => '36467',
-        'provider_id' => '010007',
-        'state' => 'AL',
-        'hospital_type' => 'Acute Care Hospitals',
-        'city' => 'OPP',
-      },
-      {
-        'hospital_name' => 'CRENSHAW COMMUNITY HOSPITAL',
-        'zip_code' => '36049',
-        'provider_id' => '010008',
-        'state' => 'AL',
-        'hospital_type' => 'Acute Care Hospitals',
-        'city' => 'LUVERNE',
-      }
-    ]
+  def get_response
+    subject.get(page: page)
+  end
+
+  before do
+    stub_const("#{described_class.name}::PAGE_SIZE", 3)
+  end
+
+  describe '#get' do
+    it 'gets records for the specified page' do
+      expect(get_response.map(&:to_hash)).to eq [
+        {
+          'hospital_name' => 'MIZELL MEMORIAL HOSPITAL',
+          'provider_id' => '010007',
+        },
+        {
+          'hospital_name' => 'CRENSHAW COMMUNITY HOSPITAL',
+          'provider_id' => '010008',
+        },
+        {
+          'hospital_name' => "ST VINCENT'S EAST",
+          'provider_id' => '010011',
+        }
+      ]
+    end
+  end
+
+  describe '#possible_next_page?' do
+    context 'when no results have been gotten yet' do
+      specify { expect(subject.possible_next_page?).to be true }
+    end
+
+    context 'results have been gotten' do
+      before do
+        get_response
+      end
+
+      context 'with a full page of results' do
+        specify { expect(subject.possible_next_page?).to be true }
+      end
+
+      context 'with less than a full page of results' do
+        let(:page) { 3 }
+        specify { expect(subject.possible_next_page?).to be false }
+      end
+    end
   end
 end
