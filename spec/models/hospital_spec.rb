@@ -1,27 +1,24 @@
 require "rails_helper"
 
 RSpec.describe Hospital do
-  it "should have core hospital info" do
-    h = FactoryGirl.create(:hospital,
-      :name => 'fake hospital',
-      :zip_code => '94114',
-      :hospital_type => 'fake hospital type',
-      :provider_id => '010001',
-      :state => 'CA',
-      :city => 'fake city'
-    )
-
-    h = Hospital.first
-
-    expect(h.name).to eq('fake hospital')
-    expect(h.zip_code).to eq(94114)
-    expect(h.hospital_type).to eq('fake hospital type')
-    expect(h.provider_id).to eq('010001')
-    expect(h.state).to eq('CA')
-    expect(h.city).to eq('fake city')
+  describe 'attributes' do
+    it { should have_db_column(:name).of_type(:string) }
+    it { should have_db_column(:zip_code).of_type(:string) }
+    it { should have_db_column(:hospital_type).of_type(:string) }
+    it { should have_db_column(:provider_id).of_type(:string) }
+    it { should have_db_column(:state).of_type(:string) }
+    it { should have_db_column(:city).of_type(:string) }
   end
 
-  it { should validate_uniqueness_of(:provider_id) }
+  describe 'validations' do
+    context 'no need to access the database' do
+      subject { build_stubbed(described_class) }
+
+      it { should be_valid }
+    end
+
+    it { should validate_uniqueness_of(:provider_id) }
+  end
 
   describe ".from_hashie_mash" do
     let(:row) do

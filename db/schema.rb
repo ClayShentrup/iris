@@ -11,18 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141120053438) do
+ActiveRecord::Schema.define(version: 20141128180808) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "hospitals", force: true do |t|
-    t.string  "name",          limit: nil
-    t.integer "zip_code"
-    t.string  "hospital_type", limit: nil
-    t.string  "provider_id",   limit: nil
-    t.string  "state",         limit: nil
-    t.string  "city",          limit: nil
+    t.string "name",          limit: nil
+    t.string "zip_code"
+    t.string "hospital_type", limit: nil
+    t.string "provider_id",   limit: nil
+    t.string "state",         limit: nil
+    t.string "city",          limit: nil
   end
 
 end
