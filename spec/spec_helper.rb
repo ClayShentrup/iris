@@ -14,6 +14,10 @@
 # users commonly want.
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
+
+require 'support/vcr_setup'
+require 'pry'
+
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run
   # to individual examples or groups you care about by tagging them with
@@ -73,4 +77,6 @@ RSpec.configure do |config|
   end
 
   config.expose_dsl_globally = false
+
+  config.extend VCR::RSpec::Macros
 end

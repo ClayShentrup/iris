@@ -1,0 +1,121 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$SELECT=provider_id,hospital_name&$limit=2&$offset=0
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 26 Nov 2014 23:49:31 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Tue, 28 Oct 2014 04:52:48 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hospital_name",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["text","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: |-
+        [ {
+          "hospital_name" : "SOUTHEAST ALABAMA MEDICAL CENTER",
+          "provider_id" : "010001"
+        }
+        , {
+          "hospital_name" : "MARSHALL MEDICAL CENTER SOUTH",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Wed, 26 Nov 2014 23:49:32 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$SELECT=provider_id,hospital_name&$limit=2&$offset=2
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Wed, 26 Nov 2014 23:49:31 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Tue, 28 Oct 2014 04:52:48 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hospital_name",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["text","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: UTF-8
+      string: |-
+        [ {
+          "hospital_name" : "MIZELL MEMORIAL HOSPITAL",
+          "provider_id" : "010007"
+        }
+         ]
+    http_version:
+  recorded_at: Wed, 26 Nov 2014 23:49:32 GMT
+recorded_with: VCR 2.9.3

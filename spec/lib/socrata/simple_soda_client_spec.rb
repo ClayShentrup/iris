@@ -1,5 +1,4 @@
 require 'socrata/simple_soda_client'
-require 'support/vcr_setup'
 
 RSpec.describe Socrata::SimpleSodaClient, :vcr do
   subject do

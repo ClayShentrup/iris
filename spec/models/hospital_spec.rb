@@ -20,39 +20,39 @@ RSpec.describe Hospital do
     it { should validate_uniqueness_of(:provider_id) }
   end
 
-  describe ".from_hashie_mash" do
-    let(:row) do
-      OpenStruct.new(
-        :hospital_name => 'xyz',
-        :zip_code => '94114',
-        :hospital_type => 'some type',
-        :provider_id => 'some provider id',
-        :state => 'CA',
-        :city => 'SOME CITY'
-      )
+  describe '.create_or_update' do
+    let(:hospital_attributes) do
+      {
+        name: 'Hospital Name',
+        zip_code: '36301',
+        hospital_type: 'A really good one',
+        provider_id: '123456',
+        state: 'AL',
+        city: 'Dothan',
+      }.with_indifferent_access
     end
 
-    it "should create a new record if not found by provider_id" do
-      described_class.from_hashie_mash(row)
-      expect(Hospital.count).to eq(1)
-      expect(Hospital.first.name).to eq('xyz')
+    def create_or_update
+      described_class.create_or_update(hospital_attributes)
     end
 
-    it "should update the info if the hospital is found" do
-      FactoryGirl.create(:hospital,
-        :name => 'old name',
-        :zip_code => '94114',
-        :hospital_type => 'some type',
-        :provider_id => 'some provider id',
-        :state => 'CA',
-        :city => 'SOME CITY'
-      )
+    context 'no hospital exists with this provider_id' do
+      it 'creates the hospital' do
+        expect { create_or_update }.to change(Hospital, :count).by(1)
+        expect(Hospital.last.attributes).to include hospital_attributes
+      end
+    end
 
-      expect(Hospital.first.name).to eq('old name')
+    context 'a hospital already exists with this provider_id' do
+      let!(:existing_hospital) do
+        create(:hospital, provider_id: hospital_attributes.fetch(:provider_id))
+      end
 
-      described_class.from_hashie_mash(row)
-      expect(Hospital.count).to eq(1)
-      expect(Hospital.first.name).to eq('xyz')
+      it 'updates its attributes' do
+        expect { create_or_update }.not_to change(Hospital, :count)
+        expect(existing_hospital.reload.attributes)
+        .to include hospital_attributes
+      end
     end
   end
 
