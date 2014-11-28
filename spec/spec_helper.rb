@@ -77,6 +77,4 @@ RSpec.configure do |config|
   end
 
   config.expose_dsl_globally = false
-
-  config.extend VCR::RSpec::Macros
 end
