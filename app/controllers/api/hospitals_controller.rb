@@ -1,6 +1,5 @@
-# Outputs JSON data with Hospital search results
-
 module Api
+  # Returns JSON data with Hospital search results to power autocomplete.
   class HospitalsController < ApplicationController
     respond_to :json
 
