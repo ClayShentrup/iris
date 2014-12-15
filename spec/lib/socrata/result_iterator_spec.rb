@@ -31,16 +31,16 @@ RSpec.describe Socrata::ResultIterator do
     expect(results).to eq [
       {
         'name' => 'SOUTHEAST ALABAMA MEDICAL CENTER',
-        'provider_id' => '010001'
+        'provider_id' => '010001',
       },
       {
         'name' => 'MARSHALL MEDICAL CENTER SOUTH',
-        'provider_id' => '010005'
+        'provider_id' => '010005',
       },
       {
         'name' => 'MIZELL MEMORIAL HOSPITAL',
-        'provider_id' => '010007'
-      }
+        'provider_id' => '010007',
+      },
     ]
   end
 
