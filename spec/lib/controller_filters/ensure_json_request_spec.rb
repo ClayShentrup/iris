@@ -6,7 +6,7 @@ RSpec.describe ControllerFilters::EnsureJsonRequest do
   let(:controller) do
     instance_double('ApplicationController', params: params).tap do |controller|
       allow(controller).to receive_message_chain(:request, :headers)
-      .and_return(headers)
+        .and_return(headers)
     end
   end
   let(:params) { {} }
@@ -22,7 +22,7 @@ RSpec.describe ControllerFilters::EnsureJsonRequest do
     it 'renders nothing and sets an unacceptable status code' do
       expect(controller).to receive(:render).with(
         nothing: true,
-        status: :not_acceptable
+        status: :not_acceptable,
       )
       run_filter
     end
@@ -41,7 +41,7 @@ RSpec.describe ControllerFilters::EnsureJsonRequest do
   context 'the headers accept JSON' do
     let(:headers) do
       ActionDispatch::Http::Headers.new(
-        'HTTP_Accept' => 'application/json'
+        'HTTP_Accept' => 'application/json',
       )
     end
 
