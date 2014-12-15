@@ -1,4 +1,6 @@
 module Socrata
+  # We need to import CMS hospital data from Socrata. This is the core wrapper
+  # for the involved components.
   module CreateOrUpdateHospitals
     DATASET_ID = 'xubh-q36u'
     REQUIRED_FIELDS = %w[
