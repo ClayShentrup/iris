@@ -7,12 +7,12 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
       required_fields: %w[
         provider_id
         hospital_name
-      ]
+      ],
     )
   end
   let(:page) { 2 }
 
-  def get_response
+  def response
     subject.get(page: page)
   end
 
@@ -22,7 +22,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
 
   describe '#get' do
     it 'gets records for the specified page' do
-      expect(get_response.map(&:to_hash)).to eq [
+      expect(response.map(&:to_hash)).to eq [
         {
           'hospital_name' => 'MIZELL MEMORIAL HOSPITAL',
           'provider_id' => '010007',
@@ -34,7 +34,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
         {
           'hospital_name' => "ST VINCENT'S EAST",
           'provider_id' => '010011',
-        }
+        },
       ]
     end
   end
@@ -46,7 +46,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
 
     context 'results have been gotten' do
       before do
-        get_response
+        response
       end
 
       context 'with a full page of results' do
