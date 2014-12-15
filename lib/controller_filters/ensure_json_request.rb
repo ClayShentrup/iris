@@ -1,6 +1,7 @@
 require 'delegate'
 
 module ControllerFilters
+  # We only want to respond to JSON requests from the client.
   class EnsureJsonRequest < SimpleDelegator
     def self.before(controller)
       new(controller).call
