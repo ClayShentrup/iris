@@ -1,3 +1,4 @@
+# Zipcodes should be strings
 class ChangeHospitalZipCodeFromIntToString < ActiveRecord::Migration
   def change
     reversible do |dir|

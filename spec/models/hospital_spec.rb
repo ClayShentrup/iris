@@ -1,4 +1,4 @@
-require "rails_helper"
+require 'rails_helper'
 
 RSpec.describe Hospital do
   describe 'attributes' do
@@ -51,7 +51,7 @@ RSpec.describe Hospital do
       it 'updates its attributes' do
         expect { create_or_update }.not_to change(Hospital, :count)
         expect(existing_hospital.reload.attributes)
-        .to include hospital_attributes
+          .to include hospital_attributes
       end
     end
   end
@@ -68,16 +68,14 @@ RSpec.describe Hospital do
     end
 
     it 'finds only matching records, without case sensitivity' do
-      expect(described_class.search('wEsT')).to eq [
-        west_side_hospital
-      ]
+      expect(described_class.search('wEsT')).to eq [west_side_hospital]
     end
 
     it 'finds all records if no query is specified' do
       expect(described_class.search(nil)).to match_array [
         east_side_hospital,
         west_side_hospital,
-        north_side_hospital
+        north_side_hospital,
       ]
     end
   end

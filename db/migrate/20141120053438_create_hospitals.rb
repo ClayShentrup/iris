@@ -1,3 +1,4 @@
+# Initial creation to support the Hospital model
 class CreateHospitals < ActiveRecord::Migration
   def change
     create_table :hospitals do |t|
