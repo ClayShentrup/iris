@@ -1,13 +1,17 @@
-class Api::HospitalsController < ApplicationController
-  respond_to :json
+# Outputs JSON data with Hospital search results
 
-  before_action ControllerFilters::EnsureJsonRequest
+module Api
+  class HospitalsController < ApplicationController
+    respond_to :json
 
-  def index
-    @hospitals = Hospital.search(query)
-  end
+    before_action ControllerFilters::EnsureJsonRequest
 
-  def query
-    params.permit(:q).fetch(:q, nil)
+    def index
+      @hospitals = Hospital.search(query)
+    end
+
+    def query
+      params.permit(:q).fetch(:q, nil)
+    end
   end
 end
