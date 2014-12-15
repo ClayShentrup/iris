@@ -2,6 +2,9 @@ require 'soda'
 require 'active_support/core_ext/object/try'
 
 module Socrata
+  # A facade to simplify working with Socrata.
+  #   - Hardcodes the domain and page size ("limit")
+  #   - Provides pagination functionality
   class SimpleSodaClient
     DOMAIN = 'data.medicare.gov'
     PAGE_SIZE = 1000
@@ -14,17 +17,15 @@ module Socrata
     def get(page: fail)
       @most_recent_result = client.get(
         @dataset_id,
-        {
-          '$limit' => PAGE_SIZE,
-          '$SELECT' => @required_fields.join(','),
-          '$offset' => offset_for_page(page)
-        }
+        '$limit' => PAGE_SIZE,
+        '$SELECT' => @required_fields.join(','),
+        '$offset' => offset_for_page(page),
       )
     end
 
     def possible_next_page?
       we_have_not_gotten_any_results_yet? or
-      @most_recent_result.size == PAGE_SIZE
+        @most_recent_result.size == PAGE_SIZE
     end
 
     private
