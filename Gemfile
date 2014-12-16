@@ -33,11 +33,15 @@ gem 'rabl'
 gem 'pry'
 gem 'pry-nav'
 
+group :development do
+  gem 'rubocop'
+  gem 'cane'
+end
+
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
-  gem 'rubocop'
 end
 
 group :test do
