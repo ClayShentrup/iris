@@ -10,6 +10,7 @@ AllCops:
     - 'db/**/*'
     - 'config/**/*'
     - 'bin/**/*'
+    - 'vendor/bundle/**/*'
   RunRailsCops: true
 
 # We don't care about method length, since we check method cyclomatic
