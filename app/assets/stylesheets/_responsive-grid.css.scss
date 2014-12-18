@@ -1,0 +1,99 @@
+.row {
+  @include row();
+}
+
+.col1of12 {
+  @include span-columns(3);
+
+  @include media($desktop) {
+    @include span-columns(1);
+  }
+}
+
+.col2of12 {
+  @include span-columns(6);
+
+  @include media($desktop) {
+    @include span-columns(2);
+  }
+}
+
+.col3of12 {
+  @include span-columns(9);
+
+  @include media($desktop) {
+    @include span-columns(3);
+  }
+}
+
+.col4of12 {
+  @include span-columns(12);
+
+  @include media($desktop) {
+    @include span-columns(4);
+  }
+}
+
+.col5of12 {
+  @include span-columns(12);
+
+  @include media($desktop) {
+    @include span-columns(5);
+  }
+}
+
+.col6of12 {
+  @include span-columns(12);
+
+  @include media($desktop){
+     @include span-columns(6);
+  }
+}
+
+.col7of12 {
+  @include span-columns(12);
+
+  @include media($desktop){
+     @include span-columns(7);
+  }
+}
+
+.col8of12 {
+  @include span-columns(12);
+
+  @include media($desktop){
+     @include span-columns(8);
+  }
+}
+
+.col9of12 {
+  @include span-columns(12);
+
+  @include media($desktop){
+     @include span-columns(9);
+  }
+}
+
+.col10of12 {
+  @include span-columns(12);
+
+  @include media($desktop){
+     @include span-columns(10);
+  }
+}
+
+.col11of12 {
+  @include span-columns(12);
+
+  @include media($desktop){
+     @include span-columns(11);
+  }
+}
+
+.col12of12 {
+  @include span-columns(12);
+
+  @include media($desktop){
+     @include span-columns(12);
+  }
+}

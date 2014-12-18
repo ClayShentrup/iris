@@ -32,6 +32,8 @@ gem 'soda-ruby', require: 'soda'
 gem 'rabl'
 gem 'pry'
 gem 'pry-nav'
+gem 'bourbon'
+gem 'neat'
 
 group :development do
   gem 'rubocop'
