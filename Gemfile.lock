@@ -40,6 +40,8 @@ GEM
     builder (3.2.2)
     cane (2.6.2)
       parallel
+    codeclimate-test-reporter (0.4.1)
+      simplecov (>= 0.7.1, < 1.0.0)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -51,6 +53,7 @@ GEM
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     diff-lcs (1.2.5)
+    docile (1.1.5)
     erubis (2.7.0)
     execjs (2.2.2)
     factory_girl (4.5.0)
@@ -160,6 +163,11 @@ GEM
       rdoc (~> 4.0)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    simplecov (0.9.1)
+      docile (~> 1.1.0)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.8.0)
+    simplecov-html (0.8.0)
     slop (3.6.0)
     soda-ruby (0.2.12)
       hashie
@@ -194,6 +202,7 @@ DEPENDENCIES
   active_model_serializers
   bourbon
   cane
+  codeclimate-test-reporter
   coffee-rails
   factory_girl_rails
   haml-rails
