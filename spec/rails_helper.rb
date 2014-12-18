@@ -42,6 +42,7 @@ RSpec.configure do |config|
   # https://relishapp.com/rspec/rspec-rails/docs
   config.infer_spec_type_from_file_location!
 
+  require 'factory_girl_rails'
   config.include FactoryGirl::Syntax::Methods
   config.render_views # always render views in controllers
 end

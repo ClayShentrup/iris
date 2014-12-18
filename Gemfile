@@ -49,7 +49,7 @@ end
 group :test do
   gem 'vcr'
   gem 'webmock'
-  gem 'codeclimate-test-reporter', require: nil
+  gem 'codeclimate-test-reporter'
 end
 
 group :production do
