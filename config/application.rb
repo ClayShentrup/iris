@@ -16,6 +16,8 @@ require 'sprockets/railtie'
 require 'jquery-rails'
 require 'turbolinks'
 require 'rabl'
+require 'bourbon'
+require 'neat'
 
 module Comparitron
   # This class is part of standard Rails configuration.
