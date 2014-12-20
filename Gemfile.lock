@@ -109,7 +109,10 @@ GEM
       ast (>= 1.1, < 3.0)
       slop (~> 3.4, >= 3.4.5)
     pg (0.17.1)
+    pluginator (1.3.0)
     powerpack (0.0.9)
+    pre-commit (0.20.0)
+      pluginator (~> 1.1)
     pry (0.10.1)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -241,6 +244,7 @@ DEPENDENCIES
   jquery-rails
   neat
   pg
+  pre-commit
   pry
   pry-nav
   rabl

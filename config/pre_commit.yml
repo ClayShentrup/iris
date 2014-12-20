@@ -1,0 +1,10 @@
+---
+:warnings_remove: []
+:warnings_add:
+- :whitespace
+:checks_remove: []
+:checks_add:
+- :rubocop
+- :jshint
+- :migrations
+- :yaml

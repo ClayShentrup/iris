@@ -30,6 +30,7 @@ gem 'turbolinks'
 group :development do
   gem 'rubocop'
   gem 'cane'
+  gem 'pre-commit'
 end
 
 group :development, :test do
