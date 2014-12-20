@@ -31,6 +31,8 @@ group :development do
   gem 'rubocop'
   gem 'cane'
   gem 'pre-commit'
+  gem 'foreman'
+  gem 'better_errors'
 end
 
 group :development, :test do
