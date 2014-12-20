@@ -19,6 +19,9 @@ require 'rabl'
 require 'bourbon'
 require 'neat'
 
+# Dependencies for Unicorn
+require 'rack-timeout'
+
 module Comparitron
   # This class is part of standard Rails configuration.
   class Application < Rails::Application
