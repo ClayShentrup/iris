@@ -1,7 +1,7 @@
 .top-nav {
   div {
     float: left;
-    text-align: center
+    text-align: center;
   }
 
   >div {
@@ -41,12 +41,12 @@
 
     @include media($desktop) {
       width: 70%;
-      display: inline-block
+      display: inline-block;
     }
   }
 
   .news-feed,
   .metrics {
-    width: 40%
+    width: 40%;
   }
 }

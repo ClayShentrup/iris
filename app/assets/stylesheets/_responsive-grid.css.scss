@@ -49,43 +49,43 @@
 }
 
 .col6 {
-  @include media($desktop){
+  @include media($desktop) {
      @include span-columns(6);
   }
 }
 
 .col7 {
-  @include media($desktop){
+  @include media($desktop) {
      @include span-columns(7);
   }
 }
 
 .col8 {
-  @include media($desktop){
+  @include media($desktop) {
      @include span-columns(8);
   }
 }
 
 .col9 {
-  @include media($desktop){
+  @include media($desktop) {
      @include span-columns(9);
   }
 }
 
 .col10 {
-  @include media($desktop){
+  @include media($desktop) {
      @include span-columns(10);
   }
 }
 
 .col11 {
-  @include media($desktop){
+  @include media($desktop) {
      @include span-columns(11);
   }
 }
 
 .col12 {
-  @include media($desktop){
+  @include media($desktop) {
      @include span-columns(12);
   }
 }

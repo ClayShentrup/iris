@@ -5,7 +5,7 @@
 @import "top-nav";
 
 #wrapper {
-  @include outer-container
+  @include outer-container;
 }
 
 html {
