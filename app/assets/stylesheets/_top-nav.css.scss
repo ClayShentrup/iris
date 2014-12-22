@@ -9,28 +9,38 @@
     border: 1px solid $grey;
   }
 
-  .logo-wrapper,
-  .menu-wrapper {
-    width: 10%;
-  }
-
-  .logo-icon,
-  .menu-icon {
-    width: 100%;
+  .logo {
+    background: transparent url('../images/dabo-d-logo.svg') no-repeat;
 
     @include media($desktop) {
-      width: 33.333%;
+      background: transparent url('../images/dabo-logo.svg') no-repeat 7px;
     }
   }
 
-  .menu-text,
-  .logo-text {
-    width: 0;
-    display: none;
-    text-align: left;
+  .menu-icon {
+    background: transparent url('../images/menu-icon.svg') no-repeat;
+    min-height: 24px;
+    width: 100%;
 
     @include media($desktop) {
-      width: 66.667%;
+      width: 30%;
+    }
+  }
+
+  .logo,
+  .menu {
+    background-size: contain;
+    background-origin: content-box;
+    min-height: 42px;
+    width: 10%;
+  }
+
+  .menu-text {
+    width: 0;
+    display: none;
+
+    @include media($desktop) {
+      width: 70%;
       display: inline-block
     }
   }
