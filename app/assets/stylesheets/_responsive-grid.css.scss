@@ -1,99 +1,91 @@
 .row {
+  padding: 0 20px;
   @include row();
 }
 
-.col1of12 {
-  @include span-columns(3);
+.col1,
+.col2,
+.col3,
+.col4,
+.col5,
+.col6,
+.col7,
+.col8,
+.col9,
+.col10,
+.col11,
+.col12 {
+  @include span-columns(12);
+}
 
+.col1 {
   @include media($desktop) {
     @include span-columns(1);
   }
 }
 
-.col2of12 {
-  @include span-columns(6);
-
+.col2 {
   @include media($desktop) {
     @include span-columns(2);
   }
 }
 
-.col3of12 {
-  @include span-columns(9);
-
+.col3 {
   @include media($desktop) {
     @include span-columns(3);
   }
 }
 
-.col4of12 {
-  @include span-columns(12);
-
+.col4 {
   @include media($desktop) {
     @include span-columns(4);
   }
 }
 
-.col5of12 {
-  @include span-columns(12);
-
+.col5 {
   @include media($desktop) {
     @include span-columns(5);
   }
 }
 
-.col6of12 {
-  @include span-columns(12);
-
-  @include media($desktop){
+.col6 {
+  @include media($desktop) {
      @include span-columns(6);
   }
 }
 
-.col7of12 {
-  @include span-columns(12);
-
-  @include media($desktop){
+.col7 {
+  @include media($desktop) {
      @include span-columns(7);
   }
 }
 
-.col8of12 {
-  @include span-columns(12);
-
-  @include media($desktop){
+.col8 {
+  @include media($desktop) {
      @include span-columns(8);
   }
 }
 
-.col9of12 {
-  @include span-columns(12);
-
-  @include media($desktop){
+.col9 {
+  @include media($desktop) {
      @include span-columns(9);
   }
 }
 
-.col10of12 {
-  @include span-columns(12);
-
-  @include media($desktop){
+.col10 {
+  @include media($desktop) {
      @include span-columns(10);
   }
 }
 
-.col11of12 {
-  @include span-columns(12);
-
-  @include media($desktop){
+.col11 {
+  @include media($desktop) {
      @include span-columns(11);
   }
 }
 
-.col12of12 {
-  @include span-columns(12);
-
-  @include media($desktop){
+.col12 {
+  @include media($desktop) {
      @include span-columns(12);
   }
 }

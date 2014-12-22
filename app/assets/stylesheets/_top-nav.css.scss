@@ -1,0 +1,52 @@
+.top-nav {
+  div {
+    float: left;
+    text-align: center;
+  }
+
+  >div {
+    padding: 8px;
+    border: 1px solid $grey;
+  }
+
+  .logo {
+    background: transparent url('../images/dabo-d-logo.svg') no-repeat;
+
+    @include media($desktop) {
+      background: transparent url('../images/dabo-logo.svg') no-repeat 7px;
+    }
+  }
+
+  .menu-icon {
+    background: transparent url('../images/menu-icon.svg') no-repeat;
+    min-height: 24px;
+    width: 100%;
+
+    @include media($desktop) {
+      width: 30%;
+    }
+  }
+
+  .logo,
+  .menu {
+    background-size: contain;
+    background-origin: content-box;
+    min-height: 42px;
+    width: 10%;
+  }
+
+  .menu-text {
+    width: 0;
+    display: none;
+
+    @include media($desktop) {
+      width: 70%;
+      display: inline-block;
+    }
+  }
+
+  .news-feed,
+  .metrics {
+    width: 40%;
+  }
+}
