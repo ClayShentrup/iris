@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 # Setup Github credentials
 rm -f ~/.netrc
 echo -e "machine github.com\n  login daboeng\n  password $GITHUB_TOKEN" >> ~/.netrc
