@@ -40,6 +40,8 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
+  gem 'jasmine'
+  gem 'jasmine-jquery-rails'
 end
 
 group :test do
