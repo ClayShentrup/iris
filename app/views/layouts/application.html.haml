@@ -11,11 +11,12 @@
     = csrf_meta_tags
   %body{ class: [controller_name, controller_action_name],
          data: { view_name: controller_action_name } }
-    .top-nav
-      .logo
-      .news-feed News Feed
-      .metrics Metrics
-      .menu
-        .menu-icon
-        .menu-text Menu
-    = yield
+    #outer_container
+      #top_nav
+        #logo
+        #news_feed News Feed
+        #metrics Metrics
+        #menu
+          #menu_icon
+          #menu_text Menu
+      = yield
