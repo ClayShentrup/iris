@@ -1,1 +1,3 @@
-Rails.application.config.assets.precompile += ['turbolinks_debugging.js']
+Rails.application.config.tap do |config|
+  config.assets.precompile << 'turbolinks_debugging.js'
+end
