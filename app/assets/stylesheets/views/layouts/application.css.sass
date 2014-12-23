@@ -1,0 +1,42 @@
+#outer_container
+  +outer-container
+
+#top_nav
+  div
+    float: left
+    text-align: center
+
+  >div
+    padding: 8px
+    border: 1px solid $grey
+
+  #logo
+    background: transparent image-url('dabo-d-logo.svg') no-repeat
+    +media($desktop)
+      background: transparent image-url('dabo-logo.svg') no-repeat 7px
+
+  #menu_icon
+    background: transparent image-url('menu-icon.svg') no-repeat
+    +media($desktop)
+      width: 30%
+
+  #logo,
+  #menu-icon
+    text-indent: -9999px
+
+  #logo,
+  #menu
+    background-size: contain
+    background-origin: content-box
+    width: 10%
+
+  #menu_text
+    width: 0
+    display: none
+    +media($desktop)
+      width: 70%
+      display: inline-block
+
+  #news_feed,
+  #metrics
+    width: 40%
