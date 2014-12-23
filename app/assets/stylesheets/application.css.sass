@@ -3,6 +3,8 @@
 @import variables
 @import "**/*"
 
+// Now that the rem unit is starting to become popular, setting the base
+// font-size on the root element (html tag) is advised (rem stands for root em).
 html
   font-family: $helvetica
 
@@ -13,31 +15,37 @@ html
   div
     float: left
     text-align: center
+
   >div
     padding: 8px
     border: 1px solid $grey
+
   #logo
-    background: transparent url('dabo-d-logo.svg') no-repeat
+    background: transparent image-url('dabo-d-logo.svg') no-repeat
     +media($desktop)
-      background: transparent url('dabo-logo.svg') no-repeat 7px
+      background: transparent image-url('dabo-logo.svg') no-repeat 7px
+
   #menu_icon
-    background: transparent url('menu-icon.svg') no-repeat
+    background: transparent image-url('menu-icon.svg') no-repeat
     min-height: 24px
     width: 100%
     +media($desktop)
       width: 30%
+
   #logo,
   #menu
     background-size: contain
     background-origin: content-box
     min-height: 42px
     width: 10%
+
   #menu_text
     width: 0
     display: none
     +media($desktop)
       width: 70%
       display: inline-block
+
   #news_feed,
   #metrics
     width: 40%
