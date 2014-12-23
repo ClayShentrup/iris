@@ -1,0 +1,12 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @pristine_example.name
+%p
+  %b Description:
+  = @pristine_example.description
+
+= link_to 'Edit', edit_pristine_example_path(@pristine_example)
+\|
+= link_to 'Back', pristine_examples_path

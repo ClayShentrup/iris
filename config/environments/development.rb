@@ -1,3 +1,5 @@
+require 'pry'
+
 Rails.application.configure do
   # Settings specified here will take precedence over those in
   # config/application.rb.
@@ -35,5 +37,5 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
-  config.development_web_server = true
+  config.turbolinks_debugging_enabled = true
 end

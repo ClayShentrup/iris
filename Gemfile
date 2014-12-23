@@ -8,24 +8,24 @@ gem 'pg'
 gem 'unicorn'
 gem 'rack-timeout'
 
+# See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
-gem 'jbuilder'
+
+# bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', group: :doc
 
-gem 'active_model_serializers'
+gem 'responders'
 
 # assets
 gem 'sass-rails'
 gem 'haml-rails'
 gem 'soda-ruby', require: 'soda'
-gem 'rabl'
-gem 'pry'
-gem 'pry-nav'
 gem 'bourbon'
 gem 'neat'
-gem 'uglifier'
+gem 'uglifier' # Use Uglifier as compressor for JavaScript assets
 gem 'jquery-rails'
 gem 'turbolinks'
+gem 'backbone-rails'
 
 group :development do
   gem 'rubocop'
@@ -36,6 +36,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'

@@ -15,9 +15,9 @@ require 'sprockets/railtie'
 # Dependencies for assets:precompile
 require 'jquery-rails'
 require 'turbolinks'
-require 'rabl'
 require 'bourbon'
 require 'neat'
+require 'backbone-rails'
 
 # Dependencies for Unicorn
 require 'rack-timeout'
@@ -45,7 +45,7 @@ module Comparitron
 
     config.generators do |g|
       g.assets false
-      g.helper false
+      g.helper false # Presenters are preferable to helpers.
 
       require 'haml-rails'
       g.template_engine :haml
@@ -58,6 +58,10 @@ module Comparitron
       g.fixture_replacement :factory_girl
     end
 
-    config.eager_load_paths << Rails.root.join('lib')
+    config.autoload_paths << Rails.root.join('lib')
+
+    config.turbolinks_debugging_enabled = false
+
+    config.action_controller.action_on_unpermitted_parameters = :raise
   end
 end
