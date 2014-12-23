@@ -1,14 +1,3 @@
-@import bourbon
-@import neat
-@import variables
-@import "**/*"
-
-body
-  +outer-container
-
-html
-  font-family: $helvetica
-
 .top-nav
   div
     float: left
@@ -17,11 +6,11 @@ html
     padding: 8px
     border: 1px solid $grey
   .logo
-    background: transparent url('dabo-d-logo.svg') no-repeat
+    background: transparent url("../images/dabo-d-logo.svg") no-repeat
     +media($desktop)
-      background: transparent url('dabo-logo.svg') no-repeat 7px
+      background: transparent url("../images/dabo-logo.svg") no-repeat 7px
   .menu-icon
-    background: transparent url('menu-icon.svg') no-repeat
+    background: transparent url("../images/menu-icon.svg") no-repeat
     min-height: 24px
     width: 100%
     +media($desktop)
