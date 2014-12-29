@@ -52,7 +52,7 @@ RSpec.describe Hospital do
       it 'updates its attributes' do
         expect { create_or_update }.not_to change(Hospital, :count)
         expect(existing_hospital.reload.attributes)
-        .to include hospital_attributes
+          .to include hospital_attributes
       end
     end
   end
