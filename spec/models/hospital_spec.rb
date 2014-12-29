@@ -23,14 +23,15 @@ RSpec.describe Hospital do
   describe '.create_or_update' do
     let(:hospital_attributes) do
       {
-        name: 'Hospital Name',
-        zip_code: '36301',
-        hospital_type: 'A really good one',
-        provider_id: '123456',
-        state: 'AL',
-        city: 'Dothan',
-      }.with_indifferent_access
+        'name' => 'Hospital Name',
+        'zip_code' => '36301',
+        'hospital_type' => 'A really good one',
+        'provider_id' => provider_id,
+        'state' => 'AL',
+        'city' => 'Dothan',
+      }
     end
+    let(:provider_id) { '123456' }
 
     def create_or_update
       described_class.create_or_update(hospital_attributes)
@@ -45,13 +46,13 @@ RSpec.describe Hospital do
 
     context 'a hospital already exists with this provider_id' do
       let!(:existing_hospital) do
-        create(:hospital, provider_id: hospital_attributes.fetch(:provider_id))
+        create(:hospital, provider_id: provider_id)
       end
 
       it 'updates its attributes' do
         expect { create_or_update }.not_to change(Hospital, :count)
         expect(existing_hospital.reload.attributes)
-          .to include hospital_attributes
+        .to include hospital_attributes
       end
     end
   end
