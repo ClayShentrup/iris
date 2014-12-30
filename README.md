@@ -30,7 +30,7 @@ Boxen will:
 
 1. `foreman start`
 2. `open http://localhost:3000`
-  * If using Boxen, you can access the development server with `open http://mayo_act.dev/`
+  * If using Boxen, you can access the development server with `open http://comparitron.dev/`
 
 - To start the web server only: `foreman start web`
 - To start the Sidekiq server only: `foreman start worker`
@@ -50,17 +50,16 @@ In Rails 4, binaries (`rails`, `rake`, `rspec`) now live in bin/. You no longer 
 
 ## Testing ##
 
-Comparitron uses [RSpec](http://rspec.info/) for ruby tests and [Jasmine](http://pivotal.github.io/jasmine/) for JavaScript tests.
+Comparitron uses [RSpec](http://rspec.info/) for ruby tests and [Jasmine](http://jasmine.github.io/) for JavaScript tests.
 
 - `rspec` will run all ruby specs.
-- `rake jasmine` will run all javascript specs.
-- `open localhost:3000/jasmine` (`open http://comparitron.dev/jasmine` if using Boxen) to run all javascript specs in the browser.ƒ
+- `rake jasmine` will start the Jasmine server. Point your browser to `localhost:8888` to run all javascript specs in the browser. The suite will run every time this page is re-loaded.
 
 ### Continuous Integration ###
 
 Tests are run on each branch on GitHub via [https://semaphoreapp.com/](https://semaphoreapp.com/)
 
-Any branch that passes CI and has an open pull request will have a Heroku instance created modeled after `comparitron-acceptance`, available at `http://comparitron-acceptance-[story_id].herokuapp.com`
+Any branch that passes CI and has an open pull request will have a Heroku instance created modeled after `comparitron-acceptance`, available at `http://comparitron-acceptance-[pr_id].herokuapp.com`
 
 ### Browser Testing ###
 
@@ -75,7 +74,7 @@ Comparitron is deployed to Heroku. Semaphore will automatically deploy passing b
 | master     | [comparitron-acceptance](https://dashboard.heroku.com/apps/comparitron-acceptance/resources) | [comparitron-acceptance.herokuapp.com](https://comparitron-acceptance.herokuapp.com/) |
 | staging    | [comparitron-staging](https://dashboard.heroku.com/apps/comparitron-staging/resources) | [comparitron-staging.herokuapp.com](https://comparitron-staging.herokuapp.com/) |
 | production | [comparitron-production](https://dashboard.heroku.com/apps/comparitron-production/resources) | [comparitron.dabohealth.com](https://comparitron.dabohealth.com/) |
-| feature branches | comparitron-acceptance-[your-story-id] | e.g [comparitron-acceptance-1234567](https://mayo-act-acceptance-1234567.herokuapp.com)
+| feature branches | comparitron-acceptance-[your-pr-id] | e.g [comparitron-acceptance-1234567](https://comparitron-acceptance-1234567.herokuapp.com)
 
 Acceptance has all the code that will be included in the next release.
 Staging is used as a production deploy test.
