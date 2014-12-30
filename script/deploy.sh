@@ -12,6 +12,7 @@ git clone https://github.com/dabohealth/dabo_heroku_deploy /tmp/dabo_heroku_depl
 # build the gem
 cd /tmp/dabo_heroku_deploy && gem build dabo_heroku_deploy.gemspec
 gem install /tmp/dabo_heroku_deploy/dabo_heroku_deploy*.gem && rbenv rehash
+cd -
 
 # Run the gem bin
 heroku_deploy $1
