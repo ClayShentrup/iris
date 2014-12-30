@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/dabohealth/heroku-deploy.git
+  revision: ede269fdabe55961828041b84629aec43506cd5a
+  specs:
+    dabo_heroku_deploy (0.0.1)
+      git
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -84,6 +91,7 @@ GEM
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
+    git (1.2.8)
     globalid (0.3.0)
       activesupport (>= 4.1.0)
     haml (4.0.5)
@@ -259,6 +267,7 @@ DEPENDENCIES
   bourbon
   cane
   codeclimate-test-reporter
+  dabo_heroku_deploy!
   factory_girl_rails
   foreman
   haml-rails

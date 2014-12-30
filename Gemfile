@@ -43,7 +43,6 @@ group :development, :test do
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
   gem 'dabo_heroku_deploy', git: 'https://github.com/dabohealth/heroku-deploy.git'
-
 end
 
 group :test do
