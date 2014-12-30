@@ -86,6 +86,9 @@ GEM
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
     ffi (1.9.6)
+    flip (1.0.1)
+      activesupport (>= 3.0, < 5)
+      i18n
     foreman (0.63.0)
       dotenv (>= 0.7)
       thor (>= 0.13.6)
@@ -269,6 +272,7 @@ DEPENDENCIES
   cane
   codeclimate-test-reporter
   factory_girl_rails
+  flip
   foreman
   haml-rails
   jasmine
