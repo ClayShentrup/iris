@@ -18,7 +18,6 @@ require 'turbolinks'
 require 'bourbon'
 require 'neat'
 require 'backbone-rails'
-require 'jasmine'
 
 # Dependencies for Unicorn
 require 'rack-timeout'
