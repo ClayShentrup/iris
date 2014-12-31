@@ -15,11 +15,8 @@ module Socrata
     end
 
     def get(page: fail)
-      @most_recent_result = client.get(
-        @dataset_id,
-        '$limit' => PAGE_SIZE,
-        '$SELECT' => @required_fields.join(','),
-        '$offset' => offset_for_page(page),
+      @most_recent_result = convert_hashie_objects_to_hashes(
+        results_for_offset(offset_for_page(page)),
       )
     end
 
@@ -30,6 +27,19 @@ module Socrata
 
     private
 
+    def convert_hashie_objects_to_hashes(array_of_hashie_objects)
+      array_of_hashie_objects.map(&:to_hash)
+    end
+
+    def results_for_offset(offset)
+      client.get(
+        @dataset_id,
+        '$limit' => PAGE_SIZE,
+        '$SELECT' => @required_fields.join(','),
+        '$offset' => offset,
+      )
+    end
+
     def we_have_not_gotten_any_results_yet?
       !@most_recent_result
     end
@@ -38,8 +48,9 @@ module Socrata
       @client ||= ::SODA::Client.new(domain: DOMAIN)
     end
 
-    def offset_for_page(page)
-      (page - 1) * PAGE_SIZE
+    def offset_for_page(page_with_one_based_index)
+      page_with_zero_based_index = page_with_one_based_index - 1
+      page_with_zero_based_index * PAGE_SIZE
     end
   end
 end

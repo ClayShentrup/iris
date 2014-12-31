@@ -22,7 +22,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
 
   describe '#get' do
     it 'gets records for the specified page' do
-      expect(response.map(&:to_hash)).to eq [
+      expect(response).to eq [
         {
           'hospital_name' => 'MIZELL MEMORIAL HOSPITAL',
           'provider_id' => '010007',
