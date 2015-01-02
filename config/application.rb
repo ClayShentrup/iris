@@ -23,7 +23,7 @@ require 'jasmine' if Rails.env.test? || Rails.env.development?
 # Dependencies for Unicorn
 require 'rack-timeout'
 
-module Comparitron
+module Iris
   # This class is part of standard Rails configuration.
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified

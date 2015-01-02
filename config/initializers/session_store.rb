@@ -2,4 +2,4 @@
 
 Rails.application.config
   .session_store :cookie_store,
-                 key: '_comparitron_session'
+                 key: '_iris_session'

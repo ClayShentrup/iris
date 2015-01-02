@@ -5,7 +5,7 @@ if ENV['RACK_ENV'] == 'development'
   timeout 86_400
   # For developers using Boxen
   if ENV.fetch('BOXEN_SOCKET_DIR', nil)
-    listen "#{ENV.fetch('BOXEN_SOCKET_DIR', nil)}/comparitron"
+    listen "#{ENV.fetch('BOXEN_SOCKET_DIR', nil)}/iris"
   end
 else
   timeout 45

@@ -4,7 +4,7 @@ Improving the Quality of Care, one Metric at a Time.
 
 | Build | Status | Code Quality | Test Coverage |
 | ----- | ------ | ------------ | ---------- |
-| Acceptance | [![Build Status](https://semaphoreapp.com/api/v1/projects/9342b471-18bc-4ab5-a15c-b81cbf364417/313354/badge.png)](https://semaphoreapp.com/dabohealth/comparitron) | [![Code Climate](https://codeclimate.com/repos/5473af9369568066690132ad/badges/49bcf5b3eb3e945a25f0/gpa.svg)](https://codeclimate.com/repos/5473af9369568066690132ad/feed) | [![Code Climate](https://codeclimate.com/repos/5473af9369568066690132ad/badges/49bcf5b3eb3e945a25f0/gpa.svg)](https://codeclimate.com/repos/5473af9369568066690132ad/feed) |
+| Acceptance | [![Build Status](https://semaphoreapp.com/api/v1/projects/9342b471-18bc-4ab5-a15c-b81cbf364417/313354/badge.png)](https://semaphoreapp.com/dabohealth/iris) | [![Code Climate](https://codeclimate.com/repos/5473af9369568066690132ad/badges/49bcf5b3eb3e945a25f0/gpa.svg)](https://codeclimate.com/repos/5473af9369568066690132ad/feed) | [![Code Climate](https://codeclimate.com/repos/5473af9369568066690132ad/badges/49bcf5b3eb3e945a25f0/gpa.svg)](https://codeclimate.com/repos/5473af9369568066690132ad/feed) |
 
 ## Setup ##
 
@@ -96,7 +96,7 @@ Errors are sent to [https://dabo.airbrake.io](https://dabo.airbrake.io)
 ### Performance monitoring ###
 
 New Relic is included in the project in development and via Heroku environments.
-In development `open http://localhost:3000/newrelic` (`open http://comparitron.dev/newrelic` if using Boxen) to see metrics on recent requests.
+In development `open http://localhost:3000/newrelic` (`open http://iris.dev/newrelic` if using Boxen) to see metrics on recent requests.
 In acceptance/production use the Heroku web resource link to browse to the New Relic dashboard for the app.
 
 ### Environment variables ###
