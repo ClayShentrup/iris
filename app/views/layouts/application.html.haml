@@ -12,11 +12,5 @@
   %body{ class: [controller_name, controller_action_name],
          data: { view_name: controller_action_name } }
     #outer_container
-      #top_nav
-        #logo Dabo Health
-        #news_feed News Feed
-        #metrics Metrics
-        #menu
-          #menu_icon Menu
-          #menu_text Menu
+      = render :partial => "layouts/top_nav"
       = yield
