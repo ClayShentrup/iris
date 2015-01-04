@@ -1,8 +1,8 @@
 GIT
-  remote: https://github.com/dabohealth/heroku-deploy.git
-  revision: ede269fdabe55961828041b84629aec43506cd5a
+  remote: https://github.com/dabohealth/heroku_deploy.git
+  revision: 8a77e16682b1d8dca15cce24ef83e45c6e393fa3
   specs:
-    dabo_heroku_deploy (0.0.1)
+    heroku_deploy (0.0.2)
       git
 
 GEM
@@ -267,10 +267,10 @@ DEPENDENCIES
   bourbon
   cane
   codeclimate-test-reporter
-  dabo_heroku_deploy!
   factory_girl_rails
   foreman
   haml-rails
+  heroku_deploy!
   jasmine
   jasmine-jquery-rails
   jquery-rails
