@@ -1,7 +1,5 @@
 require 'socrata/result_iterator'
 
-require 'pry'
-
 RSpec.describe Socrata::ResultIterator do
   subject do
     described_class.new(
