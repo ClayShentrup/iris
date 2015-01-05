@@ -17,7 +17,7 @@ This project requires Dabo's development provisioning system, Boxen. Go [here](h
 
 After setting up Boxen, you can use boxen to clone and setup the `Iris` project automatically in `~/src/iris` by running:
 
-`$ boxen iris`
+    $ boxen iris
 
 Boxen will:
 
@@ -29,21 +29,24 @@ Boxen will:
 ### Starting the development server ###
 
 1. `foreman start`
+  * To start the web server only: `foreman start web`
+  * To start the Sidekiq server only: `foreman start worker`
+
 2. `open http://localhost:3000`
   * If using Boxen, you can access the development server with `open http://iris.dev/`
 
-- To start the web server only: `foreman start web`
-- To start the Sidekiq server only: `foreman start worker`
 
 ### Heroku ###
 Heroku access is needed for loading realistic data from acceptance, staging, and production environments, as well as deploying to any of these environments.
 
 1. Obtain `eng-service@dabohealth.com` Heroku credentials from Passpack.
 2. Login from the command line: `heroku login`
-4. Add the Heroku repos: `for x in acceptance staging production; do git remote add ${x} git@heroku.com:iris-${x}.git; done`
+3. Add the Heroku repos:
+
+    for x in acceptance staging production; do git remote add ${x} git@heroku.com:iris-${x}.git; done
 
 ### Binaries and Binstubs ###
-In Rails 4, binaries (`rails`, `rake`, `rspec`) now live in bin/. You no longer need to prefix these commands with `bundle exec`. Instead, add `bin` to your `PATH` environment variable:
+In Rails 4, binaries (`rails`, `rake`, `rspec`) now live in `bin/`. You no longer need to prefix these commands with `bundle exec`. Instead, add `bin` to your `PATH` environment variable:
 
     # ~/.profile
     export PATH=bin:$PATH
@@ -57,7 +60,7 @@ Iris uses [RSpec](http://rspec.info/) for ruby tests and [Jasmine](http://jasmin
 
 ### Continuous Integration ###
 
-Tests are run on each branch on GitHub via [https://semaphoreapp.com/](https://semaphoreapp.com/)
+Tests are run on each branch on GitHub via [Semaphore](https://semaphoreapp.com/)
 
 Any branch that passes CI and has an open pull request will have a Heroku instance created modeled after `iris-acceptance`, available at `http://iris-acceptance-[pr_id].herokuapp.com`
 
@@ -71,23 +74,39 @@ Iris is deployed to Heroku. Semaphore will automatically deploy passing builds t
 
 | branch     | app | site |
 | ---------- | --- | ---- |
-| master     | [iris-acceptance](https://dashboard.heroku.com/apps/iris-acceptance/resources) | [iris-acceptance.herokuapp.com](https://iris-acceptance.herokuapp.com/) |
+| master     | [iris-integration](https://dashboard.heroku.com/apps/iris-integration/resources) | [iris-integration.herokuapp.com](https://iris-integration.herokuapp.com/) |
 | staging    | [iris-staging](https://dashboard.heroku.com/apps/iris-staging/resources) | [iris-staging.herokuapp.com](https://iris-staging.herokuapp.com/) |
 | production | [iris-production](https://dashboard.heroku.com/apps/iris-production/resources) | [iris.dabohealth.com](https://iris.dabohealth.com/) |
 | feature branches | iris-acceptance-[your-pr-id] | e.g [iris-acceptance-1234567](https://iris-acceptance-1234567.herokuapp.com)
 
-Acceptance has all the code that will be included in the next release.
-Staging is used as a production deploy test.
+* **Integration** has all the code that will be included in the next release. It is where code is merged to Master. Continuous Integration tests must pass before deployment. Data is refreshed as needed.
 
-Acceptance and Staging applications use sanitized data from production (real metric samples and other data, but all personal information scrubbed).
+* **Staging** is used as a production deploy test, or *production practice*. Data is always refreshed before deployment.
+
+* **Production** is the only place where users (Dabo staff or customers) access our systems.
+
+Integration and Staging applications use sanitized data from production (real metric samples and other data, but all personal information scrubbed).
+
+### Acceptance/Feature Apps ###
+
+Temporary "acceptance" apps are created upon opening a pull request for a feature branch. After the feature has been accepted and the code merged into master, the acceptance app is automatically spun down.
+
+### Deployment Schedule ###
+Continuous deployment of bug fixes and performance improvements take place Monday–Thursday (never Friday or weekends/holidays). For every production release, an engineer is responsible for deployment and will be on-call until the next release. Additionally, the on-call engineer from the previous deployment will serve as backup on-call.
+
+A feature flipping gem (TBD) manages feature deployment. Features can be enabled at a certain time and for certain clients.
 
 ### Database Backups ###
 
-Heroku provides scheduled database backups. Run `heroku pgbackups -a iris-[Acceptance|Staging|Production]` for a list of available backups for that Heroku environment. See [https://devcenter.heroku.com/articles/pgbackups](https://devcenter.heroku.com/articles/pgbackups) for details.
+Heroku provides scheduled database backups. For a list of available backups for that Heroku environment, run:
+
+    heroku pgbackups -a iris-[Acceptance|Staging|Production]
+
+See [https://devcenter.heroku.com/articles/pgbackups](https://devcenter.heroku.com/articles/pgbackups) for details.
 
 ### Error reporting ###
 
-Errors are sent to [https://dabo.airbrake.io](https://dabo.airbrake.io)
+Errors are sent to [Airbrake](https://dabo.airbrake.io).
 
 ### Analytics ###
 
@@ -95,29 +114,36 @@ Errors are sent to [https://dabo.airbrake.io](https://dabo.airbrake.io)
 
 ### Performance monitoring ###
 
-New Relic is included in the project in development and via Heroku environments.
-In development `open http://localhost:3000/newrelic` (`open http://iris.dev/newrelic` if using Boxen) to see metrics on recent requests.
-In acceptance/production use the Heroku web resource link to browse to the New Relic dashboard for the app.
+New Relic is included in the project in development and via Heroku environments. To see metrics on recent requests in **development** run:
+
+* `open http://localhost:3000/newrelic`
+
+* If using **Boxen**, `open http://iris.dev/newrelic`
+
+In acceptance/production, use the Heroku web resource link to browse to the New Relic dashboard for the app.
 
 ### Environment variables ###
 
-Treat `.env` like a schema for enviornment keys. Those needed to run the app in development mode should be set already. Blank entries are not needed in development mode but are used in at least one of the production environments (where they are set via `heroku config`).
+Treat `.env` like a schema for environment keys. Those needed to run the app in development mode should be set already. Blank entries are not needed in development mode but are used in at least one of the production environments (where they are set via `heroku config`).
 
-### Code style and quality ###
+## Code style and quality ##
 
-#### Javascript ####
+### Javascript ###
 
 - TBD
 
-#### Ruby ####
+### Ruby ###
 [Rubocop](https://github.com/bbatsov/rubocop) is configured in `.rubocop.yml` to enforce code quality and style standards based on the [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) and runs every time you commit using a pre-commit hook.
 
-`rubocop -a [path_to_file]` will identify and attempt to automatically correct violations when possible.
+To identify and have Rubocop automatically correct violations when possible, run:
+
+* `rubocop -a [path_to_file]` for individual files
+* `rubocop -a` for all Ruby files
+
+## Engineering Workflow Overview ##
+
+Dabo's current engineering workflow has been fully documented and can be found [here](https://docs.google.com/a/dabohealth.com/document/d/1zMa4PofvjA9LJna0EZgz5Ob_vSlc7H0KP0LkRnt1neM/edit).
 
 ## Contributing changes ##
 
 The project backlog is in [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1177736).
-
-### Engineering Workflow Overview ###
-
-Dabo's current engineering workflow has been fully documented and can be found [here](https://docs.google.com/a/dabohealth.com/document/d/1zMa4PofvjA9LJna0EZgz5Ob_vSlc7H0KP0LkRnt1neM/edit).
