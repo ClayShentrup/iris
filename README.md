@@ -37,13 +37,11 @@ Boxen will:
 
 
 ### Heroku ###
-Heroku access is needed for loading realistic data from acceptance, staging, and production environments, as well as deploying to any of these environments.
+Heroku access is needed for loading realistic data from integration, staging, and production environments, as well as deploying to any of these environments.
 
 1. Obtain `eng-service@dabohealth.com` Heroku credentials from Passpack.
 2. Login from the command line: `heroku login`
-3. Add the Heroku repos:
-
-    for x in acceptance staging production; do git remote add ${x} git@heroku.com:iris-${x}.git; done
+3. Add the Heroku repos: `for x in integration staging production; do git remote add ${x} git@heroku.com:iris-${x}.git; done`
 
 ### Binaries and Binstubs ###
 In Rails 4, binaries (`rails`, `rake`, `rspec`) now live in `bin/`. You no longer need to prefix these commands with `bundle exec`. Instead, add `bin` to your `PATH` environment variable:
@@ -100,7 +98,7 @@ A feature flipping gem (TBD) manages feature deployment. Features can be enabled
 
 Heroku provides scheduled database backups. For a list of available backups for that Heroku environment, run:
 
-    heroku pgbackups -a iris-[Acceptance|Staging|Production]
+    heroku pgbackups -a iris-[integration|staging|production]
 
 See [https://devcenter.heroku.com/articles/pgbackups](https://devcenter.heroku.com/articles/pgbackups) for details.
 
@@ -120,7 +118,7 @@ New Relic is included in the project in development and via Heroku environments.
 
 * If using **Boxen**, `open http://iris.dev/newrelic`
 
-In acceptance/production, use the Heroku web resource link to browse to the New Relic dashboard for the app.
+In integration/production, use the Heroku web resource link to browse to the New Relic dashboard for the app.
 
 ### Environment variables ###
 
