@@ -32,9 +32,7 @@ Boxen will:
   * To start the web server only: `foreman start web`
   * To start the Sidekiq server only: `foreman start worker`
 
-2. `open http://localhost:3000`
-  * If using Boxen, you can access the development server with `open http://iris.dev/`
-
+2. `open http://iris.dev/` (or `open http://localhost:3000`)
 
 ### Heroku ###
 Heroku access is needed for loading realistic data from integration, staging, and production environments, as well as deploying to any of these environments.
@@ -55,6 +53,7 @@ Iris uses [RSpec](http://rspec.info/) for ruby tests and [Jasmine](http://jasmin
 
 - `rspec` will run all ruby specs.
 - `rake jasmine` will start the Jasmine server. Point your browser to `localhost:8888` to run all javascript specs in the browser. The suite will run every time this page is re-loaded.
+- `rake jasmine:ci` will run Jasmine specs on the command line without the need for a browser.
 
 ### Continuous Integration ###
 
@@ -114,11 +113,9 @@ Errors are sent to [Airbrake](https://dabo.airbrake.io).
 
 New Relic is included in the project in development and via Heroku environments. To see metrics on recent requests in **development** run:
 
-* `open http://localhost:3000/newrelic`
+* `open http://iris.dev/newrelic` or (`open http://localhost:3000/newrelic`)
 
-* If using **Boxen**, `open http://iris.dev/newrelic`
-
-In integration/production, use the Heroku web resource link to browse to the New Relic dashboard for the app.
+In production, use the Heroku web resource link to browse to the New Relic dashboard for the app.
 
 ### Environment variables ###
 
