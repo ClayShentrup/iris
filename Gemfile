@@ -54,6 +54,8 @@ group :test do
   gem 'vcr'
   gem 'webmock'
   gem 'codeclimate-test-reporter'
+  gem 'rails-perftest'
+  gem 'ruby-prof'
 end
 
 group :production do
