@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'active_record_spec_helper'
+require './app/models/pristine_example'
 
 RSpec.describe PristineExample do
   describe 'columns' do

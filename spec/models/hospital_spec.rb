@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'active_record_spec_helper'
+require './app/models/hospital'
 
 RSpec.describe Hospital do
   describe 'attributes' do
