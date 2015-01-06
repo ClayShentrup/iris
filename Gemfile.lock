@@ -50,10 +50,8 @@ GEM
       parser (>= 2.2.0.pre.3, < 3.0)
     backbone-rails (1.1.2)
       rails (>= 3.0.0)
-    better_errors (2.0.0)
-      coderay (>= 1.0.0)
-      erubis (>= 2.6.6)
-      rack (>= 0.9.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     bourbon (3.2.3)
       sass (~> 3.2)
       thor
@@ -77,6 +75,7 @@ GEM
     columnize (0.9.0)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
+    debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
@@ -254,6 +253,11 @@ GEM
       rack
       raindrops (~> 0.7)
     vcr (2.9.3)
+    web-console (2.0.0)
+      activemodel (~> 4.0)
+      binding_of_caller (>= 0.7.2)
+      railties (~> 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
     webmock (1.20.0)
       addressable (>= 2.3.6)
       crack (>= 0.3.2)
@@ -263,7 +267,6 @@ PLATFORMS
 
 DEPENDENCIES
   backbone-rails
-  better_errors
   bourbon
   cane
   codeclimate-test-reporter
@@ -292,4 +295,5 @@ DEPENDENCIES
   uglifier
   unicorn
   vcr
+  web-console
   webmock
