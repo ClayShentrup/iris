@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/dabohealth/heroku_deploy.git
-  revision: 8a77e16682b1d8dca15cce24ef83e45c6e393fa3
+  revision: 5926c07f8041847ce11bd6921ecf43f255d69f30
   specs:
     heroku_deploy (0.0.2)
       git
