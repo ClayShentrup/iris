@@ -78,6 +78,8 @@ Iris is deployed to Heroku. CI will automatically deploy passing builds to the H
 
 A procedural shell script manages the deploys to Heroku by using Heroku's pipelines to compile a slug once and promote that slug downstream to each successive environment app. The deploy process is outlined in the graphic below.
 
+![deploy process - new page](https://cloud.githubusercontent.com/assets/3607358/5651089/43512dea-9659-11e4-84fd-aa30ef1f58bc.png)
+
 * The CI deploys code to **`iris-build-slug`** after code is pushed to Master and all tests pass.
 
 * **Integration** has all the code that will be included in the next release. It is where code is merged to Master. Continuous Integration tests must pass before deployment. Data is refreshed as needed. During deployment, `integration` will enter maintenance mode, promote `iris-build-slug` and run migrations.
