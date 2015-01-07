@@ -1,4 +1,3 @@
-AvoidSendMethodCheck: { }
 AddModelVirtualAttributeCheck: { }
 AlwaysAddDbIndexCheck: { }
 #CheckSaveReturnValueCheck: { }
@@ -40,3 +39,5 @@ UseQueryAttributeCheck: { }
 UseSayWithTimeInMigrationsCheck: { }
 UseScopeAccessCheck: { }
 UseTurboSprocketsRails3Check: { }
+AvoidSendMethodCheck: { }
+AvoidRailsEnvCheck: { ignored_files: ['config'] }
