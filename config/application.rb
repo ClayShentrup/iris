@@ -7,21 +7,6 @@ require 'action_controller/railtie'
 require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'sprockets/railtie'
-# require 'rails/test_unit/railtie'
-
-# DO NOT call Bundler.require !!! Here's why:
-#   http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
-
-# Dependencies for assets:precompile
-require 'jquery-rails'
-require 'turbolinks'
-require 'bourbon'
-require 'neat'
-require 'backbone-rails'
-require 'jasmine' if Rails.env.test? || Rails.env.development?
-
-# Dependencies for Unicorn
-require 'rack-timeout'
 
 module Iris
   # This class is part of standard Rails configuration.
@@ -62,5 +47,8 @@ module Iris
     config.autoload_paths << Rails.root.join('lib')
     config.turbolinks_debugging_enabled = false
     config.action_controller.action_on_unpermitted_parameters = :raise
+    config.use_airbrake = true
   end
 end
+
+require_relative 'gem_dependencies'

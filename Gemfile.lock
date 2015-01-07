@@ -37,6 +37,9 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     addressable (2.3.6)
+    airbrake (4.1.0)
+      builder
+      multi_json
     arel (6.0.0)
     ast (2.0.0)
     astrolabe (1.3.0)
@@ -258,6 +261,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  airbrake
   backbone-rails
   bourbon
   cane

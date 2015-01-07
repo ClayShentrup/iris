@@ -1,0 +1,23 @@
+=begin
+DO NOT call Bundler.require !!! Here's why:
+  http://myronmars.to/n/dev-blog/2012/12/5-reasons-to-avoid-bundler-require
+
+The goal is to require the minimum number of dependencies, and as late/lazily
+as possible, so our app maintains a fast boot time. So, for instance, if you
+only need the rake tasks from a Gem, see if it's possible to just require the
+rake tasks from the gem, instead of the entire gem. Every gem is different (e.g.
+some use monkey patching while others merely provide new classes and/or
+methods), so the strategy will vary dependending on the gem.
+=end
+
+# Dependencies for assets:precompile
+require 'jquery-rails'
+require 'turbolinks'
+require 'bourbon'
+require 'neat'
+require 'backbone-rails'
+
+# Dependencies for Unicorn
+require 'rack-timeout'
+require 'jasmine'
+require 'airbrake' if Rails.application.config.use_airbrake
