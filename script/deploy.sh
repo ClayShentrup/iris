@@ -6,7 +6,13 @@ APP_NAME=$1
 
 # Heroku toolbelt autoupdates itself and will exit a command if currently
 # updating, so manually trigger an update.
-heroku update
+if [ -n $CI ]; then
+  apt-get install heroku-toolbelt
+else
+  heroku update
+fi
+
+
 
 # Install the Heroku Pipeline Plugin, not installed by default.
 heroku plugins:install git://github.com/heroku/heroku-pipeline.git
