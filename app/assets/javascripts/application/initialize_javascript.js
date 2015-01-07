@@ -2,6 +2,9 @@
 
 var Dabo = {
   Views: {}
+
+
+  
 };
 
 $(document).on('ready page:load', function(){

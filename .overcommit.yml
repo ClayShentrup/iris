@@ -49,3 +49,12 @@ PreCommit:
     install_command: 'npm install -g jshint'
     include: '**/*.js'
     exclude: '**/*_spec.js'
+
+  Jscs:
+    enabled: true
+    description: 'Analyzing with JSCS'
+    required_executable: 'jscs'
+    install_command: 'npm install -g jscs'
+    include:
+      - 'app/assets/javascripts/**/*.js'
+      - 'spec/javascripts/**/*.js'
