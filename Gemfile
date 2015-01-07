@@ -32,7 +32,7 @@ group :development do
   gem 'cane'
   gem 'pre-commit'
   gem 'foreman'
-  gem 'better_errors'
+  gem 'web-console'
 end
 
 group :development, :test do
