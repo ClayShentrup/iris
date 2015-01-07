@@ -17,6 +17,8 @@ gem 'sdoc', group: :doc
 
 gem 'responders'
 
+gem 'thor-rails'
+
 # assets
 gem 'sass-rails'
 gem 'haml-rails'
