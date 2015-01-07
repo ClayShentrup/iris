@@ -2,19 +2,38 @@
 
 set -e
 
-# Setup Github credentials
-rm -f ~/.netrc
-echo -e "machine github.com\n  login daboeng\n  password $GITHUB_TOKEN" >> ~/.netrc
+APP_NAME=$1
 
-# clone the private repo for the gem into /tmp
-git clone https://github.com/dabohealth/dabo_heroku_deploy /tmp/dabo_heroku_deploy
+# Install the Heroku Pipeline Plugin, not installed by default.
+heroku plugins:install git://github.com/heroku/heroku-pipeline.git
 
-# build the gem
-cd /tmp/dabo_heroku_deploy && gem build dabo_heroku_deploy.gemspec
-gem install /tmp/dabo_heroku_deploy/dabo_heroku_deploy*.gem && rbenv rehash
-cd -
+# Enable maintenance mode, promote the upstream pipeline app, run migrations
+heroku maintenance:on -a $APP_NAME
 
-# Run the gem bin
-heroku_deploy $1
+if [ $APP_NAME == 'dabo-iris-integration' ]; then
+  UPSTREAM_APP_NAME='iris-build-slug'
+elif [ $APP_NAME == 'dabo-iris-staging' ]; then
+  UPSTREAM_APP_NAME='dabo-iris-integration'
+elif [ $APP_NAME == 'dabo-iris-production' ]; then
+  UPSTREAM_APP_NAME='dabo-iris-staging'
+else
+  echo "Invalid app name."
+  exit 1
+fi
 
-rm -rf /tmp/dabo_heroku_deploy
+heroku pipeline:promote $APP_NAME -a $UPSTREAM_APP_NAME
+
+if [ $APP_NAME == 'dabo-iris-staging' ]; then
+  echo "Copying production database to staging..."
+  heroku pgbackups:capture -a dabo-iris-production --expire
+  heroku pg:reset -a $APP_NAME DATABASE_URL --confirm $APP_NAME
+  PROD_DB_URL=`heroku pgbackups:url -a dabo-iris-production`
+  heroku pgbackups:restore DATABASE_URL -a $APP_NAME --confirm $APP_NAME $PROD_DB_URL
+fi
+
+echo "Running migrations..."
+heroku run rake db:migrate -a $APP_NAME
+echo "Restarting the app..."
+heroku restart -a $APP_NAME
+echo "Disabling maintenance mode!"
+heroku maintenance:off -a $APP_NAME
