@@ -15,8 +15,9 @@ ActiveRecord::Schema.define(version: 20141217214046) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
-  create_table "hospitals", force: true do |t|
+  create_table "hospitals", force: :cascade do |t|
     t.string "name"
     t.string "zip_code"
     t.string "hospital_type"
@@ -25,7 +26,7 @@ ActiveRecord::Schema.define(version: 20141217214046) do
     t.string "city"
   end
 
-  create_table "pristine_examples", force: true do |t|
+  create_table "pristine_examples", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
