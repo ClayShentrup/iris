@@ -7,7 +7,7 @@ APP_NAME=$1
 # Heroku toolbelt autoupdates itself and will exit a command if currently
 # updating, so manually trigger an update.
 if [ -n $CI ]; then
-  apt-get install heroku-toolbelt
+  sudo apt-get install heroku-toolbelt
 else
   heroku update
 fi
