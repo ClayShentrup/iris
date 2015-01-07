@@ -1,5 +1,6 @@
 require 'test_helper'
 require 'rails/performance_test_help'
+require 'rails/perftest/action_dispatch/performance_test'
 
 # Pristine Examples performance tests
 class PristineExamplesTest < ActionDispatch::PerformanceTest

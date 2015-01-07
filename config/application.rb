@@ -8,11 +8,6 @@ require 'action_mailer/railtie'
 require 'action_view/railtie'
 require 'sprockets/railtie'
 
-if Rails.env.test? || Rails.env.development?
-  require 'rails/test_unit/railtie'
-  require 'rails-perftest'
-end
-
 require_relative 'gem_dependencies'
 
 module Iris
@@ -56,4 +51,9 @@ module Iris
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.force_ssl = true
   end
+end
+
+if Rails.configuration.development?
+  load 'rails/test_unit/testing.rake'
+  load 'rails/perftest/railties/testing.tasks'
 end
