@@ -19,7 +19,6 @@ require 'bourbon'
 require 'neat'
 require 'backbone-rails'
 require 'jasmine' if Rails.env.test? || Rails.env.development?
-require 'heroku_deploy' if Rails.env.test? || Rails.env.development?
 
 # Dependencies for Unicorn
 require 'rack-timeout'
