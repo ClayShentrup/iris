@@ -8,6 +8,7 @@ namespace :ruby_best_practices do
     analyzer = RailsBestPractices::Analyzer.new(app_root)
     analyzer.analyze
     analyzer.output
-    fail 'Found bad practices' if analyzer.runner.errors.size > 0
+
+    exit analyzer.runner.errors.size
   end
 end
