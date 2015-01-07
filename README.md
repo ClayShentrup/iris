@@ -67,7 +67,7 @@ Feature tests are run in Chrome via Selenium. The Semaphore CI platform also run
 
 ## Deploying ##
 
-Iris is deployed to Heroku. Semaphore will automatically deploy passing builds to the Heroku apps below:
+Iris is deployed to Heroku. CI will automatically deploy passing builds to the Heroku apps below:
 
 | branch     | app | site |
 | ---------- | --- | ---- |
@@ -76,13 +76,19 @@ Iris is deployed to Heroku. Semaphore will automatically deploy passing builds t
 | production | [iris-production](https://dashboard.heroku.com/apps/iris-production/resources) | [iris.dabohealth.com](https://iris.dabohealth.com/) |
 | feature branches | iris-acceptance-[your-pr-id] | e.g [iris-acceptance-1234567](https://iris-acceptance-1234567.herokuapp.com)
 
-* **Integration** has all the code that will be included in the next release. It is where code is merged to Master. Continuous Integration tests must pass before deployment. Data is refreshed as needed.
+A procedural shell script manages the deploys to Heroku by using Heroku's pipelines to compile a slug once and promote that slug downstream to each successive environment app. The deploy process is outlined in the graphic below.
 
-* **Staging** is used as a production deploy test, or *production practice*. Data is always refreshed before deployment.
+* The CI deploys code to **`iris-build-slug`** after code is pushed to Master and all tests pass.
 
-* **Production** is the only place where users (Dabo staff or customers) access our systems.
+* **Integration** has all the code that will be included in the next release. It is where code is merged to Master. Continuous Integration tests must pass before deployment. Data is refreshed as needed. During deployment, `integration` will enter maintenance mode, promote `iris-build-slug` and run migrations.
+
+* **Staging** is used as a production deploy test, or *production practice*. Data is always refreshed before deployment. During deployment, `staging` will enter maintenance mode, copy data from the production database, promote `integration` and run migrations.
+
+* **Production** is the only place where users (Dabo staff or customers) access our systems. This is the only environment in which the deploy process is **started by a human**. The on-call engineer (described below in "[Deployment Schedule](https://github.com/dabohealth/iris#deployment-schedule)") will manually deploy code to `production` from the CI.
 
 Integration and Staging applications use sanitized data from production (real metric samples and other data, but all personal information scrubbed).
+
+Migrations are run regardless of whether there are new migrations or not.
 
 ### Acceptance/Feature Apps ###
 
