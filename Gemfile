@@ -34,6 +34,7 @@ group :development do
   gem 'overcommit'
   gem 'foreman'
   gem 'web-console'
+  gem 'rails_best_practices'
 end
 
 group :development, :test do
