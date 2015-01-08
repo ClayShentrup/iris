@@ -16,7 +16,7 @@
         %td= pristine_example.description
         %td= link_to 'Show', pristine_example
         %td= link_to 'Edit', edit_pristine_example_path(pristine_example)
-        %td= link_to 'Destroy', pristine_example, :method => :delete, :data => { :confirm => 'Are you sure?' }
+        %td= link_to 'Destroy', pristine_example, method: :delete, data: { confirm: 'Are you sure?' }
 
   %br
     = link_to 'New Pristine example', new_pristine_example_path

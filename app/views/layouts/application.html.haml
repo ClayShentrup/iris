@@ -12,5 +12,5 @@
   %body{ class: [controller_name, controller_action_name],
          data: { view_name: controller_action_name } }
     #outer_container
-      = render :partial => "layouts/top_nav"
+      = render partial: "layouts/top_nav"
       = yield
