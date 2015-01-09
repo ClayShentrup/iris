@@ -6,11 +6,11 @@ Dabo.Views['pristine_examples-index'] = Backbone.View.extend({
     'click #test': 'log'
   },
 
-  initialize: function(){
+  initialize: function() {
     console.log('pristine_examples/index view initialized');
   },
 
-  log: function(){
+  log: function() {
     console.log('Your click is recieved.');
     return false;
   }
