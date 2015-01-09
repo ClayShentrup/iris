@@ -11,4 +11,14 @@ RSpec.describe PristineExamplesController do
   it_behaves_like 'an ApplicationController show'
   it_behaves_like 'an ApplicationController edit'
   it_behaves_like 'an ApplicationController update'
+
+  context 'performance', :performance do
+    before do
+      create_list :pristine_example, 10
+    end
+
+    it 'takes a short time to execute' do
+      expect { get :index }.to take_less_than :short_time
+    end
+  end
 end

@@ -52,4 +52,27 @@ RSpec.configure do |config|
   end
 
   config.expose_dsl_globally = false
+
+  config.around :example, :performance do |example|
+    old_perform_caching = ActionController::Base.perform_caching
+    old_mechanism = ActiveSupport::Dependencies.mechanism
+    old_level = Rails.logger.level
+
+    ActionController::Base.perform_caching = true
+    ActiveSupport::Dependencies.mechanism = :require
+    Rails.logger.level = ActiveSupport::Logger::INFO
+
+    example.run
+
+    ActionController::Base.perform_caching = old_perform_caching
+    ActiveSupport::Dependencies.mechanism = old_mechanism
+    Rails.logger.level = old_level
+  end
+
+  config.add_setting :default_performance_runs, default: 5
+  config.add_setting :performance_times, default: {
+    short_time: 10,
+    normal_time: 50,
+    long_time: 100,
+  }
 end
