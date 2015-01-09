@@ -1,6 +1,6 @@
 'use strict';
 
-Dabo = {
+var Dabo = {
   Views: {}
 };
 
