@@ -1,0 +1,51 @@
+# We ignore the following git hooks provided by overcommit for now
+PostCheckout:
+  ALL:
+    enabled: false
+CommitMsg:
+  ALL:
+    enabled: false
+
+# Custom options for Iris repository
+PreCommit:
+  # Ignore all Overcommit default options
+  ALL:
+    enabled: false
+
+  # Enable explicitly each desired pre commit check
+  Rubocop:
+    enabled: true
+    description: 'Analyzing with Rubocop'
+    required_executable: 'rubocop'
+    install_command: 'gem install rubocop'
+    exclude:
+      - 'Gemfile'
+      - 'Gemfile.lock'
+
+  TrailingWhitespace:
+    enabled: true
+    description: 'Checking for trailing whitespace'
+    exclude:
+      - 'spec/cassettes/**/*.yml'
+      - 'app/assets/**/*.svg'
+
+  RailsSchemaUpToDate:
+    enabled: true
+    description: 'Checking if database schema is up to date'
+    include:
+      - 'db/migrate/*.rb'
+      - 'db/schema.rb'
+      - 'db/structure.sql'
+
+  YamlSyntax:
+    enabled: true
+    description: 'Checking YAML syntax'
+    include: '**/*.yml'
+
+  JsHint:
+    enabled: true
+    description: 'Analyzing with JSHint'
+    required_executable: 'jshint'
+    install_command: 'npm install -g jshint'
+    include: '**/*.js'
+    exclude: '**/*_spec.js'

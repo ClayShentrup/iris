@@ -30,7 +30,7 @@ gem 'backbone-rails'
 group :development do
   gem 'rubocop'
   gem 'cane'
-  gem 'pre-commit'
+  gem 'overcommit'
   gem 'foreman'
   gem 'web-console'
 end
