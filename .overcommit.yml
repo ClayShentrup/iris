@@ -48,3 +48,4 @@ PreCommit:
     required_executable: 'jshint'
     install_command: 'npm install -g jshint'
     include: '**/*.js'
+    exclude: '**/*_spec.js'

@@ -1,0 +1,12 @@
+// http://jshint.com/docs/options/
+{
+  "enforceall": true, // start out strict
+  "predef": ["Backbone"],
+  "globals": { "Dabo": true },
+  "jquery": true, // allow `$` as global variable
+  "browser": true, // allow `window`
+  "strict": true, // js files must have 'use strict' at the top
+  "nocomma": false,
+  "nonew": false,
+  "es5": false // fixes bug in jshint when using enforceall, throws warning
+}
