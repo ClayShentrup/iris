@@ -20,6 +20,6 @@ require 'backbone-rails'
 # Dependencies for Unicorn
 require 'rack-timeout'
 
-require 'airbrake' if Rails.application.config.use_airbrake
 require 'flip'
-require 'jasmine'
+require 'jasmine' if Rails.env.development? || Rails.env.test?
+require 'airbrake' if Rails.env.production?
