@@ -1,5 +1,24 @@
 {
-  "addons": ["heroku-postgresql:hobby-dev"],
+  "name":"Iris",
+  "description":"Making quality metrics actionable",
+  "repository":"https://github.com/dabohealth/iris",
+  "scripts":{
+    "postdeploy":"bundle exec rake db:migrate"
+  },
+  "env":{
+    "DABO_RAILS_SECRET_KEY_BASE":{
+      "description":"A secret key for verifying the integrity of signed cookies.",
+      "generator":"secret"
+    },
+    "WEB_CONCURRENCY":{
+      "description":"The number of processes to run.",
+      "value":"1"
+    },
+    "RACK_ENV":"production"
+  },
+  "addons":[
+    "heroku-postgresql:hobby-dev"
+  ],
   "scripts": {
     "postdeploy": "bundle exec rake db:migrate"
   }
