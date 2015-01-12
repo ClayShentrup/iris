@@ -1,12 +1,24 @@
 // http://jshint.com/docs/options/
 {
+  //Enforcing
   "enforceall": true, // start out strict
-  "predef": ["Backbone"],
-  "globals": { "Dabo": true },
-  "jquery": true, // allow `$` as global variable
-  "browser": true, // allow `window`
-  "strict": true, // js files must have 'use strict' at the top
+  "curly": false,
+  "es3": false,
+  "immed": false,
+  "newcap": false,
+  "noempty": false,
   "nocomma": false,
   "nonew": false,
-  "es5": false // fixes bug in jshint when using enforceall, throws warning
+  "es5": false, // fixes bug in jshint when using enforceall, throws warning
+
+  //Relaxing
+  "strict": true, // js files must have 'use strict' at the top
+
+  //Environment
+  "globals": {
+    "Dabo": true,
+    "Backbone": true
+  },
+  "jquery": true, // allow `$` as global variable
+  "browser": true // allow `window`
 }

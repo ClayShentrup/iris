@@ -8,3 +8,4 @@ log
 
 tmp
 .env
+node_modules
