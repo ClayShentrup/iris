@@ -6,8 +6,4 @@ class Hospital < ActiveRecord::Base
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
       .update_attributes!(attributes)
   end
-
-  def self.search(query)
-    where('LOWER(name) LIKE LOWER(:query)', query: "%#{query}%")
-  end
 end

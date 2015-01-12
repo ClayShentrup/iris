@@ -1,9 +1,9 @@
-= form_for @pristine_example do |f|
-  - if @pristine_example.errors.any?
+= form_for pristine_example do |f|
+  - if pristine_example.errors.any?
     #error_explanation
-      %h2= "#{pluralize(@pristine_example.errors.count, "error")} prohibited this pristine_example from being saved:"
+      %h2= "#{pluralize(pristine_example.errors.count, "error")} prohibited this pristine_example from being saved:"
       %ul
-        - @pristine_example.errors.full_messages.each do |msg|
+        - pristine_example.errors.full_messages.each do |msg|
           %li= msg
 
   .field

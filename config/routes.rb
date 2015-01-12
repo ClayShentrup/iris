@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  mount Flip::Engine => "/flip"
+  mount Flip::Engine => '/flip'
   resources :pristine_examples
 
   # The priority is based upon order of creation: first created -> highest

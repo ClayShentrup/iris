@@ -17,6 +17,8 @@ gem 'sdoc', group: :doc
 
 gem 'responders'
 
+gem 'thor-rails'
+
 # assets
 gem 'sass-rails'
 gem 'haml-rails'
@@ -34,6 +36,7 @@ group :development do
   gem 'overcommit'
   gem 'foreman'
   gem 'web-console'
+  gem 'rails_best_practices'
 end
 
 group :development, :test do
