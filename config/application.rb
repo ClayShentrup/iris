@@ -50,5 +50,6 @@ module Iris
     config.autoload_paths << Rails.root.join('lib')
     config.turbolinks_debugging_enabled = false
     config.action_controller.action_on_unpermitted_parameters = :raise
+    config.force_ssl = true
   end
 end
