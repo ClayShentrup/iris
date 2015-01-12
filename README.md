@@ -149,4 +149,32 @@ Dabo's current engineering workflow has been fully documented and can be found [
 
 ## Contributing changes ##
 
+### Feature Flipping ###
+
+Features can be enabled or disabled using the [Flip](https://github.com/pda/flip) gem. The gem provides a dashboard, found at `/flip`, where a feature can be actived using one of the following strategies:
+
+- default (Allows all features to be enabled/disabled by default. Feature defaults will override this value.)
+- database (To flip features site-wide for all users.)
+- cookie (To flip features just for you.)
+
+#### Enabling features ####
+1. Declare feature in `app/models/feature.rb`
+
+```ruby
+feature :example, #choose a name for your feature
+        default: false, #disables by default
+        description: 'An Example'
+```
+
+2. Use `feature? :feature_name` to restrict/allow access to a feature in the view.
+
+```haml
+
+- if feature? :example
+  %h1 This will be shown if the feature is enabled!
+
+- else
+  %h1 Otherwise this will be shown!
+```
+
 The project backlog is in [Pivotal Tracker](https://www.pivotaltracker.com/n/projects/1177736).
