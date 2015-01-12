@@ -23,3 +23,4 @@ require 'rack-timeout'
 require 'flip'
 require 'jasmine' if Rails.env.development? || Rails.env.test?
 require 'airbrake' if Rails.env.production?
+require 'newrelic_rpm'
