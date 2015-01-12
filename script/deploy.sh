@@ -49,5 +49,5 @@ heroku maintenance:off -a $APP_NAME
 
 # Notify New Relic of a release to track before/after metrics
 if [ $APP_NAME == 'dabo-iris-production' ]; then
-  bundle exec newrelic deployments -l $NEW_RELIC_LICENCE_KEY -a iris-production -r $REVISION -e production
+  bundle exec newrelic deployments -l $NEW_RELIC_LICENCE_KEY -a iris -r $REVISION -e production
 fi
