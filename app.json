@@ -18,8 +18,5 @@
   },
   "addons":[
     "heroku-postgresql:hobby-dev"
-  ],
-  "scripts": {
-    "postdeploy": "bundle exec rake db:migrate"
-  }
+  ]
 }
