@@ -15,9 +15,6 @@ fi
 # Install the Heroku Pipeline Plugin, not installed by default.
 heroku plugins:install git://github.com/heroku/heroku-pipeline.git
 
-# Enable maintenance mode, promote the upstream pipeline app, run migrations
-heroku maintenance:on -a $APP_NAME
-
 if [ $APP_NAME == 'dabo-iris-integration' ]; then
   UPSTREAM_APP_NAME='iris-build-slug'
 elif [ $APP_NAME == 'dabo-iris-staging' ]; then
@@ -29,6 +26,8 @@ else
   exit 1
 fi
 
+# Enable maintenance mode, promote the upstream pipeline app, run migrations
+heroku maintenance:on -a $APP_NAME
 heroku pipeline:promote $APP_NAME -a $UPSTREAM_APP_NAME
 
 # Reset staging db to match production
@@ -49,5 +48,6 @@ heroku maintenance:off -a $APP_NAME
 
 # Notify New Relic of a release to track before/after metrics
 if [ $APP_NAME == 'dabo-iris-production' ]; then
-  bundle exec newrelic deployments -l $NEW_RELIC_LICENCE_KEY -a iris -r $REVISION -e production
+  gem install newrelic_rpm
+  newrelic deployments -a iris -r $REVISION -e production
 fi
