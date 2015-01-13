@@ -94,12 +94,12 @@ Migrations are run regardless of whether there are new migrations or not.
 
 ### Acceptance/Feature Apps ###
 
-Temporary "acceptance" apps are created upon opening a pull request for a feature branch. After the feature has been accepted and the code merged into master, the acceptance app is automatically spun down.
+Temporary "acceptance" apps are created upon opening a pull request for a feature branch. After the pull request is closed, the acceptance app is automatically spun down. See our [acceptance app manager] (https://github.com/dabohealth/acceptance-app-manager#acceptance-app-manager) for details.
 
 ### Deployment Schedule ###
 Continuous deployment of bug fixes and performance improvements take place Monday–Thursday (never Friday or weekends/holidays). For every production release, an engineer is responsible for deployment and will be on-call until the next release. Additionally, the on-call engineer from the previous deployment will serve as backup on-call.
 
-A feature flipping gem (TBD) manages feature deployment. Features can be enabled at a certain time and for certain clients.
+A [feature flipping gem] (https://github.com/dabohealth/iris#feature-flipping) manages feature deployment. Features can be enabled at a certain time and for certain clients.
 
 ### Database Backups ###
 
