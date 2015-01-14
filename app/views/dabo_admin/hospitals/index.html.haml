@@ -1,0 +1,4 @@
+- @hospitals.each do |hospital|
+  %ul
+    %li
+      = link_to hospital.name, dabo_admin_hospital_path(hospital)
