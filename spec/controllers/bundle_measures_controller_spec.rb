@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MeasuresController do
+RSpec.describe BundleMeasuresController do
   describe 'GET show' do
     before do
       get :show, id: '1'

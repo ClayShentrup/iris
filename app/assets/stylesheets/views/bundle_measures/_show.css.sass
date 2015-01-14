@@ -1,6 +1,4 @@
 .measure_detail
-  $padding: rem(15)
-
   > div
     +row()
 
@@ -10,7 +8,7 @@
   .new_conversation,
   .content,
   .new_comment
-    padding: $padding
+    padding: rem(15)
 
   .measure_detail_chart,
   .content
@@ -20,17 +18,11 @@
   .conversation
     margin-top: rem(16)
 
-  .measure_detail_actions
-    border-right: 0
-    border-left: 0
-
-    .action
-      +span-columns(3)
-      text-align: center
+  .action
+    +span-columns(3)
+    text-align: center
 
   .measure_detail_conversations
-
     .title
       margin: 0 rem(15)
       padding: rem(15) 0
-      border-bottom: rem(1) solid $grey
