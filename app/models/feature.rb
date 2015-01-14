@@ -13,4 +13,8 @@ class Feature < ActiveRecord::Base
   feature :pristine_example,
           default: false,
           description: 'How our code should look.'
+
+  feature :system,
+          default: true,
+          description: 'Add a system.'
 end

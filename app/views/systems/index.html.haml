@@ -1,0 +1,27 @@
+%h1 Listing systems
+
+- if feature? :system
+
+  %table
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+    - @systems.each do |system|
+      %tr
+        %td= system.name
+        %td= link_to 'Show', system
+        %td= link_to 'Edit', edit_system_path(system)
+        %td= link_to 'Destroy', system, method: :delete, data: { confirm: 'Are you sure?' }
+
+  %br
+    = link_to 'Add a system', new_system_path
+
+  %br
+
+
+- else
+
+  %h1 Visit /flip to access the systems feature

@@ -11,10 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141230190846) do
+ActiveRecord::Schema.define(version: 20150114222943) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "pg_stat_statements"
 
   create_table "features", force: :cascade do |t|
     t.string   "key",                        null: false
@@ -24,12 +25,13 @@ ActiveRecord::Schema.define(version: 20141230190846) do
   end
 
   create_table "hospitals", force: :cascade do |t|
-    t.string "name"
-    t.string "zip_code"
-    t.string "hospital_type"
-    t.string "provider_id"
-    t.string "state"
-    t.string "city"
+    t.string  "name"
+    t.string  "zip_code"
+    t.string  "hospital_type"
+    t.string  "provider_id"
+    t.string  "state"
+    t.string  "city"
+    t.integer "system_id"
   end
 
   create_table "pristine_examples", force: :cascade do |t|
@@ -37,6 +39,10 @@ ActiveRecord::Schema.define(version: 20141230190846) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "systems", force: :cascade do |t|
+    t.string "name"
   end
 
 end

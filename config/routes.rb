@@ -2,6 +2,9 @@ Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
     mount Flip::Engine => '/flip'
     resource :measures_home, only: :show
+    scope '/dabo_admin' do
+      resources :systems
+    end
     resources :pristine_examples
 
     # e.g. /measure_sources/cms/bundles

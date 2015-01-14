@@ -1,0 +1,9 @@
+%p#notice= notice
+
+%p
+  %b Name:
+  = @system.name
+
+= link_to 'Edit', edit_system_path(@system)
+\|
+= link_to 'Back', systems_path
