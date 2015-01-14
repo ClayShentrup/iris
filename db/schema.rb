@@ -34,6 +34,8 @@ ActiveRecord::Schema.define(version: 20150114222943) do
     t.integer "system_id"
   end
 
+  add_index "hospitals", ["system_id"], name: "index_hospitals_on_system_id", using: :btree
+
   create_table "pristine_examples", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
