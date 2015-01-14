@@ -1,17 +1,17 @@
 .measure_detail
-  .measures_nav_btn.back_btn
-    %span.icon.icon-left.icon-large.icon-arrow-large-left
-    %span.text Communication with Nurses
+  = render partial: 'layouts/measures_nav_back_btn', locals: { title: "Communication with Nurses" }
   .measure_detail_chart
     Percent of patients who reported that their nurses "Always" communicated well
-  .measure_detail_actions
+  .measure_detail_actions.border_grey
     .action Discuss
     .action Share
     .action Learn
     .action Improve
   .measure_detail_conversations
-    .new_conversation Start a conversation...
-    .conversation
-      .title Conversation title
+    .new_conversation.border_grey Start a conversation...
+    .conversation.border_grey
+      .title
+        Conversation title
+        %span.icon.icon_right.icon_large.icon_comments
       .content Conversation
-      .new_comment Write a comment...
+      .new_comment.border_grey Write a comment...
