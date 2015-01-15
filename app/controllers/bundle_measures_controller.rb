@@ -1,4 +1,4 @@
-# Controller for Measures
+# Controller for Bundle Measures
 class BundleMeasuresController < ApplicationController
   def show
   end
