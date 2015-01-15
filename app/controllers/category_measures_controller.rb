@@ -1,0 +1,2 @@
+class CategoryMeasuresController < ApplicationController
+end

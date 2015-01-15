@@ -1,0 +1,2 @@
+class BundlesController < ApplicationController
+end

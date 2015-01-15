@@ -1,63 +1,39 @@
 Rails.application.routes.draw do
-  mount Flip::Engine => '/flip'
-  resource 'measures_home', only: [:show]
-  resources :pristine_examples
-  resource :categories, only: [:show]
+  shallow do # we should always use shallow routes, internally at least
+    mount Flip::Engine => '/flip'
+    resource :measures_home, only: :show
+    resources :pristine_examples
 
-  # The priority is based upon order of creation: first created -> highest
-  # priority.
-  # See how all your routes lay out with "rake routes".
+    # e.g. /measure_sources/cms/bundles
+    resources :measure_sources, only: [] do
+      resources :bundles, only: :index
+    end
 
-  # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+    resources :bundles, only: [] do
+      # e.g. /bundles/value-based-purchasing/domains
+      resources :domains, only: :index
 
-  # Example of regular route:
-  #   get 'products/:id' => 'catalog#view'
+      # e.g.
+      # /bundles/readmission-reduction-program/bundle_measures
+      # /bundles/readmission-reduction-program/bundle_measures/30-day-copd
+      resources :bundle_measures, only: [:index, :show]
+    end
 
-  # Example of named route that can be invoked with purchase_url(id: product.id)
-  #   get 'products/:id/purchase' => 'catalog#purchase', as: :purchase
+    resources :domains, only: [] do
+      # e.g.
+      # /domains/hospital-acquired-infection/domain_measures
+      # /domains/patient-safety-indicator/domain_measures/patient-safety-composite
+      resources :domain_measures, only: [:index, :show]
 
-  # Example resource route (maps HTTP verbs to controller actions
-  # automatically):
-  #   resources :products
+      # e.g. /domains/outcome-of-care/categories
+      resources :categories, only: :index
+    end
 
-  # Example resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Example resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Example resource route with more complex sub-resources:
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', on: :collection
-  #     end
-  #   end
-
-  # Example resource route with concerns:
-  #   concern :toggleable do
-  #     post 'toggle'
-  #   end
-  #   resources :posts, concerns: :toggleable
-  #   resources :photos, concerns: :toggleable
-
-  # Example resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
+    resources :categories, only: [] do
+      # e.g.
+      # /categories/mortality/category_measures
+      # /categories/mortality/category_measures/30-day-mortality-ami
+      resources :category_measures, only: [:index, :show]
+    end
+  end
 end
