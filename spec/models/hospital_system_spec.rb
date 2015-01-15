@@ -6,7 +6,12 @@ RSpec.describe HospitalSystem do
   it { should have_many(:hospitals) }
 
   describe 'columns' do
-    it { should have_db_column(:name).of_type(:string) }
+    specify do
+      should have_db_column(:name).of_type(:string).with_options(
+        null: false
+      )
+    end
+    it { should have_db_index(:name) }
   end
 
   describe 'validations' do
