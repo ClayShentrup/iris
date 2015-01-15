@@ -1,6 +1,6 @@
 # Represents a system entity
 class HospitalSystem < ActiveRecord::Base
-  validates :name, presence: true, uniqueness: true
+  validates :name, presence: true
   has_many :hospitals
 
   def self.create_or_update(attributes)

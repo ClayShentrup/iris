@@ -1,3 +1,4 @@
+# A controller for Hospital Systems Admin Panel
 class DaboAdmin::HospitalSystemsController < ApplicationController
   private
 
