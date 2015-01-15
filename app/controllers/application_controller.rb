@@ -31,13 +31,13 @@ class ApplicationController < ActionController::Base
     self.model_instance_variable = model_class.new(model_params)
     flash_success_message('created') if model_instance_variable.save
 
-    respond_with model_instance_variable
+    respond
   end
 
   def destroy
     self.model_instance_variable = saved_model
     model_instance_variable.destroy
-    respond_with model_instance_variable
+    respond
   end
 
   def show
@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     if model_instance_variable.update(model_params)
       flash_success_message('updated')
     end
-    respond_with model_instance_variable
+    respond
   end
 
   # E.g. if update/create fails due to a validation error, Rails will render
@@ -87,7 +87,18 @@ class ApplicationController < ActionController::Base
   end
 
   def model_name
-    @model_name ||= self.class.name.gsub(/Controller$/, '').singularize
+    @model_name ||= self.class.name.demodulize.gsub(
+      /Controller$/, ''
+    ).singularize
+  end
+
+  def namespace
+    @namespace ||= self.class.name.deconstantize.underscore.to_sym
+  end
+
+  def respond
+    respond_with(namespace, model_instance_variable) unless namespace.empty?
+    respond_with(model_instance_variable) if namespace.empty?
   end
 
   def flash_success_message(action)

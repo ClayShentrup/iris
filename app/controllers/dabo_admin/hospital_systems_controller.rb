@@ -1,4 +1,4 @@
-class HospitalSystemsController < ApplicationController
+class DaboAdmin::HospitalSystemsController < ApplicationController
   private
 
   def model_params

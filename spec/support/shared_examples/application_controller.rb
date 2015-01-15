@@ -1,3 +1,4 @@
+require 'pry'
 RSpec.shared_examples 'an ApplicationController' do
   controller do
     def custom
@@ -57,9 +58,15 @@ end
 
 RSpec.shared_context 'ApplicationController methods' do
   let(:model_class) { model_name.constantize }
+  let(:namespace) { "#{described_class.name.deconstantize.underscore}" }
+  let(:models_param_name_namespace) do
+    [namespace, models_param_name].reject(&:empty?).join('_')
+  end
   let(:models_param_name) { model_param_name.pluralize }
   let(:model_param_name) { model_name.underscore }
-  let(:model_name) { described_class.name.gsub(/Controller$/, '').singularize }
+  let(:model_name) do
+    described_class.name.demodulize.gsub(/Controller$/, '').singularize
+  end
   let(:assign) { assigns(model_param_name) }
 
   def assert_has_javascript_view_name(action_name)
@@ -100,7 +107,7 @@ RSpec.shared_examples 'an ApplicationController create' do
   let(:model_attributes) { attributes_for(model_class) }
 
   let(:model_name) do
-    described_class.name.gsub(/Controller$/, '').singularize
+    described_class.name.demodulize.gsub(/Controller$/, '').singularize
   end
 
   def create
@@ -161,7 +168,7 @@ RSpec.shared_examples 'an ApplicationController delete' do
   include_context 'ApplicationController methods with an existing record'
 
   subject { delete :destroy, id: model_instance }
-  let(:redirect_url) { public_send("#{models_param_name}_url") }
+  let(:redirect_url) { public_send("#{models_param_name_namespace}_url") }
 
   def delete_record
     delete :destroy, id: model_instance

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HospitalSystemsController do
+RSpec.describe DaboAdmin::HospitalSystemsController do
   let(:invalid_attributes) { attributes_for(HospitalSystem, name: '') }
   it_behaves_like 'an ApplicationController'
 
