@@ -1,5 +1,5 @@
 # Represents a system entity
-class System < ActiveRecord::Base
+class HospitalSystem < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
   has_many :hospitals
 

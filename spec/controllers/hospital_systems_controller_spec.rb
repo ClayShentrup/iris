@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe SystemsController do
-  let(:invalid_attributes) { attributes_for(System, name: '') }
+RSpec.describe HospitalSystemsController do
+  let(:invalid_attributes) { attributes_for(HospitalSystem, name: '') }
   it_behaves_like 'an ApplicationController'
 
   it_behaves_like 'an ApplicationController index'
@@ -14,7 +14,7 @@ RSpec.describe SystemsController do
 
   context 'performance', :performance do
     before do
-      create_list :system, 10
+      create_list :hospital_system, 10
     end
 
     it 'takes a short time to execute' do

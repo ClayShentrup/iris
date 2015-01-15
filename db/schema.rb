@@ -24,6 +24,10 @@ ActiveRecord::Schema.define(version: 20150114222943) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "hospital_systems", force: :cascade do |t|
+    t.string "name"
+  end
+
   create_table "hospitals", force: :cascade do |t|
     t.string  "name"
     t.string  "zip_code"
@@ -31,20 +35,16 @@ ActiveRecord::Schema.define(version: 20150114222943) do
     t.string  "provider_id"
     t.string  "state"
     t.string  "city"
-    t.integer "system_id"
+    t.integer "hospital_system_id"
   end
 
-  add_index "hospitals", ["system_id"], name: "index_hospitals_on_system_id", using: :btree
+  add_index "hospitals", ["hospital_system_id"], name: "index_hospitals_on_hospital_system_id", using: :btree
 
   create_table "pristine_examples", force: :cascade do |t|
     t.string   "name"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "systems", force: :cascade do |t|
-    t.string "name"
   end
 
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     mount Flip::Engine => '/flip'
     resource :measures_home, only: :show
     scope '/dabo_admin' do
-      resources :systems
+      resources :hospital_systems
     end
     resources :pristine_examples
 

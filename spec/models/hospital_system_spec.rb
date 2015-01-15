@@ -1,8 +1,8 @@
 require 'active_record_spec_helper'
-require './app/models/system'
+require './app/models/hospital_system'
 require './app/models/hospital'
 
-RSpec.describe System do
+RSpec.describe HospitalSystem do
   it { should have_many(:hospitals) }
 
   describe 'columns' do
