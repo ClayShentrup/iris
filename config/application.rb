@@ -52,8 +52,3 @@ module Iris
     config.force_ssl = true
   end
 end
-
-if Rails.configuration.development?
-  load 'rails/test_unit/testing.rake'
-  load 'rails/perftest/railties/testing.tasks'
-end
