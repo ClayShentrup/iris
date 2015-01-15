@@ -1,4 +1,3 @@
-require 'pry'
 RSpec.shared_examples 'an ApplicationController' do
   controller do
     def custom
@@ -60,7 +59,10 @@ RSpec.shared_context 'ApplicationController methods' do
   let(:model_class) { model_name.constantize }
   let(:namespace) { "#{described_class.name.deconstantize.underscore}" }
   let(:models_param_name_namespace) do
-    [namespace, models_param_name].reject(&:empty?).join('_')
+    [namespace, models_param_name].reject(&:blank?).join('_')
+  end
+  let(:model_params_name_namespace) do
+    [namespace, model_param_name].reject(&:blank?).join('_')
   end
   let(:models_param_name) { model_param_name.pluralize }
   let(:model_param_name) { model_name.underscore }
@@ -105,6 +107,9 @@ end
 RSpec.shared_examples 'an ApplicationController create' do
   include_context 'ApplicationController methods'
   let(:model_attributes) { attributes_for(model_class) }
+  let(:instance_url) do
+    public_send("#{model_params_name_namespace}_path", model_class.last)
+  end
 
   let(:model_name) do
     described_class.name.demodulize.gsub(/Controller$/, '').singularize
@@ -127,7 +132,7 @@ RSpec.shared_examples 'an ApplicationController create' do
 
     it 'redirects to the created record' do
       create
-      expect(response).to redirect_to model_class.last
+      expect(response).to redirect_to instance_url
     end
   end
 
@@ -168,7 +173,7 @@ RSpec.shared_examples 'an ApplicationController delete' do
   include_context 'ApplicationController methods with an existing record'
 
   subject { delete :destroy, id: model_instance }
-  let(:redirect_url) { public_send("#{models_param_name_namespace}_url") }
+  let(:index_url) { public_send("#{models_param_name_namespace}_url") }
 
   def delete_record
     delete :destroy, id: model_instance
@@ -180,7 +185,7 @@ RSpec.shared_examples 'an ApplicationController delete' do
 
   it 'redirects to the index view' do
     delete_record
-    expect(response).to redirect_to redirect_url
+    expect(response).to redirect_to index_url
   end
 end
 
@@ -216,6 +221,9 @@ RSpec.shared_examples 'an ApplicationController update' do
   include_context 'ApplicationController methods'
   include_context 'ApplicationController methods with an existing record'
   let(:new_attributes) { attributes_for(model_class) }
+  let(:instance_url) do
+    public_send("#{model_params_name_namespace}_path", model_instance)
+  end
 
   describe 'with valid params' do
     before do
@@ -232,7 +240,7 @@ RSpec.shared_examples 'an ApplicationController update' do
     end
 
     it 'redirects to the model show' do
-      expect(response).to redirect_to model_instance
+      expect(response).to redirect_to instance_url
     end
   end
 

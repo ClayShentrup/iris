@@ -34,3 +34,7 @@ Style/AndOr:
   # or completely (always).
   # They read better, more like normal English.
   EnforcedStyle: conditionals
+
+Style/ClassAndModuleChildren:
+  Exclude:
+    - 'app/controllers/**/*'

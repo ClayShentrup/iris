@@ -93,7 +93,7 @@ class ApplicationController < ActionController::Base
   end
 
   def namespace
-    @namespace ||= self.class.name.deconstantize.underscore.to_sym
+    @namespace ||= self.class.name.deconstantize.underscore
   end
 
   def respond
