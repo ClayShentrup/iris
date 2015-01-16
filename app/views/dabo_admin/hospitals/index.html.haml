@@ -1,0 +1,8 @@
+.new
+  = link_to 'Create new Hospital', new_dabo_admin_hospital_path
+
+%br
+- @hospitals.each do |hospital|
+  %ul
+    %li
+      = link_to hospital.name, dabo_admin_hospital_path(hospital)

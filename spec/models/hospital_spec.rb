@@ -33,6 +33,10 @@ RSpec.describe Hospital do
     end
 
     it { should validate_uniqueness_of(:provider_id) }
+    it { should validate_presence_of(:provider_id) }
+    it { should validate_presence_of(:name) }
+    it { should validate_presence_of(:city) }
+    it { should validate_presence_of(:state) }
   end
 
   describe '.create_or_update' do
@@ -69,6 +73,14 @@ RSpec.describe Hospital do
         expect(existing_hospital.reload.attributes)
           .to include hospital_attributes
       end
+    end
+  end
+
+  describe '#hospital_system_name' do
+    it do
+      is_expected.to delegate_method(:hospital_system_name)
+        .to(:hospital_system)
+        .as(:name)
     end
   end
 end

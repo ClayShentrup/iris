@@ -14,8 +14,13 @@
 
 # Represents a hospital entity fetched from Socrata's API.
 class Hospital < ActiveRecord::Base
-  validates :provider_id, uniqueness: true
   belongs_to :hospital_system
+  validates :provider_id, uniqueness: true, presence: true
+  validates :name, presence: true
+  validates :city, presence: true
+  validates :state, presence: true
+
+  delegate :name, to: :hospital_system, prefix: true, allow_nil: true
 
   def self.create_or_update(attributes)
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
