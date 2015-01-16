@@ -1,5 +1,5 @@
 # Controller for Categories
 class CategoriesController < ApplicationController
-  def show
+  def show # TODO: delete when underlying model is available
   end
 end
