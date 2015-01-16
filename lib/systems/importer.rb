@@ -8,6 +8,8 @@ module Systems
     class << self
       def call
         Iterator.new(DATA_FILE).each do |data|
+          next unless data.fetch(:system_name)
+
           system = HospitalSystem.find_or_create_by!(
             name: data.fetch(:system_name),
           )

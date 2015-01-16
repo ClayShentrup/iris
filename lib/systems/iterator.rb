@@ -11,22 +11,33 @@ module Systems
     end
 
     def each
-      (2..file_data.last_row).each do |row|
-        break if file_data.cell(row, 1).blank?
+      file_data.parse(headers) do |row|
+        next if header?(row)
 
-        row_data = {
-          system_name: file_data.cell(row, 1),
-          provider_id: file_data.cell(row, 2).to_i.to_s.rjust(6, '0'),
+        hospital_systems_data = {
+          system_name: row.fetch(:system_name),
+          provider_id: normalized_provider_id(row),
         }
-
-        yield row_data
+        yield hospital_systems_data
       end
     end
 
     private
 
     def file_data
-      @file_data ||= Roo::Excel.new(@filepath, file_warning: :ignore)
+      @file_data ||= Roo::Spreadsheet.open(@filepath, file_warning: :ignore)
+    end
+
+    def headers
+      { system_name: 'System Name', provider_id: 'Provider Number' }
+    end
+
+    def header?(row)
+      row.fetch(:system_name) == 'System Name'
+    end
+
+    def normalized_provider_id(row)
+      format('%06d', row.fetch(:provider_id).to_i)
     end
   end
 end
