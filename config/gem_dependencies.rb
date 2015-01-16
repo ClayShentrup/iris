@@ -19,8 +19,13 @@ require 'backbone-rails'
 
 # Dependencies for Unicorn
 require 'rack-timeout'
-
 require 'flip'
-require 'jasmine' if Rails.env.development? || Rails.env.test?
+
+if Rails.env.development? || Rails.env.test?
+  require 'jasmine'
+  load 'rails/test_unit/testing.rake'
+  load 'rails/perftest/railties/testing.tasks'
+end
+
 require 'airbrake' if Rails.env.production?
 require 'newrelic_rpm'
