@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
     mount Flip::Engine => '/flip'
+    resource :status, only: :show
     resource :measures_home, only: :show
+
     namespace :dabo_admin do
       resources :hospitals
       resources :hospital_systems
