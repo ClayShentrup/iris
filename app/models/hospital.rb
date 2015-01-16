@@ -20,12 +20,10 @@ class Hospital < ActiveRecord::Base
   validates :city, presence: true
   validates :state, presence: true
 
+  delegate :name, to: :hospital_system, prefix: true, allow_nil: true
+
   def self.create_or_update(attributes)
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
       .update_attributes!(attributes)
-  end
-
-  def system_name
-    hospital_system.name
   end
 end

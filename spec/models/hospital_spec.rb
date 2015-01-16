@@ -75,4 +75,12 @@ RSpec.describe Hospital do
       end
     end
   end
+
+  describe '#hospital_system_name' do
+    it do
+      is_expected.to delegate_method(:hospital_system_name)
+        .to(:hospital_system)
+        .as(:name)
+    end
+  end
 end

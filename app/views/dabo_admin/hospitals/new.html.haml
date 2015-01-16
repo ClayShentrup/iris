@@ -5,25 +5,24 @@
         = msg
 
 = form_for [:dabo_admin, @hospital] do |f|
-  %ul
-    %li
-      = f.label :name
-      = f.text_field :name
-    %li
-      = f.label :provider_id, 'Provider ID'
-      = f.text_field :provider_id
-    %li
-      = f.label :city
-      = f.text_field :city
-    %li
-      = f.label :state
-      = f.text_field :state
-    %li
-      = f.label :hospital_system_id
-      = f.collection_select(:hospital_system_id, |
-      HospitalSystem.all, |
-      :id, |
-      :name, |
-      include_blank: true)
-    %li
-      = f.submit
+  .field
+    = f.label :name
+    = f.text_field :name
+  .field
+    = f.label :provider_id, 'Provider ID'
+    = f.text_field :provider_id
+  .field
+    = f.label :city
+    = f.text_field :city
+  .field
+    = f.label :state
+    = f.text_field :state
+  .field
+    = f.label :hospital_system_id
+    = f.collection_select(:hospital_system_id, |
+    HospitalSystem.all, |
+    :id, |
+    :name, |
+    include_blank: true)
+  .actions
+    = f.submit
