@@ -5,15 +5,21 @@ RSpec.describe StatusesController do
     context 'with a database connection' do
       it 'returns with database_status OK' do
         get :show
-        expect(response.body).to include('{"database_status":"OK"}')
+        expect(response.body).to include(
+          '{"database_status":"OK"}',
+        )
       end
     end
 
-    context 'without a database connection' do
-      it 'returns with database_status Not OK' do
-        allow(controller).to receive(:can_connect_to_db?).and_return(false)
+    context 'with a database error' do
+      it 'returns with the database error message' do
+        expect(controller).to receive(:db_connect).and_raise(
+          ActiveRecord::ConnectionTimeoutError,
+        )
         get :show
-        expect(response.body).to include('{"database_status":"Not OK"}')
+        expect(response.body).to include(
+          '{"database_status":"ActiveRecord::ConnectionTimeoutError"}',
+        )
       end
     end
   end
