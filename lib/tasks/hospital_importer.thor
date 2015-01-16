@@ -12,12 +12,22 @@ class HospitalImporter < Thor
   desc 'import', 'import or update existing hospitals using Socrata'
   namespace :hospital
   def import
-    say 'Starting hospital import...' unless quiet?
-    total_rows = Socrata::CreateOrUpdateHospitals.call
-    say "Went through #{total_rows} hospitals." unless quiet?
+    output 'Starting hospital import...'
+
+    counter = 0
+    total_rows = Socrata::CreateOrUpdateHospitals.call do |success|
+      counter += 1
+      output("\r#{counter} hospitals processed.", :green, false)
+    end
+
+    output "\nWent through #{total_rows} hospitals."
   end
 
   private
+
+  def output(*args)
+    say(*args) unless quiet?
+  end
 
   def quiet?
     options.fetch('quiet', false)

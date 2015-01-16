@@ -19,6 +19,7 @@ module Socrata
       )
       hospitals.each do |hospital_attributes|
         Hospital.create_or_update(hospital_attributes)
+        yield if block_given?
       end
       hospitals.length
     end
