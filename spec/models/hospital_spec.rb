@@ -1,3 +1,17 @@
+# == Schema Information
+#
+# Table name: hospitals
+#
+#  id                 :integer          not null, primary key
+#  name               :string
+#  zip_code           :string
+#  hospital_type      :string
+#  provider_id        :string
+#  state              :string
+#  city               :string
+#  hospital_system_id :integer
+#
+
 require 'active_record_spec_helper'
 require './app/models/hospital'
 

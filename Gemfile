@@ -38,6 +38,7 @@ group :development do
   gem 'foreman'
   gem 'web-console'
   gem 'rails_best_practices'
+  gem 'annotate'
 end
 
 group :development, :test do

@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: hospital_systems
+#
+#  id   :integer          not null, primary key
+#  name :string           not null
+#
+
 require 'active_record_spec_helper'
 require './app/models/hospital_system'
 require './app/models/hospital'

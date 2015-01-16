@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: pristine_examples
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 FactoryGirl.define do
   factory :pristine_example do
     name 'MyString'

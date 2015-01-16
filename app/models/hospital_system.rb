@@ -1,3 +1,11 @@
+# == Schema Information
+#
+# Table name: hospital_systems
+#
+#  id   :integer          not null, primary key
+#  name :string           not null
+#
+
 # Represents a system entity
 class HospitalSystem < ActiveRecord::Base
   validates :name, presence: true
