@@ -11,11 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150115234908) do
+ActiveRecord::Schema.define(version: 20150115240000) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
+
+  create_table "dimension_samples", force: :cascade do |t|
+    t.string   "socrata_provider_id"
+    t.string   "dimension_identifier"
+    t.float    "value"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
+
+  add_index "dimension_samples", ["socrata_provider_id", "dimension_identifier"], name: "index_dimension_samples_provider_and_identifier", unique: true, using: :btree
 
   create_table "features", force: :cascade do |t|
     t.string   "key",                        null: false
