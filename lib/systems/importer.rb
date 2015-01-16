@@ -3,11 +3,9 @@ require_relative 'iterator'
 module Systems
   # Import Systems and associate hospital to them
   module Importer
-    DATA_FILE = 'lib/hospital_systems.xls'
-
     class << self
-      def call
-        Iterator.new(DATA_FILE).each do |data|
+      def call(file_path)
+        Iterator.new(file_path).each do |data|
           next unless data.fetch(:system_name)
 
           system = HospitalSystem.find_or_create_by!(
@@ -16,6 +14,7 @@ module Systems
           hospital = Hospital.find_by_provider_id(data.fetch(:provider_id))
 
           associate_system_with_hospital(system, hospital) if hospital
+          yield if block_given?
         end
       end
 
