@@ -17,8 +17,8 @@ gem 'newrelic_rpm'
 gem 'sdoc', group: :doc
 
 gem 'responders'
-
 gem 'thor-rails'
+gem 'roo'
 
 # assets
 gem 'sass-rails'
