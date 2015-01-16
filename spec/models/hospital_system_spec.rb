@@ -16,7 +16,7 @@ RSpec.describe HospitalSystem do
   describe 'columns' do
     specify do
       should have_db_column(:name).of_type(:string).with_options(
-        null: false
+        null: false,
       )
     end
     it { should have_db_index(:name) }

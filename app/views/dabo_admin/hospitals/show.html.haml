@@ -12,3 +12,14 @@
   %li
     State:
     = @hospital.state
+  %li
+    Hospital System:
+    = @hospital.system_name
+
+= link_to 'Delete this hospital', |
+  dabo_admin_hospital_path(@hospital), |
+  method: :delete, |
+  data: { confirm: 'Are you sure?' }
+
+%br
+= link_to 'Back', dabo_admin_hospitals_path
