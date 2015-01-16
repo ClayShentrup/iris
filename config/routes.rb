@@ -30,7 +30,7 @@ Rails.application.routes.draw do
       resources :domain_measures, only: [:index, :show]
 
       # e.g. /domains/outcome-of-care/categories
-      resources :categories, only: :index
+      resources :categories, only: [:index, :show]
     end
 
     resources :categories, only: nil do
