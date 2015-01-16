@@ -13,6 +13,8 @@ PreCommit:
   # Ignore all Overcommit default options
   ALL:
     enabled: false
+    problem_on_umodified_line: warn
+    on_warn: fail
 
   # Enable explicitly each desired pre commit check
   Rubocop:
