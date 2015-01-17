@@ -1,4 +1,4 @@
-require 'english'
+require 'English'
 require 'open3'
 
 # Run all tests as we would on CI
