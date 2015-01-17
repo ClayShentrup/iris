@@ -15,7 +15,7 @@ class HospitalImporter < Thor
     output 'Starting hospital import...'
 
     counter = 0
-    total_rows = Socrata::CreateOrUpdateHospitals.call do |success|
+    total_rows = Socrata::CreateOrUpdateHospitals.call do
       counter += 1
       output("\r#{counter} hospitals processed.", :green, false)
     end

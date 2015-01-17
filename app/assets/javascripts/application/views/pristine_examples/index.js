@@ -1,7 +1,7 @@
-/* jshint devel: true */
+// jshint devel: true
 'use strict';
 
-Dabo.Views['pristine_examples-index'] = Backbone.View.extend({
+Iris.Views['pristine_examples-index'] = Backbone.View.extend({
   events: {
     'click #test': 'log'
   },

@@ -13,7 +13,6 @@ PreCommit:
   # Ignore all Overcommit default options
   ALL:
     enabled: false
-    problem_on_umodified_line: warn
     on_warn: fail
 
   # Enable explicitly each desired pre commit check
@@ -21,10 +20,6 @@ PreCommit:
     enabled: true
     description: 'Analyzing with Rubocop'
     required_executable: 'rubocop'
-    install_command: 'gem install rubocop'
-    exclude:
-      - 'Gemfile'
-      - 'Gemfile.lock'
 
   TrailingWhitespace:
     enabled: true
@@ -44,24 +39,18 @@ PreCommit:
   YamlSyntax:
     enabled: true
     description: 'Checking YAML syntax'
-    include: '**/*.yml'
 
   JsHint:
     enabled: true
     description: 'Analyzing with JSHint'
     required_executable: 'jshint'
     install_command: 'npm install -g jshint'
-    include: 'app/assets/javascripts/**/*.js'
-    exclude: 'spec/javascripts/**/*.js'
 
   Jscs:
     enabled: true
     description: 'Analyzing with JSCS'
     required_executable: 'jscs'
     install_command: 'npm install -g jscs'
-    include:
-      - 'app/assets/javascripts/**/*.js'
-      - 'spec/javascripts/**/*.js'
 
   RailsBestPractices:
     enabled: true

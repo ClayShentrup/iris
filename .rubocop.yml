@@ -4,6 +4,7 @@ AllCops:
     - '**/config.ru'
     - 'lib/tasks/**/*'
   Exclude:
+    - Gemfile*
     - 'db/**/*'
     - 'config/**/*'
     - 'bin/**/*'

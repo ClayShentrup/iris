@@ -1,29 +1,25 @@
-require_relative '../../lib/rails_best_practices/run_checks'
-
 module Overcommit
   module Hook
     module PreCommit
       # Check rails best practices before commiting new code
       class RailsBestPractices < Base
-        def run
-          @errors = ::RailsBestPractices::RunChecks
-                    .new(analyzer_options: analyzer_options)
-                    .call
+        PASS_STATE = {
+          true => :pass,
+          false => :fail,
+        }
 
-          @errors.any? ? [:fail, result_message] : :pass
+        def run
+          [status, result.stdout]
         end
 
         private
 
-        def analyzer_options
-          {
-            'only'   => applicable_files.map { |f| Regexp.new f },
-            'silent' => true,
-          }
+        def result
+          @result ||= execute(%w[rails_best_practices .])
         end
 
-        def result_message
-          @errors.join("\n")
+        def status
+          PASS_STATE.fetch(result.success?)
         end
       end
     end

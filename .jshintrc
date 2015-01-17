@@ -1,23 +1,22 @@
 // http://jshint.com/docs/options/
+// We want to be as strict as feasible; so don't change this file without
+// team discussion! Thanks.
 {
-  //Enforcing
+  // Enforcing
   "enforceall": true, // start out strict
-  "curly": false,
-  "es3": false,
-  "immed": false,
-  "newcap": false,
-  "noempty": false,
-  "nocomma": false,
-  "nonew": false,
-  "es5": false, // fixes bug in jshint when using enforceall, throws warning
-
-  //Relaxing
-  "strict": true, // js files must have 'use strict' at the top
+  "strict": true, // must have "'use strict';"
+  "es5": false, // fixes a bug in JSHint
+  "nocomma": false, // fixes: https://github.com/jshint/jshint/issues/2044
 
   //Environment
   "globals": {
-    "Dabo": true,
-    "Backbone": true
+    "Iris": true, // Our JS namespace
+    "Backbone": true, // defined by Backbone.js
+    // jasmine globals
+    "describe": true,
+    "beforeEach": true,
+    "it": true,
+    "expect": true
   },
   "jquery": true, // allow `$` as global variable
   "browser": true // allow `window`
