@@ -19,5 +19,9 @@ FactoryGirl.define do
     city 'San Francisco'
     state 'CA'
     hospital_system
+
+    trait :without_hospital_system do |hospital|
+      hospital.hospital_system nil
+    end
   end
 end
