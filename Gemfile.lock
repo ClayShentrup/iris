@@ -290,6 +290,7 @@ GEM
       thor
     thread_safe (0.3.4)
     tilt (1.4.1)
+    timecop (0.7.1)
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -351,6 +352,7 @@ DEPENDENCIES
   shoulda-matchers
   soda-ruby
   thor-rails
+  timecop
   turbolinks
   uglifier
   unicorn

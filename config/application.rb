@@ -50,6 +50,7 @@ module Iris
     config.turbolinks_debugging_enabled = false
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.force_ssl = true
+    config.client_time_zone = Time.find_zone!('Central Time (US & Canada)')
     config.action_dispatch.rescue_responses.merge!(
       'PublicChartTree::PublicChartNotFoundError' => :not_found
     )

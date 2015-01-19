@@ -57,6 +57,7 @@ group :test do
   gem 'codeclimate-test-reporter'
   gem 'rails-perftest'
   gem 'ruby-prof'
+  gem 'timecop'
 end
 
 group :production do
