@@ -1,7 +1,7 @@
 require_relative 'iterator'
 
-module Systems
-  # Import Systems and associate hospital to them
+module HospitalSystems
+  # Import Hospital systems and associate hospital to them
   module Importer
     class << self
       def call(file_path)

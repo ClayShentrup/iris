@@ -1,6 +1,6 @@
 require 'roo'
 
-module Systems
+module HospitalSystems
   # Read the Excel file with information about systems and hospitals.
   # This class iterates all the systems and their associated hospitals.
   class Iterator

@@ -7,19 +7,19 @@ require 'thor/rails'
 # ==== Options
 # * <tt>--quiet, -q</tt> - Suppress output
 #
-class SystemImporter < Thor
+class HospitalSystemsImporter < Thor
   DEFAULT_FILE = 'lib/hospital_systems.xls'
 
   include Thor::Rails
-  desc 'import', 'import or update existing systems'
-  namespace :system
+  desc 'import', 'import or update existing hospital systems'
+  namespace :hospital_systems
   class_option :quiet, aliases: '-q', desc: 'Suppress output'
 
   def import(*args)
     output 'Starting system import...'
 
     counter = 0
-    Systems::Importer.call(file_path) do |message|
+    HospitalSystems::Importer.call(file_path) do |message|
       counter += 1
       output("\r#{message}", :yellow, true) if message
       output("\r#{counter} rows processed.", :green, false)
