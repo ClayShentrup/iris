@@ -19,8 +19,9 @@ class SystemImporter < Thor
     output 'Starting system import...'
 
     counter = 0
-    Systems::Importer.call(file_path) do |success|
+    Systems::Importer.call(file_path) do |message|
       counter += 1
+      output("\r#{message}", :yellow, true) if message
       output("\r#{counter} rows processed.", :green, false)
     end
   end
