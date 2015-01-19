@@ -1,6 +1,7 @@
 // http://jshint.com/docs/options/
 // We want to be as strict as feasible; so don't change this file without
 // team discussion! Thanks.
+// Also don't change it before reading the JSHint documentation
 {
   // Enforcing
   "enforceall": true, // start out strict
@@ -11,13 +12,9 @@
   //Environment
   "globals": {
     "Iris": true, // Our JS namespace
-    "Backbone": true, // defined by Backbone.js
-    // jasmine globals
-    "describe": true,
-    "beforeEach": true,
-    "it": true,
-    "expect": true
+    "Backbone": true // defined by Backbone.js
   },
+  "jasmine": true,
   "jquery": true, // allow `$` as global variable
   "browser": true // allow `window`
 }
