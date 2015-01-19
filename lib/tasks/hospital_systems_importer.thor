@@ -8,7 +8,7 @@ require 'thor/rails'
 # * <tt>--quiet, -q</tt> - Suppress output
 #
 class HospitalSystemsImporter < Thor
-  DEFAULT_FILE = 'lib/hospital_systems.xls'
+  DEFAULT_FILE = 'lib/assets/files/hospital_systems.xls'
 
   include Thor::Rails
   desc 'import', 'import or update existing hospital systems'
@@ -19,7 +19,7 @@ class HospitalSystemsImporter < Thor
     output 'Starting system import...'
 
     counter = 0
-    HospitalSystems::Importer.call(file_path) do |message|
+    HospitalSystems::Importer.call(file_path(args)) do |message|
       counter += 1
       output("\r#{message}", :yellow, true) if message
       output("\r#{counter} rows processed.", :green, false)
@@ -28,7 +28,7 @@ class HospitalSystemsImporter < Thor
 
   private
 
-  def file_path(*args)
+  def file_path(args)
     @file_path = args.empty? ? DEFAULT_FILE : args.first
   end
 
