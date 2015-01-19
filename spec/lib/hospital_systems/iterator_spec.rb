@@ -8,11 +8,11 @@ RSpec.describe HospitalSystems::Iterator do
   it 'gets the exact results' do
     expect(results).to eq [
       {
-        system_name: 'Hospital System 1',
+        system_name: 'Universal Health Services',
         provider_id: '200001',
       },
       {
-        system_name: 'Hospital System 2',
+        system_name: 'Health Resources',
         provider_id: '200002',
       },
       {

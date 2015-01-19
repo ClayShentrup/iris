@@ -8,17 +8,20 @@ require 'hospital_systems/importer'
 RSpec.describe HospitalSystems::Importer do
   let(:file_path) { './spec/fixtures/hospital_systems_importer/test_file.xls' }
 
-  let!(:hospital_in_system_1) do
+  let!(:hospital_in_universal_system) do
     create(:hospital, :without_hospital_system, provider_id: '200001')
   end
 
-  let!(:hospital_in_system_2) do
+  let!(:hospita_in_resources_system) do
     create(:hospital, :without_hospital_system, provider_id: '200002')
   end
 
   let!(:hospital_without_system) do
     create(:hospital, :without_hospital_system, provider_id: '200003')
   end
+
+  let(:universal_system_name) { 'Universal Health Services' }
+  let(:resources_system_name) { 'Health Resources' }
 
   def import_hospital_systems
     described_class.call(file_path)
@@ -32,11 +35,11 @@ RSpec.describe HospitalSystems::Importer do
     it 'associates hospital with systems' do
       import_hospital_systems
 
-      hospital_system_1 = hospital_in_system_1.reload.hospital_system
-      hospital_system_2 = hospital_in_system_2.reload.hospital_system
+      universal_system = hospital_in_universal_system.reload.hospital_system
+      resources_system = hospita_in_resources_system.reload.hospital_system
 
-      expect(hospital_system_1.name).to eq('Hospital System 1')
-      expect(hospital_system_2.name).to eq('Hospital System 2')
+      expect(universal_system.name).to eq(universal_system_name)
+      expect(resources_system.name).to eq(resources_system_name)
     end
 
     it 'leaves the hospital without system if it is not provided' do
@@ -47,22 +50,22 @@ RSpec.describe HospitalSystems::Importer do
   end
 
   context 'with hospital systems already created' do
-    let!(:hospital_system_1) do
-      create(:hospital_system, name: 'Hospital System 1')
+    let!(:universal_system) do
+      create(:hospital_system, name: 'Universal Health Services')
     end
 
-    let!(:hospital_system_2) do
+    let!(:resources_system) do
       create(
         :hospital_system,
-        name: 'Hospital System 2',
-        hospitals: [hospital_in_system_2],
+        name: 'Health Resources',
+        hospitals: [hospita_in_resources_system],
       )
     end
 
-    let!(:hospital_system_3) do
+    let!(:healthcare_system) do
       create(
         :hospital_system,
-        name: 'Hospital System 3',
+        name: 'Healthcare System',
         hospitals: [hospital_without_system],
       )
     end
@@ -74,11 +77,11 @@ RSpec.describe HospitalSystems::Importer do
     it 'associates hospital with systems' do
       import_hospital_systems
 
-      hospital_system_1 = hospital_in_system_1.reload.hospital_system
-      hospital_system_2 = hospital_in_system_2.reload.hospital_system
+      universal_system = hospital_in_universal_system.reload.hospital_system
+      resources_system = hospita_in_resources_system.reload.hospital_system
 
-      expect(hospital_system_1.name).to eq('Hospital System 1')
-      expect(hospital_system_2.name).to eq('Hospital System 2')
+      expect(universal_system.name).to eq(universal_system_name)
+      expect(resources_system.name).to eq(resources_system_name)
     end
 
     it 'leaves the hospital without system if it is not provided' do
@@ -90,7 +93,7 @@ RSpec.describe HospitalSystems::Importer do
     it 'removes hospitals from the system not included in the file' do
       import_hospital_systems
 
-      expect(hospital_system_3.reload.hospitals).to be_empty
+      expect(healthcare_system.reload.hospitals).to be_empty
     end
   end
 end
