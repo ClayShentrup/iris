@@ -54,6 +54,7 @@ group :development, :test do
   gem 'factory_girl_rails'
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
+  gem 'dotenv'
 end
 
 group :test do

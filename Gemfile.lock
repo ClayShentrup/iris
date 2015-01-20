@@ -352,6 +352,7 @@ DEPENDENCIES
   codeclimate-test-reporter
   connection_pool
   devise
+  dotenv
   factory_girl_rails
   fakeredis
   flip

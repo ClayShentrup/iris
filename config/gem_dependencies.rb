@@ -23,6 +23,7 @@ require 'flip'
 
 if Rails.env.development? || Rails.env.test?
   require 'jasmine'
+  require 'dotenv'
   load 'rails/test_unit/testing.rake'
   load 'rails/perftest/railties/testing.tasks'
 end

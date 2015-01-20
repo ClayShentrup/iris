@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000
     body:
       encoding: US-ASCII
       string: ''
@@ -40,12 +40,12 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>iris-test-logs</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>67baa10d-flydata/</Prefix></CommonPrefixes></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>67baa10d-flydata/</Prefix></CommonPrefixes></ListBucketResult>
     http_version:
   recorded_at: Tue, 23 Sep 2014 18:10:06 GMT
 - request:
     method: get
-    uri: https://iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000&prefix=3aec2e2f-flydata/
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000&prefix=3aec2e2f-flydata/
     body:
       encoding: US-ASCII
       string: ''
@@ -83,12 +83,12 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>iris-test-logs</Name><Prefix>3aec2e2f-flydata/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_api/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_app/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_system/</Prefix></CommonPrefixes></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix>3aec2e2f-flydata/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_api/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_app/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_system/</Prefix></CommonPrefixes></ListBucketResult>
     http_version:
   recorded_at: Tue, 23 Sep 2014 18:10:06 GMT
 - request:
     method: get
-    uri: https://iris-test-logs.s3.amazonaws.com/?marker=3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=09/20140909-19.gz&max-keys=100&prefix=3aec2e2f-flydata/app29267468_system/
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?marker=3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=09/20140909-19.gz&max-keys=100&prefix=3aec2e2f-flydata/app29267468_system/
     body:
       encoding: US-ASCII
       string: ''
@@ -126,7 +126,7 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>iris-test-logs</Name><Prefix>3aec2e2f-flydata/app29267468_system/</Prefix><Marker>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=09/20140909-19.gz</Marker><MaxKeys>100</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=10/20140910-10.gz</Key><LastModified>2014-09-10T16:36:20.000Z</LastModified><ETag>&quot;c55ad56c3cf35d263cee2ba85a643c1c&quot;</ETag><Size>331</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=10/20140910-12.gz</Key><LastModified>2014-09-10T20:35:40.000Z</LastModified><ETag>&quot;043c3d53dac97dcfcf348be726e20b87&quot;</ETag><Size>252</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=11/20140911-11.gz</Key><LastModified>2014-09-11T20:35:23.000Z</LastModified><ETag>&quot;93ed37ffbc6e10d85b5c4a049306e145&quot;</ETag><Size>254</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix>3aec2e2f-flydata/app29267468_system/</Prefix><Marker>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=09/20140909-19.gz</Marker><MaxKeys>100</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=10/20140910-10.gz</Key><LastModified>2014-09-10T16:36:20.000Z</LastModified><ETag>&quot;c55ad56c3cf35d263cee2ba85a643c1c&quot;</ETag><Size>331</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=10/20140910-12.gz</Key><LastModified>2014-09-10T20:35:40.000Z</LastModified><ETag>&quot;043c3d53dac97dcfcf348be726e20b87&quot;</ETag><Size>252</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>3aec2e2f-flydata/app29267468_system/year=2014/month=09/day=11/20140911-11.gz</Key><LastModified>2014-09-11T20:35:23.000Z</LastModified><ETag>&quot;93ed37ffbc6e10d85b5c4a049306e145&quot;</ETag><Size>254</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
     http_version:
   recorded_at: Tue, 23 Sep 2014 18:10:07 GMT
 recorded_with: VCR 2.9.0

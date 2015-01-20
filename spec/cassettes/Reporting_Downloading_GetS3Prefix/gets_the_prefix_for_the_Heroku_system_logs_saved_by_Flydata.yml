@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000
     body:
       encoding: US-ASCII
       string: ''
@@ -40,12 +40,12 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>iris-test-logs</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>67baa10d-flydata/</Prefix></CommonPrefixes></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>67baa10d-flydata/</Prefix></CommonPrefixes></ListBucketResult>
     http_version:
   recorded_at: Wed, 10 Sep 2014 23:50:39 GMT
 - request:
     method: get
-    uri: https://iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000&prefix=3aec2e2f-flydata/
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000&prefix=3aec2e2f-flydata/
     body:
       encoding: US-ASCII
       string: ''
@@ -83,7 +83,7 @@ http_interactions:
       encoding: UTF-8
       string: |-
         <?xml version="1.0" encoding="UTF-8"?>
-        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>iris-test-logs</Name><Prefix>3aec2e2f-flydata/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_api/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_app/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_system/</Prefix></CommonPrefixes></ListBucketResult>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix>3aec2e2f-flydata/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_api/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_app/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_system/</Prefix></CommonPrefixes></ListBucketResult>
     http_version:
   recorded_at: Wed, 10 Sep 2014 23:50:40 GMT
 recorded_with: VCR 2.9.0

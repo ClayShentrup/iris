@@ -10,6 +10,8 @@ require 'sprockets/railtie'
 
 require_relative 'gem_dependencies'
 
+Dotenv.load if defined?(Dotenv)
+
 module Iris
   # This class is part of standard Rails configuration.
   class Application < Rails::Application
@@ -52,7 +54,7 @@ module Iris
     config.force_ssl = true
 
     config.aws_bucket_name = [
-      'iris',
+      'dabo-iris',
       Rails.env,
       ENV.fetch('ACCEPTANCE_APPLICATION_STORY_ID', nil),
     ].compact.join('-')

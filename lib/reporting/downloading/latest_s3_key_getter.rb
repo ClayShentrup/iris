@@ -1,3 +1,6 @@
+require 's3/get_instance'
+require 'aws-sdk'
+
 module Reporting
   module Downloading
     # Returns an Enumerator::Lazy instance, which allows us to chain multiple

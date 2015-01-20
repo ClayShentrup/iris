@@ -2,7 +2,8 @@
 'use strict';
 
 var Iris = {
-  Views: {}
+  Views: {},
+  Util: {}
 };
 
 $(document).on('ready page:load', function() {
