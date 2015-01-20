@@ -10,7 +10,7 @@
       = javascript_include_tag 'turbolinks_debugging', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body{ class: [controller_name, controller_action_name],
-         data: { view_name: controller_action_name } }
+         data: { view_name: controller_action_name, pixel_path: asset_path('pixel.gif') }}
     #outer_container
       = render 'layouts/top_nav'
       = yield
