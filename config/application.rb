@@ -50,6 +50,21 @@ module Iris
     config.turbolinks_debugging_enabled = false
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.force_ssl = true
+
+    config.aws_bucket_name = [
+      'iris',
+      Rails.env,
+      ENV.fetch('ACCEPTANCE_APPLICATION_STORY_ID', nil),
+    ].compact.join('-')
+
+    config.aws_credentials = {
+      access_key_id: ENV.fetch('DABO_AWS_ACCESS_KEY_ID', ''),
+      secret_access_key: ENV.fetch('DABO_AWS_SECRET_ACCESS_KEY', ''),
+    }
+
+    # This is Mayo's time zone; naively setting this for the whole app for now.
+    # It is used for reporting, and will eventually be set per client
+    # "installation" via config vars.
     config.client_time_zone = Time.find_zone!('Central Time (US & Canada)')
     config.action_dispatch.rescue_responses.merge!(
       'PublicChartTree::PublicChartNotFoundError' => :not_found

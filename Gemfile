@@ -10,6 +10,7 @@ gem 'rack-timeout'
 gem 'flip'
 gem 'newrelic_rpm'
 gem 'devise'
+gem 'aws-sdk'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
