@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe Reporting::Downloading::StoreLogLine do
   let(:log_line_attributes) do
     {
-      'heroku_request_id' => heroku_request_id,
-      'logged_at' => logged_at,
-      'data' => data,
+      heroku_request_id: heroku_request_id,
+      logged_at: logged_at,
+      data: data,
     }
   end
   let(:heroku_request_id) { '0f1e5956-de1b-41bf-b080-baec304fc04b' }

@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     namespace :dabo_admin do
       resources :hospitals
       resources :hospital_systems
+      resources :reports, only: :index
     end
     resources :pristine_examples
 

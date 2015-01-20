@@ -29,7 +29,11 @@ RemoveUnusedMethodsInControllersCheck:
   #
   # We also ignore warnings related with ApplicationController#render
   # because it is overrided but it's used by Rails internal code
-  except_methods: [ 'ApplicationController#render', '*#=$']
+  except_methods: [
+    'ApplicationController#render',
+    '*#=$',
+    '*#model_params'
+  ]
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
 RemoveUnusedMethodsInModelsCheck: { except_methods: [] }
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
