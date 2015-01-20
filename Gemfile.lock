@@ -84,6 +84,7 @@ GEM
     coffee-script-source (1.8.0)
     colored (1.2)
     columnize (0.9.0)
+    connection_pool (2.1.1)
     crack (0.4.2)
       safe_yaml (~> 1.0.0)
     debug_inspector (0.0.2)
@@ -105,6 +106,8 @@ GEM
     factory_girl_rails (4.5.0)
       factory_girl (~> 4.5.0)
       railties (>= 3.0.0)
+    fakeredis (0.5.0)
+      redis (~> 3.0)
     ffi (1.9.6)
     flip (1.0.1)
       activesupport (>= 3.0, < 5)
@@ -222,6 +225,7 @@ GEM
     raindrops (0.13.0)
     rake (10.4.2)
     rdoc (4.2.0)
+    redis (3.2.0)
     require_all (1.3.2)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
@@ -330,8 +334,10 @@ DEPENDENCIES
   bourbon
   cane
   codeclimate-test-reporter
+  connection_pool
   devise
   factory_girl_rails
+  fakeredis
   flip
   foreman
   haml-rails

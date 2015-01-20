@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.19.0 ruby/2.0.0 x86_64-darwin13.1.0
+      Date:
+      - Wed, 10 Sep 2014 23:50:38 GMT
+      Authorization:
+      - AWS AKIAISKZ7ORFA57RASJA:BjhZ1C2arH9pip6ercaCDUquodA=
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - C74Sj+vS9Ooql75PeBWz8mFZG1z3nJXyDK5Ko6Yep19YoncHy9LmQq8dOdMxTzvM0ouVxrQw7xs=
+      X-Amz-Request-Id:
+      - 304819EFF250F46B
+      Date:
+      - Wed, 10 Sep 2014 23:50:40 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>iris-test-logs</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>67baa10d-flydata/</Prefix></CommonPrefixes></ListBucketResult>
+    http_version:
+  recorded_at: Wed, 10 Sep 2014 23:50:39 GMT
+- request:
+    method: get
+    uri: https://iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000&prefix=3aec2e2f-flydata/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.19.0 ruby/2.0.0 x86_64-darwin13.1.0
+      Date:
+      - Wed, 10 Sep 2014 23:50:39 GMT
+      Authorization:
+      - AWS AKIAISKZ7ORFA57RASJA:AJnfeoqME4rWwpaMosD0RRHSF9E=
+      Accept:
+      - '*/*'
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - oKEnQV9q2qGlf9GL9HN+9/De6Pf3t9Wq+Tli2V4hoBgjwAen9tRea1t3wttPGUxTtwZbifsm3xI=
+      X-Amz-Request-Id:
+      - 5D0431A914F6BFCF
+      Date:
+      - Wed, 10 Sep 2014 23:50:41 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>iris-test-logs</Name><Prefix>3aec2e2f-flydata/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_api/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_app/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3aec2e2f-flydata/app29267468_system/</Prefix></CommonPrefixes></ListBucketResult>
+    http_version:
+  recorded_at: Wed, 10 Sep 2014 23:50:40 GMT
+recorded_with: VCR 2.9.0

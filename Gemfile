@@ -11,6 +11,7 @@ gem 'flip'
 gem 'newrelic_rpm'
 gem 'devise'
 gem 'aws-sdk'
+gem 'connection_pool'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
@@ -59,6 +60,7 @@ group :test do
   gem 'rails-perftest'
   gem 'ruby-prof'
   gem 'timecop'
+  gem 'fakeredis'
 end
 
 group :production do
