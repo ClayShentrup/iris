@@ -71,7 +71,7 @@ RSpec.configure do |config|
 
   config.add_setting :default_performance_runs, default: 5
   config.add_setting :performance_times, default: {
-    short_time: 10,
+    short_time: 20,
     normal_time: 50,
     long_time: 100,
   }
