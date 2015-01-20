@@ -15,7 +15,6 @@ ActiveRecord::Schema.define(version: 20150123010045) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-  enable_extension "pg_stat_statements"
 
   create_table "dimension_samples", force: :cascade do |t|
     t.string   "socrata_provider_id"
@@ -51,6 +50,14 @@ ActiveRecord::Schema.define(version: 20150123010045) do
   end
 
   add_index "hospitals", ["hospital_system_id"], name: "index_hospitals_on_hospital_system_id", using: :btree
+
+  create_table "log_lines", force: :cascade do |t|
+    t.string   "heroku_request_id"
+    t.text     "data"
+    t.datetime "logged_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
 
   create_table "pristine_examples", force: :cascade do |t|
     t.string   "name"
