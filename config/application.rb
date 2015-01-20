@@ -43,7 +43,7 @@ module Iris
 
       g.test_framework :rspec,
                        view_specs: false
-      g.fixture_replacement :factory_girl
+      g.fixture_replacement :factory_girl, dir: 'spec/factories'
     end
 
     config.autoload_paths << Rails.root.join('lib')
