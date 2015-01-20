@@ -6,12 +6,13 @@ class Tests < Thor
   default_task :check
 
   COMMANDS = {
-    'rubocop' => 'rubocop --rails',
-    'jscs' => 'jscs .',
-    'jshint' => 'jshint .',
-    'rails_best_practices' => 'rails_best_practices',
+    'rubocop' => 'bundle exec rubocop --rails',
+    'jscs' => 'bundle exec jscs .',
+    'jshint' => 'bundle exec jshint .',
+    'cane' => 'bundle exec cane',
+    'rails_best_practices' => 'bundle exec rails_best_practices',
     'jasmine' => 'rake jasmine:ci',
-    'rspec' => 'rspec',
+    'rspec' => 'bundle exec rspec',
   }
 
   desc :check, 'run all CI tasks'
