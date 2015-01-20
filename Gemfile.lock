@@ -1,5 +1,6 @@
 GEM
   remote: https://rubygems.org/
+  remote: https://b8ab84f5:2186dcf8@gems.contribsys.com/
   specs:
     actionmailer (4.2.0)
       actionpack (= 4.2.0)
@@ -68,6 +69,8 @@ GEM
       slop (~> 3.6)
     cane (2.6.2)
       parallel
+    celluloid (0.16.0)
+      timers (~> 4.0.0)
     childprocess (0.5.5)
       ffi (~> 1.0, >= 1.0.11)
     code_analyzer (0.4.5)
@@ -127,6 +130,7 @@ GEM
       railties (>= 4.0.1)
     hashie (3.3.2)
     hike (1.2.3)
+    hitimes (1.2.2)
     html2haml (2.0.0)
       erubis (~> 2.7.0)
       haml (~> 4.0.0)
@@ -226,6 +230,8 @@ GEM
     rake (10.4.2)
     rdoc (4.2.0)
     redis (3.2.0)
+    redis-namespace (1.5.1)
+      redis (~> 3.0, >= 3.0.4)
     require_all (1.3.2)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
@@ -274,6 +280,14 @@ GEM
     sexp_processor (4.4.5)
     shoulda-matchers (2.7.0)
       activesupport (>= 3.0.0)
+    sidekiq (3.3.0)
+      celluloid (>= 0.16.0)
+      connection_pool (>= 2.0.0)
+      json
+      redis (>= 3.0.6)
+      redis-namespace (>= 1.3.1)
+    sidekiq-pro (1.9.2)
+      sidekiq (>= 3.2.3)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
@@ -300,6 +314,8 @@ GEM
     thread_safe (0.3.4)
     tilt (1.4.1)
     timecop (0.7.1)
+    timers (4.0.1)
+      hitimes
     turbolinks (2.5.3)
       coffee-rails
     tzinfo (1.2.2)
@@ -362,6 +378,7 @@ DEPENDENCIES
   sass-rails
   sdoc
   shoulda-matchers
+  sidekiq-pro
   soda-ruby
   thor-rails
   timecop
