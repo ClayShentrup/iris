@@ -12,6 +12,3 @@ RSpec.configure do |config|
   require 'factory_girl_rails'
   config.include(FactoryGirl::Syntax::Methods)
 end
-
-# Checks for pending migrations before tests are run.
-ActiveRecord::Migration.maintain_test_schema!
