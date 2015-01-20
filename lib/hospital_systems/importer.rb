@@ -16,7 +16,7 @@ module HospitalSystems
               "Provider id ##{data.fetch(:provider_id)}"
           end
 
-          yield message if block_given?
+          yield message
         end
       end
 

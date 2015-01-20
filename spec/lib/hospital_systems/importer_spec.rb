@@ -24,7 +24,7 @@ RSpec.describe HospitalSystems::Importer do
   let(:resources_system_name) { 'Health Resources' }
 
   def import_hospital_systems
-    described_class.call(file_path: file_path)
+    described_class.call(file_path: file_path) {}
   end
 
   context 'no hospital systems were loaded before' do
