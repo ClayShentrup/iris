@@ -19,6 +19,10 @@ RSpec.describe HospitalSystems::Iterator do
         system_name: nil,
         provider_id: '200003',
       },
+      {
+        system_name: 'Universal Health Services',
+        provider_id: '200004',
+      },
     ]
   end
 end

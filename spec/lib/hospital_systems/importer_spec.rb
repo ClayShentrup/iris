@@ -96,4 +96,22 @@ RSpec.describe HospitalSystems::Importer do
       expect(healthcare_system.reload.hospitals).to be_empty
     end
   end
+
+  context 'with block to handle output messages' do
+    let(:test_logger) do
+      Struct.new(:messages).new([])
+    end
+
+    let(:messages) { test_logger.messages.compact }
+
+    before do
+      described_class.call(file_path: file_path) do
+        |message| test_logger.messages << message
+      end
+    end
+
+    it 'passes a warning indicating that one hospital was not found' do
+      expect(messages).to eq(['Hospital not found: Provider id #200004'])
+    end
+  end
 end
