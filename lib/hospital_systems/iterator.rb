@@ -6,8 +6,8 @@ module HospitalSystems
   class Iterator
     include Enumerable
 
-    def initialize(filepath)
-      @filepath = filepath
+    def initialize(file_path: fail)
+      @file_path = file_path
     end
 
     def each
@@ -25,7 +25,7 @@ module HospitalSystems
     private
 
     def file_data
-      @file_data ||= Roo::Spreadsheet.open(@filepath, file_warning: :ignore)
+      @file_data ||= Roo::Spreadsheet.open(@file_path, file_warning: :ignore)
     end
 
     def headers

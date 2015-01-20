@@ -4,8 +4,8 @@ module HospitalSystems
   # Import Hospital systems and associate hospital to them
   module Importer
     class << self
-      def call(file_path)
-        Iterator.new(file_path).each do |data|
+      def call(file_path: fail)
+        Iterator.new(file_path: file_path).each do |data|
           system = find_hospital_system(data.fetch(:system_name))
           hospital = Hospital.find_by_provider_id(data.fetch(:provider_id))
 

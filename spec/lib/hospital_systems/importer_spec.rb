@@ -12,7 +12,7 @@ RSpec.describe HospitalSystems::Importer do
     create(:hospital, :without_hospital_system, provider_id: '200001')
   end
 
-  let!(:hospita_in_resources_system) do
+  let!(:hospital_in_resources_system) do
     create(:hospital, :without_hospital_system, provider_id: '200002')
   end
 
@@ -24,7 +24,7 @@ RSpec.describe HospitalSystems::Importer do
   let(:resources_system_name) { 'Health Resources' }
 
   def import_hospital_systems
-    described_class.call(file_path)
+    described_class.call(file_path: file_path)
   end
 
   context 'no hospital systems were loaded before' do
@@ -36,7 +36,7 @@ RSpec.describe HospitalSystems::Importer do
       import_hospital_systems
 
       universal_system = hospital_in_universal_system.reload.hospital_system
-      resources_system = hospita_in_resources_system.reload.hospital_system
+      resources_system = hospital_in_resources_system.reload.hospital_system
 
       expect(universal_system.name).to eq(universal_system_name)
       expect(resources_system.name).to eq(resources_system_name)
@@ -58,7 +58,7 @@ RSpec.describe HospitalSystems::Importer do
       create(
         :hospital_system,
         name: 'Health Resources',
-        hospitals: [hospita_in_resources_system],
+        hospitals: [hospital_in_resources_system],
       )
     end
 
@@ -78,7 +78,7 @@ RSpec.describe HospitalSystems::Importer do
       import_hospital_systems
 
       universal_system = hospital_in_universal_system.reload.hospital_system
-      resources_system = hospita_in_resources_system.reload.hospital_system
+      resources_system = hospital_in_resources_system.reload.hospital_system
 
       expect(universal_system.name).to eq(universal_system_name)
       expect(resources_system.name).to eq(resources_system_name)

@@ -1,7 +1,7 @@
 require 'hospital_systems/iterator'
 
 RSpec.describe HospitalSystems::Iterator do
-  subject { described_class.new(file_path) }
+  subject { described_class.new(file_path: file_path) }
   let(:file_path) { './spec/fixtures/hospital_systems_importer/test_file.xls' }
   let(:results) { subject.to_a }
 

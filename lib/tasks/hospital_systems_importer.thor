@@ -19,7 +19,7 @@ class HospitalSystemsImporter < Thor
     output 'Starting system import...'
 
     counter = 0
-    HospitalSystems::Importer.call(file_path(args)) do |message|
+    HospitalSystems::Importer.call(file_path: file_path(args)) do |message|
       counter += 1
       output("\r#{message}", :yellow, true) if message
       output("\r#{counter} rows processed.", :green, false)
