@@ -38,9 +38,7 @@ module Reporting
       end
 
       def object_collection
-        @object_collection ||= s3_bucket
-                               .objects
-                               .with_prefix(GetS3Prefix.call)
+        @object_collection ||= s3_bucket.objects.with_prefix(GetS3Prefix.call)
       end
 
       def s3_bucket

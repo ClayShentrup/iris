@@ -1,1 +1,10 @@
-= @report
+%h1 Usage Reports for #{@date.strftime('%A, %B %e, %Y')}
+
+%table
+  %tr
+    %th Route
+    %th Hits (total users)
+    - @report.each do |route, count|
+      %tr
+        %td= route
+        %td= count
