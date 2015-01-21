@@ -206,6 +206,10 @@ GEM
     require_all (1.3.2)
     responders (2.0.2)
       railties (>= 4.2.0.alpha, < 5)
+    roo (1.13.2)
+      nokogiri
+      rubyzip
+      spreadsheet (> 0.6.4)
     rspec-core (3.1.7)
       rspec-support (~> 3.1.0)
     rspec-expectations (3.1.2)
@@ -228,8 +232,10 @@ GEM
       powerpack (~> 0.0.6)
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
+    ruby-ole (1.2.11.8)
     ruby-prof (0.15.2)
     ruby-progressbar (1.6.1)
+    rubyzip (1.1.6)
     safe_yaml (1.0.4)
     sass (3.2.19)
     sass-rails (4.0.3)
@@ -251,6 +257,8 @@ GEM
     slop (3.6.0)
     soda-ruby (0.2.12)
       hashie
+    spreadsheet (1.0.0)
+      ruby-ole (>= 1.0)
     sprockets (2.11.0)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -315,6 +323,7 @@ DEPENDENCIES
   rails_12factor
   rails_best_practices
   responders
+  roo
   rspec-rails
   rubocop
   ruby-prof
