@@ -8,7 +8,7 @@ class ReportingRunner < Thor
 
   def fetch_reporting_log
     say 'Fetching report logs...'
-    EventLogsWorker.new.perform
+    EventLogsJob.perform_later
     say 'done.'
   end
 end

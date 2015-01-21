@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'timecop'
 
-RSpec.describe EventLogsWorker, sidekiq: :inline do
+RSpec.describe EventLogsJob, type: :job do
   let(:now) { Time.zone.parse('2014-09-24 16:30:53 -0700') }
 
   before do
@@ -10,7 +10,7 @@ RSpec.describe EventLogsWorker, sidekiq: :inline do
 
   def work
     Timecop.freeze(now.to_s) do
-      described_class.perform_async
+      described_class.perform_now
     end
   end
 
