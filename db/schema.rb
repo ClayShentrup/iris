@@ -52,9 +52,9 @@ ActiveRecord::Schema.define(version: 20150123010045) do
   add_index "hospitals", ["hospital_system_id"], name: "index_hospitals_on_hospital_system_id", using: :btree
 
   create_table "log_lines", force: :cascade do |t|
-    t.string   "heroku_request_id"
-    t.text     "data"
-    t.datetime "logged_at"
+    t.string   "heroku_request_id", null: false
+    t.text     "data",              null: false
+    t.datetime "logged_at",         null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end

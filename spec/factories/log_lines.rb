@@ -3,9 +3,9 @@
 # Table name: log_lines
 #
 #  id                :integer          not null, primary key
-#  heroku_request_id :string
-#  data              :text
-#  logged_at         :datetime
+#  heroku_request_id :string           not null
+#  data              :text             not null
+#  logged_at         :datetime         not null
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #
