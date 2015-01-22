@@ -1,19 +1,34 @@
-$btn_padding: rem(15)
+$btn_padding: rem(10)
 
 .measures_nav_btn
   height: rem(40)
   line-height: rem(38)
   text-align: center
 
+  a
+    display: block
+
   .icon
     color: $dabo-blue
 
   .icon_right
     padding-right: $btn_padding
-    margin-left: rem(-15)
+    margin-left: rem(-10)
+
+  .current_node_text
+    +media($desktop)
+      display: none
+
+.measures_nav_current_node
+  display: none
+
+  +media($desktop)
+    display: block
 
 .back_btn_container
   margin: rem(-17) 0 rem(16)
+  +media($desktop)
+    margin-bottom: 0
 
   .back_btn
     display: block
@@ -25,6 +40,7 @@ $btn_padding: rem(15)
     +media($tablet_portrait)
       display: inline
       margin-left: rem(8)
+
 
 
 

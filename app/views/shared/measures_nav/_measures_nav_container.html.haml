@@ -1,0 +1,7 @@
+%div#measures_nav_container.col3
+  = render 'shared/measures_nav/measures_nav_back_btn', node: node
+  = render 'shared/measures_nav/measures_nav_current_node', node: node
+
+  - node.children.each do |child|
+    = render 'shared/measures_nav/measures_nav_forward_btn', child: child
+

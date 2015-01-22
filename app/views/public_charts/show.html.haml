@@ -1,23 +1,26 @@
-= render 'measures_nav_back_btn', node: @node
-= render 'public_charts/breadcrumbs/breadcrumbs', node: @node
+= render 'shared/measures_nav/measures_nav_container', node: @node
 
-%ul
-  - @node.children.each do |child|
-    %li= link_to child.short_title, id: child.id
+%div#main_content.col9
+  = render 'public_charts/breadcrumbs/breadcrumbs', node: @node
 
-.measure_detail
-  .measure_detail_chart
-    Percent of patients who reported that their nurses "Always" communicated well
-  .measure_detail_actions.border_top_grey.border_bottom_grey
-    .action Discuss
-    .action Share
-    .action Learn
-    .action Improve
-  .measure_detail_conversations
-    .new_conversation.border_grey Start a conversation...
-    .conversation.border_grey
-      .title.border_bottom_grey
-        Conversation title
-        %span.icon.icon_right.icon_large.icon_comments
-      .content Conversation
-      .new_comment.border_top_grey Write a comment...
+  .measure_detail
+    .measure_detail_chart
+      Percent of patients who reported that their nurses "Always" communicated well
+    .measure_detail_actions.border_top_grey.border_bottom_grey
+      .action Discuss
+      .action Share
+      .action Learn
+      .action Improve
+    .measure_detail_conversations
+      .new_conversation.border_grey Start a conversation...
+      .conversation.border_grey
+        .title.border_bottom_grey
+          Conversation title
+          %span.icon.icon_right.icon_large.icon_comments
+        .content Conversation
+        .new_comment.border_top_grey Write a comment...
+
+  %div Chart identifier is #{@node.short_title} at #{@node.id}
+  %ul
+    - @node.children.each do |child|
+      %li= link_to child.short_title, id: child.id

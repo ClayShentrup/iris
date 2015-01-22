@@ -3,5 +3,5 @@
     { class: 'back_btn' }) do
     %span.icon.icon_large.icon_arrow_large_left.icon_left
     %span.parent_node_text= parent_link_text(node)
-  = node.short_title
-
+    %span.current_node_text
+      = node.short_title
