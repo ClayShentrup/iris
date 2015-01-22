@@ -14,7 +14,7 @@ require 'active_record_spec_helper'
 require './app/models/dimension_sample'
 
 RSpec.describe DimensionSample do
-  describe 'attributes' do
+  describe 'columns' do
     it { is_expected.to have_db_column(:socrata_provider_id).of_type(:string) }
     it { is_expected.to have_db_column(:dimension_identifier).of_type(:string) }
     it { is_expected.to have_db_column(:value).of_type(:float) }

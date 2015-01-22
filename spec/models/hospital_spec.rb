@@ -16,7 +16,7 @@ require 'active_record_spec_helper'
 require './app/models/hospital'
 
 RSpec.describe Hospital do
-  describe 'attributes' do
+  describe 'columns' do
     it { is_expected.to have_db_column(:name).of_type(:string) }
     it { is_expected.to have_db_column(:zip_code).of_type(:string) }
     it { is_expected.to have_db_column(:hospital_type).of_type(:string) }
