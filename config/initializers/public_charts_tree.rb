@@ -79,7 +79,6 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
       domain 'Efficency of Care' do
         measure 'Hospital spending per patient'
       end
-
     end
 
     bundle 'Hospital Acquired Conditions' do
@@ -98,5 +97,6 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
       measure '30-day Readmission Pneumonia'
       measure '30-day Readmission COPD'
       measure '30-day Readmission hip and knee arthroplasty'
+    end
   end
 end
