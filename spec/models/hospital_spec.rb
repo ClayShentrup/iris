@@ -17,26 +17,26 @@ require './app/models/hospital'
 
 RSpec.describe Hospital do
   describe 'attributes' do
-    it { should have_db_column(:name).of_type(:string) }
-    it { should have_db_column(:zip_code).of_type(:string) }
-    it { should have_db_column(:hospital_type).of_type(:string) }
-    it { should have_db_column(:provider_id).of_type(:string) }
-    it { should have_db_column(:state).of_type(:string) }
-    it { should have_db_column(:city).of_type(:string) }
+    it { is_expected.to have_db_column(:name).of_type(:string) }
+    it { is_expected.to have_db_column(:zip_code).of_type(:string) }
+    it { is_expected.to have_db_column(:hospital_type).of_type(:string) }
+    it { is_expected.to have_db_column(:provider_id).of_type(:string) }
+    it { is_expected.to have_db_column(:state).of_type(:string) }
+    it { is_expected.to have_db_column(:city).of_type(:string) }
   end
 
   describe 'validations' do
     context 'no need to access the database' do
       subject { build_stubbed(described_class) }
 
-      it { should be_valid }
+      it { is_expected.to be_valid }
     end
 
-    it { should validate_uniqueness_of(:provider_id) }
-    it { should validate_presence_of(:provider_id) }
-    it { should validate_presence_of(:name) }
-    it { should validate_presence_of(:city) }
-    it { should validate_presence_of(:state) }
+    it { is_expected.to validate_uniqueness_of(:provider_id) }
+    it { is_expected.to validate_presence_of(:provider_id) }
+    it { is_expected.to validate_presence_of(:name) }
+    it { is_expected.to validate_presence_of(:city) }
+    it { is_expected.to validate_presence_of(:state) }
   end
 
   describe '.create_or_update' do
