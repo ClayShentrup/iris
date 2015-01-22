@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: dimension_samples
+#
+#  id                   :integer          not null, primary key
+#  socrata_provider_id  :string
+#  dimension_identifier :string
+#  value                :float
+#  created_at           :datetime         not null
+#  updated_at           :datetime         not null
+#
+
 require 'active_record_spec_helper'
 require './app/models/dimension_sample'
 
