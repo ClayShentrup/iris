@@ -1,5 +1,5 @@
 require 'active_support/core_ext/string/inflections'
-require 'public_chart_tree/node_creator'
+require 'public_chart_tree/define_node'
 
 # Establishes a DSL for specifiying our public data chart hierarchy
 class PublicChartTree
@@ -15,11 +15,11 @@ class PublicChartTree
   # Provides a degenerative case for recursive breadcrumb definition.
   module RootNode
     class << self
-      def breadcrumbs
+      def id_components
         []
       end
 
-      def id_components
+      def build_breadcrumb(_node)
         []
       end
     end

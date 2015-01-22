@@ -4,12 +4,12 @@ class PublicChartTree
     attr_writer :id_component
     attr_accessor :dimensions
 
-    def breadcrumbs
-      parent.breadcrumbs + [short_title]
-    end
-
     def id_components
       parent.id_components + [id_component]
+    end
+
+    def build_breadcrumb(node)
+      [node]
     end
 
     private

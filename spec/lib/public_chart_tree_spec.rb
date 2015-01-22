@@ -39,23 +39,25 @@ RSpec.describe PublicChartTree do
         tree.find('private-data'),
       ]
     end
+  end
 
-    it 'has no breadcrumbs' do
-      expect(subject.breadcrumbs).to eq []
+  context 'at a node directly under the root node' do
+    let(:id) { 'cms' }
+
+    it 'has only itself as a breadcrumb' do
+      expect(subject.breadcrumbs).to eq [subject]
     end
   end
 
   context 'at a nested subject' do
-    let(:id) { 'cms/value-based-purchasing/outcome-of-care/mortality' }
+    let(:parent_id) { 'cms/value-based-purchasing/outcome-of-care' }
+    let(:id) { "#{parent_id}/mortality" }
 
     specify { expect(subject.id).to eq id }
 
     it 'returns the children' do
       expect(subject.children).to eq [
-        tree.find([
-          id,
-          '30-day-mortality-ami',
-        ].join('/')),
+        tree.find("#{id}/30-day-mortality-ami"),
       ]
     end
 
@@ -68,10 +70,8 @@ RSpec.describe PublicChartTree do
 
     specify do
       expect(subject.breadcrumbs).to eq [
-        'Public Data',
-        'Value Based Purchasing',
-        'Outcome of Care',
-        'Mortality',
+        tree.find(parent_id),
+        subject,
       ]
     end
   end

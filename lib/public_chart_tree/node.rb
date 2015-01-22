@@ -13,5 +13,13 @@ class PublicChartTree
     def id
       id_components.join('/')
     end
+
+    def breadcrumbs
+      parent.breadcrumb + breadcrumb
+    end
+
+    def breadcrumb
+      build_breadcrumb(self)
+    end
   end
 end
