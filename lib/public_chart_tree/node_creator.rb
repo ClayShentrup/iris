@@ -1,42 +1,40 @@
+require 'active_support/core_ext/module/delegation'
+require_relative 'node'
+require_relative 'nested_node'
+
 class PublicChartTree
   # A developer-friendly way to build the static chart tree for public data.
-  # See implementation config/initializers/public_charts_tree.rb
-  class NodeCreator
+  # See implementation config/initializers/public_charts_tree.
+  class DefineNode
     attr_reader :node
-
-    Node = Struct.new(:children, :short_name, :dimensions, :path)
 
     def self.call(*args)
       new(*args).node
     end
 
-    def initialize(path_components, short_name, node_map, definition)
-      @path_components = path_components
+    def initialize(root_or_nested_node, node_map, definition_block)
+      @node = Node.new(root_or_nested_node)
       @node_map = node_map
-      @node = Node.new([], short_name)
-      instance_eval(&definition) if definition
-      @node.path = path
-      @node_map[path] = @node
+      instance_eval(&definition_block) if definition_block
+      @node_map[@node.id] = @node
     end
 
     private
 
-    def path
-      @path_components.join('/')
-    end
-
-    def create_child_node(short_name, &block)
-      child_node = self.class.call(
-        @path_components + [short_name.parameterize],
-        short_name,
-        @node_map,
-        block,
+    def create_child_node(short_title, &definition_block)
+      child_node = NestedNode.new(
+        @node,
+        short_title,
       )
-      @node.children << child_node
+      @node.children << self.class.call(
+        child_node,
+        @node_map,
+        definition_block,
+      )
     end
 
-    def path_component(path_component)
-      @path_components[-1] = path_component
+    def id_component(id_component)
+      @node.id_component = id_component
     end
 
     def dimensions(*dimensions)

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     end
     resources :pristine_examples
 
-    get 'measures', to: 'measures_root#show'
+    resource :measures, only: :show, controller: :charts_root
     get 'measures/*id', to: 'public_charts#show'
   end
 end

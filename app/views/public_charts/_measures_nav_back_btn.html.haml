@@ -1,6 +1,7 @@
 .measures_nav_btn.back_btn_container.border_grey.clearfix
-  = link_to node.path, class: 'back_btn' do
+  = link_to(back_button_options(node.parent_id),
+    { class: 'back_btn' }) do
     %span.icon.icon_large.icon_arrow_large_left.icon_left
     %span.parent_node_text Parent
-  = node.short_name
+  = node.short_title
 

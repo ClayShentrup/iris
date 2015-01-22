@@ -1,5 +1,5 @@
 # Controller for top level measures navigation
-class MeasuresRootController < ApplicationController
+class ChartsRootController < ApplicationController
   def show
   end
 end

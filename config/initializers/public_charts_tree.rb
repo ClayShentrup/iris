@@ -1,6 +1,6 @@
 PUBLIC_CHARTS_TREE = PublicChartTree.new do
   measure_source 'Public Data' do
-    path_component 'cms'
+    id_component 'cms'
 
     dimensions :MORT_30_AMI_SCORE,
                :MORT_30_AMI_DENOMINATOR

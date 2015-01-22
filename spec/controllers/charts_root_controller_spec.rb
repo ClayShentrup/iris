@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe MeasuresRootController do
+RSpec.describe ChartsRootController do
   describe 'GET show' do
     before do
       get :show
