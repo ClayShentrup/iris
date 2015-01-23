@@ -22,6 +22,7 @@ $btn_padding: rem(10)
 .measures_nav_btn
   height: rem(45)
   line-height: rem(43)
+  position: relative
 
   a
     display: block
@@ -42,10 +43,11 @@ $btn_padding: rem(10)
     width: 90%
 
   .current_node_text
-    display: inline-block
-    text-align: center
-    width: 100%
+    display: block
+    margin: 0 auto
     padding-left: 0
+    text-align: center
+    width: 80%
     +media($desktop)
       display: none
 
@@ -64,8 +66,12 @@ $btn_padding: rem(10)
 
   .back_btn
     display: block
-    position: absolute
     padding: 0 $btn_padding
+    position: absolute
+    +media($tablet_portrait)
+      width: 25%
+    +media($desktop)
+      width: 95%
 
   .parent_node_text
     display: none
