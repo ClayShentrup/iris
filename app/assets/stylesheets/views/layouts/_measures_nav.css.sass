@@ -4,6 +4,19 @@ $btn_padding: rem(10)
   margin-top: rem(-17)
   font-size: rem(14)
 
+  .forward_btn
+    display: block
+    +media($tablet_portrait)
+      display: none
+
+    &.is_root
+      display: block
+
+  .is_category_page
+    display: none
+    +media($desktop)
+      display: block
+
 .measures_nav_btn
   height: rem(45)
   line-height: rem(43)

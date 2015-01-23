@@ -2,6 +2,10 @@
   padding: 0 rem(10)
   +row
 
+.row_no_padding
+  padding: 0
+  +row
+
 .col1,
 .col2,
 .col3,
@@ -16,50 +20,43 @@
 .col12
   +span-columns(12)
 
-.col1
-  +media($desktop)
++media($desktop)
+  .col1
     +span-columns(1)
 
-.col2
-  +media($desktop)
+  .col2
     +span-columns(2)
 
-.col3
-  +media($desktop)
+  .col3
     +span-columns(3)
 
-.col4
-  +media($desktop)
+  .col4
     +span-columns(4)
 
-.col5
-  +media($desktop)
+  .col5
     +span-columns(5)
 
-.col6
-  +media($desktop)
+  .col6
     +span-columns(6)
 
-.col7
-  +media($desktop)
+  .col7
     +span-columns(7)
 
-.col8
-  +media($desktop)
+  .col8
     +span-columns(8)
 
-.col9
-  +media($desktop)
+  .col9
     +span-columns(9)
 
-.col10
-  +media($desktop)
+  .col10
     +span-columns(10)
 
-.col11
-  +media($desktop)
+  .col11
     +span-columns(11)
 
-.col12
-  +media($desktop)
+  .col12
     +span-columns(12)
+
++media($tablet_portrait)
+  .col6.measure_teaser
+    +span_columns(6)

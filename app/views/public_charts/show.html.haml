@@ -2,13 +2,13 @@
 
 %div#main_content.col9
   = render 'public_charts/breadcrumbs/breadcrumbs', node: @node
-  = render 'public_charts/overall_ranking_chart', node: @node
 
-  - if @node.children
-    - @node.children.each do |child|
-      = render 'public_charts/measure_teaser', child: child
+  - if metric_detail_page?
+    = render 'public_charts/measure_detail'
   - else
-    RENDER MEASURE DETAIL
+    = render 'public_charts/overall_ranking_chart', node: @node
+    - @node.children.each do |child|
+      = render 'public_charts/measure_teaser', node: child
 
 
 

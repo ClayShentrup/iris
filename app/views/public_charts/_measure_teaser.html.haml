@@ -1,3 +1,8 @@
-.measure_teaser.col6.border_grey
-  .title
-    = child.short_title
+%div.row_no_padding.measure_teaser_container{ class: ('is_not_category_page' if !category_page?) }
+  %h2
+    = node.short_title
+
+  - node.children.each do |child|
+    %div.measure_teaser.col6.border_grey
+      %div.title
+        = child.short_title
