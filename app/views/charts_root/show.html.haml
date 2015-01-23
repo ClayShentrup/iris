@@ -1,1 +1,5 @@
-= render 'shared/measures_nav/measures_nav_container', node: @node
+#measures_nav_container.col3
+  .measures_nav_btn.forward_btn.border_grey.clearfix
+    = link_to '/measures/cms' do
+      %span.text Public Data
+      %span.icon.icon_large.icon_arrow_large_right.icon_right
