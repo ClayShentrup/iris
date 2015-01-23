@@ -1,6 +1,7 @@
-# A NestedNode instance represents any node below the root.
+# .
 class PublicChartTree
-  NestedNode = Struct.new(:parent, :short_title) do
+  # A NestedNode instance represents any node below the root.
+  NestedNode = Struct.new(:parent, :short_title, :is_detail_chart) do
     attr_writer :id_component
     attr_accessor :dimensions
 

@@ -8,7 +8,7 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
     bundle 'Value Based Purchasing' do
       domain 'Outcome of Care' do
         category 'Mortality' do
-          measure '30 Day Mortality, AMI' do
+          detail_chart '30 Day Mortality, AMI' do
             dimensions :MORT_30_AMI_SCORE,
                        :MORT_30_AMI_DENOMINATOR,
                        :MORT_30_VBP_SCORE,
@@ -16,87 +16,87 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
                        :MORT_30_VBP_ACHIEVEMENT,
                        :MORT_30_VBP_IMPROVEMENT
           end
-          measure '30-day Mortality, Heart Failure'
-          measure '30-day Mortality, Pneumonia'
+          detail_chart '30-day Mortality, Heart Failure'
+          detail_chart '30-day Mortality, Pneumonia'
         end
         category 'Patient Safety Indicator' do
-          measure 'AHRQ Patient Safety Indicator Composite'
+          detail_chart 'AHRQ Patient Safety Indicator Composite'
         end
         category 'Central Line Associated Bloodstream Infection' do
-          measure 'Central Line Associated Bloodstream Infection'
+          detail_chart 'Central Line Associated Bloodstream Infection'
         end
       end
 
       domain 'Process of Care' do
         category 'Heart Failure' do
-          measure 'Patients given discharge instructions'
+          detail_chart 'Patients given discharge instructions'
         end
         category 'Pneumonia' do
-          measure 'Patients with blood culture performed'
-          measure 'Patients given the most appropriate initial antibiotics'
+          detail_chart 'Patients with blood culture performed'
+          detail_chart 'Patients given the most appropriate initial antibiotics'
         end
         category 'Surgical Care Improvement Project' do
-          measure 'Patients given an antibiotic at the right time'
-          measure 'Patients given the right kind of antibiotic'
-          measure 'Patients whose preventive antibiotics were stopped'
-          measure 'Patients whose blood sugar kept under control'
-          measure 'Patients whose urinary catheters were removed'
-          measure 'Patients who were taking beta blockers'
-          measure 'Patients received treatment to prevent blood clots'
+          detail_chart 'Patients given an antibiotic at the right time'
+          detail_chart 'Patients given the right kind of antibiotic'
+          detail_chart 'Patients whose preventive antibiotics were stopped'
+          detail_chart 'Patients whose blood sugar kept under control'
+          detail_chart 'Patients whose urinary catheters were removed'
+          detail_chart 'Patients who were taking beta blockers'
+          detail_chart 'Patients received treatment to prevent blood clots'
         end
         category 'Acute Myocardial Infarction' do
-          measure 'Patients given drugs to break up blood clots'
-          measure 'Patients given percutaneous coronary interventions'
+          detail_chart 'Patients given drugs to break up blood clots'
+          detail_chart 'Patients given percutaneous coronary interventions'
         end
       end
 
       domain 'Patient Experience of Care' do
         category 'Communication' do
-          measure 'Nurses Communication'
-          measure 'Doctors Communication'
+          detail_chart 'Nurses Communication'
+          detail_chart 'Doctors Communication'
         end
         category 'Responsiveness' do
-          measure 'Responsiveness of hospital staff'
+          detail_chart 'Responsiveness of hospital staff'
         end
         category 'Pain Management' do
-          measure 'Pain Management'
+          detail_chart 'Pain Management'
         end
         category 'Medications' do
-          measure 'Communications about medications'
+          detail_chart 'Communications about medications'
         end
         category 'Environment' do
-          measure 'Cleanliness'
-          measure 'Quietness'
+          detail_chart 'Cleanliness'
+          detail_chart 'Quietness'
         end
         category 'Discharge Information' do
-          measure 'Discharge Information'
+          detail_chart 'Discharge Information'
         end
         category 'Overall Rating' do
-          measure 'Overall rating of hospital'
+          detail_chart 'Overall rating of hospital'
         end
       end
 
       domain 'Efficency of Care' do
-        measure 'Hospital spending per patient'
+        detail_chart 'Hospital spending per patient'
       end
     end
 
     bundle 'Hospital Acquired Conditions' do
       domain 'Patient Safety Indicator' do
-        measure 'Patient Safety Composite'
+        detail_chart 'Patient Safety Composite'
       end
       domain 'Hospital Acquired Infection' do
-        measure 'Central Line Associated Bloodstream Infection'
-        measure 'Catheter Associated Urinary Tract Infection'
+        detail_chart 'Central Line Associated Bloodstream Infection'
+        detail_chart 'Catheter Associated Urinary Tract Infection'
       end
     end
 
     bundle 'Readmission' do
-      measure '30-day Readmission AMI'
-      measure '30-day Readmission heart failure'
-      measure '30-day Readmission Pneumonia'
-      measure '30-day Readmission COPD'
-      measure '30-day Readmission hip and knee arthroplasty'
+      detail_chart '30-day Readmission AMI'
+      detail_chart '30-day Readmission heart failure'
+      detail_chart '30-day Readmission Pneumonia'
+      detail_chart '30-day Readmission COPD'
+      detail_chart '30-day Readmission hip and knee arthroplasty'
     end
   end
 end

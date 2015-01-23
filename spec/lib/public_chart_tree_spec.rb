@@ -18,7 +18,7 @@ RSpec.describe PublicChartTree do
               dimensions :MORT_30_AMI_SCORE,
                          :MORT_30_AMI_DENOMINATOR
 
-              measure '30 Day Mortality, AMI'
+              detail_chart '30 Day Mortality, AMI'
             end
           end
         end
@@ -47,6 +47,8 @@ RSpec.describe PublicChartTree do
     it 'has only itself as a breadcrumb' do
       expect(subject.breadcrumbs).to eq [subject]
     end
+
+    specify { is_expected.not_to be_detail_chart }
   end
 
   context 'at a nested subject' do
@@ -74,6 +76,21 @@ RSpec.describe PublicChartTree do
         subject,
       ]
     end
+
+    specify { is_expected.not_to be_detail_chart }
+  end
+
+  context 'at a detail chart' do
+    let(:id) do
+      %w[
+        cms
+        value-based-purchasing
+        outcome-of-care
+        mortality
+        30-day-mortality-ami
+      ].join('/')
+    end
+    specify { is_expected.to be_detail_chart }
   end
 
   context 'with an invalid identifier' do
