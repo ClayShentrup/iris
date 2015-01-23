@@ -1,0 +1,15 @@
+.login.centered
+  #login_logo
+  %h1 Sign In
+  = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
+    .field
+      = f.label :email
+      = f.email_field :email, autofocus: true, class: 'text_input'
+
+    .field
+      = f.label :password
+      = f.password_field :password, autocomplete: "off", class: 'text_input'
+
+    .actions
+      = f.submit "Sign in"
+      = link_to "Forgot Password?", new_password_path(resource_name)
