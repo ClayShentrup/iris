@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   shallow do # we should always use shallow routes, internally at least
     mount Flip::Engine => '/flip'
     resource :status, only: :show

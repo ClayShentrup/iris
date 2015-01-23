@@ -29,3 +29,4 @@ end
 
 require 'airbrake' if Rails.env.production?
 require 'newrelic_rpm'
+require 'devise'
