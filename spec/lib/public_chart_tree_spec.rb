@@ -49,6 +49,8 @@ RSpec.describe PublicChartTree do
     end
 
     specify { is_expected.not_to be_detail_chart }
+
+    specify { expect(subject.short_title).to eq 'Public Data' }
   end
 
   context 'at a nested subject' do
@@ -78,6 +80,8 @@ RSpec.describe PublicChartTree do
     end
 
     specify { is_expected.not_to be_detail_chart }
+
+    specify { expect(subject.short_title).to eq 'Mortality' }
   end
 
   context 'at a detail chart' do
@@ -91,6 +95,8 @@ RSpec.describe PublicChartTree do
       ].join('/')
     end
     specify { is_expected.to be_detail_chart }
+
+    specify { expect(subject.short_title).to eq '30 Day Mortality, AMI' }
   end
 
   context 'with an invalid identifier' do

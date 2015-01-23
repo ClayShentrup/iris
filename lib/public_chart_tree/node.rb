@@ -9,6 +9,7 @@ class PublicChartTree
              :dimensions,
              :id_components,
              :parent,
+             :short_title,
              to: :embedded_node
 
     def initialize(embedded_node)
