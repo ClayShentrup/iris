@@ -75,4 +75,14 @@ RSpec.describe PublicChartTree do
       ]
     end
   end
+
+  context 'with an invalid identifier' do
+    let(:id) { 'fake_path' }
+
+    it 'raises an exception' do
+      expect { subject }.to raise_error(
+        PublicChartTree::PublicChartNotFoundError,
+      )
+    end
+  end
 end

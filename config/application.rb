@@ -50,5 +50,8 @@ module Iris
     config.turbolinks_debugging_enabled = false
     config.action_controller.action_on_unpermitted_parameters = :raise
     config.force_ssl = true
+    config.action_dispatch.rescue_responses.merge!(
+      'PublicChartTree::PublicChartNotFoundError' => :not_found
+    )
   end
 end

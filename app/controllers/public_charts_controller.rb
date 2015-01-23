@@ -3,6 +3,6 @@
 # dynamic data, e.g. in the database.
 class PublicChartsController < ApplicationController
   def show
-    @node = PUBLIC_CHARTS_TREE.find(params.fetch(:id, ''))
+    @node = PUBLIC_CHARTS_TREE.find(params.fetch(:id))
   end
 end
