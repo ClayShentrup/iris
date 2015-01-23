@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::HospitalsController do
+  login_user
+
   let(:invalid_attributes) do
     attributes_for(Hospital, provider_id: '', name: '', city: '', state: '')
   end
