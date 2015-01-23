@@ -69,7 +69,12 @@ module Iris
     # "installation" via config vars.
     config.client_time_zone = Time.find_zone!('Central Time (US & Canada)')
     config.action_dispatch.rescue_responses.merge!(
-      'PublicChartTree::PublicChartNotFoundError' => :not_found
+      'PublicChartTree::PublicChartNotFoundError' => :not_found,
     )
+
+    config.action_mailer.default_url_options = {
+      host:     'dabo-iris-production.herokuapp.com',
+      protocol: 'https',
+    }
   end
 end

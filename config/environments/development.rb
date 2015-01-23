@@ -40,4 +40,14 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
   config.turbolinks_debugging_enabled = true
   config.force_ssl = false
+
+  routes.default_url_options = {
+    host: 'localhost',
+    port: 3000,
+  }
+
+  config.action_mailer.delivery_method = :file
+  config.action_mailer.file_settings = {
+    location: 'tmp/mails',
+  }
 end

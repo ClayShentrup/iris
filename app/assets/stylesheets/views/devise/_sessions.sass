@@ -1,0 +1,18 @@
+.login
+  padding: rem(15)
+
+  #login_logo
+    height: rem(74)
+    background: transparent image-url('login-logo-mobile.png') no-repeat
+    +media($desktop)
+      margin-top: rem(60)
+      height: rem(200)
+      background: transparent image-url('login-logo-desktop.png') no-repeat center
+      width: 30%
+
+  > form
+    .field
+      > input
+        width: rem(270)
+        padding: rem(15) rem(5)
+
