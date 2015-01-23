@@ -7,7 +7,7 @@ unless Rails.application.present?
 
   # Runs rake db:test:prepare before test run
   if ActiveRecord::Migrator.needs_migration?
-    require 'rails_helper'
+    require_relative '../config/application'
     ActiveRecord::Base.maintain_test_schema = true
     ActiveRecord::Migration.maintain_test_schema!
   end
