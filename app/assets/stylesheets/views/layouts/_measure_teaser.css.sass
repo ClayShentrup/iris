@@ -1,6 +1,10 @@
 .measure_teaser_container
   margin-bottom: rem(30)
 
+  &.row
+    +media($desktop)
+      padding: 0
+
   &.is_not_category_page
     display: none
     +media($tablet_portrait)

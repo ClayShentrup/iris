@@ -1,6 +1,6 @@
-%div.row_no_padding.measure_teaser_container
+%div.row.measure_teaser_container
   %h2
-    = node.short_title
+    = link_to node.short_title, id: node.id
 
   - node.children.each do |child|
     = render 'public_charts/measure_teaser', node: child

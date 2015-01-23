@@ -7,7 +7,7 @@
     = render 'public_charts/measure_detail'
   - else
     = render 'public_charts/overall_ranking_chart', node: @node
-    %div.measure_teaser_container.clearfix{ class: ('is_not_category_page' unless @node.children.first.detail_chart?) }
+    %div.row.measure_teaser_container.clearfix{ class: ('is_not_category_page' unless @node.children.first.detail_chart?) }
       - @node.children.each do |child|
         - if child.detail_chart?
           = render 'public_charts/measure_teaser', node: child
