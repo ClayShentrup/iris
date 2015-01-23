@@ -1,0 +1,6 @@
+%div.row_no_padding.measure_teaser_container
+  %h2
+    = node.short_title
+
+  - node.children.each do |child|
+    = render 'public_charts/measure_teaser', node: child

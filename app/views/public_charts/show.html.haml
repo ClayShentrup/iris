@@ -3,12 +3,16 @@
 %div#main_content.col9
   = render 'public_charts/breadcrumbs/breadcrumbs', node: @node
 
-  - if metric_detail_page?
+  - if @node.detail_chart?
     = render 'public_charts/measure_detail'
   - else
     = render 'public_charts/overall_ranking_chart', node: @node
-    - @node.children.each do |child|
-      = render 'public_charts/measure_teaser', node: child
+    %div.measure_teaser_container.clearfix{ class: ('is_not_category_page' unless @node.children.first.detail_chart?) }
+      - @node.children.each do |child|
+        - if child.detail_chart?
+          = render 'public_charts/measure_teaser', node: child
+        - else
+          = render 'public_charts/category_teaser', node: child
 
 
 

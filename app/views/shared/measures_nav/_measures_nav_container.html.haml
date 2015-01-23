@@ -2,9 +2,12 @@
   = render 'shared/measures_nav/measures_nav_back_btn', node: node
   = render 'shared/measures_nav/measures_nav_current_node', node: node
 
-  - if !metric_detail_page?
+  - unless node.detail_chart?
     = render 'public_charts/overall_ranking_chart', node: node
 
-  - node.children.each do |child|
-    = render 'shared/measures_nav/measures_nav_forward_btn', child: child
+  - if node.children
+    - node.children.each do |child|
+      = render 'shared/measures_nav/measures_nav_forward_btn', child: child
+  - else
+    = render 'shared/'
 

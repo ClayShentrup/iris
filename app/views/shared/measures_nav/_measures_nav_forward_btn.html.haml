@@ -1,4 +1,4 @@
-%div.measures_nav_btn.forward_btn.border_grey.clearfix{ class: ('is_category_page' if category_page?) }
+%div.measures_nav_btn.forward_btn.border_grey.clearfix{ class: ('is_category_page' if child.detail_chart?) }
   = link_to id: child.id do
     %span.text
       = child.short_title
