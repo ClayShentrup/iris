@@ -20,8 +20,9 @@ Iris.Util.logEvent = function(eventName, eventProperties) {
 };
 
 $(document).on('ready page:load', function() {
+  var currentUserId = $('body').data('current-user-id');
   Iris.Util.logEvent('Page View', {
-    currentUserId: null,
+    currentUserId: currentUserId,
     route: document.location.pathname,
     routeParams: document.location.search
   });

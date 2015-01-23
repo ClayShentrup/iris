@@ -9,8 +9,13 @@
     - if Rails.application.config.turbolinks_debugging_enabled
       = javascript_include_tag 'turbolinks_debugging', 'data-turbolinks-track' => true
     = csrf_meta_tags
-  %body{ class: [controller_name, controller_action_name],
-         data: { view_name: controller_action_name, pixel_path: asset_path('pixel.gif') }}
+  %body{ class: [controller_name, controller_action_name], |
+         data: { |
+           view_name: controller_action_name, |
+           pixel_path: asset_path('pixel.gif'), |
+           current_user_id: '0' |
+         } |
+       } |
     #outer_container
       = render 'layouts/top_nav'
       = yield
