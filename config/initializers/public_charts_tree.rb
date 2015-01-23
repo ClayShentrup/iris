@@ -1,7 +1,5 @@
 PUBLIC_CHARTS_TREE = PublicChartTree.new do
   measure_source 'Public Data' do
-    id_component 'cms'
-
     dimensions :MORT_30_AMI_SCORE,
                :MORT_30_AMI_DENOMINATOR
 
@@ -54,6 +52,7 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
         category 'Communication' do
           detail_chart 'Nurses Communication'
           detail_chart 'Doctors Communication'
+
         end
         category 'Responsiveness' do
           detail_chart 'Responsiveness of hospital staff'
@@ -73,6 +72,9 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
         end
         category 'Overall Rating' do
           detail_chart 'Overall rating of hospital'
+        end
+        category 'Care Transition' do
+          detail_chart 'Care Transition'
         end
       end
 
