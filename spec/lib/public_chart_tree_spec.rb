@@ -51,6 +51,10 @@ RSpec.describe PublicChartTree do
     specify { is_expected.not_to be_detail_chart }
 
     specify { expect(subject.short_title).to eq 'Public Data' }
+
+    specify { expect(subject.parent_is_root?).to be true }
+
+    specify { expect(subject.parent_id).to eq '' }
   end
 
   context 'at a nested subject' do
@@ -82,21 +86,32 @@ RSpec.describe PublicChartTree do
     specify { is_expected.not_to be_detail_chart }
 
     specify { expect(subject.short_title).to eq 'Mortality' }
+
+    specify { expect(subject.parent_is_root?).to be false }
+
+    specify { expect(subject.parent_id).to eq parent_id }
+    specify { expect(subject.parent_short_title).to eq 'Outcome of Care' }
   end
 
   context 'at a detail chart' do
-    let(:id) do
+    let(:parent_id) do
       %w[
         cms
         value-based-purchasing
         outcome-of-care
         mortality
-        30-day-mortality-ami
       ].join('/')
     end
+    let(:id) { "#{parent_id}/30-day-mortality-ami" }
+
     specify { is_expected.to be_detail_chart }
 
     specify { expect(subject.short_title).to eq '30 Day Mortality, AMI' }
+
+    specify { expect(subject.parent_is_root?).to be false }
+
+    specify { expect(subject.parent_id).to eq parent_id }
+    specify { expect(subject.parent_short_title).to eq 'Mortality' }
   end
 
   context 'with an invalid identifier' do

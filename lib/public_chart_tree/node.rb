@@ -4,7 +4,9 @@ class PublicChartTree
   # or RootNode .
   Node = Struct.new(:embedded_node) do
     attr_reader :children
-    delegate :id, to: :parent, prefix: true
+    delegate :id,
+             :short_title,
+             to: :parent, prefix: true
     delegate :build_breadcrumb,
              :dimensions,
              :id_components,
@@ -31,6 +33,10 @@ class PublicChartTree
 
     def detail_chart?
       embedded_node.is_detail_chart
+    end
+
+    def parent_is_root?
+      parent_id.blank?
     end
   end
 end

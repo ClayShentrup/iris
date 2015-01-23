@@ -5,15 +5,22 @@ module PublicChartsHelper
     false => :public_charts,
   }
 
-  def back_button_options(parent_id)
-    parent_is_root = parent_id.blank?
-    controller = BACK_CONTROLLERS.fetch(parent_is_root)
+  def back_button_options(node)
+    controller = BACK_CONTROLLERS.fetch(node.parent_is_root?)
     url_options = {
       controller: controller,
       action: :show,
       only_path: true,
     }
-    url_options[:id] = parent_id unless parent_is_root
+    url_options[:id] = node.parent_id unless node.parent_is_root?
     url_options
+  end
+
+  def parent_link_text(node)
+    if node.parent_is_root?
+      'Metrics'
+    else
+      node.parent_short_title
+    end
   end
 end
