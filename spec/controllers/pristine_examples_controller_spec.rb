@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PristineExamplesController do
   let(:invalid_attributes) { attributes_for(PristineExample, name: '') }
-  it_behaves_like 'an ApplicationController'
+  it_behaves_like 'an ApplicationController without authentication'
 
   it_behaves_like 'an ApplicationController index'
   it_behaves_like 'an ApplicationController create'

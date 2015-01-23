@@ -1,4 +1,4 @@
-RSpec.shared_examples 'an ApplicationController' do
+RSpec.shared_context 'ApplicationController custom route' do
   controller do
     def custom
     end
@@ -10,6 +10,10 @@ RSpec.shared_examples 'an ApplicationController' do
       get 'custom' => "#{this_controller.controller_path}#custom"
     end
   end
+end
+
+RSpec.shared_examples 'an ApplicationController without authentication' do
+  include_context 'ApplicationController custom route'
 
   describe 'before filters' do
     let(:headers) { {} }
@@ -51,6 +55,26 @@ RSpec.shared_examples 'an ApplicationController' do
     # that our Rails controllers are functioning correctly.
     it 'renders the view' do
       expect { get :custom }.to raise_error ActionView::MissingTemplate
+    end
+  end
+end
+
+RSpec.shared_examples 'an ApplicationController' do
+  it_behaves_like 'an ApplicationController without authentication'
+
+  describe 'authentication' do
+    include_context 'ApplicationController custom route'
+
+    context 'user is not logged' do
+      logout_user
+
+      before do
+        get :custom
+      end
+
+      it 'is redirected to login page' do
+        is_expected.to redirect_to(new_user_session_url)
+      end
     end
   end
 end
