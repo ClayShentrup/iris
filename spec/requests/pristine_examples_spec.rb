@@ -5,6 +5,7 @@ RSpec.describe 'PristineExamples' do
     let(:user) { FactoryGirl.create(:user) }
 
     before do
+      user.confirm!
       login_as(user)
     end
 
