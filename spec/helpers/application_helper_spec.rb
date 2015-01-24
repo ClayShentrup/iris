@@ -33,20 +33,4 @@ RSpec.describe ApplicationHelper do
       end
     end
   end
-
-  describe '#current_user_id' do
-    context 'when there is no user logged in' do
-      it 'returns null' do
-        allow(helper).to receive(:current_user).and_return(nil)
-        expect(helper.current_user_id).to eq 'null'
-      end
-    end
-    context 'where there is a user logged in' do
-      let(:user) { build_stubbed :user, id: 123 }
-      it 'returns the user id' do
-        allow(helper).to receive(:current_user).and_return(user)
-        expect(helper.current_user_id).to eq 123
-      end
-    end
-  end
 end

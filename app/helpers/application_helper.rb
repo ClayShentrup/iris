@@ -7,10 +7,6 @@ module ApplicationHelper
     ].join('-')
   end
 
-  def current_user_id
-    current_user.try(:id) || 'null'
-  end
-
   private
 
   def rendered_action
