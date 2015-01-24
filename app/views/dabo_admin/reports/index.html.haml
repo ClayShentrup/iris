@@ -1,3 +1,10 @@
+= form_tag(dabo_admin_reports_path, method: :get, id: :datepicker) do |f|
+  .body
+    .control-group
+      .control-label
+        = label_tag :logged_at, 'See report for a different day:'
+        = text_field_tag :logged_at, @date, class: 'datepicker', onchange: "$('#datepicker').submit();"
+
 %h1 Usage Reports for #{@date.strftime('%A, %B %e, %Y')}
 
 %table
@@ -8,3 +15,11 @@
       %tr
         %td= route
         %td= count
+
+
+:javascript
+  $(function() {
+      $('.datepicker').datepicker({
+        dateFormat: 'yy-mm-dd'
+      });
+  });

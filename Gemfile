@@ -15,6 +15,7 @@ gem 'devise'
 gem 'aws-sdk'
 gem 'connection_pool'
 gem 'sidekiq-pro'
+gem 'jquery-ui-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby

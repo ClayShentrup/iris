@@ -16,6 +16,7 @@ require 'turbolinks'
 require 'bourbon'
 require 'neat'
 require 'backbone-rails'
+require 'jquery-ui-rails'
 
 # Dependencies for Unicorn
 require 'rack-timeout'
