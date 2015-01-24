@@ -2,13 +2,13 @@ require 'responders'
 
 # Root controller from which all our controllers inherit.
 class ApplicationController < ActionController::Base
+  before_action :authenticate_user!
+  before_action :ensure_format_is_html
   respond_to :html
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
-  before_action :ensure_format_is_html
 
   def ensure_format_is_html
     return if request.format == 'html'
@@ -62,6 +62,12 @@ class ApplicationController < ActionController::Base
   def render(options = {})
     @rendered_action = options.fetch(:action) if options.key?(:action)
     super
+  end
+
+  protected
+
+  def after_sign_in_path_for(_resource)
+    measures_path
   end
 
   private

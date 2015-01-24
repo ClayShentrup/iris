@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_scope :user do
+    devise_for :users, controllers: { sessions: :sessions }
+    get 'sign_in', to: 'sessions#new'
+    get 'sign_out', to: 'sessions#destroy'
+  end
   shallow do # we should always use shallow routes, internally at least
     mount Flip::Engine => '/flip'
     resource :status, only: :show

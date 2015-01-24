@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe PristineExamplesController do
+  login_user
+
   let(:invalid_attributes) { attributes_for(PristineExample, name: '') }
   it_behaves_like 'an ApplicationController'
 
