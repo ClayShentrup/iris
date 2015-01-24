@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :hospital_systems
       resources :reports, only: :index
     end
+    resources :news_feed, only: :index
     resources :pristine_examples
 
     resource :measures, only: :show, controller: :charts_root
