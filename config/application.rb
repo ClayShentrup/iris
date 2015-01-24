@@ -76,5 +76,15 @@ module Iris
       host:     'dabo-iris-production.herokuapp.com',
       protocol: 'https',
     }
+
+    config.action_mailer.smtp_settings = {
+      user_name: ENV.fetch('MAILTRAP_USERNAME', nil),
+      password: ENV.fetch('MAILTRAP_PASSWORD', nil),
+      address: ENV.fetch('MAILTRAP_DOMAIN', nil),
+      domain: ENV.fetch('MAILTRAP_DOMAIN', nil),
+      port: ENV.fetch('MAILTRAP_PORT', nil),
+      authentication: :cram_md5,
+      enable_starttls_auto: true,
+    }
   end
 end
