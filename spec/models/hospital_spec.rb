@@ -14,6 +14,7 @@
 
 require 'active_record_spec_helper'
 require './app/models/hospital'
+require './app/models/hospital_system'
 
 RSpec.describe Hospital do
   describe 'columns' do
