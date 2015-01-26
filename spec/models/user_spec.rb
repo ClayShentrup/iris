@@ -9,6 +9,10 @@
 #
 
 require 'active_record_spec_helper'
+
+require 'devise'
+require 'devise/orm/active_record'
+
 require './app/models/user'
 
 RSpec.describe User, type: :model do
