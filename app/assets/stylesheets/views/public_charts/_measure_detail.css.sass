@@ -1,0 +1,47 @@
+$main_content_spacing: rem(30)
+
+.measure_detail
+  > div
+    +row()
+
+  .new_conversation,
+  .content,
+  .new_comment
+    padding: rem(15)
+
+  .measure_detail_chart,
+  .content
+    height: rem(200)
+
+  .new_conversation,
+  .conversation
+    margin-top: $main_content_spacing
+
+  .measure_detail_actions
+    padding: rem(10)
+
+  .action
+    +span-columns(3)
+    text-align: center
+
+    .text
+      display: none
+      +media($tablet_portrait)
+        display: inline
+
+  +media($desktop)
+    .measure_detail_actions,
+    .measure_detail_chart
+      margin-left: (-1 * $main_content_spacing)
+
+  .measure_detail_chart
+    padding: rem(15) $main_content_spacing
+
+  .measure_detail_conversations
+    padding: 0 rem(15) rem(15)
+    +media($desktop)
+      padding: 0
+
+    .title
+      margin: 0 rem(15)
+      padding: rem(15) 0
