@@ -18,6 +18,7 @@ User.create!(
   ],
   &:skip_confirmation!
 )
+<<<<<<< HEAD
 
 HospitalSystem.create!(name: 'Dabo Health System')
 
@@ -43,3 +44,7 @@ Hospital.create!(
 ) do |hospital|
   hospital.hospital_system = HospitalSystem.find_by!(name: 'Dabo Health System')
 end
+=======
+user.skip_confirmation!
+user.save!
+>>>>>>> [86835762] Switch from Unicorn to Puma

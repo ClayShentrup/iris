@@ -1,6 +1,16 @@
+<<<<<<< HEAD
 unless defined? ActiveRecord
   require 'active_record'
   connection_info = YAML.load_file('config/database.yml').fetch('test')
+=======
+require 'active_record'
+
+unless ActiveRecord::Base.connected?
+  database_config = ERB.new(
+    File.read('config/database.yml'),
+  ).result
+  connection_info = YAML.load(database_config).fetch('test')
+>>>>>>> [86835762] Switch from Unicorn to Puma
   ActiveRecord::Base.establish_connection(connection_info)
 end
 

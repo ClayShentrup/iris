@@ -1,3 +1,6 @@
+require 'sidekiq'
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
     devise_for :users
@@ -15,7 +18,7 @@ Rails.application.routes.draw do
     end
 
     mount Flip::Engine => '/dabo_admin/flip'
-
+    mount Sidekiq::Web => '/sidekiq'
     resources :news_items, only: :index
     resources :pristine_examples
 

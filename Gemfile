@@ -8,7 +8,7 @@ gem 'rails'
 
 gem 'pg'
 gem 'pg_search'
-gem 'unicorn'
+gem 'puma'
 gem 'rack-timeout'
 gem 'thin'
 gem 'flip'
@@ -18,6 +18,7 @@ gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_securi
 gem 'aws-sdk'
 gem 'connection_pool'
 gem 'sidekiq-pro'
+gem 'sinatra' # for Sidekiq admin panel
 gem 'jquery-ui-rails'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes

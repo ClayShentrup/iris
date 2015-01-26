@@ -21,8 +21,12 @@
     "MAILTRAP_USERNAME": "will be overwritten",
     "MAILTRAP_PASSWORD": "will be overwritten",
     "MAILTRAP_API_TOKEN": "will be overwritten",
-    "APP_NAME": "will be overwritten"
+    "APP_NAME": "will be overwritten",
+    "REDIS_PROVIDER": "REDISCLOUD_URL"
   },
-  "addons":["heroku-postgresql:hobby-dev"]
+  "addons":[
+    "heroku-postgresql:hobby-dev",
+    "mailtrap",
+    "rediscloud"
+  ]
 }
-

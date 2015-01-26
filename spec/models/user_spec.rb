@@ -29,7 +29,7 @@
 require 'active_record_spec_helper'
 require './app/models/user'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   describe 'columns' do
     specify do
       is_expected.to have_db_column(:email).of_type(:string)
@@ -42,9 +42,13 @@ RSpec.describe User, type: :model do
   end
 
   describe 'validations' do
+<<<<<<< HEAD
     specify { is_expected.to validate_presence_of(:email) }
     specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
     specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
+=======
+    it { should validate_presence_of(:email) }
+>>>>>>> [86835762] Switch from Unicorn to Puma
   end
 
   it { is_expected.to belong_to :account }
