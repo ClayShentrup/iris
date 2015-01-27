@@ -1,3 +1,5 @@
+require_relative 'set_event_log_marker'
+
 module Reporting
   module Downloading
     # Gets the event log marker

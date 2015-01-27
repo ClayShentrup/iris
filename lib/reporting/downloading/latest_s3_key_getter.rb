@@ -1,5 +1,6 @@
 require 's3/get_instance'
 require 'aws-sdk'
+require_relative 'get_s3_prefix'
 
 module Reporting
   module Downloading

@@ -1,3 +1,5 @@
+require 'get_config'
+
 module Reporting
   module Downloading
     # Get the aws bucket for the logs
@@ -14,7 +16,7 @@ module Reporting
         end
 
         def bucket_name
-          Rails.application.config.aws_bucket_name
+          GetConfig.call(:aws_bucket_name)
         end
       end
     end

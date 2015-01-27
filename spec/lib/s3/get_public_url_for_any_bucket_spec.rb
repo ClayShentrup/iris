@@ -25,11 +25,11 @@ RSpec.describe S3::GetPublicUrlForAnyBucket do
   end
   let(:query) do
     'AWSAccessKeyId=AKIAISKZ7ORFA57RASJA&Expires=1410392739' \
-      '&Signature=S3HtssLWQtlzWC4nY8egofa4nKQ%3D'
+      '&Signature=I6w9YuzqwTRSYvCF9XC4C57OM1g%3D'
   end
 
   def actual_url
-    Timecop.freeze do
+    Timecop.freeze(now_as_string) do
       described_class.call(bucket_class_and_key)
     end
   end

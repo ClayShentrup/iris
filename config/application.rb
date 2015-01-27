@@ -55,7 +55,7 @@ module Iris
 
     config.aws_bucket_name = [
       'dabo-iris',
-      "integration",
+      Rails.env,
       ENV.fetch('ACCEPTANCE_APPLICATION_STORY_ID', nil),
     ].compact.join('-')
 
