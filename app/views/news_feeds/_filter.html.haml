@@ -1,15 +1,20 @@
-%ul#news_feed_filter
-  %li.border_grey
-    %span.icon.icon_large.icon_clock
-    %span.text Most Recent
-    %span.icon.icon_large.icon_right.icon_arrow_large_down
-    %ul
-      %li.news_feed_filter_item.border_grey
+%div#news_feed_filter
+  %div.selected_item.border_grey
+    %span.icon_and_text
+      %span.icon.icon_large.icon_clock
+      %span.text Most Recent
+    %span.arrow
+      %span.icon.icon_large.icon_right.icon_arrow_large_down
+  %div.unselected
+    %div.news_feed_filter_item.border_grey
+      %span.icon_and_text
         %span.icon.icon_large.icon_comments
         %span.text Conversations
-      %li.news_feed_filter_item.border_grey
+    %div.news_feed_filter_item.border_grey
+      %span.icon_and_text
         %span.icon.icon_large.icon_chart_trend
-        %span Quality Projects
-      %li.news_feed_filter_item.border_grey
+        %span.text Quality Projects
+    %div.news_feed_filter_item.border_grey
+      %span.icon_and_text
         %span.icon.icon_large.icon_share
-        %span Shared with Me
+        %span.text Shared with Me
