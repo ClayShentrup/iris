@@ -1,6 +1,8 @@
 module DaboAdmin
   # Dabo Admin Hospitals Controller
   class HospitalsController < ApplicationController
+    before_action EnsureAdminFilter
+
     private
 
     def model_params
