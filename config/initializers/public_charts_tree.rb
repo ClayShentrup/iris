@@ -73,9 +73,6 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
         category 'Overall Rating' do
           detail_chart 'Overall rating of hospital'
         end
-        category 'Care Transition' do
-          detail_chart 'Care Transition'
-        end
       end
 
       domain 'Efficency of Care' do
@@ -99,6 +96,38 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
       detail_chart '30-day Readmission Pneumonia'
       detail_chart '30-day Readmission COPD'
       detail_chart '30-day Readmission hip and knee arthroplasty'
+    end
+
+    bundle 'HCAHPS' do
+      category 'Communication' do
+        detail_chart 'Communication with Nurses'
+        detail_chart 'Communication with Doctors'
+      end
+      category 'Responsiveness' do
+        detail_chart 'Responsiveness of Hospital Staff'
+      end
+      category 'Pain Management' do
+        detail_chart 'Pain Management'
+      end
+      category 'Medications' do
+        detail_chart 'Communication about Medications'
+      end
+      category 'Discharge Information' do
+        detail_chart 'Discharge Information'
+      end
+      category 'Care Transition' do
+        detail_chart 'Care Transition'
+      end
+      category 'Environment' do
+        detail_chart 'Cleanliness of Hospital Environment'
+        detail_chart 'Quietness of Hospital Environment'
+      end
+      category 'Overall Rating' do
+        detail_chart 'Overall Rating of Hospital'
+      end
+      category 'Recommendation' do
+        detail_chart 'Hospital Recommendation'
+      end
     end
   end
 end
