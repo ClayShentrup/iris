@@ -7,30 +7,40 @@
     +media($tablet_portrait)
       display: inline-block
       border: none
-      width: 24%
+      @include span-columns(1 of 4, block-collapse)
+      // width: 24%
       text-align: center
 
   .unselected
     display: none
     +media($tablet_portrait)
+      @include span-columns(3 of 4, block-collapse)
       width: 74%
       display: inline-block
       > .news_feed_filter_item
         width: 32%
-    +media($desktop)
-      display: block
 
   .icon_right
     float: right
-    display: none
-    +media($mobile)
-      display: auto
+    +media($tablet_portrait)
+      display: none
+
++media($tablet_portrait)
++media($desktop)
+  #news_feed_filter
+    .icon_right
+      display: none
 
 +media($desktop)
   #news_feed_filter
     @include span-columns(3 of 12, block-collapse)
-    float: right
     margin-top: rem(15)
+    float: right
+
+    .unselected
+      display: block
 
   #news_feed_content
-    @include span-columns(9 of 12, block-collapse)
+    @include span-columns(9 of 12)
+    .card_container
+      margin-left: 0
