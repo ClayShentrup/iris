@@ -3,8 +3,11 @@
 
 Iris.Views['news_feeds-show'] = Backbone.View.extend({
   initialize: function() {
-    $('#news_feed_filter').on('click', function() {
-      $('.unselected').slideToggle(100);
-    });
+    if ($('#news_feed_filter .unselected').is(':hidden')) {
+
+      $('#news_feed_filter').on('click', function() {
+        $('.unselected').slideToggle(100);
+      });
+    }
   }
 });

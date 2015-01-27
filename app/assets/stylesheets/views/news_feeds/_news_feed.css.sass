@@ -17,8 +17,20 @@
       display: inline-block
       > .news_feed_filter_item
         width: 32%
+    +media($desktop)
+      display: block
 
   .icon_right
     float: right
-    +media($tablet_portrait)
-      display: none
+    display: none
+    +media($mobile)
+      display: auto
+
++media($desktop)
+  #news_feed_filter
+    @include span-columns(3 of 12, block-collapse)
+    float: right
+    margin-top: rem(15)
+
+  #news_feed_content
+    @include span-columns(9 of 12, block-collapse)
