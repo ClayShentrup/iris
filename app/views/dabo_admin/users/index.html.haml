@@ -1,0 +1,8 @@
+.new
+  = link_to 'Create new User', new_dabo_admin_user_path
+
+%br
+- @users.each do |user|
+  %ul
+    %li
+      = link_to user.email, dabo_admin_user_path(user)

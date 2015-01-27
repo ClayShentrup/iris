@@ -111,16 +111,17 @@ end
 RSpec.shared_examples 'an ApplicationController index' do
   include_context 'ApplicationController methods'
 
-  let!(:model_instances) { create_list(model_class, 2) }
-
-  before { get :index }
+  before do
+    create_list(model_class, 2)
+    get :index
+  end
 
   specify do
     expect(response).to be_success
   end
 
   it 'assigns a new instance as @model_instance' do
-    expect(assigns(models_param_name)).to eq model_instances
+    expect(assigns(models_param_name)).to eq model_class.all
   end
 
   it 'populates body css class correctly' do
@@ -241,10 +242,10 @@ RSpec.shared_examples 'an ApplicationController edit' do
   end
 end
 
-RSpec.shared_examples 'an ApplicationController update' do
+RSpec.shared_examples 'an ApplicationController update' do |update_attributes|
   include_context 'ApplicationController methods'
   include_context 'ApplicationController methods with an existing record'
-  let(:new_attributes) { attributes_for(model_class) }
+  let(:new_attributes) { update_attributes || attributes_for(model_class) }
   let(:instance_url) do
     public_send("#{model_params_name_namespace}_path", model_instance)
   end

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
       resources :hospitals
       resources :hospital_systems
       resources :reports, only: :index
+      resources :users
     end
     resources :news_items, only: :index
     resources :pristine_examples
