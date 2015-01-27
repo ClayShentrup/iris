@@ -3,7 +3,7 @@
   "description":"Making quality metrics actionable",
   "repository":"https://github.com/dabohealth/iris",
   "scripts":{
-    "postdeploy":"bundle exec rake db:migrate"
+    "postdeploy":"bundle exec rake db:migrate db:seed"
   },
   "env":{
     "DABO_RAILS_SECRET_KEY_BASE":{
