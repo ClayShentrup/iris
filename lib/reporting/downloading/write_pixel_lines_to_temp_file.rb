@@ -9,6 +9,8 @@ module Reporting
             grep -e 'path="\/assets\/pixel-.*\.gif' > \
             #{output_path}
           BASH
+          require 'pry'
+          binding.pry
         end
 
         def output_path
