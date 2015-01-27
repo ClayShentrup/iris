@@ -4,28 +4,19 @@
   .news_feed_filter_item
     line-height: rem(46)
     padding: 0 rem(10)
-    +media($tablet_portrait)
-      display: inline-block
-      border: none
-      @include span-columns(1 of 4, block-collapse)
-      // width: 24%
-      text-align: center
 
-  .unselected
+  .dropdown
     display: none
-    +media($tablet_portrait)
-      @include span-columns(3 of 4, block-collapse)
-      width: 74%
-      display: inline-block
-      > .news_feed_filter_item
-        width: 32%
-
-  .icon_right
-    float: right
-    +media($tablet_portrait)
-      display: none
 
 +media($tablet_portrait)
+  #news_feed_filter
+
+    .news_feed_filter_item
+      border: none
+      padding: 0
+      text-align: center
+      @include span-columns(1 of 4)
+
 +media($desktop)
   #news_feed_filter
     .icon_right
@@ -36,9 +27,6 @@
     @include span-columns(3 of 12, block-collapse)
     margin-top: rem(15)
     float: right
-
-    .unselected
-      display: block
 
   #news_feed_content
     @include span-columns(9 of 12)

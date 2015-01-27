@@ -3,13 +3,13 @@
 
 Iris.Views['news_feeds-show'] = Backbone.View.extend({
   initialize: function() {
-    if ($('#news_feed_filter .unselected').is(':hidden')) {
+    if ($('#news_feed_filter .dropdown').is(':hidden')) {
       $('#news_feed_filter').on('click', function() {
-        $('.unselected').slideToggle(100);
+        $('.dropdown').slideToggle(100);
       });
     }
-    $('#news_feed_filter').on('click', function() {
-      $('#news_feed_filter .icon.icon_large.icon_right')
+    $('#news_feed_filter .hide_on_desktop').on('click', function() {
+      $('#news_feed_filter .icon.icon_large.icon_float_right')
         .toggleClass('icon_arrow_large_down icon_arrow_large_up');
     });
   }
