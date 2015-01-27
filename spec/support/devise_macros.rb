@@ -1,5 +1,9 @@
 # Macros for testing devise authentication in controllers
 module DeviseMacros
+  def self.extended(base)
+    base.include Devise::TestHelpers
+  end
+
   def login_admin
     let(:current_user) { FactoryGirl.create :admin }
     let!(:devise_mapping) do
@@ -12,7 +16,7 @@ module DeviseMacros
   def login_user
     let(:current_user) { FactoryGirl.create :user }
     let!(:devise_mapping) do
-      request.env['devise.mapping'] = Devise.mappings[:user]
+      @request.env['devise.mapping'] = Devise.mappings[:user]
     end
     let!(:confirmed_state) { current_user.confirm! }
     let!(:set_logged_in_state) { sign_in current_user }
