@@ -1,14 +1,24 @@
 #news_feed_filter
   margin-top: rem(-16)
 
-  .selected_item,
   .news_feed_filter_item
     line-height: rem(46)
     padding: 0 rem(10)
+    +media($tablet_portrait)
+      display: inline-block
+      border: none
+      width: 24%
+      text-align: center
 
   .unselected
     display: none
+    +media($tablet_portrait)
+      width: 74%
+      display: inline-block
+      > .news_feed_filter_item
+        width: 32%
 
   .icon_right
     float: right
-
+    +media($tablet_portrait)
+      display: none
