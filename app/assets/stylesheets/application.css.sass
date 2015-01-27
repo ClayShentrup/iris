@@ -33,3 +33,15 @@ h2
 
 .centered
   margin: 0 auto
+
+#main_content
+  +media($desktop)
+    padding-left: rem(30)
+    border-left: rem(1) solid $grey
+
+.text_ellipsis
+  display: inline-block
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  width: 90%

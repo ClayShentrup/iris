@@ -2,15 +2,23 @@
   .measure_detail_chart
     Percent of patients who reported that their nurses "Always" communicated well
   .measure_detail_actions.border_top_grey.border_bottom_grey
-    .action Discuss
-    .action Share
-    .action Learn
-    .action Improve
+    .action
+      %span.icon.icon_large.icon_left.icon_comments
+      %span.text Discuss
+    .action
+      %span.icon.icon_large.icon_left.icon_share
+      %span.text Share
+    .action
+      %span.icon.icon_large.icon_left.icon_book_open
+      %span.text Learn
+    .action
+      %span.icon.icon_large.icon_left.icon_chart_trend
+      %span.text Improve
   .measure_detail_conversations
     .new_conversation.border_grey Start a conversation...
     .conversation.border_grey
       .title.border_bottom_grey
         Conversation title
-        %span.icon.icon_right.icon_large.icon_comments
+        %span.icon.icon_float_right.icon_large.icon_comments
       .content Conversation
       .new_comment.border_top_grey Write a comment...
