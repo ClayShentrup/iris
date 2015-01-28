@@ -1,0 +1,32 @@
+#news_feed_filter
+  margin-top: rem(-16)
+
+  .icon
+    width: rem(30)
+    display: inline-block
+
+  .news_feed_filter_item
+    line-height: rem(46)
+    padding: 0 rem(10)
+
+  .dropdown
+    display: none
+
++media($tablet_portrait)
+  #news_feed_filter
+    .news_feed_filter_item
+      border: none
+      padding: 0
+      text-align: center
+      +span-columns(3)
+
++media($desktop)
+  #news_feed_filter
+    +span-columns(3, block-collapse)
+    margin-top: rem(15)
+    float: right
+
+  #news_feed_content
+    +span-columns(9)
+    .card_container
+      margin-left: 0
