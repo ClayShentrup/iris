@@ -3,7 +3,7 @@ class PublicChartTree
   # A NestedNode instance represents any node below the root.
   NestedNode = Struct.new(:parent, :short_title, :is_measure) do
     attr_writer :id_component
-    attr_accessor :dimensions
+    attr_accessor :dimensions, :long_title
 
     def id_components
       parent.id_components + [id_component]

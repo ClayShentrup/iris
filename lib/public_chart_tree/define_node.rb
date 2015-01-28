@@ -56,6 +56,10 @@ class PublicChartTree
       embedded_node.dimensions = dimensions
     end
 
+    def long_title(long_title)
+      embedded_node.long_title = long_title
+    end
+
     alias_method :measure_source, :non_measure
     alias_method :bundle, :non_measure
     alias_method :domain, :non_measure
