@@ -18,7 +18,9 @@ RSpec.describe PublicChartTree do
               dimensions :MORT_30_AMI_SCORE,
                          :MORT_30_AMI_DENOMINATOR
 
-              measure '30 Day Mortality, AMI'
+              measure 'Acute Myocardial Infarction Mortality' do
+                long_title 'Acute Myocardial Infarction 30-day Mortality Rate'
+              end
             end
           end
         end
@@ -51,10 +53,9 @@ RSpec.describe PublicChartTree do
     specify { is_expected.not_to be_measure }
 
     specify { expect(subject.short_title).to eq 'Public Data' }
-
+    specify { expect(subject.long_title).to be_nil }
     specify { expect(subject.parent_is_root?).to be true }
-
-    specify { expect(subject.parent_id).to eq '' }
+    specify { expect(subject.parent_id).to be_blank }
   end
 
   context 'at a nested subject' do
@@ -65,7 +66,7 @@ RSpec.describe PublicChartTree do
 
     it 'returns the children' do
       expect(subject.children).to eq [
-        tree.find("#{id}/30-day-mortality-ami"),
+        tree.find("#{id}/acute-myocardial-infarction-mortality"),
       ]
     end
 
@@ -86,9 +87,8 @@ RSpec.describe PublicChartTree do
     specify { is_expected.not_to be_measure }
 
     specify { expect(subject.short_title).to eq 'Mortality' }
-
+    specify { expect(subject.long_title).to be_nil }
     specify { expect(subject.parent_is_root?).to be false }
-
     specify { expect(subject.parent_id).to eq parent_id }
     specify { expect(subject.parent_short_title).to eq 'Outcome of Care' }
   end
@@ -102,14 +102,21 @@ RSpec.describe PublicChartTree do
         mortality
       ].join('/')
     end
-    let(:id) { "#{parent_id}/30-day-mortality-ami" }
+    let(:id) { "#{parent_id}/acute-myocardial-infarction-mortality" }
 
     specify { is_expected.to be_measure }
 
-    specify { expect(subject.short_title).to eq '30 Day Mortality, AMI' }
+    specify do
+      expect(subject.short_title)
+        .to eq 'Acute Myocardial Infarction Mortality'
+    end
+
+    specify do
+      expect(subject.long_title)
+        .to eq 'Acute Myocardial Infarction 30-day Mortality Rate'
+    end
 
     specify { expect(subject.parent_is_root?).to be false }
-
     specify { expect(subject.parent_id).to eq parent_id }
     specify { expect(subject.parent_short_title).to eq 'Mortality' }
   end
