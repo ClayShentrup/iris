@@ -8,7 +8,7 @@ module Reporting
     # use it as a marker for future requests. This class simply tracks the last
     # key that has been evaluated.
     class KeyGetterWithMarkerTracking < SimpleDelegator
-      def initialize(s3_keys_enumerator: fail, initial_marker: fail)
+      def initialize(s3_keys_enumerator:, initial_marker:)
         @initial_marker = initial_marker
         key_getter_with_key_tracking = s3_keys_enumerator.map do |key|
           @last_key_returned = key

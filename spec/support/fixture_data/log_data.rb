@@ -14,7 +14,7 @@ module LogData
     )
   end
 
-  def self.event(event: fail, route: fail)
+  def self.event(event:, route:)
     {
       'event' => event,
       'properties' => {

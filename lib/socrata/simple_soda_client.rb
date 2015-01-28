@@ -9,12 +9,12 @@ module Socrata
     DOMAIN = 'data.medicare.gov'
     PAGE_SIZE = 1000
 
-    def initialize(dataset_id: fail, required_fields: fail)
+    def initialize(dataset_id:, required_fields:)
       @dataset_id = dataset_id
       @required_fields = required_fields
     end
 
-    def get(page: fail)
+    def get(page:)
       @most_recent_result = convert_hashie_objects_to_hashes(
         results_for_offset(offset_for_page(page)),
       )

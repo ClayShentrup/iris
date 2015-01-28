@@ -8,7 +8,7 @@ module Socrata
     include Enumerable
     attr_reader :length
 
-    def initialize(dataset_id: fail, required_fields: fail)
+    def initialize(dataset_id:, required_fields:)
       @dataset_id = dataset_id
       @required_fields = required_fields
     end

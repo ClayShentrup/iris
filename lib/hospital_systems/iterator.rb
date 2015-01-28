@@ -6,7 +6,7 @@ module HospitalSystems
   class Iterator
     include Enumerable
 
-    def initialize(file_path: fail)
+    def initialize(file_path:)
       @file_path = file_path
     end
 
