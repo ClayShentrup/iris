@@ -3,9 +3,12 @@
 
 User.reset_column_information
 
-user = User.new(
+user = User.find_or_initialize_by(
   email: 'eng-service@dabohealth.com',
+)
+user.assign_attributes(
   password: 'timeandcolorisblue',
+  is_dabo_admin: true,
 )
 user.skip_confirmation!
 user.save!
