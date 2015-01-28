@@ -31,8 +31,8 @@ class PublicChartTree
       build_breadcrumb(self)
     end
 
-    def detail_chart?
-      embedded_node.is_detail_chart
+    def measure?
+      embedded_node.is_measure
     end
 
     def parent_is_root?

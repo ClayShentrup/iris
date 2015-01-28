@@ -2,7 +2,7 @@
   = render 'shared/measures_nav/measures_nav_back_btn', node: node
   = render 'shared/measures_nav/measures_nav_current_node', node: node
 
-  - unless node.detail_chart?
+  - unless node.measure?
     = render 'public_charts/overall_ranking_chart', node: node
 
   - if node.children

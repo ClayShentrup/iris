@@ -18,7 +18,7 @@ RSpec.describe PublicChartTree do
               dimensions :MORT_30_AMI_SCORE,
                          :MORT_30_AMI_DENOMINATOR
 
-              detail_chart '30 Day Mortality, AMI'
+              measure '30 Day Mortality, AMI'
             end
           end
         end
@@ -48,7 +48,7 @@ RSpec.describe PublicChartTree do
       expect(subject.breadcrumbs).to eq [subject]
     end
 
-    specify { is_expected.not_to be_detail_chart }
+    specify { is_expected.not_to be_measure }
 
     specify { expect(subject.short_title).to eq 'Public Data' }
 
@@ -83,7 +83,7 @@ RSpec.describe PublicChartTree do
       ]
     end
 
-    specify { is_expected.not_to be_detail_chart }
+    specify { is_expected.not_to be_measure }
 
     specify { expect(subject.short_title).to eq 'Mortality' }
 
@@ -104,7 +104,7 @@ RSpec.describe PublicChartTree do
     end
     let(:id) { "#{parent_id}/30-day-mortality-ami" }
 
-    specify { is_expected.to be_detail_chart }
+    specify { is_expected.to be_measure }
 
     specify { expect(subject.short_title).to eq '30 Day Mortality, AMI' }
 
