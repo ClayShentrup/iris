@@ -1,13 +1,14 @@
 = render 'shared/measures_nav/measures_nav_container', node: @node
 
-%div#main_content.col9
+#main_content.col9
   = render 'public_charts/breadcrumbs/breadcrumbs', node: @node
 
   - if @node.measure?
     = render 'public_charts/measure_detail', node: @node
   - else
-    = render 'public_charts/overall_ranking_chart', node: @node
-    %div.row.measure_teaser_container.clearfix{ class: ('is_not_category_page' unless @node.children.first.measure?) }
+    .hide_on_mobile
+      = render 'public_charts/overall_ranking_chart', node: @node
+    .row.measure_teaser_container.clearfix{ class: ('is_not_category_page' unless @node.children.first.measure?) }
       - @node.children.each do |child|
         - if child.measure?
           = render 'public_charts/measure_teaser', node: child

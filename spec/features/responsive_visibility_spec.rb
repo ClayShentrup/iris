@@ -39,7 +39,6 @@ RSpec.feature 'responsive design' do
   end
 
   def check
-    hidden_groups = all_selector_groups - selector_groups
     selector_groups.each do |selector_group|
       selector_group.each do |selector|
         expect(page).to have_css selector
@@ -50,6 +49,10 @@ RSpec.feature 'responsive design' do
         expect(page).not_to have_css selector
       end
     end
+  end
+
+  def hidden_groups
+    all_selector_groups - selector_groups
   end
 
   background do

@@ -1,9 +1,10 @@
-%div#measures_nav_container.col3
+#measures_nav_container.col3
   = render 'shared/measures_nav/measures_nav_back_btn', node: node
   = render 'shared/measures_nav/measures_nav_current_node', node: node
 
   - unless node.measure?
-    = render 'public_charts/overall_ranking_chart', node: node
+    .hide_on_desktop.hide_on_tablet_portrait
+      = render 'public_charts/overall_ranking_chart', node: node
 
   - if node.children
     - node.children.each do |child|

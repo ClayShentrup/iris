@@ -34,18 +34,6 @@ h2
 .centered
   margin: 0 auto
 
-.hide_on_mobile
-  +media($mobile)
-    display: none
-
-.hide_on_tablet_portrait
-  +media($tablet_portrait)
-    display: none
-
-.hide_on_desktop
-  +media($desktop)
-    display: none
-
 #main_content
   +media($desktop)
     padding-left: rem(30)
@@ -57,3 +45,15 @@ h2
   text-overflow: ellipsis
   white-space: nowrap
   width: 90%
+
+.hide_on_mobile
+  +media($mobile)
+    display: none
+
+.hide_on_tablet_portrait
+  +media($tablet_portrait)
+    display: none
+
+.hide_on_desktop
+  +media($desktop)
+    display: none
