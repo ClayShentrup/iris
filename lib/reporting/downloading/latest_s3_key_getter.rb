@@ -15,7 +15,7 @@ module Reporting
         super.lazy
       end
 
-      def initialize(marker: fail)
+      def initialize(marker:)
         @marker = marker
       end
 
