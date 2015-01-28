@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 RSpec.describe DaboAdmin::ReportsController do
-  login_user
+  login(:user)
 
   describe 'GET show' do
     let(:report_and_date) do

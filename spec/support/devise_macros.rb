@@ -4,34 +4,19 @@ module DeviseMacros
     base.include Devise::TestHelpers
   end
 
-  def login_admin
-    let(:current_user) { FactoryGirl.create :admin }
-    let!(:devise_mapping) do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-    end
-    let!(:confirmed_state) { current_user.confirm! }
+  def login(user)
+    let(:current_user) { FactoryGirl.create user }
+    simulate_routed_request
     let!(:set_logged_in_state) { sign_in current_user }
   end
 
-  def login_user
-    let(:current_user) { FactoryGirl.create :user }
-    let!(:devise_mapping) do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-    end
-    let!(:confirmed_state) { current_user.confirm! }
-    let!(:set_logged_in_state) { sign_in current_user }
-  end
-
-  def logout_user
-    let!(:devise_mapping) do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
-    end
+  def logout
     let!(:set_logged_out_state) { sign_out current_user }
   end
 
   def simulate_routed_request
-    before do
-      @request.env['devise.mapping'] = Devise.mappings[:user]
+    let!(:devise_mapping) do
+      @request.env['devise.mapping'] = Devise.mappings.fetch(:user)
     end
   end
 end

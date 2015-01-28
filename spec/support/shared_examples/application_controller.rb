@@ -66,7 +66,7 @@ RSpec.shared_examples 'an ApplicationController' do
     include_context 'ApplicationController custom route'
 
     context 'user is not logged' do
-      logout_user
+      logout
 
       before do
         get :custom

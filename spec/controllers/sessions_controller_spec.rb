@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SessionsController do
   context 'user already logged in' do
-    login_user
+    login(:user)
 
     before { get :new }
 

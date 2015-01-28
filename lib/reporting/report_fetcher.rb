@@ -1,7 +1,7 @@
 module Reporting
   # Fetch log lines from the db and use report class to process them
   module ReportFetcher
-    def self.call(report_date_string: report_date_string, report_class: fail)
+    def self.call(report_date_string:, report_class:)
       report_day_in_client_time_zone = ReportDayInClientTimeZone.call(
         report_date_string,
       )

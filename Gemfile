@@ -66,6 +66,8 @@ group :test do
   gem 'ruby-prof'
   gem 'timecop'
   gem 'fakeredis'
+  gem 'capybara'
+  gem 'selenium-webdriver'
 end
 
 group :production do

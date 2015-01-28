@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe ChartsRootController do
   describe 'GET show' do
-    login_user
+    login(:user)
     before do
       get :show
     end
