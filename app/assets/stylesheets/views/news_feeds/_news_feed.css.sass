@@ -15,18 +15,25 @@
 +media($tablet_portrait)
   #news_feed_filter
     .news_feed_filter_item
-      border: none
+      border-width: 0
       padding: 0
       text-align: center
       +span-columns(3)
 
 +media($desktop)
   #news_feed_filter
-    +span-columns(3, block-collapse)
-    margin-top: rem(15)
     float: right
+    margin-top: rem(15)
+    +span-columns(3, block-collapse)
+
+    .news_feed_filter_item
+      border-width: rem(1)
+      padding: 0 rem(10)
+      text-align: left
+      +span_columns(12)
 
   #news_feed_content
     +span-columns(9)
+
     .card_container
       margin-left: 0
