@@ -2,7 +2,5 @@
 
 #main_content.col9
   = render 'public_charts/breadcrumbs/breadcrumbs', node: @node
-  = render "public_charts/title", node: @node
   = render "public_charts/detail_charts/#{@node.type}", node: @node
   = render 'public_charts/children', node: @node
-

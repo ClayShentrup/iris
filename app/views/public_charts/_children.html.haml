@@ -1,2 +1,3 @@
-- node.children.each do |child|
-  = render "public_charts/teaser_charts/#{child.type}", node: child
+.two_column.clearfix
+  - node.children.each do |child|
+    = render "public_charts/teasers/#{child.type}", node: child
