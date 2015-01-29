@@ -22,7 +22,6 @@
     +media($desktop)
       width: 30%
 
-  #logo,
   #menu_icon
     text-indent: -9999px
 
@@ -31,6 +30,12 @@
     background-size: contain
     background-origin: content-box
     width: 10%
+
+  #logo > a,
+  #metrics > a,
+  #news_feed > a
+    display: block
+    height: rem(24)
 
   #menu_text
     width: 0

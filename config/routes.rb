@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root to: 'news_feeds#show'
   devise_scope :user do
     devise_for :users
     get 'sign_in', to: 'sessions#new'
