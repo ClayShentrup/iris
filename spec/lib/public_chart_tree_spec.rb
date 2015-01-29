@@ -65,7 +65,6 @@ RSpec.describe PublicChartTree do
       ]
     end
     let(:parent_is_root?) { false }
-    let(:measure?) { false }
 
     it 'returns the children' do
       expect(subject.children).to eq expected_children
@@ -78,15 +77,14 @@ RSpec.describe PublicChartTree do
     specify { expect(subject.short_title).to eq expected_short_title }
     specify { expect(subject.parent_id).to eq expected_parent_id }
     specify { expect(subject.parent_is_root?).to be parent_is_root? }
-    specify { expect(subject.measure?).to be measure? }
-    specify { expect(subject.chart_type).to eq expected_chart_type }
+    specify { expect(subject.type).to eq expected_type }
   end
 
   context 'at a measure source node' do
     let(:id) { 'cms' }
     let(:expected_short_title) { 'Public Data' }
     let(:expected_parent_id) { '' }
-    let(:expected_chart_type) { :default }
+    let(:expected_type) { :measure_source }
     let(:expected_child_ids) { ['cms/value-based-purchasing'] }
     let(:expected_dimensions) do
       [
@@ -106,7 +104,7 @@ RSpec.describe PublicChartTree do
     let(:id) { "#{parent_id}/value-based-purchasing" }
     let(:expected_short_title) { 'Value Based Purchasing' }
     let(:expected_parent_id) { 'cms' }
-    let(:expected_chart_type) { :default }
+    let(:expected_type) { :bundle }
     let(:expected_child_ids) { ['cms/value-based-purchasing/outcome-of-care'] }
     let(:expected_dimensions) do
       [
@@ -123,7 +121,7 @@ RSpec.describe PublicChartTree do
     let(:expected_parent_id) { 'cms/value-based-purchasing' }
     let(:id) { "#{expected_parent_id}/outcome-of-care" }
     let(:expected_short_title) { 'Outcome of Care' }
-    let(:expected_chart_type) { :default }
+    let(:expected_type) { :domain }
     let(:expected_child_ids) do
       ['cms/value-based-purchasing/outcome-of-care/mortality']
     end
@@ -145,7 +143,7 @@ RSpec.describe PublicChartTree do
     let(:expected_parent_id) { 'cms/value-based-purchasing/outcome-of-care' }
     let(:id) { "#{expected_parent_id}/mortality" }
     let(:expected_short_title) { 'Mortality' }
-    let(:expected_chart_type) { :category }
+    let(:expected_type) { :category }
     let(:expected_child_ids) do
       [
         %w[
@@ -187,12 +185,9 @@ RSpec.describe PublicChartTree do
       ]
     end
     let(:expected_short_title) { 'Acute Myocardial Infarction Mortality' }
-    let(:expected_chart_type) { :measure }
+    let(:expected_type) { :measure }
     let(:expected_child_ids) { [] }
 
-    it_behaves_like 'a nested node' do
-      let(:measure?) { true }
-    end
     specify do
       expect(subject.long_title)
         .to eq 'Acute Myocardial Infarction 30-day Mortality Rate'

@@ -1,6 +1,7 @@
-.row.measure_teaser_container
-  %h2
-    = link_to node.short_title, id: node.id
+/ .row.measure_teaser_container
+/   %h2
+/     = link_to node.short_title, id: node.id
 
-  - node.children.each do |child|
-    = render 'public_charts/measure_teaser', node: child
+/   - node.children.each do |child|
+/     = render 'public_charts/measure_teaser', node: child
+/
