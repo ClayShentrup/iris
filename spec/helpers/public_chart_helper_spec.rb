@@ -78,7 +78,7 @@ RSpec.describe PublicChartsHelper do
     end
     let(:id) { 'public_data/foobar' }
     let(:short_title) { 'Nice Metric' }
-    let(:expected_href) { "/measures/#{id}" }
+    let(:expected_href) { "/metrics/#{id}" }
     let(:link) { helper.node_link(node) }
     let(:anchor) { Nokogiri::HTML.parse(link).at_css('a') }
 

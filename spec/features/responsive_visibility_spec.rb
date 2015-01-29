@@ -6,7 +6,7 @@ RSpec.feature 'responsive design' do
   given(:url) do
     %w[
       /
-      measures
+      metrics
       public-data
       hospital-acquired-conditions
     ].join('/')
