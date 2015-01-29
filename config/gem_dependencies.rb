@@ -24,11 +24,11 @@ require 'flip'
 
 if Rails.env.development? || Rails.env.test?
   require 'jasmine'
-  require 'dotenv'
   load 'rails/test_unit/testing.rake'
   load 'rails/perftest/railties/testing.tasks'
 end
 
+require 'dotenv' if Rails.env.development?
 require 'airbrake' if Rails.env.production?
 require 'newrelic_rpm'
 require 'devise'

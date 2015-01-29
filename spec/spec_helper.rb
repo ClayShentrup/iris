@@ -4,6 +4,7 @@ CodeClimate::TestReporter.start
 require 'jasmine'
 require 'support/vcr_setup'
 require 'pry'
+require 'timecop'
 
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run
@@ -75,4 +76,8 @@ RSpec.configure do |config|
     normal_time: 50,
     long_time: 100,
   }
+
+  config.add_setting :fixtures_path, default: File.expand_path(
+    '../fixtures', __FILE__
+  )
 end

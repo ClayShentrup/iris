@@ -115,7 +115,8 @@ Errors are sent to [Airbrake](https://dabo.airbrake.io).
 
 ### Analytics ###
 
-- TBD
+#### Event Logging ####
+[See Reporting Readme Here](lib/reporting/README.md)
 
 ### Performance monitoring ###
 

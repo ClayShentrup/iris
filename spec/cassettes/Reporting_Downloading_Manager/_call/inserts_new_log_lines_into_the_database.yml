@@ -1,0 +1,132 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.61.0 ruby/2.2.0 x86_64-darwin14
+      Date:
+      - Tue, 27 Jan 2015 00:50:48 GMT
+      Authorization:
+      - AWS someauth
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - ehhUNfpWZbhaHEBAAkYcinxF1iOFfGDq7w693clJK+BjMjAQ7C8vabR8die7iL0p
+      X-Amz-Request-Id:
+      - 373D711027CFC0E5
+      Date:
+      - Tue, 27 Jan 2015 00:50:48 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix></Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>03403ee6-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>3f3f79ec-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>985c7626-flydata/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>b9b44e09-flydata/</Prefix></CommonPrefixes></ListBucketResult>
+    http_version:
+  recorded_at: Tue, 27 Jan 2015 00:50:48 GMT
+- request:
+    method: get
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?delimiter=/&max-keys=1000&prefix=03403ee6-flydata/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.61.0 ruby/2.2.0 x86_64-darwin14
+      Date:
+      - Tue, 27 Jan 2015 00:50:48 GMT
+      Authorization:
+      - AWS someauth
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - rG+PGnYeFKEkTWQ63fRLDUyBpgcmNqewZF1PdnnWbyeg6QzqIg7Y8L0J1Hkg06wg
+      X-Amz-Request-Id:
+      - C0A6D92BEEDE0862
+      Date:
+      - Tue, 27 Jan 2015 00:50:48 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix>03403ee6-flydata/</Prefix><Marker></Marker><MaxKeys>1000</MaxKeys><Delimiter>/</Delimiter><IsTruncated>false</IsTruncated><CommonPrefixes><Prefix>03403ee6-flydata/app33381895_api/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>03403ee6-flydata/app33381895_app/</Prefix></CommonPrefixes><CommonPrefixes><Prefix>03403ee6-flydata/app33381895_system/</Prefix></CommonPrefixes></ListBucketResult>
+    http_version:
+  recorded_at: Tue, 27 Jan 2015 00:50:48 GMT
+- request:
+    method: get
+    uri: https://dabo-iris-test-logs.s3.amazonaws.com/?max-keys=100&prefix=03403ee6-flydata/app33381895_system/
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Type:
+      - ''
+      Accept-Encoding:
+      - ''
+      User-Agent:
+      - aws-sdk-ruby/1.61.0 ruby/2.2.0 x86_64-darwin14
+      Date:
+      - Tue, 27 Jan 2015 00:50:48 GMT
+      Authorization:
+      - AWS someauth
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      X-Amz-Id-2:
+      - L30e1T+RzfcTnU6Fi2LTlQEFCZqJ/2fHOWWcUQz4YaokjJWNYGcgi/lDI9w/2dqg
+      X-Amz-Request-Id:
+      - 6B88E03F3CA3E3F8
+      Date:
+      - Tue, 27 Jan 2015 00:50:49 GMT
+      Content-Type:
+      - application/xml
+      Transfer-Encoding:
+      - chunked
+      Server:
+      - AmazonS3
+    body:
+      encoding: UTF-8
+      string: |-
+        <?xml version="1.0" encoding="UTF-8"?>
+        <ListBucketResult xmlns="http://s3.amazonaws.com/doc/2006-03-01/"><Name>dabo-iris-test-logs</Name><Prefix>03403ee6-flydata/app33381895_system/</Prefix><Marker /><MaxKeys>100</MaxKeys><IsTruncated>false</IsTruncated><Contents><Key>03403ee6-flydata/app33381895_system/year=2015/month=01/day=20/20150120-19_47_00.gz</Key><LastModified>2015-01-21T01:00:06.000Z</LastModified><ETag>"1fcd895c9d9b589c5aa7ff1c8ddd72e4"</ETag><Size>1716</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents><Contents><Key>03403ee6-flydata/app33381895_system/year=2015/month=01/day=20/20150120-19_47_01.gz</Key><LastModified>2015-01-21T01:03:09.000Z</LastModified><ETag>"3256139163b02edddce34f7ed32cce75"</ETag><Size>251</Size><Owner><ID>272f68c1604fee1f25e6d5d38fdfd85868d8ec700334821b4111136a89c02b88</ID><DisplayName>aws</DisplayName></Owner><StorageClass>STANDARD</StorageClass></Contents></ListBucketResult>
+    http_version:
+  recorded_at: Tue, 27 Jan 2015 00:50:48 GMT
+recorded_with: VCR 2.9.3
