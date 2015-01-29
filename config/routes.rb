@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     resource :news_feed, only: :show, path: 'news'
     resources :pristine_examples
 
-    resource :measures, only: :show, controller: :charts_root
-    get 'measures/*id', to: 'public_charts#show'
+    resource :metrics, only: :show, controller: :charts_root
+    get 'metrics/*id', to: 'public_charts#show'
   end
 end
