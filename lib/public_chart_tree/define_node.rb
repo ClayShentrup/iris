@@ -24,14 +24,14 @@ class PublicChartTree
     end
 
     def node
-      @node ||= Node.new(embedded_node)
+      @node ||= Node.new(embedded_node: embedded_node)
     end
 
-    def create_child_node(short_title, is_measure, definition_block)
+    def create_child_node(short_title, definition_block, node_type)
       child_node = NestedNode.new(
         node,
         short_title,
-        is_measure,
+        node_type,
       )
       node.children << self.class.call(
         child_node,
@@ -56,13 +56,28 @@ class PublicChartTree
       embedded_node.dimensions = dimensions
     end
 
+    def measure_source(*args, &definition_block)
+      create_child_node(*args, definition_block, :measure_source)
+    end
+
     def long_title(long_title)
       embedded_node.long_title = long_title
     end
 
-    alias_method :measure_source, :non_measure
-    alias_method :bundle, :non_measure
-    alias_method :domain, :non_measure
-    alias_method :category, :non_measure
+    def bundle(*args, &definition_block)
+      create_child_node(*args, definition_block, :bundle)
+    end
+
+    def domain(*args, &definition_block)
+      create_child_node(*args, definition_block, :domain)
+    end
+
+    def category(*args, &definition_block)
+      create_child_node(*args, definition_block, :category)
+    end
+
+    def measure(*args, &definition_block)
+      create_child_node(*args, definition_block, :measure)
+    end
   end
 end

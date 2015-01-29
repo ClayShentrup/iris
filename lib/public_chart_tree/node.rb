@@ -2,7 +2,15 @@
 class PublicChartTree
   # A Node creates a consistent interface to NestedNode instances
   # or RootNode .
-  Node = Struct.new(:embedded_node) do
+  class Node
+    CHART_TYPES = {
+      measure_source: :default,
+      bundle: :default,
+      domain: :default,
+      category: :category,
+      measure: :measure,
+    }
+
     attr_reader :children
     delegate :id,
              :short_title,
@@ -13,10 +21,10 @@ class PublicChartTree
              :id_components,
              :parent,
              :short_title,
-             to: :embedded_node
+             to: :@embedded_node
 
-    def initialize(embedded_node)
-      super
+    def initialize(embedded_node:)
+      @embedded_node = embedded_node
       @children = []
     end
 
@@ -33,11 +41,15 @@ class PublicChartTree
     end
 
     def measure?
-      embedded_node.is_measure
+      @embedded_node.type == :measure
     end
 
     def parent_is_root?
       parent_id.blank?
+    end
+
+    def chart_type
+      CHART_TYPES.fetch(@embedded_node.type)
     end
   end
 end
