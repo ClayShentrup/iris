@@ -78,6 +78,8 @@ RSpec.describe Reporting::Downloading::Manager, :vcr do
       expect(fake_s3_object).to receive(:url_for).and_return fixture_url_1
       expect(fake_s3_object).to receive(:url_for).and_return fixture_url_2
 
+      # expect(GetLogger).to receive(:info).with(String)
+
       subject.call
     end
 

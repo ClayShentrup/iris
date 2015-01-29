@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'get_logger'
 
 module Reporting
   module Downloading
@@ -64,9 +65,13 @@ module Reporting
 
       def insert_log_lines_into_database
         Downloading::EachLogLine.call do |log_line|
-          Downloading::StoreLogLine.call(
-            Downloading::ParseAttributesFromLogLine.call(log_line),
-          )
+          begin
+            log_line_data = Downloading::ParseAttributesFromLogLine
+                            .call(log_line)
+            Downloading::StoreLogLine.call(log_line_data)
+          rescue JSON::ParserError => parse_error
+            GetLogger.info "Bad JSON from event pixel: #{parse_error}"
+          end
         end
         Downloading::SetEventLogMarker.call(
           key_getter_with_marker_tracking.marker,
