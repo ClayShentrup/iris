@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PublicChartsController do
   describe 'routing' do
-    let(:path) { "/measures/#{public_chart_id}" }
+    let(:path) { "/metrics/#{public_chart_id}" }
     let(:public_chart_id) do
       %w[
         measures
