@@ -6,7 +6,7 @@ Iris.Util.logEvent = function(eventName, eventProperties) {
     event: eventName,
     properties: eventProperties
   };
-  var pixelDataUriString = encodeURI(
+  var pixelDataUriString = encodeURIComponent(
     JSON.stringify(pixelData)
   );
   var cachebuster = Math.random().toString().slice(2);
