@@ -1,0 +1,16 @@
+- if @account.errors.any?
+  %ul.errors
+    - @account.errors.full_messages.each do |msg|
+      %li
+        = msg
+
+= form_for [:dabo_admin, @account] do |f|
+  .field
+    = f.label :name
+    = f.collection_select(:virtual_system_id, |
+    VirtualHospitalSystemCollection.call, |
+    :to_global_id, |
+    :name, |
+    include_blank: true)
+  .actions
+    = f.submit

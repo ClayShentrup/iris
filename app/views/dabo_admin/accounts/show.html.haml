@@ -1,0 +1,16 @@
+- # name, provider id, city and state
+%ul
+  %li
+    Name:
+    = @account.name
+  %li
+    Account Type:
+    = @account.virtual_system_type
+
+= link_to 'Delete this account', |
+  dabo_admin_account_path(@account), |
+  method: :delete, |
+  data: { confirm: 'Are you sure?' }
+
+%br
+= link_to 'Back', dabo_admin_accounts_path

@@ -11,10 +11,10 @@
 #
 class Account < ActiveRecord::Base
   belongs_to :virtual_system, polymorphic: true
-  has_one :default_hospital_id
-  has_many :hospitals
+  has_one :hospital
   has_many :users
 
   delegate :name,
+           :hospitals,
            to: :virtual_system
 end

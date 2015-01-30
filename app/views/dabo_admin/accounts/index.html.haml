@@ -1,0 +1,8 @@
+.new
+  = link_to 'Create new Account', new_dabo_admin_account_path
+
+%br
+- @accounts.each do |account|
+  %ul
+    %li
+      = link_to account.name, dabo_admin_account_path(account)
