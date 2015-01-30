@@ -4,7 +4,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
   subject do
     described_class.new(
       dataset_id: 'xubh-q36u',
-      required_fields: %w[
+      required_columns: %w[
         provider_id
         hospital_name
       ],

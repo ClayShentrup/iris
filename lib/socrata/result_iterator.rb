@@ -8,9 +8,9 @@ module Socrata
     include Enumerable
     attr_reader :length
 
-    def initialize(dataset_id:, required_fields:)
+    def initialize(dataset_id:, required_columns:)
       @dataset_id = dataset_id
-      @required_fields = required_fields
+      @required_columns = required_columns
     end
 
     def each(&block)
@@ -33,7 +33,7 @@ module Socrata
     def client
       @client ||= SimpleSodaClient.new(
         dataset_id: @dataset_id,
-        required_fields: @required_fields,
+        required_columns: @required_columns,
       )
     end
   end

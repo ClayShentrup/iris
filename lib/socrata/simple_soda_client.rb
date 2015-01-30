@@ -9,9 +9,9 @@ module Socrata
     DOMAIN = 'data.medicare.gov'
     PAGE_SIZE = 1000
 
-    def initialize(dataset_id:, required_fields:)
+    def initialize(dataset_id:, required_columns:)
       @dataset_id = dataset_id
-      @required_fields = required_fields
+      @required_columns = required_columns
     end
 
     def get(page:)
@@ -35,7 +35,7 @@ module Socrata
       client.get(
         @dataset_id,
         '$limit' => PAGE_SIZE,
-        '$SELECT' => @required_fields.join(','),
+        '$SELECT' => @required_columns.join(','),
         '$offset' => offset,
       )
     end

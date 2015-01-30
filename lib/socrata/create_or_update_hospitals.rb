@@ -3,7 +3,7 @@ module Socrata
   # for the involved components.
   module CreateOrUpdateHospitals
     DATASET_ID = 'xubh-q36u'
-    REQUIRED_FIELDS = %w[
+    REQUIRED_COLUMNS = %w[
       provider_id
       hospital_name
       hospital_type
@@ -15,7 +15,7 @@ module Socrata
     def self.call
       hospitals = ResultIterator.new(
         dataset_id: DATASET_ID,
-        required_fields: REQUIRED_FIELDS,
+        required_columns: REQUIRED_COLUMNS,
       )
       hospitals.each do |hospital_attributes|
         Hospital.create_or_update(hospital_attributes)

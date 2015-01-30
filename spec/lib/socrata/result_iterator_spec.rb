@@ -4,11 +4,11 @@ RSpec.describe Socrata::ResultIterator do
   subject do
     described_class.new(
       dataset_id: hospitals_dataset_id,
-      required_fields: required_fields,
+      required_columns: required_columns,
     )
   end
   let(:hospitals_dataset_id) { 'xubh-q36u' }
-  let(:required_fields) do
+  let(:required_columns) do
     %w[
       provider_id
       hospital_name
