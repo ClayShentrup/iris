@@ -6,39 +6,42 @@ RSpec.feature 'responsive design' do
   given(:url) do
     %w[
       /
-      measures
+      metrics
       public-data
       hospital-acquired-conditions
-      hospital-acquired-infection
     ].join('/')
   end
 
   let(:all_selector_groups) do
     [
-      desktop_only_selectors,
-      tablet_portrait_selectors,
-      mobile_selectors,
+      elements_visible_on_desktop,
+      elements_visible_on_tablet,
+      elements_visible_on_mobile,
     ]
   end
 
-  let(:desktop_only_selectors) do
+  let(:elements_visible_on_desktop) do
+    [
+      '#measures_nav_container .back_btn_container .parent_node_text',
+    ]
+  end
+
+  let(:elements_visible_on_tablet) do
+    [
+      '#measures_nav_container .back_btn_container .current_node_text',
+    ]
+  end
+
+  let(:elements_visible_on_mobile) do
     [
       '#measures_nav_container .forward_btn',
     ]
   end
 
-  let(:tablet_portrait_selectors) do
-    []
-  end
-
-  let(:mobile_selectors) do
-    []
-  end
-
-  def check(*selector_groups)
-    hidden_groups = all_selector_groups - selector_groups
+  def check
     selector_groups.each do |selector_group|
-      selector_group.each do
+      selector_group.each do |selector|
+        expect(page).to have_css selector
       end
     end
     hidden_groups.each do |hidden_group|
@@ -48,32 +51,55 @@ RSpec.feature 'responsive design' do
     end
   end
 
+  def hidden_groups
+    all_selector_groups - selector_groups
+  end
+
   background do
     visit url
     resize_to(width)
-  end
-
-  feature 'on desktop' do
-    given(:width) { :desktop }
-
-    scenario 'viewing stuff' do
-      check(desktop_only_selectors, tablet_portrait_selectors, mobile_selectors)
-    end
+    check
   end
 
   feature 'on mobile' do
     given(:width) { :mobile }
+    given(:selector_groups) do
+      [
+        elements_visible_on_mobile,
+        elements_visible_on_tablet,
+      ]
+    end
 
     scenario 'viewing stuff' do
-      check(desktop_only_selectors, tablet_portrait_selectors)
+      check
     end
   end
 
   feature 'on tablet portrait' do
     given(:width) { :tablet_portrait }
+    given(:selector_groups) do
+      [
+        elements_visible_on_tablet,
+        elements_visible_on_desktop,
+      ]
+    end
 
     scenario 'viewing stuff' do
-      check(desktop_only_selectors, mobile_selectors)
+      check
+    end
+  end
+
+  feature 'on desktop' do
+    given(:width) { :desktop }
+    given(:selector_groups) do
+      [
+        elements_visible_on_desktop,
+        elements_visible_on_mobile,
+      ]
+    end
+
+    scenario 'viewing stuff' do
+      check
     end
   end
 end

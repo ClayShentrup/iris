@@ -1,7 +1,0 @@
-.measures_nav_btn.back_btn_container.border_grey.clearfix
-  = link_to(back_button_options(node),
-    { class: 'back_btn text_ellipsis' }) do
-    %span.icon.icon_large.icon_arrow_large_left.icon_float_left
-    %span.parent_node_text= parent_link_text(node)
-  %span.current_node_text.text_ellipsis
-    = node.short_title

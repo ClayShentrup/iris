@@ -9,21 +9,6 @@ $btn_padding: rem(10)
   margin-top: rem(-17)
   font-size: rem(14)
 
-  .forward_btn
-    display: block
-    +media($tablet_portrait)
-      display: none
-    +media($desktop)
-      display: block
-
-    &.is_root
-      display: block
-
-  .is_category_page
-    display: none
-    +media($desktop)
-      display: block
-
 .measures_nav_btn
   height: rem(45)
   line-height: rem(43)
@@ -49,15 +34,12 @@ $btn_padding: rem(10)
     text-align: center
     width: 80%
     +media($desktop)
-      display: none
+      @extend .hide_on_desktop
 
 .measures_nav_current_node
   text-align: center
-  display: none
-  +media($desktop)
-    display: block
 
-  .text
+  .text_ellipsis
     padding-left: 0
 
 .back_btn_container
@@ -74,8 +56,8 @@ $btn_padding: rem(10)
       width: 95%
 
   .parent_node_text
-    display: none
-    +media($tablet_portrait)
-      display: inline
-      margin-left: rem(8)
-      padding-left: 0
+    margin-left: rem(8)
+    padding-left: 0
+
+.forward_btn
+  display: block

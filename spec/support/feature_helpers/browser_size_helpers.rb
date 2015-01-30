@@ -4,9 +4,9 @@ module BrowserSizeHelpers
   # $tablet_portrait: min-width 768px
 
   SIZES = {
-    desktop: 900,
-    tablet_portrait: 800,
-    mobile: 400,
+    desktop: 850,
+    tablet_portrait: 768,
+    mobile: 767,
   }
 
   def resize_to(new_size)

@@ -68,4 +68,23 @@ RSpec.describe PublicChartsHelper do
       specify { expect(parent_link_text).to eq parent_short_title }
     end
   end
+
+  describe '#node_link' do
+    let(:node) do
+      instance_double(PublicChartTree::Node,
+                      id: id,
+                      short_title: short_title,
+      )
+    end
+    let(:id) { 'public_data/foobar' }
+    let(:short_title) { 'Nice Metric' }
+    let(:expected_href) { "/metrics/#{id}" }
+    let(:link) { helper.node_link(node) }
+    let(:anchor) { Nokogiri::HTML.parse(link).at_css('a') }
+
+    it 'returns an anchor with a short title' do
+      expect(anchor.text).to eq short_title
+      expect(anchor[:href]).to eq expected_href
+    end
+  end
 end
