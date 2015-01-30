@@ -1,5 +1,16 @@
 $main_content_spacing: rem(30)
 
+.detail_chart
+  padding: rem(10)
+  height: rem(200)
+  margin: 0 rem(-10) 0
+  +media($tablet_portrait)
+    height: rem(300)
+    margin: 0 rem(-10)
+  +media($desktop)
+    height: rem(400)
+    margin: rem(20) 0 0 rem(-30)
+
 .measure_detail
   > div
     +row()
@@ -22,6 +33,11 @@ $main_content_spacing: rem(30)
 
   .measure_detail_actions
     padding: rem(10)
+
+  .actions
+    margin: 0 rem(-10)
+    +media($desktop)
+      margin-left: rem(-30)
 
   .action
     +span-columns(3)

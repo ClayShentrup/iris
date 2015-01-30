@@ -12,7 +12,7 @@
 
   - if node.children
     - node.children.each do |child|
-      .measures_nav_btn.forward_btn.hide_on_tablet_portrait.border_grey.clearfix
+      .measures_nav_btn.forward_btn.hide_on_mobile.hide_on_tablet_portrait.border_grey.clearfix
         = link_to id: child.id do
           %span.text_ellipsis
             = child.short_title

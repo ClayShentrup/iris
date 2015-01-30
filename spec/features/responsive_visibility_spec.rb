@@ -16,7 +16,6 @@ RSpec.feature 'responsive design' do
     [
       elements_visible_on_desktop,
       elements_visible_on_tablet,
-      elements_visible_on_mobile,
     ]
   end
 
@@ -29,12 +28,6 @@ RSpec.feature 'responsive design' do
   let(:elements_visible_on_tablet) do
     [
       '#measures_nav_container .back_btn_container .current_node_text',
-    ]
-  end
-
-  let(:elements_visible_on_mobile) do
-    [
-      '#measures_nav_container .forward_btn',
     ]
   end
 
@@ -61,20 +54,6 @@ RSpec.feature 'responsive design' do
     check
   end
 
-  feature 'on mobile' do
-    given(:width) { :mobile }
-    given(:selector_groups) do
-      [
-        elements_visible_on_mobile,
-        elements_visible_on_tablet,
-      ]
-    end
-
-    scenario 'viewing stuff' do
-      check
-    end
-  end
-
   feature 'on tablet portrait' do
     given(:width) { :tablet_portrait }
     given(:selector_groups) do
@@ -94,7 +73,6 @@ RSpec.feature 'responsive design' do
     given(:selector_groups) do
       [
         elements_visible_on_desktop,
-        elements_visible_on_mobile,
       ]
     end
 
