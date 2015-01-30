@@ -9,6 +9,7 @@ User.reset_column_information
 user = User.new(
   email: 'eng-service@dabohealth.com',
   password: 'timeandcolorisblue',
+  is_dabo_admin: true,
 )
 user.skip_confirmation!
 user.save!
