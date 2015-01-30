@@ -54,7 +54,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
       end
 
       context 'with less than a full page of results' do
-        let(:page) { 3 }
+        let(:page) { 2 }
         specify { expect(subject.possible_next_page?).to be false }
       end
     end

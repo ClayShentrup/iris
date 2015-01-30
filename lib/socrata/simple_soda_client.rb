@@ -35,7 +35,7 @@ module Socrata
       client.get(
         @dataset_id,
         '$limit' => PAGE_SIZE,
-        '$SELECT' => @required_columns.join(','),
+        '$select' => @required_columns.join(','),
         '$offset' => offset,
       )
     end

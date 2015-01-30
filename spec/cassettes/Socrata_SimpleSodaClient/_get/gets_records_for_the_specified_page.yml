@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$SELECT=provider_id,hospital_name&$limit=3&$offset=3
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=3&$offset=3&$select=provider_id,hospital_name
     body:
       encoding: UTF-8
       string: 'null'
