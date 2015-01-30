@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$SELECT=provider_id,hospital_name&$limit=2&$offset=0
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=0&$select=provider_id,hospital_name
     body:
       encoding: UTF-8
       string: 'null'
@@ -63,7 +63,7 @@ http_interactions:
   recorded_at: Wed, 26 Nov 2014 23:49:32 GMT
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$SELECT=provider_id,hospital_name&$limit=2&$offset=2
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=2&$select=provider_id,hospital_name
     body:
       encoding: UTF-8
       string: 'null'
