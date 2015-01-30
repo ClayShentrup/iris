@@ -1,7 +1,7 @@
 RSpec.shared_examples 'a Dabo Admin page' do
   controller do
     def custom
-      render text: 'custom'
+      render nothing: true
     end
   end
 
@@ -15,7 +15,7 @@ RSpec.shared_examples 'a Dabo Admin page' do
 
   context 'with a Dabo Admin logged in' do
     login(:dabo_admin)
-    it { expect(response.body).to eq 'custom' }
+    it { expect(response).to be_success }
   end
 
   context 'with a normal user logged in' do

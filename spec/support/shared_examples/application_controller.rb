@@ -242,10 +242,10 @@ RSpec.shared_examples 'an ApplicationController edit' do
   end
 end
 
-RSpec.shared_examples 'an ApplicationController update' do |update_attributes|
+RSpec.shared_examples 'an ApplicationController update' do
   include_context 'ApplicationController methods'
   include_context 'ApplicationController methods with an existing record'
-  let(:new_attributes) { update_attributes || attributes_for(model_class) }
+  let(:new_attributes) { attributes_for(model_class) }
   let(:instance_url) do
     public_send("#{model_params_name_namespace}_path", model_instance)
   end

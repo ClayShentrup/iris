@@ -10,7 +10,10 @@ RSpec.describe DaboAdmin::UsersController do
   it_behaves_like 'an ApplicationController new'
   it_behaves_like 'an ApplicationController create'
   it_behaves_like 'an ApplicationController edit'
-  it_behaves_like 'an ApplicationController update', is_dabo_admin: true
+  it_behaves_like 'an ApplicationController update' do
+    let(:new_attributes) { { is_dabo_admin: true } }
+  end
+
   it_behaves_like 'an ApplicationController show'
   it_behaves_like 'an ApplicationController delete'
 
