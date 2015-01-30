@@ -15,6 +15,7 @@
 # Represents a hospital entity fetched from Socrata's API.
 class Hospital < ActiveRecord::Base
   belongs_to :hospital_system
+  has_many :accounts, as: :virtual_system
   validates :provider_id, uniqueness: true, presence: true
   validates :name, presence: true
   validates :city, presence: true

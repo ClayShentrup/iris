@@ -23,6 +23,7 @@
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
 #  is_dabo_admin          :boolean          default("false"), not null
+#  account_id             :integer
 #
 
 # An entity to log into the system
@@ -32,6 +33,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :confirmable
+  belongs_to :account
   validates :email, presence: true
   validates :is_dabo_admin, inclusion: { in: [true, false] }
 end
