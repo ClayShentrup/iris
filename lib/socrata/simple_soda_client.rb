@@ -9,9 +9,10 @@ module Socrata
     DOMAIN = 'data.medicare.gov'
     PAGE_SIZE = 1000
 
-    def initialize(dataset_id:, required_columns:)
+    def initialize(dataset_id:, required_columns:, row_filter:)
       @dataset_id = dataset_id
       @required_columns = required_columns
+      @row_filter = row_filter
     end
 
     def get(page:)
@@ -37,6 +38,7 @@ module Socrata
         '$limit' => PAGE_SIZE,
         '$select' => @required_columns.join(','),
         '$offset' => offset,
+        '$where' => where,
       )
     end
 
@@ -51,6 +53,11 @@ module Socrata
     def offset_for_page(page_with_one_based_index)
       page_with_zero_based_index = page_with_one_based_index - 1
       page_with_zero_based_index * PAGE_SIZE
+    end
+
+    def where
+      return '' unless @row_filter
+      "#{@row_filter.fetch(:column_name)} = '#{@row_filter.fetch(:value)}'"
     end
   end
 end

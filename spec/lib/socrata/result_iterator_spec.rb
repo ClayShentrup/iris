@@ -1,6 +1,6 @@
 require 'socrata/result_iterator'
 
-RSpec.describe Socrata::ResultIterator do
+RSpec.describe Socrata::ResultIterator, :vcr do
   subject do
     described_class.new(
       dataset_id: hospitals_dataset_id,
@@ -15,11 +15,7 @@ RSpec.describe Socrata::ResultIterator do
     ]
   end
 
-  let(:results) do
-    VCR.use_cassette 'Socrata_ResultIterator/gets_some_results' do
-      subject.to_a
-    end
-  end
+  let(:results) { subject.to_a }
 
   before do
     stub_const('Socrata::SimpleSodaClient::PAGE_SIZE', 2)
@@ -43,7 +39,6 @@ RSpec.describe Socrata::ResultIterator do
   end
 
   it 'stores the length' do
-    results
-    expect(subject.length).to be 3
+    expect(subject.to_a.length).to be 3
   end
 end

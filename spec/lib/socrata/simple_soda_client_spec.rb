@@ -3,14 +3,20 @@ require 'socrata/simple_soda_client'
 RSpec.describe Socrata::SimpleSodaClient, :vcr do
   subject do
     described_class.new(
-      dataset_id: 'xubh-q36u',
-      required_columns: %w[
-        provider_id
-        hospital_name
-      ],
+      dataset_id: dataset_id,
+      required_columns: required_columns,
+      row_filter: row_filter,
     )
   end
-  let(:page) { 2 }
+  let(:page) { 1 }
+  let(:dataset_id) { 'xubh-q36u' }
+  let(:required_columns) do
+    %w[
+      provider_id
+      hospital_name
+    ]
+  end
+  let(:row_filter) { nil }
 
   def response
     subject.get(page: page)
@@ -36,6 +42,24 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
           'provider_id' => '010011',
         },
       ]
+    end
+
+    context 'filtered', :vcr do
+      let(:row_filter) do
+        {
+          column_name: :provider_id,
+          value: '010001',
+        }
+      end
+
+      it 'only returns matching rows' do
+        expect(response).to eq [
+          {
+            'hospital_name' => 'SOUTHEAST ALABAMA MEDICAL CENTER',
+            'provider_id' => '010001',
+          },
+        ]
+      end
     end
   end
 

@@ -1,4 +1,4 @@
-require_relative 'simple_soda_client'
+require_relative 'unfiltered_simple_soda_client'
 
 module Socrata
   # The SODA client gets one page of results per call. It has no underlying
@@ -31,7 +31,7 @@ module Socrata
     private
 
     def client
-      @client ||= SimpleSodaClient.new(
+      @client ||= UnfilteredSimpleSodaClient.new(
         dataset_id: @dataset_id,
         required_columns: @required_columns,
       )

@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=0&$select=provider_id,hospital_name&$where=
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=3&$offset=3&$select=provider_id,hospital_name&$where=provider_id%20=%20%27010001%27
     body:
       encoding: UTF-8
       string: 'null'
@@ -24,7 +24,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 31 Jan 2015 00:59:12 GMT
+      - Fri, 30 Jan 2015 23:41:38 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -34,7 +34,116 @@ http_interactions:
       Access-Control-Allow-Origin:
       - "*"
       Last-Modified:
-      - Wed, 17 Dec 2014 15:14:13 PST
+      - Wed, 17 Dec 2014 23:14:13 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hospital_name",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["text","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: "[ ]"
+    http_version:
+  recorded_at: Fri, 30 Jan 2015 23:41:38 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=3&$offset=0&$select=provider_id,hospital_name&$where=provider_id%20=%20%27010001%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 Jan 2015 23:44:38 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 23:13:44 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hospital_name",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["text","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hospital_name" : "SOUTHEAST ALABAMA MEDICAL CENTER",
+          "provider_id" : "010001"
+        }
+         ]
+    http_version:
+  recorded_at: Fri, 30 Jan 2015 23:44:38 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=3&$offset=0&$select=provider_id,hospital_name&$where=
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 30 Jan 2015 23:47:03 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:13:44 PST
       X-Soda2-Warning:
       - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
       X-Soda2-Fields:
@@ -58,64 +167,11 @@ http_interactions:
           "hospital_name" : "MARSHALL MEDICAL CENTER SOUTH",
           "provider_id" : "010005"
         }
-         ]
-    http_version:
-  recorded_at: Sat, 31 Jan 2015 00:59:12 GMT
-- request:
-    method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=2&$select=provider_id,hospital_name&$where=
-    body:
-      encoding: UTF-8
-      string: 'null'
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-      X-App-Token: []
-      Content-Type:
-      - application/json
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - nginx
-      Date:
-      - Sat, 31 Jan 2015 00:59:12 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Connection:
-      - keep-alive
-      Access-Control-Allow-Origin:
-      - "*"
-      Last-Modified:
-      - Wed, 17 Dec 2014 15:14:13 PST
-      X-Soda2-Warning:
-      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
-      X-Soda2-Fields:
-      - '["hospital_name",":updated_at","provider_id",":id",":created_at"]'
-      X-Soda2-Types:
-      - '["text","meta_data","text","meta_data","meta_data"]'
-      X-Soda2-Legacy-Types:
-      - 'true'
-      X-Socrata-Region:
-      - production
-      Age:
-      - '0'
-    body:
-      encoding: ASCII-8BIT
-      string: |-
-        [ {
-          "hospital_name" : "MIZELL MEMORIAL HOSPITAL",
-          "provider_id" : "010007"
+        , {
+          "hospital_name" : "ELIZA COFFEE MEMORIAL HOSPITAL",
+          "provider_id" : "010006"
         }
          ]
     http_version:
-  recorded_at: Sat, 31 Jan 2015 00:59:12 GMT
+  recorded_at: Fri, 30 Jan 2015 23:47:03 GMT
 recorded_with: VCR 2.9.3
