@@ -59,8 +59,8 @@ class ApplicationController < ActionController::Base
   # E.g. if update/create fails due to a validation error, Rails will render
   # the edit/new template. We want to know the actual template that was
   # rendered, so we can specify the correct JavaScript view.
-  def render(options = {})
-    @rendered_action = options.fetch(:action) if options.key?(:action)
+  def render(*args, &block)
+    @rendered_action = action_to_be_rendered(args.first)
     super
   end
 
@@ -104,5 +104,13 @@ class ApplicationController < ActionController::Base
   def flash_success_message(action)
     message = "#{model_name.underscore.humanize} was successfully #{action}."
     flash[:notice] = message
+  end
+
+  def action_to_be_rendered(action_or_options)
+    if action_or_options.is_a? Hash
+      action_or_options.fetch(:action, nil)
+    else
+      action_or_options
+    end
   end
 end
