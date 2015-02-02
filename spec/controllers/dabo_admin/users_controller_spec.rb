@@ -18,4 +18,18 @@ RSpec.describe DaboAdmin::UsersController do
   it_behaves_like 'an ApplicationController delete'
 
   it_behaves_like 'a Dabo Admin page'
+
+  describe 'PUT update with an empty password' do
+    let(:admin_user) { FactoryGirl.create(:dabo_admin) }
+    let(:attributes) { { password: '' } }
+    let!(:encrypted_password) { admin_user.encrypted_password }
+
+    before do
+      put :update, id: admin_user, user: attributes
+    end
+
+    it 'maintains the old one' do
+      expect(admin_user.reload.encrypted_password).to eq encrypted_password
+    end
+  end
 end
