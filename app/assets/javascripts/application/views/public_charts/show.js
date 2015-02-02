@@ -3,26 +3,23 @@
 
 Iris.Views['public_charts-show'] = Backbone.View.extend({
   events: {
-    'click .dropdown_button': 'toggleDropdown'
+    'click .dropdown_button.hospital': '_toggleDropdownHospital',
+    'click .dropdown_button.compare': '_toggleDropdownCompare'
   },
 
-  toggleDropdown: function(evt) {
-    var $dropdown = $(evt.currentTarget).closest('.select_container');
-
-    $dropdown.siblings('.open').removeClass('open');
-    $dropdown.toggleClass('open');
-
-    this.updateDropdownHeight($dropdown);
+  _toggleDropdownHospital: function() {
+    this._selectAndCompare()
+    .removeClass('show_compare')
+    .toggleClass('show_hospital');
   },
 
-  updateDropdownHeight: function(dropdown) {
-    var height = 'auto';
+  _toggleDropdownCompare: function() {
+    this._selectAndCompare()
+    .removeClass('show_hospital')
+    .toggleClass('show_compare');
+  },
 
-    if (dropdown.hasClass('open')) {
-      height = dropdown.find('.dropdown_button').height() +
-        dropdown.find('.dropdown_items').height();
-    }
-
-    dropdown.parent().height(height);
+  _selectAndCompare: function() {
+    return this.$('#select_and_compare');
   }
 });

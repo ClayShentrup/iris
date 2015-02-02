@@ -12,7 +12,8 @@
   //Environment
   "globals": {
     "Iris": true, // Our JS namespace
-    "Backbone": true // defined by Backbone.js
+    "Backbone": true, // defined by Backbone.js
+    "_": true // defined by Underscore.js
   },
   "jasmine": true,
   "jquery": true, // allow `$` as global variable

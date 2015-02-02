@@ -15,11 +15,11 @@ RSpec.feature 'Select and compare' do
   end
 
   def click_on_hospital_select
-    find('.select_container.hospital .dropdown_button').click
+    find('#select_and_compare .dropdown_button.hospital').click
   end
 
   def click_on_compare_select
-    find('.select_container.compare .dropdown_button').click
+    find('#select_and_compare .dropdown_button.compare').click
   end
 
   background do
