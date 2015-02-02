@@ -4,5 +4,6 @@
   %h1.breadcrumbs.hide_on_mobile.hide_on_tablet_portrait
     = render partial: 'public_charts/breadcrumbs/breadcrumb', collection: @node.breadcrumbs,
       spacer_template: 'public_charts/breadcrumbs/breadcrumbs_spacer'
+  = render 'public_charts/select_and_compare'
   = render "public_charts/detail_charts/#{@node.type}", node: @node
   = render 'public_charts/children', node: @node
