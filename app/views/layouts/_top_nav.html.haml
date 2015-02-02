@@ -1,20 +1,16 @@
 #top_nav.clearfix
   .logo.border_grey
     = link_to 'Home', root_url
-  .nav_btns
-    .news_feed.border_grey
-      = link_to 'News Feed', news_feed_path
-    .metrics.border_grey
-      = link_to 'Metrics', metrics_path
-  .dead_space.hide_on_mobile.border_grey
-  .search.border_grey.hide_on_tablet.hide_on_desktop
-    %form{"accept-charset" => "UTF-8", :action => "/search", :method => "get"}
-      %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-      %input#q{:name => "q", :type => "text"}/
-      .icon.icon_search
-  .search.hide_on_mobile.border_grey
-    %form{"accept-charset" => "UTF-8", :action => "/search", :method => "get"}
-      %input{:name => "utf8", :type => "hidden", :value => "✓"}/
-      %input#q{:name => "q", :type => "text"}/
-      .icon.icon_float_right.icon_search
+  .news_feed.nav_btns.border_grey
+    = link_to 'News Feed', news_feed_path
+  .metrics.nav_btns.border_grey
+    = link_to 'Metrics', metrics_path
+  .search.hide_on_tablet_portrait.hide_on_desktop.border_bottom_grey.border_top_grey
+    %form.clearfix{action: '/search', method: 'get'}
+      %input#q{name: 'q', type: 'text'}
+      %span.icon.icon_large.icon_search
+  .search.hide_on_mobile.border_bottom_grey.border_top_grey
+    %form.clearfix{action: '/search', method: 'get'}
+      %input#q{name: 'q', type: 'text'}
+      %span.icon.icon_large.icon_float_right.icon_search
   .menu_icon.border_grey Menu
