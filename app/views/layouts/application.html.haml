@@ -16,8 +16,8 @@
            current_user_id: current_user.try(:id) |
          } |
        } |
+    = render 'layouts/top_nav'
     #outer_container
-      = render 'layouts/top_nav'
       = yield
 
     / This log out link is for engineering. Please do not remove.

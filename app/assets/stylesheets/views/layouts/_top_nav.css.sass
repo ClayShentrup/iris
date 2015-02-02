@@ -1,48 +1,69 @@
 #top_nav
+  display: flex
+  font-size: rem(14)
+
   .sessions &
     display: none
 
   margin-bottom: rem(16)
 
-  div
+  >div
     float: left
+    padding: rem(8)
     text-align: center
 
-  >div
-    padding: rem(8)
-
-  #logo
+  .logo
     background: transparent image-url('dabo-d-logo.svg') no-repeat center
+    text-indent: -9999px
     +media($desktop)
       background: transparent image-url('dabo-logo.svg') no-repeat center
 
-  #menu_icon
-    width: 100%
-    background: transparent image-url('menu-icon.svg') no-repeat center
-    +media($desktop)
-      width: 30%
+  .logo,
+  .menu_icon
+    flex-grow: 1
 
-  #menu_icon
+  .search
+    flex-grow: 2
+
+  .dead_space
+    flex-grow: 3
+
+  .nav_btns
+    display: flex
+    flex-grow: 4
+    padding: 0
+
+    .news_feed,
+    .metrics
+      flex-grow: 2
+      padding: rem(8)
+
+  .menu_icon
+    background: transparent image-url('menu-icon.svg') no-repeat center
     text-indent: -9999px
 
-  #logo,
-  #menu
+  .logo
     background-size: contain
     background-origin: content-box
-    width: 10%
 
-  #logo > a,
-  #metrics > a,
-  #news_feed > a
+  .logo > a,
+  .metrics > a,
+  .news_feed > a
     display: block
     height: rem(24)
 
-  #menu_text
-    width: 0
-    +media($desktop)
-      width: 70%
-      display: inline-block
+  .search
+    padding: 0
+    line-height: rem(39)
 
-  #news_feed,
-  #metrics
-    width: 40%
+    &.hide_on_tablet.hide_on_desktop
+      input
+        display: none
+
+    input
+      border: 0
+      padding: rem(10)
+      width: 90%
+
+      &:focus
+        outline: 0
