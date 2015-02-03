@@ -18,4 +18,6 @@ class Account < ActiveRecord::Base
   delegate :name,
            :hospitals,
            to: :virtual_system
+  delegate :name,
+           to: :default_hospital, prefix: true
 end

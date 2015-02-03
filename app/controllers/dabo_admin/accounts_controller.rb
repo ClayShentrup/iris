@@ -22,22 +22,29 @@ module DaboAdmin
 
     def allowed_params
       params.require(:account)
-        .permit(:virtual_system_id, :default_hospital_id)
+        .permit(:virtual_system_id, :default_hospital_id, users: [:id])
     end
 
     def model_params
       {
-        'virtual_system_id' => virtual_system_global_id.last,
-        'virtual_system_type' => virtual_system_type,
+        'virtual_system_id' => virtual_system_gid.model_id,
+        'virtual_system_type' => virtual_system_gid.model_name,
+        'default_hospital_id' => params.fetch(:account)
+          .fetch(:default_hospital_id),
+        'users' => account_users,
       }
     end
 
-    def virtual_system_type
-      virtual_system_global_id.split('/').fourth
+    def account_users
+      if params.fetch(:account).fetch(:users, nil)
+        User.find(params.fetch(:account).fetch(:users))
+      else
+        []
+      end
     end
 
-    def virtual_system_global_id
-      allowed_params.fetch(:virtual_system_id)
+    def virtual_system_gid
+      GlobalID.new(allowed_params.fetch(:virtual_system_id))
     end
   end
 end
