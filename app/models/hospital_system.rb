@@ -10,7 +10,7 @@
 class HospitalSystem < ActiveRecord::Base
   validates :name, presence: true
   has_many :hospitals
-  has_many :accounts, as: :virtual_system
+  has_one :account, as: :virtual_system
 
   def self.create_or_update(attributes)
     find_or_initialize_by(name: attributes.fetch('name'))

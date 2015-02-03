@@ -1,3 +1,4 @@
+
 # == Schema Information
 #
 # Table name: accounts
@@ -11,7 +12,7 @@
 #
 class Account < ActiveRecord::Base
   belongs_to :virtual_system, polymorphic: true
-  has_one :hospital
+  belongs_to :default_hospital, class_name: 'Hospital'
   has_many :users
 
   delegate :name,

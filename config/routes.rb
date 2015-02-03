@@ -6,7 +6,11 @@ Rails.application.routes.draw do
     namespace :dabo_admin do
       resources :hospitals
       resources :hospital_systems
-      resources :accounts
+      resources :accounts do
+        collection do
+          post 'system_hospitals', to: 'accounts#system_hospitals'
+        end
+      end
       resources :reports, only: :index
       resources :users
       resources :flip, only: [:index], controller: :features do

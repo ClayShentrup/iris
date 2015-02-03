@@ -1,0 +1,7 @@
+.field.default_hospital
+  = label_tag :default_hospital
+  = collection_select(:account, |
+    :default_hospital_id, |
+    hospital_collection, |
+    :id, |
+    :name)
