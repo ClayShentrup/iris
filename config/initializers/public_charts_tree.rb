@@ -55,7 +55,7 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
           measures :H_HSP_RATING_9_10
         end
       end
-      domain 'Efficency of Care' do
+      domain 'Efficiency of Care' do
         measures :MSPB_1
       end
     end
@@ -102,6 +102,22 @@ PUBLIC_CHARTS_TREE = PublicChartTree.new do
       end
       category 'Recommendation' do
         measures :H_RECMND_DY
+      end
+    end
+    bundle 'SCIP' do
+      category 'Timely Surgical Care' do
+        measures :OP_6,
+                 :SCIP_INF_1,
+                 :SCIP_INF_3,
+                 :SCIP_VTE_2
+      end
+      category 'Effective Surgical Care' do
+        measures :OP_7,
+                 :SCIP_CARD_2,
+                 :SCIP_INF_2,
+                 :SCIP_INF_4,
+                 :SCIP_INF_9,
+                 :SCIP_INF_10
       end
     end
   end
