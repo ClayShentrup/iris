@@ -7,28 +7,11 @@ RSpec.describe PublicChartTree do
   let(:tree) do
     described_class.new do
       measure_source 'Public Data' do
-        id_component 'cms'
-
-        dimensions :MORT_30_AMI_SCORE,
-                   :MORT_30_AMI_DENOMINATOR
-
         bundle 'Value Based Purchasing' do
-          dimensions :VBP_DIMENSION_1,
-                     :VBP_DIMENSION_2
-
           domain 'Outcome of Care' do
-            dimensions :OOC_1,
-                       :OOC_2
-
             category 'Mortality' do
-              dimensions :MORT_30_AMI_SCORE,
-                         :MORT_30_AMI_DENOMINATOR
-
-              measure 'Acute Myocardial Infarction Mortality' do
-                long_title 'Acute Myocardial Infarction 30-day Mortality Rate'
-                dimensions :MEA_DIM_1,
-                           :MEA_DIM_2
-              end
+              measures :MORT_30_AMI,
+                       :MORT_30_HF
             end
           end
         end
@@ -38,6 +21,31 @@ RSpec.describe PublicChartTree do
     end
   end
 
+  let(:mort_30_ami) do
+    OpenStruct.new(
+      short_title: 'Acute Myocardial Infarction Mortality',
+      long_title: 'Acute Myocardial Infarction 30-day Mortality Rate',
+    )
+  end
+
+  let(:mort_30_hf) do
+    OpenStruct.new(
+      short_title: 'Heart Failure Mortality',
+      long_title: 'Heart Failure 30-day Mortality Rate',
+    )
+  end
+
+  let(:measures) do
+    {
+      MORT_30_HF: mort_30_hf.to_hash,
+      MORT_30_AMI: mort_30_ami.to_hash,
+    }
+  end
+
+  before do
+    stub_const('Measures', measures)
+  end
+
   context 'at the navigation root' do
     let(:id) { '' }
 
@@ -45,7 +53,7 @@ RSpec.describe PublicChartTree do
 
     it 'returns the children' do
       expect(subject.children).to eq [
-        tree.find('cms'),
+        tree.find('public-data'),
         tree.find('private-data'),
       ]
     end
@@ -53,11 +61,6 @@ RSpec.describe PublicChartTree do
 
   shared_examples 'a nested node' do
     specify { expect(subject.id).to eq id }
-    let(:expected_children) do
-      expected_child_ids.map do |child_id|
-        tree.find(child_id)
-      end
-    end
     let(:expected_breadcrumb_ids) do
       [
         expected_parent_id,
@@ -67,10 +70,9 @@ RSpec.describe PublicChartTree do
     let(:parent_is_root?) { false }
 
     it 'returns the children' do
-      expect(subject.children).to eq expected_children
+      actual_child_ids = subject.children.map(&:id)
+      expect(actual_child_ids).to eq expected_child_ids
     end
-
-    specify { expect(subject.dimensions).to eq expected_dimensions }
     specify do
       expect(subject.breadcrumbs.map(&:id)).to eq expected_breadcrumb_ids
     end
@@ -81,17 +83,11 @@ RSpec.describe PublicChartTree do
   end
 
   context 'at a measure source node' do
-    let(:id) { 'cms' }
+    let(:id) { 'public-data' }
     let(:expected_short_title) { 'Public Data' }
     let(:expected_parent_id) { '' }
     let(:expected_type) { :measure_source }
-    let(:expected_child_ids) { ['cms/value-based-purchasing'] }
-    let(:expected_dimensions) do
-      [
-        :MORT_30_AMI_SCORE,
-        :MORT_30_AMI_DENOMINATOR,
-      ]
-    end
+    let(:expected_child_ids) { ['public-data/value-based-purchasing'] }
 
     it_behaves_like 'a nested node' do
       let(:expected_breadcrumb_ids) { [id] }
@@ -100,16 +96,14 @@ RSpec.describe PublicChartTree do
   end
 
   context 'at a bundle node' do
-    let(:parent_id) { 'cms' }
+    let(:parent_id) { 'public-data' }
     let(:id) { "#{parent_id}/value-based-purchasing" }
     let(:expected_short_title) { 'Value Based Purchasing' }
-    let(:expected_parent_id) { 'cms' }
+    let(:expected_parent_id) { 'public-data' }
     let(:expected_type) { :bundle }
-    let(:expected_child_ids) { ['cms/value-based-purchasing/outcome-of-care'] }
-    let(:expected_dimensions) do
-      [
-        :VBP_DIMENSION_1,
-        :VBP_DIMENSION_2,
+    let(:expected_child_ids) do
+      %w[
+        public-data/value-based-purchasing/outcome-of-care
       ]
     end
 
@@ -118,18 +112,12 @@ RSpec.describe PublicChartTree do
   end
 
   context 'at a domain node' do
-    let(:expected_parent_id) { 'cms/value-based-purchasing' }
+    let(:expected_parent_id) { 'public-data/value-based-purchasing' }
     let(:id) { "#{expected_parent_id}/outcome-of-care" }
     let(:expected_short_title) { 'Outcome of Care' }
     let(:expected_type) { :domain }
     let(:expected_child_ids) do
-      ['cms/value-based-purchasing/outcome-of-care/mortality']
-    end
-    let(:expected_dimensions) do
-      [
-        :OOC_1,
-        :OOC_2,
-      ]
+      ['public-data/value-based-purchasing/outcome-of-care/mortality']
     end
 
     it_behaves_like 'a nested node'
@@ -140,25 +128,22 @@ RSpec.describe PublicChartTree do
   end
 
   context 'at a category node' do
-    let(:expected_parent_id) { 'cms/value-based-purchasing/outcome-of-care' }
+    let(:expected_parent_id) do
+      'public-data/value-based-purchasing/outcome-of-care'
+    end
     let(:id) { "#{expected_parent_id}/mortality" }
     let(:expected_short_title) { 'Mortality' }
     let(:expected_type) { :category }
+    let(:mort_30_ami_id) do
+      "#{expected_parent_id}/mortality/acute-myocardial-infarction-mortality"
+    end
+    let(:mort_30_hf_id) do
+      "#{expected_parent_id}/mortality/heart-failure-mortality"
+    end
     let(:expected_child_ids) do
       [
-        %w[
-          cms
-          value-based-purchasing
-          outcome-of-care
-          mortality
-          acute-myocardial-infarction-mortality
-        ].join('/'),
-      ]
-    end
-    let(:expected_dimensions) do
-      [
-        :MORT_30_AMI_SCORE,
-        :MORT_30_AMI_DENOMINATOR,
+        mort_30_ami_id,
+        mort_30_hf_id,
       ]
     end
 
@@ -170,29 +155,34 @@ RSpec.describe PublicChartTree do
   context 'at a measure node' do
     let(:expected_parent_id) do
       %w[
-        cms
+        public-data
         value-based-purchasing
         outcome-of-care
         mortality
       ].join('/')
     end
-
-    let(:id) { "#{expected_parent_id}/acute-myocardial-infarction-mortality" }
-    let(:expected_dimensions) do
-      [
-        :MEA_DIM_1,
-        :MEA_DIM_2,
-      ]
-    end
-    let(:expected_short_title) { 'Acute Myocardial Infarction Mortality' }
+    let(:expected_short_title) { measure.short_title }
     let(:expected_type) { :measure }
     let(:expected_child_ids) { [] }
 
-    specify do
-      expect(subject.long_title)
-        .to eq 'Acute Myocardial Infarction 30-day Mortality Rate'
+    shared_examples 'a mortality measure node' do
+      specify do
+        expect(subject.long_title).to eq measure.long_title
+      end
+      specify { expect(subject.parent_short_title).to eq 'Mortality' }
     end
-    specify { expect(subject.parent_short_title).to eq 'Mortality' }
+
+    describe 'MORT_30_AMI' do
+      let(:measure) { mort_30_ami }
+      let(:id) { "#{expected_parent_id}/acute-myocardial-infarction-mortality" }
+      it_behaves_like 'a mortality measure node'
+    end
+
+    describe 'MORT_30_HF' do
+      let(:measure) { mort_30_hf }
+      let(:id) { "#{expected_parent_id}/heart-failure-mortality" }
+      it_behaves_like 'a mortality measure node'
+    end
   end
 
   context 'with an invalid identifier' do

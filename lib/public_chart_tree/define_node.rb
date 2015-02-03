@@ -49,6 +49,16 @@ class PublicChartTree
       create_child_node(*args, definition_block, :measure)
     end
 
+    def measures(*measures)
+      measures.each do |measure_id|
+        measure = MEASURES.fetch(measure_id)
+        measure_long_title = measure.fetch(:long_title)
+        measure(measure.fetch(:short_title)) do
+          long_title measure_long_title
+        end
+      end
+    end
+
     def create_child_node(short_title, definition_block, node_type)
       child_node = NestedNode.new(
         node,
@@ -60,14 +70,6 @@ class PublicChartTree
         node_map,
         definition_block,
       )
-    end
-
-    def id_component(id_component)
-      embedded_node.id_component = id_component
-    end
-
-    def dimensions(*dimensions)
-      embedded_node.dimensions = dimensions
     end
   end
 end
