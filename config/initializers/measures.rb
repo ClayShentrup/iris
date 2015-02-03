@@ -47,9 +47,8 @@ MEASURES = {
   },
   SCIP_INF_4: {
     short_title: 'Cardiac Surgery Patients Controlled Blood Glucose',
-    long_title: 'Heart surgery patients whose blood sugar ' \
-               '(blood glucose) is kept under good control in the ' \
-               'days right after surgery',
+    long_title: 'Heart surgery patients whose blood sugar (blood glucose) is ' \
+                'kept under good control 18-24 hours after surgery',
   },
   SCIP_INF_9: {
     short_title: 'Urinary Catheter Removed',
