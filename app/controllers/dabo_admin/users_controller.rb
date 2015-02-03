@@ -13,8 +13,7 @@ module DaboAdmin
     end
 
     def prevent_blank_password_from_being_saved(params)
-      params.delete(:password) if params.fetch(:password, nil).blank?
-      params
+      params.tap { |p| p.delete(:password) if p.fetch(:password).blank? }
     end
   end
 end
