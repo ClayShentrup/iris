@@ -55,6 +55,18 @@ Iris uses [RSpec](http://rspec.info/) for ruby tests and [Jasmine](http://jasmin
 - `rake jasmine` will start the Jasmine server. Point your browser to `localhost:8888` to run all javascript specs in the browser. The suite will run every time this page is re-loaded.
 - `rake jasmine:ci` will run Jasmine specs on the command line without the need for a browser.
 
+### Javascript Fixtures ###
+In your controllers specs, wrap any command that gets a response (like get :show) in
+`save_fixtures 'fixture name' do`. This will generate an html file in
+`spec/javascripts/features/`.
+
+Then in your jasmine specs, use `loadFixtures('the-generated-file.html')`
+in a beforeEach to have it available in the `#body` div.
+
+If you are testing features that are hiding behind a feature flip, you will
+need to run `enable_feature :feature_name` inside the `save_fixture` block
+to get it in the generated fixture.
+
 ### Continuous Integration ###
 
 Tests are run on each branch on GitHub via [Semaphore](https://semaphoreapp.com/)

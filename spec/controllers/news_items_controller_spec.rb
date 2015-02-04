@@ -6,6 +6,13 @@ RSpec.describe NewsItemsController do
   it_behaves_like 'an ApplicationController'
 
   describe 'GET index' do
+    save_fixture 'default' do
+      enable_feature :navbar_search
+      get :index
+    end
+  end
+
+  describe 'GET index' do
     before { get :index }
 
     specify { expect(response).to be_success }

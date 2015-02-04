@@ -11,7 +11,7 @@ class Tests < Thor
   COMMANDS = {
     'rubocop' => 'bundle exec rubocop --rails',
     'jscs' => 'bundle exec jscs .',
-    'jshint' => 'bundle exec jshintt .',
+    'jshint' => 'bundle exec jshint .',
     'cane' => 'bundle exec cane',
     'rails_best_practices' => 'bundle exec rails_best_practices',
     'jasmine' => 'rake jasmine:ci',
@@ -25,11 +25,13 @@ class Tests < Thor
 
   desc :save_jasmine_fixtures, 'Build jasmine fixtures from rspec'
   def save_jasmine_fixtures
+    require_relative '../../spec/support/jasmine_macros'
     RSpec::Core::RakeTask.new(:fixtures) do |t|
+      t.rspec_opts = ['-e', "'#{JasmineMacros::SPEC_DESCRIPTION}'"]
       t.verbose = true
       t.pattern = 'spec/controllers/*_spec.rb'
     end
-    Rake::Task["fixtures"].execute
+    Rake::Task['fixtures'].execute
   end
 
   private

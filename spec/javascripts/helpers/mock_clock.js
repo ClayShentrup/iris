@@ -1,3 +1,5 @@
+'use strict';
+
 beforeEach(function() {
   jasmine.clock().install();
 });

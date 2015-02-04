@@ -24,4 +24,8 @@ class Feature < ActiveRecord::Base
   feature :pristine_example,
           default: false,
           description: 'How our code should look.'
+
+  feature :navbar_search,
+          default: false,
+          description: 'Initial navbar search UI'
 end
