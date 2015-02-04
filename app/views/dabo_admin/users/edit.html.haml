@@ -1,0 +1,7 @@
+%h1 Editing User
+
+= render 'form', user: @user
+
+= link_to 'Show', dabo_admin_user_path(@user)
+\|
+= link_to 'Back', dabo_admin_users_path

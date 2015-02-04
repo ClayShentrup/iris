@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::HospitalsController do
-  login(:user)
+  login(:dabo_admin)
 
   let(:invalid_attributes) do
     attributes_for(Hospital, provider_id: '', name: '', city: '', state: '')
@@ -13,4 +13,6 @@ RSpec.describe DaboAdmin::HospitalsController do
   it_behaves_like 'an ApplicationController create'
   it_behaves_like 'an ApplicationController show'
   it_behaves_like 'an ApplicationController delete'
+
+  it_behaves_like 'a Dabo Admin page'
 end

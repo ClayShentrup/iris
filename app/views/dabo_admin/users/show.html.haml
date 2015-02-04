@@ -1,0 +1,15 @@
+%p#notice= notice
+
+%p
+  %b Email:
+  = @user.email
+  = "(unconfirmed email: #{@user.unconfirmed_email})" if @user.unconfirmed_email
+%p
+  %b Is Dabo Admin:
+  = @user.is_dabo_admin
+
+= link_to 'Edit', edit_dabo_admin_user_path(@user)
+\|
+= link_to 'Destroy',  dabo_admin_user_path(@user),  method: :delete, data: { confirm: 'Are you sure?' }
+\|
+= link_to 'Back', dabo_admin_users_path

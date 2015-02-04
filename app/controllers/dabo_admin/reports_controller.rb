@@ -1,6 +1,8 @@
 module DaboAdmin
   # Controller for Reporting panel
   class ReportsController < ApplicationController
+    before_action EnsureAdminFilter
+
     def index
       report_and_date = Reporting::ReportFetcher.call(
         report_date_string: params.fetch(:logged_at, nil),

@@ -1,6 +1,8 @@
 module DaboAdmin
   # A controller for Hospital Systems Admin Panel
   class HospitalSystemsController < ApplicationController
+    before_action EnsureAdminFilter
+
     private
 
     def model_params

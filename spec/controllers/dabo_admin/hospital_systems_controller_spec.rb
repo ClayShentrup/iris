@@ -2,9 +2,9 @@ require 'rails_helper'
 
 RSpec.describe DaboAdmin::HospitalSystemsController do
   let(:invalid_attributes) { attributes_for(HospitalSystem, name: '') }
-  login(:user)
-  it_behaves_like 'an ApplicationController'
+  login(:dabo_admin)
 
+  it_behaves_like 'an ApplicationController'
   it_behaves_like 'an ApplicationController index'
   it_behaves_like 'an ApplicationController create'
   it_behaves_like 'an ApplicationController new'
@@ -12,6 +12,8 @@ RSpec.describe DaboAdmin::HospitalSystemsController do
   it_behaves_like 'an ApplicationController show'
   it_behaves_like 'an ApplicationController edit'
   it_behaves_like 'an ApplicationController update'
+
+  it_behaves_like 'a Dabo Admin page'
 
   context 'performance', :performance do
     before do
