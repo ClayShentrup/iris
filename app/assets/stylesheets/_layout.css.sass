@@ -25,6 +25,11 @@
 .inner_padding_base
   padding: $buffer_base
 
+.inner_padding_large
+  padding: $buffer_base
+  +media($desktop)
+    padding: $buffer_large
+
 .inner_padding_small
   padding: $buffer_small
 
@@ -33,8 +38,11 @@
   padding-right: $buffer_base
 
 .vertical_padding_large
-  padding-left: $buffer_large
-  padding-right: $buffer_large
+  padding-left: $buffer_base
+  padding-right: $buffer_base
+  +media($desktop)
+    padding-left: $buffer_large
+    padding-right: $buffer_large
 
 .vertical_padding_small
   padding-left: $buffer_small
