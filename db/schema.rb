@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204194257) do
+ActiveRecord::Schema.define(version: 20150204213419) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,12 @@ ActiveRecord::Schema.define(version: 20150204194257) do
 
   add_index "accounts", ["virtual_system_type", "virtual_system_id"], name: "index_accounts_on_virtual_system_type_and_virtual_system_id", using: :btree
 
+  create_table "cars", force: :cascade do |t|
+    t.string   "make"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "dimension_multi_measures", force: :cascade do |t|
     t.string   "provider_id"
     t.string   "measure_id"
@@ -35,8 +41,6 @@ ActiveRecord::Schema.define(version: 20150204194257) do
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
-
-  add_index "dimension_multi_measures", ["provider_id"], name: "index_dimension_multi_measures_on_provider_id", using: :btree
 
   create_table "dimension_samples", force: :cascade do |t|
     t.string   "socrata_provider_id"
