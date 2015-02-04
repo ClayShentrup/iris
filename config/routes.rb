@@ -1,13 +1,7 @@
 Rails.application.routes.draw do
-  root to: 'news_feeds#show'
-  devise_scope :user do
-    devise_for :users
-    get 'sign_in', to: 'sessions#new'
-    get 'sign_out', to: 'sessions#destroy'
-  end
-
   shallow do # we should always use shallow routes, internally at least
     mount Flip::Engine => '/flip'
+    devise_for :users
     resource :status, only: :show
 
     namespace :dabo_admin do
@@ -22,6 +16,9 @@ Rails.application.routes.draw do
     resource :metrics, only: :show, controller: :charts_root
     get 'metrics/*id', to: 'public_charts#show'
 
-    get 'news', to: 'news_items#index'
+    # product-friendly aliases
+    get :news, to: 'news_items#index'
+
+    root 'news_items#index'
   end
 end
