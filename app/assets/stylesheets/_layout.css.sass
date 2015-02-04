@@ -1,14 +1,20 @@
 .top_buffer_large
-  margin-top: $large_buffer
+  margin-top: $buffer_large
 
 .bottom_buffer_large
-  margin-bottom: $large_buffer
+  margin-bottom: $buffer_large
 
-.top_buffer
-  margin-top: $buffer
+.top_buffer_base
+  margin-top: $buffer_base
 
-.bottom_buffer
-  margin-bottom: $buffer
+.bottom_buffer_base
+  margin-bottom: $buffer_base
+
+.top_buffer_small
+  margin-top: $buffer_small
+
+.bottom_buffer_small
+  margin-bottom: $buffer_small
 
 .no_margin
   margin: 0
@@ -16,11 +22,12 @@
 .no_padding
   padding: 0
 
-.centered
-  margin: 0 auto
-
 .inner_padding
-  padding: rem(8)
+  padding: $buffer_small
+
+.centered
+  margin-left: auto
+  margin-right: auto
 
 .default_line_height
   line-height: $line_height_base

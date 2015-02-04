@@ -1,8 +1,11 @@
 $max-width: em(1088)
 
 // Colors
-$grey: #acacac
-$dabo-blue: #008ce3
+$dabo_blue: #008ce3
+$dabo_blue_light: lighten($dabo_blue, 20%)
+$grey: #ccc
+$grey_light: lighten($grey, 50%)
+$grey_lighter: lighten($grey, 90%)
 $white: #fff
 
 // Breakpoints
@@ -12,21 +15,51 @@ $mobile: max-width 767px
 
 // Typography
 $font_size_base: 14px
-$font_size_large: ceil(($font_size_base * 1.25))
-$font_size_small: ceil(($font_size_base * 0.85))
-$font_size_h1: floor(($font_size_base * 2))
-$font_size_h2: floor(($font_size_base * 1.7))
-$font_size_h3: ceil(($font_size_base * 1.25))
+$font_size_large: rem(ceil(($font_size_base * 1.25)))
+$font_size_small: rem(ceil(($font_size_base * 0.85)))
+$font_size_h1: rem(floor(($font_size_base * 2)))
+$font_size_h2: rem(floor(($font_size_base * 1.7)))
+$font_size_h3: rem(ceil(($font_size_base * 1.25)))
 $font_size_h4: $font_size_base
 
 $line_height_base: 1.428571429
-$line_height_computed: floor(($font_size_base * $line_height_base))
+$line_height_large: 1.3333333
+$line_height_small: 1.5
+$line_height_computed: rem(floor(($font_size_base * $line_height_base)))
 
-$headings-font-family: inherit
-$headings-font-weight: 500
-$headings-line-height: 1.1
-$headings-color: inherit
+$headings_font_weight: 500
+$headings_line_height: 1.1
+
+// Border Radii
+$border_radius_base: rem(4)
+$border_radius_large: rem(6)
+$border_radius_small: rem(3)
 
 // Layouts
-$large_buffer: rem(30)
-$buffer: rem(8)
+$buffer_large: rem(30)
+$buffer_base: rem(15)
+$buffer_small: rem(8)
+$buffer_xs: rem(4)
+
+$padding_base_vertical: rem(6)
+$padding_base_horizontal: rem(12)
+$padding_large_vertical: rem(10)
+$padding_large_horizontal: rem(16)
+$padding_small_vertical: rem(5)
+$padding_small_horizontal: rem(10)
+$padding_xs_vertical: rem(1)
+$padding_xs_horizontal: rem(5)
+
+// Form Inputs
+$input_bg: white
+$input_bg_disabled: $grey_light
+$input_color: #000
+$input_border: $grey
+$input_border_radius_base: $border_radius_base
+$input_border_radius_large: $border_radius_large
+$input_border_radius_small: $border_radius_small
+$input_border_focus: $dabo_blue
+$input_color_placeholder: $grey_lighter
+$input_height_base: $line_height_computed + $padding_base_vertical + .5
+$input_height_large: ceil($font_size_large * $line_height_large) + $padding_large_vertical + .5
+$input_height_small: floor($font_size_small * $line_height_small) + $padding_small_vertical + .5
