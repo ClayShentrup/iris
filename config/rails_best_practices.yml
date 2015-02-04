@@ -36,7 +36,10 @@ RemoveUnusedMethodsInControllersCheck:
     '*#model_params'
   ]
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
-RemoveUnusedMethodsInModelsCheck: { except_methods: [] }
+RemoveUnusedMethodsInModelsCheck:
+  except_methods: [
+    'Dimension#table_name_prefix'
+  ]
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
 ReplaceInstanceVariableWithLocalVariableCheck: { }
 # This check does not property look at inherited controller methods
