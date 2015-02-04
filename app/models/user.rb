@@ -33,5 +33,5 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :confirmable
   validates :email, presence: true
-  validates :is_dabo_admin, exclusion: { in: [nil] }
+  validates :is_dabo_admin, inclusion: { in: [true, false] }
 end

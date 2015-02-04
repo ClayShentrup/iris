@@ -34,18 +34,19 @@ require './app/models/user'
 
 RSpec.describe User, type: :model do
   describe 'columns' do
-    it { is_expected.to have_db_column(:email).of_type(:string) }
-    it do
+    specify do
+      is_expected.to have_db_column(:email).of_type(:string)
+        .with_options(null: false)
+    end
+    specify do
       is_expected.to have_db_column(:is_dabo_admin).of_type(:boolean)
-        .with_options(
-          null: false,
-          default: false,
-        )
+        .with_options(null: false)
     end
   end
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_exclusion_of(:is_dabo_admin).in_array([nil]) }
+    specify { is_expected.to validate_presence_of(:email) }
+    specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
+    specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
   end
 end
