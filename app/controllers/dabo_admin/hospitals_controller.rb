@@ -7,7 +7,15 @@ module DaboAdmin
 
     def model_params
       params.require(:hospital)
-        .permit(:name, :provider_id, :city, :state, :hospital_system_id)
+        .permit(
+          :city,
+          :hospital_system_id,
+          :hospital_type,
+          :name,
+          :provider_id,
+          :state,
+          :zip_code,
+        )
     end
   end
 end

@@ -18,10 +18,11 @@ FactoryGirl.define do
     name 'My Hospital'
     city 'San Francisco'
     state 'CA'
-    hospital_system
+    zip_code '90210'
+    hospital_type 'Childrens'
 
-    trait :without_hospital_system do |hospital|
-      hospital.hospital_system nil
-    end
+    # trait :without_hospital_system do |hospital|
+    #   hospital.hospital_system nil
+    # end
   end
 end

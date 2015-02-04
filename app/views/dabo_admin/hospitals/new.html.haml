@@ -18,6 +18,12 @@
     = f.label :state
     = f.text_field :state
   .field
+    = f.label :zip_code
+    = f.text_field :zip_code
+  .field
+    = f.label :hospital_type
+    = f.text_field :hospital_type
+  .field
     = f.label :hospital_system_id
     = f.collection_select(:hospital_system_id, |
     HospitalSystem.all, |

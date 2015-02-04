@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150204220148) do
+ActiveRecord::Schema.define(version: 20150204223326) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20150204220148) do
     t.string   "value"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.string   "dataset_id"
   end
 
   create_table "dimension_sample_single_measures", force: :cascade do |t|
@@ -65,12 +66,12 @@ ActiveRecord::Schema.define(version: 20150204220148) do
   add_index "hospital_systems", ["name"], name: "index_hospital_systems_on_name", using: :btree
 
   create_table "hospitals", force: :cascade do |t|
-    t.string  "name"
-    t.string  "zip_code"
-    t.string  "hospital_type"
-    t.string  "provider_id"
-    t.string  "state"
-    t.string  "city"
+    t.string  "name",               null: false
+    t.string  "zip_code",           null: false
+    t.string  "hospital_type",      null: false
+    t.string  "provider_id",        null: false
+    t.string  "state",              null: false
+    t.string  "city",               null: false
     t.integer "hospital_system_id"
   end
 

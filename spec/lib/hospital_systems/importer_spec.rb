@@ -9,15 +9,15 @@ RSpec.describe HospitalSystems::Importer do
   let(:file_path) { './spec/fixtures/hospital_systems_importer/test_file.xls' }
 
   let!(:hospital_in_universal_system) do
-    create(:hospital, :without_hospital_system, provider_id: '200001')
+    create(:hospital, provider_id: '200001')
   end
 
   let!(:hospital_in_resources_system) do
-    create(:hospital, :without_hospital_system, provider_id: '200002')
+    create(:hospital, provider_id: '200002')
   end
 
   let!(:hospital_without_system) do
-    create(:hospital, :without_hospital_system, provider_id: '200003')
+    create(:hospital, provider_id: '200003')
   end
 
   let(:universal_system_name) { 'Universal Health Services' }
@@ -98,9 +98,7 @@ RSpec.describe HospitalSystems::Importer do
   end
 
   context 'with block to handle output messages' do
-    let(:test_logger) do
-      Struct.new(:messages).new([])
-    end
+    let(:test_logger) { double('test_logger', messages: []) }
 
     let(:messages) { test_logger.messages.compact }
 

@@ -18,12 +18,30 @@ require './app/models/hospital_system'
 
 RSpec.describe Hospital do
   describe 'columns' do
-    it { is_expected.to have_db_column(:name).of_type(:string) }
-    it { is_expected.to have_db_column(:zip_code).of_type(:string) }
-    it { is_expected.to have_db_column(:hospital_type).of_type(:string) }
-    it { is_expected.to have_db_column(:provider_id).of_type(:string) }
-    it { is_expected.to have_db_column(:state).of_type(:string) }
-    it { is_expected.to have_db_column(:city).of_type(:string) }
+    it do
+      is_expected.to have_db_column(:name).of_type(:string)
+        .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:zip_code).of_type(:string)
+        .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:hospital_type).of_type(:string)
+        .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:provider_id).of_type(:string)
+        .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:state).of_type(:string)
+        .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:city).of_type(:string)
+        .with_options(null: false)
+    end
   end
 
   describe 'validations' do
@@ -33,7 +51,11 @@ RSpec.describe Hospital do
       it { is_expected.to be_valid }
     end
 
-    it { is_expected.to validate_uniqueness_of(:provider_id) }
+    context 'requires a record to be saved' do
+      before { create(described_class) }
+      it { is_expected.to validate_uniqueness_of(:provider_id) }
+    end
+
     it { is_expected.to validate_presence_of(:provider_id) }
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validate_presence_of(:city) }
