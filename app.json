@@ -19,7 +19,8 @@
     "MAILTRAP_PORT": "2525",
     "MAILTRAP_USERNAME": "will be overwritten",
     "MAILTRAP_PASSWORD": "will be overwritten",
-    "MAILTRAP_API_TOKEN": "will be overwritten"
+    "MAILTRAP_API_TOKEN": "will be overwritten",
+    "PR_APP_NAME": "will be overwritten"
   },
   "addons":[
     "heroku-postgresql:hobby-dev",
