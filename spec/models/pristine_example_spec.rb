@@ -14,8 +14,14 @@ require './app/models/pristine_example'
 
 RSpec.describe PristineExample do
   describe 'columns' do
-    it { is_expected.to have_db_column(:name).of_type(:string) }
-    it { is_expected.to have_db_column(:description).of_type(:text) }
+    specify do
+      is_expected.to have_db_column(:name).of_type(:string)
+        .with_options(null: false)
+    end
+    specify do
+      is_expected.to have_db_column(:description).of_type(:text)
+        .with_options(null: false)
+    end
   end
 
   describe 'validations' do
