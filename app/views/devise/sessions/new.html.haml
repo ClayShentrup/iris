@@ -2,14 +2,13 @@
   #login_logo.centered.bottom_buffer_large
   %h2.bottom_buffer_base Sign In
   = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-    .has_icon
-      .field
-        = f.label :email, class: 'bottom_buffer_small'
-        = f.email_field :email, autofocus: true, placeholder: 'name@email.com', class: 'form_control border_grey bottom_buffer_base'
-      .field
-        = f.label :password, class: 'bottom_buffer_small'
-        = f.password_field :password, autocomplete: "off", class: 'form_control border_grey bottom_buffer_base'
+    .field
+      = f.label :email, class: 'bottom_buffer_small'
+      = f.email_field :email, autofocus: true, placeholder: 'name@email.com', class: 'form_control border_grey bottom_buffer_base'
+    .field
+      = f.label :password, class: 'bottom_buffer_small'
+      = f.password_field :password, autocomplete: "off", class: 'form_control border_grey bottom_buffer_base'
 
-      .actions.top_buffer_base
-        = f.submit "Sign in"
-        = link_to "Forgot Password?", new_password_path(resource_name)
+    .actions.top_buffer_base
+      = f.submit "Sign in"
+      = link_to "Forgot Password?", new_password_path(resource_name)

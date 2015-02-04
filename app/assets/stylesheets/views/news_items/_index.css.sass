@@ -2,42 +2,11 @@
   padding: 0 $buffer_base
 
 #news_feed_filter
-  margin-top: rem(-16)
-
-  .icon
-    width: rem(30)
-    display: inline-block
-
-  .news_feed_filter_item
-    line-height: rem(46)
-    padding: 0 rem(10)
-
   .dropdown
     display: none
 
-+media($tablet_portrait)
++media($tablet_portrait_and_desktop)
   #news_feed_filter
     .news_feed_filter_item
-      border-width: 0
-      padding: 0
-      text-align: center
+      border: none
       +span-columns(3)
-
-+media($desktop)
-  #news_feed_filter
-    margin-top: rem(15)
-    +span-columns(3, block-collapse)
-    float: right
-
-    .news_feed_filter_item
-      border-width: rem(1)
-      padding: 0 rem(10)
-      text-align: left
-      +span_columns(12)
-
-  #news_feed_content
-    padding: 0
-    +span-columns(9)
-
-    .card_container
-      margin-left: 0

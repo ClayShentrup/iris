@@ -11,6 +11,7 @@ $white: #fff
 // Breakpoints
 $desktop: min-width 850px
 $tablet_portrait: min-width 768px max-width 849px
+$tablet_portrait_and_desktop: min-width 768px
 $mobile: max-width 767px
 
 // Typography
@@ -18,14 +19,10 @@ $font_size_base: 14px
 $font_size_large: rem(ceil(($font_size_base * 1.25)))
 $font_size_small: rem(ceil(($font_size_base * 0.85)))
 $font_size_h1: rem(floor(($font_size_base * 2)))
-$font_size_h2: rem(floor(($font_size_base * 1.7)))
+$font_size_h2: rem(ceil(($font_size_base * 1.7)))
 $font_size_h3: rem(ceil(($font_size_base * 1.25)))
 $font_size_h4: $font_size_base
-
-$line_height_base: 1.428571429
-$line_height_large: 1.3333333
-$line_height_small: 1.5
-$line_height_computed: rem(floor(($font_size_base * $line_height_base)))
+$font_size_icon_medium: rem(ceil(($font_size_base * 1.42)))
 
 $headings_font_weight: 500
 $headings_line_height: 1.1
@@ -50,6 +47,14 @@ $padding_small_horizontal: rem(10)
 $padding_xs_vertical: rem(1)
 $padding_xs_horizontal: rem(5)
 
+// Line Heights
+$line_height_base: 1.428571429
+$line_height_computed: floor($font_size_base * $line_height_base)
+$line_height_buffer_base: floor($line_height_computed * ($buffer_base * 2))
+$line_height_extra_large: $font_size_base * 2
+$line_height_large: 1.5
+$line_height_small: 1.3333333
+
 // Form Inputs
 $input_bg: white
 $input_bg_disabled: $grey_light
@@ -60,6 +65,6 @@ $input_border_radius_large: $border_radius_large
 $input_border_radius_small: $border_radius_small
 $input_border_focus: $dabo_blue
 $input_color_placeholder: $grey_lighter
-$input_height_base: $line_height_computed + $padding_base_vertical + .5
+$input_height_base: rem($line_height_computed) + $padding_base_vertical + .5
 $input_height_large: ceil($font_size_large * $line_height_large) + $padding_large_vertical + .5
 $input_height_small: floor($font_size_small * $line_height_small) + $padding_small_vertical + .5
