@@ -4,6 +4,7 @@ module DimensionSample
   # Corresponds to a dataset like 7xux-kdpw, which has multiple rows per
   # provider.
   class MultiMeasure < ActiveRecord::Base
+    validates :dataset_id, presence: true
     validates :provider_id, presence: true
     validates :measure_id, presence: true
     validates :column_name, presence: true
