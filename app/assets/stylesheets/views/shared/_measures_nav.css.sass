@@ -1,63 +1,36 @@
-$btn_padding: rem(10)
-
 #measures_nav_container.col3
   +media($desktop)
     @include span-columns(3 of 12, block-collapse)
     @include omega
 
 #measures_nav_container
-  margin-top: rem(-17)
-  font-size: rem(14)
+  margin-top: -($buffer * 1)
 
 .measures_nav_btn
   height: rem(45)
-  line-height: rem(43)
+  line-height: rem(28)
   position: relative
-
-  a
-    display: block
 
   .icon
     color: $dabo-blue
 
-  .icon_float_right
-    padding-right: $btn_padding
-    margin-left: rem(-10)
-
-  .text_ellipsis
-    padding-left: $btn_padding
-
   .current_node_text
-    display: block
-    margin: 0 auto
-    padding-left: 0
-    text-align: center
     width: 80%
     +media($desktop)
       @extend .hide_on_desktop
-
-.measures_nav_current_node
-  text-align: center
-
-  .text_ellipsis
-    padding-left: 0
 
 .back_btn_container
   +media($desktop)
     margin-bottom: 0
 
   .back_btn
-    display: block
-    padding: 0 $btn_padding
     position: absolute
     +media($tablet_portrait)
       width: 25%
     +media($desktop)
       width: 95%
 
-  .parent_node_text
-    margin-left: rem(8)
-    padding-left: 0
-
-.forward_btn
+.forward_btn,
+.current_node_text,
+.back_btn
   display: block

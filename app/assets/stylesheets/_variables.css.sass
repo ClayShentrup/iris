@@ -1,11 +1,32 @@
 $max-width: em(1088)
 
-//**** Colors ****
+// Colors
 $grey: #acacac
 $dabo-blue: #008ce3
 $white: #fff
 
-//***** Breakpoints *****
-$mobile: max-width 767px
-$tablet_portrait: min-width 768px max-width 849px
+// Breakpoints
 $desktop: min-width 850px
+$tablet_portrait: min-width 768px max-width 849px
+$mobile: max-width 767px
+
+// Typography
+$font_size_base: 14px
+$font_size_large: ceil(($font_size_base * 1.25))
+$font_size_small: ceil(($font_size_base * 0.85))
+$font_size_h1: floor(($font_size_base * 2))
+$font_size_h2: floor(($font_size_base * 1.7))
+$font_size_h3: ceil(($font_size_base * 1.25))
+$font_size_h4: $font_size_base
+
+$line_height_base: 1.428571429
+$line_height_computed: floor(($font_size_base * $line_height_base))
+
+$headings-font-family: inherit
+$headings-font-weight: 500
+$headings-line-height: 1.1
+$headings-color: inherit
+
+// Layouts
+$large_buffer: rem(30)
+$buffer: rem(8)

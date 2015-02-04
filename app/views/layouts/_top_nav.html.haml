@@ -1,17 +1,17 @@
-#top_nav.clearfix
-  .logo.border_grey
+#top_nav.bottom_buffer.clearfix
+  .logo.border_grey.inner_padding.default_line_height.text_center.float_left
     = link_to 'Home', root_url
-  .news_feed.nav_btns.border_grey
+  .news_feed.border_grey.inner_padding.default_line_height.text_center.float_left
     = link_to 'News Feed', news_path
-  .metrics.nav_btns.border_grey
+  .metrics.border_grey.inner_padding.default_line_height.text_center.float_left
     = link_to 'Metrics', metrics_path
-  - if feature? :navbar_search
+  .menu.border_grey.inner_padding.default_line_height.text_center.float_left
     .search.hide_on_tablet_portrait.hide_on_desktop.border_bottom_grey.border_top_grey
       %form.clearfix{action: '/search', method: 'get'}
-        %input#q{name: 'q', type: 'text'}
+
         %span.icon.icon_large.icon_search
     .search.hide_on_mobile.border_bottom_grey.border_top_grey
       %form.clearfix{action: '/search', method: 'get'}
         %input#q{name: 'q', type: 'text'}
         %span.icon.icon_large.icon_float_right.icon_search
-  .menu_icon.border_grey Menu
+    .menu_text.hide_on_mobile.hide_on_tablet_portrait.text_center.float_left Menu

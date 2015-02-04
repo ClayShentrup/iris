@@ -1,18 +1,18 @@
 #measures_nav_container.col3
-  .measures_nav_btn.back_btn_container.border_grey.clearfix
+  .measures_nav_btn.inner_padding.back_btn_container.border_grey.clearfix
     = link_to(back_button_options(node),
       { class: 'back_btn text_ellipsis' }) do
       %span.icon.icon_large.icon_arrow_large_left.icon_float_left
       %span.parent_node_text.hide_on_mobile= parent_link_text(node)
-    %span.current_node_text.hide_on_desktop.text_ellipsis
+    %span.current_node_text.centered.text_center.hide_on_desktop.text_ellipsis
       = node.short_title
-  .measures_nav_btn.measures_nav_current_node.hide_on_mobile.hide_on_tablet_portrait.border_grey
+  .measures_nav_btn.inner_padding.measures_nav_current_node.text_center.hide_on_mobile.hide_on_tablet_portrait.border_grey
     %span.text_ellipsis
       = node.short_title
 
   - if node.children
     - node.children.each do |child|
-      .measures_nav_btn.forward_btn.hide_on_mobile.hide_on_tablet_portrait.border_grey.clearfix
+      .measures_nav_btn.inner_padding.forward_btn.hide_on_mobile.hide_on_tablet_portrait.border_grey.clearfix
         = link_to id: child.id do
           %span.text_ellipsis
             = child.short_title
