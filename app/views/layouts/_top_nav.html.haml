@@ -1,17 +1,19 @@
-#top_nav.bottom_buffer.clearfix
-  .logo.border_grey.inner_padding.default_line_height.text_center.float_left
+#top_nav.bottom_buffer_base.clearfix
+  .logo.inner_padding_small.line_height_base.text_center.text_hide.float_left.border_grey
     = link_to 'Home', root_url
-  .news_feed.border_grey.inner_padding.default_line_height.text_center.float_left
+  .news_feed.nav_btns.inner_padding_small.line_height_base.text_center.float_left.border_grey
     = link_to 'News Feed', news_path
-  .metrics.border_grey.inner_padding.default_line_height.text_center.float_left
+  .metrics.nav_btns.inner_padding_small.line_height_base.text_center.float_left.border_grey
     = link_to 'Metrics', metrics_path
-  .menu.border_grey.inner_padding.default_line_height.text_center.float_left
-    .search.hide_on_tablet_portrait.hide_on_desktop.border_bottom_grey.border_top_grey
-      %form.clearfix{action: '/search', method: 'get'}
-
-        %span.icon.icon_large.icon_search
-    .search.hide_on_mobile.border_bottom_grey.border_top_grey
-      %form.clearfix{action: '/search', method: 'get'}
-        %input#q{name: 'q', type: 'text'}
-        %span.icon.icon_large.icon_float_right.icon_search
-    .menu_text.hide_on_mobile.hide_on_tablet_portrait.text_center.float_left Menu
+  - if feature? :navbar_search
+    .search.hide_on_tablet_portrait.hide_on_desktop.line_height_base.border_bottom_grey.border_top_grey
+      %form{action: '/search', method: 'get'}
+        .has_icon.clearfix.vertical_padding_small
+          %input.form_control.float_left.no_border#q{name: 'q', type: 'text'}
+          %span.no_margin.icon.icon_large.icon_search.form_control_icon.text_center
+    .search.hide_on_mobile.line_height_base.border_bottom_grey.border_top_grey
+      %form{action: '/search', method: 'get'}
+        .has_icon.clearfix.vertical_padding_small
+          %input.form_control.float_left.no_border#q{name: 'q', type: 'text'}
+          %span.icon.icon_large.icon_search.form_control_icon.text_center
+  .menu_icon.inner_padding_small.text_hide.border_grey Menu

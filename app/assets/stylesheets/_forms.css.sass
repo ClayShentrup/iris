@@ -31,22 +31,12 @@ form
       box-shadow: none
 
   .has_icon
-    position: relative
-
     .form_control
-      padding-right: ($input_height_base * 1.25)
+      @include calc(width, "100% - (#{$input_height_base} * 1.25)")
 
     .form_control_icon
-      position: absolute
-      top: 0
-      right: 0
-      z-index: 2
       display: block
-      width: $input_height_base
-      height: $input_height_base
-      line-height: $input_height_base
-      text-align: center
-      pointer-events: none
+      @extend .no_margin
 
     label
       & ~ .form_control_icon
