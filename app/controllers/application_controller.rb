@@ -64,12 +64,6 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  protected
-
-  def after_sign_in_path_for(_resource)
-    metrics_path
-  end
-
   private
 
   def model_instance_variable=(model_instance)
