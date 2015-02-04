@@ -7,6 +7,7 @@ module Reporting
                options.fetch(:url),
                '-o',
                options.fetch(:filepath),
+               '-s',
         )
       end
     end
