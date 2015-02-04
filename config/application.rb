@@ -87,5 +87,11 @@ module Iris
       authentication: :cram_md5,
       enable_starttls_auto: true,
     }
+
+    config.to_prepare do
+      Devise::SessionsController.layout 'authentication'
+      Devise::PasswordsController.layout 'authentication'
+      Devise::ConfirmationsController.layout 'authentication'
+    end
   end
 end
