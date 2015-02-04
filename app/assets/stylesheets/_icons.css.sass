@@ -9,18 +9,13 @@
   color: $grey
   font-size: rem(15)
 
-.icon_float_right
-  float: right
+  &.float_right,
+  &.icon_right
+    margin-left: $padding_base_vertical
 
-.icon_float_left
-  float: left
-  margin-right: rem(8)
-
-.icon_right
-  margin-left: rem(5)
-
-.icon_left
-  margin-right: rem(5)
+  &.float_left,
+  &.icon_left
+    margin-right: $padding_base_vertical
 
 .icon:before
   font-family: 'DaboIcons'

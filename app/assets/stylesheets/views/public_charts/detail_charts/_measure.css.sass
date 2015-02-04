@@ -1,61 +1,22 @@
-$main_content_spacing: rem(30)
-
 .detail_chart
-  padding: rem(10)
-  height: rem(200)
+  height: rem(200) // Temporary height for wireframing purposes
   margin: 0 rem(-10) 0
   +media($tablet_portrait)
-    height: rem(300)
+    height: rem(300) // Temporary height for wireframing purposes
     margin: 0 rem(-10)
   +media($desktop)
-    height: rem(400)
+    height: rem(400) // Temporary height for wireframing purposes
     margin: rem(20) 0 0 rem(-30)
 
 .measure_detail
   > div
     +row()
 
-  .new_conversation,
-  .content,
-  .new_comment
-    padding: rem(15)
-
-  .measure_measure,
-  .content
-    height: rem(200)
-
-  .new_conversation,
-  .conversation
-    margin-top: $main_content_spacing
-
-  .new_conversation
-    margin-bottom: $main_content_spacing
-
-  .measure_detail_actions
-    padding: rem(10)
-
   .actions
     margin: 0 rem(-10)
     +media($desktop)
-      margin-left: rem(-30)
+      margin: 0 0 0 rem(-30)
 
   .action
+    // TODO: Change this when responsive grid refactored
     +span-columns(3)
-    text-align: center
-
-  +media($desktop)
-    .measure_detail_actions,
-    .measure_measure
-      margin-left: (-1 * $main_content_spacing)
-
-  .measure_measure
-    padding: rem(15) $main_content_spacing
-
-  .measure_detail_conversations
-    padding: 0 rem(15) rem(15)
-    +media($desktop)
-      padding: 0
-
-    .title
-      margin: 0 rem(15)
-      padding: rem(15) 0

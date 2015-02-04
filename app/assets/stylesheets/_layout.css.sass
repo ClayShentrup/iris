@@ -22,15 +22,21 @@
 .no_padding
   padding: 0
 
-.inner_padding
+.inner_padding_base
+  padding: $buffer_base
+
+.inner_padding_small
   padding: $buffer_small
 
 .centered
   margin-left: auto
   margin-right: auto
 
-.default_line_height
+.line_height_base
   line-height: $line_height_base
+
+.line_height_computed
+  line-height: $line_height_computed
 
 .float_left
   float: left
