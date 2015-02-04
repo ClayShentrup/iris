@@ -3,7 +3,6 @@
     display: none
 
 +media($tablet_portrait_and_desktop)
-  #news_feed_filter
-    .news_feed_filter_item
-      border: none
-      +span-columns(3)
+  .news_feed_filter_item
+    // TODO: Replace mixin with mobile columns during work on #87564750
+    +span-columns(3)
