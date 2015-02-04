@@ -15,10 +15,12 @@ Rails.application.routes.draw do
       resources :hospital_systems
       resources :reports, only: :index
     end
-    resource :news_feed, only: :show, path: 'news'
+    resources :news_items, only: :index
     resources :pristine_examples
 
     resource :metrics, only: :show, controller: :charts_root
     get 'metrics/*id', to: 'public_charts#show'
+
+    get 'news', to: 'news_items#index'
   end
 end
