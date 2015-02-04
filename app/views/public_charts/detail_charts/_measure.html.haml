@@ -1,7 +1,7 @@
 .measure_detail
   .chart
     = render 'public_charts/detail_charts/default_chart'
-  .actions.inner_padding_small.border_bottom_grey
+  .actions.inner_padding_small.border_bottom_grey.clearfix
     .action.text_center
       %span.icon.icon_large.icon_left.icon_comments
       %span.text.hide_on_mobile Discuss
@@ -14,9 +14,9 @@
     .action.text_center
       %span.icon.icon_large.icon_left.icon_chart_trend
       %span.text.hide_on_mobile Improve
-  .card_container.top_buffer_large
+  .card_container.inner_padding_base
     .new_conversation.inner_padding_base.border_grey Start a conversation...
-    .card.top_buffer_large.border_grey
+    .card.top_buffer_base.border_grey
       .card_title.inner_padding_base.border_bottom_grey
         Conversation title
         %span.icon.float_right.icon_large.icon_comments.line_height_computed

@@ -1,22 +1,12 @@
 .detail_chart
   height: rem(200) // Temporary height for wireframing purposes
-  margin: 0 rem(-10) 0
   +media($tablet_portrait)
     height: rem(300) // Temporary height for wireframing purposes
-    margin: 0 rem(-10)
+
   +media($desktop)
     height: rem(400) // Temporary height for wireframing purposes
-    margin: rem(20) 0 0 rem(-30)
 
 .measure_detail
-  > div
-    +row()
-
-  .actions
-    margin: 0 rem(-10)
-    +media($desktop)
-      margin: 0 0 0 rem(-30)
-
   .action
     // TODO: Change this when responsive grid refactored
     +span-columns(3)
