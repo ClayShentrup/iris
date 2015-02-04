@@ -4,7 +4,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-# Jasmine is execuited as a rake task: bundle exec rake jasmine
-require 'jasmine-jquery-rails'
-
 Rails.application.load_tasks

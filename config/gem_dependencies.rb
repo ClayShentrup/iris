@@ -26,6 +26,7 @@ if Rails.env.development? || Rails.env.test?
   require 'jasmine'
   load 'rails/test_unit/testing.rake'
   load 'rails/perftest/railties/testing.tasks'
+  require 'jasmine-jquery-rails'
 end
 
 require 'dotenv' if Rails.env.development?
