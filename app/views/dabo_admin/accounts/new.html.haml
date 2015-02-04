@@ -8,21 +8,14 @@
   - @form = f
   .field.system_selection
     = f.label :system_name
-    = f.collection_select(:virtual_system_id, |
+    = f.collection_select(:virtual_system_gid, |
     VirtualHospitalSystemCollection.call, |
     :to_global_id, |
     :name, |
     include_blank: true)
-  = render 'hospital_select'
+  = render 'hospital_select', hospital_collection: @hospital_collection
   .field
-    = f.label :user
-    = f.collection_select(:users, |
-    User.all, |
-    :id, |
-    :email, |
-    {include_blank: false, include_hidden: false}, |
-    {multiple: true})
+    = f.label :users
+    = f.collection_check_boxes :user_ids, User.all, :id, :email
   .actions
     = f.submit
-
-

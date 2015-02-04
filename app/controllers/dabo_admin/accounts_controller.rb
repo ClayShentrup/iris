@@ -1,50 +1,40 @@
 module DaboAdmin
   # Dabo Admin Accounts Controller
   class AccountsController < ApplicationController
-    helper_method :hospital_collection
-
     def system_hospitals
+      @hospital_collection = HospitalCollection.call(virtual_system)
+
       render partial: 'hospital_select',
              action: 'hospital_select'
     end
 
-    def hospital_collection
-      virtual_system_id = params.fetch(:virtual_system_id, nil)
-      if virtual_system_id
-        virtual_system = GlobalID::Locator.locate virtual_system_id
-        HospitalCollection.call(virtual_system)
-      else
-        []
-      end
+    def create
+      @account = Account.new(allowed_params)
+      @account.virtual_system = virtual_system
+      @account.users = account_users
+
+      flash_success_message('created') if @account.save
+      respond_with :dabo_admin, @account
     end
 
     private
 
     def allowed_params
       params.require(:account)
-        .permit(:virtual_system_id, :default_hospital_id, users: [:id])
-    end
-
-    def model_params
-      {
-        'virtual_system_id' => virtual_system_gid.model_id,
-        'virtual_system_type' => virtual_system_gid.model_name,
-        'default_hospital_id' => params.fetch(:account)
-          .fetch(:default_hospital_id),
-        'users' => account_users,
-      }
+        .permit(:virtual_system_gid, :default_hospital_id, user_ids: [])
     end
 
     def account_users
-      if params.fetch(:account).fetch(:users, nil)
-        User.find(params.fetch(:account).fetch(:users))
-      else
-        []
-      end
+      user_ids = params.fetch(:account).fetch(:user_ids).reject(&:blank?)
+      User.find user_ids
+    end
+
+    def virtual_system
+      GlobalID::Locator.locate virtual_system_gid if virtual_system_gid
     end
 
     def virtual_system_gid
-      GlobalID.new(allowed_params.fetch(:virtual_system_id))
+      allowed_params.fetch(:virtual_system_gid, nil)
     end
   end
 end

@@ -1,4 +1,3 @@
-
 # == Schema Information
 #
 # Table name: accounts
@@ -10,14 +9,20 @@
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
+
+# An entity that represents a client account
 class Account < ActiveRecord::Base
   belongs_to :virtual_system, polymorphic: true
   belongs_to :default_hospital, class_name: 'Hospital'
   has_many :users
 
+  attr_accessor :virtual_system_gid
+
   delegate :name,
-           :hospitals,
            to: :virtual_system
   delegate :name,
            to: :default_hospital, prefix: true
+
+  validates :default_hospital, presence: true
+  validates :virtual_system, presence: true
 end
