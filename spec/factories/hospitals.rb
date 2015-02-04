@@ -21,8 +21,8 @@ FactoryGirl.define do
     zip_code '90210'
     hospital_type 'Childrens'
 
-    # trait :without_hospital_system do |hospital|
-    #   hospital.hospital_system nil
-    # end
+    trait :with_hospital_system do
+      association :hospital_system
+    end
   end
 end
