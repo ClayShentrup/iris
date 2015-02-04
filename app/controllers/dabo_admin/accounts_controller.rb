@@ -2,10 +2,11 @@ module DaboAdmin
   # Dabo Admin Accounts Controller
   class AccountsController < ApplicationController
     def system_hospitals
-      @hospital_collection = HospitalCollection.call(virtual_system)
+      hospital_collection = HospitalCollection.call(virtual_system)
 
       render partial: 'hospital_select',
-             action: 'hospital_select'
+             action: 'hospital_select',
+             locals: { hospital_collection: hospital_collection }
     end
 
     def create
