@@ -1,0 +1,77 @@
+=open_button
+  background-color: $white
+  border-bottom: none
+  height: rem(60)
+
+  .icon
+    @extend .icon_arrow_large_up
+
+#select_and_compare
+  margin: rem(16) 0
+  position: relative
+
+  &.show_hospital
+    .dropdown_button.hospital,
+    .dropdown_items.hospital
+      display: inline-block
+
+    .dropdown_button.hospital
+      +open_button
+
+  &.show_compare
+    .dropdown_button.compare,
+    .dropdown_items.compare
+      display: inline-block
+
+    .dropdown_button.compare
+      +open_button
+
+  .dropdown_button
+    height: rem(45)
+    line-height: rem(43)
+    cursor: pointer
+    padding: 0 rem(10)
+    position: relative
+    z-index: 2
+    +span-columns(6)
+
+    .text_ellipsis
+      width: 80%
+
+    .icon
+      color: $dabo-blue
+
+  .dropdown_items
+    display: none
+    left: 0
+    width: 100%
+    z-index: 1
+    margin-top: rem(-1)
+    max-height: rem(200)
+    overflow-y: scroll
+
+    .search_box
+      width: 100%
+      padding: rem(5) rem(13)
+
+      .icon_search
+        color: $dabo-blue
+
+      input
+        border: 0
+        outline: 0
+        width: 80%
+        font-size: 1rem
+        margin-left: rem(10)
+
+    ul
+      padding: rem(16) rem(40)
+
+    li
+      margin-bottom: rem(8)
+
+      &:last-of-type
+        margin-bottom: 0
+
+      .subtitle
+        color: $grey

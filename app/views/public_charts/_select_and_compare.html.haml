@@ -1,0 +1,37 @@
+#select_and_compare.defaut_row.clearfix
+  .two_column
+    .dropdown_button.hospital.col6.border_grey
+      %span.text_ellipsis Saint Marys Hospital
+      %span.icon.icon_large.icon_float_right.icon_arrow_large_down
+    .dropdown_button.compare.col6.border_grey
+      %span.text_ellipsis Rochester, MN
+      %span.icon.icon_large.icon_float_right.icon_arrow_large_down
+  .dropdown_items.hospital.border_grey
+    .search_box.col6.border_bottom_grey
+      %span.icon.icon_large.icon_search
+      %input{placeholder: 'Search a hospital'}
+      %span.icon.icon_large.icon_float_right.icon_close
+    %ul
+      %li
+        %p Hospital Related to User A
+        %p.subtitle City, State
+      %li
+        %p Hospital Related to User B
+        %p.subtitle City, State
+      %li
+        %p Hospital Related to User C
+        %p.subtitle City, State
+  .dropdown_items.compare.border_grey
+    %ul
+      %li
+        %p City, State of Selected Hospital
+        %p.subtitle 14 Hospital
+      %li
+        %p State of Selected Hospital
+        %p.subtitle 19 Hospitals
+      %li
+        %p Healthcare System of Hospital
+        %p.subtitle 10 Hospitals
+      %li
+        %p Nation-wide
+        %p.subtitle 4500 Hospital
