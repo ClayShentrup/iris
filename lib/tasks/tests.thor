@@ -1,8 +1,11 @@
 require 'English'
 require 'open3'
+require 'thor/rake_compat'
+require 'rspec/core/rake_task'
 
 # Run all tests as we would on CI
 class Tests < Thor
+  include Thor::RakeCompat
   default_task :check
 
   COMMANDS = {
@@ -17,14 +20,25 @@ class Tests < Thor
 
   desc :check, 'run all CI tasks'
   def check
-    exit 1 unless results.all?
+    exit 1 unless results(COMMANDS).all?
+  end
+
+  desc :save_jasmine_fixtures, 'Build jasmine fixtures from rspec'
+  def save_jasmine_fixtures
+    require_relative '../../spec/support/jasmine_macros'
+    RSpec::Core::RakeTask.new(:fixtures) do |t|
+      t.rspec_opts = ['-e', "'#{JasmineMacros::SPEC_DESCRIPTION}'"]
+      t.verbose = true
+      t.pattern = 'spec/controllers/*_spec.rb'
+    end
+    Rake::Task['fixtures'].execute
   end
 
   private
 
-  def results
-    COMMANDS.values.map do |command|
-      Open3.pipeline("bundle exec #{command}").first.success?
+  def results(commands)
+    commands.values.map do |command|
+      Open3.pipeline("#{command}").first.success?
     end
   end
 end

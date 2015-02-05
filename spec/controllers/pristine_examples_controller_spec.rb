@@ -3,6 +3,13 @@ require 'rails_helper'
 RSpec.describe PristineExamplesController do
   login(:user)
 
+  describe 'GET index' do
+    save_fixture 'with feature enabled' do
+      enable_feature(:pristine_example)
+      get :index
+    end
+  end
+
   let(:invalid_attributes) { attributes_for(PristineExample, name: '') }
   it_behaves_like 'an ApplicationController'
 

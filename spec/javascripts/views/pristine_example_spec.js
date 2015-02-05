@@ -12,4 +12,14 @@ describe('PristineExampleIndexView', function() {
       expect(view).toBeDefined();
     });
   });
+
+  describe('rendered elements on page', function() {
+    it('has the new pristine example link', function() {
+      loadFixtures(
+        'pristine_examples_controller-get-index-with-feature-enabled.html'
+      );
+      expect($('#body a[href="/pristine_examples/new"]'))
+        .toContainText('New Pristine example');
+    });
+  });
 });
