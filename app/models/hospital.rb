@@ -19,6 +19,8 @@ class Hospital < ActiveRecord::Base
   validates :name, presence: true
   validates :city, presence: true
   validates :state, presence: true
+  validates :zip_code, presence: true
+  validates :hospital_type, presence: true
 
   delegate :name, to: :hospital_system, prefix: true, allow_nil: true
 
