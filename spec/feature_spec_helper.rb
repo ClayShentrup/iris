@@ -9,9 +9,12 @@ end
 
 Capybara.default_driver = :chrome
 
-# Macros for logging in users
 RSpec.configure do |config|
+  config.use_transactional_fixtures = false
+
+  # Macros for logging in users
   config.extend WardenMacros, type: :feature
   config.include BrowserSizeHelpers, type: :feature
 end
+
 Warden.test_mode!

@@ -69,6 +69,7 @@ group :test do
   gem 'fakeredis'
   gem 'capybara'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
 end
 
 group :production do

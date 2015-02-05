@@ -26,6 +26,11 @@ RSpec.describe SiteStatus do
         expect(result_hash[:checks][:database_status])
           .to eq('ActiveRecord::ConnectionTimeoutError')
       end
+
+      after do
+        allow(ActiveRecord::Base.connection)
+          .to receive(:execute).and_call_original
+      end
     end
   end
 end

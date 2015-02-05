@@ -1,5 +1,6 @@
 require 'active_record'
 require 'shoulda/matchers'
+require 'database_cleaner'
 
 if ActiveRecord::Migrator.needs_migration?
   require_relative '../config/application'
@@ -8,11 +9,24 @@ if ActiveRecord::Migrator.needs_migration?
 end
 
 RSpec.configure do |config|
-  config.around do |example|
-    ActiveRecord::Base.transaction do
-      example.run
-      fail ActiveRecord::Rollback
-    end
+  config.before(:suite) do
+    DatabaseCleaner.clean_with :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.strategy = :transaction
+  end
+
+  config.before(:each, type: :feature) do
+    DatabaseCleaner.strategy = :truncation
+  end
+
+  config.before(:each) do
+    DatabaseCleaner.start
+  end
+
+  config.after(:each) do
+    DatabaseCleaner.clean
   end
 
   require 'factory_girl'
