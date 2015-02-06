@@ -28,7 +28,9 @@
   font-size: $font_size_h3
 
 .icon_large
-  font-size: $font_size_h2
+  font-size: $font_size_h3
+  +media($tablet_portrait_and_desktop)
+    @extend .icon_medium
 
 .icon_search:before
   content: "\F002"
