@@ -5,7 +5,8 @@ Iris.Views.application = Backbone.View.extend({
     'click #top_nav .hide_on_desktop .icon' : 'expandSearchBox',
     'click #top_nav .search .icon_search'   : 'searchClick',
     'click #top_nav .search .icon_close'    : 'toggleCloseIcon',
-    'focus #top_nav .search input'          : 'toggleSearchIcon'
+    'focus #top_nav .search input'          : 'toggleSearchIcon',
+    'click #feedback_bar .icon_close'       : 'dismissFlashMessage'
   },
 
   expandSearchBox: function() {
@@ -37,5 +38,9 @@ Iris.Views.application = Backbone.View.extend({
     // TODO: needs to be split mobile and desktop
     // because focus can not be called on 2 elements
     $('#top_nav .search input').focus();
+  },
+
+  dismissFlashMessage: function() {
+    $('#feedback_bar').hide();
   }
 });

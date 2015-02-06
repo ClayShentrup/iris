@@ -31,7 +31,7 @@ RemoveUnusedMethodsInControllersCheck:
   # because it is overrided but it's used by Rails internal code
   except_methods: [
     'ApplicationController#render',
-    'ApplicationController#after_sign_in_path_for',
+    'ApplicationController#after_sign_out_path_for',
     '*#=$',
     '*#model_params'
   ]

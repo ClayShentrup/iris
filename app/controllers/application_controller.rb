@@ -37,6 +37,7 @@ class ApplicationController < ActionController::Base
   def destroy
     self.model_instance_variable = saved_model
     model_instance_variable.destroy
+    flash_success_message('deleted') if model_instance_variable.destroy
     respond
   end
 
@@ -65,6 +66,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def after_sign_out_path_for(_user)
+    new_user_session_path
+  end
 
   def model_instance_variable=(model_instance)
     instance_variable_set(model_instance_variable_name, model_instance)

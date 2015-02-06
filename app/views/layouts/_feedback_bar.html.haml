@@ -1,0 +1,5 @@
+- flash.each do |name, message|
+  #feedback_bar.line_height_buffer_base.vertical_padding_small.col12.affix_beneath_top_nav.clearfix
+    %span.float_left.message{ class: name }
+      = message
+    %a.icon.icon_large.icon_close.float_right{ href: '#' }

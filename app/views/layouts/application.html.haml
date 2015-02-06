@@ -17,6 +17,7 @@
          } |
        } |
     = render 'layouts/top_nav'
+    = render 'layouts/feedback_bar'
     #outer_container
       = yield
 
@@ -25,3 +26,4 @@
       - if user_signed_in?
         %li= current_user.email
     = link_to "Sign out", destroy_user_session_path, method: :delete
+
