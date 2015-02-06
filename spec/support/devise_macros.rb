@@ -5,7 +5,7 @@ module DeviseMacros
   end
 
   def login(user)
-    let(:current_user) { FactoryGirl.create user }
+    let(:current_user) { create user }
     simulate_routed_request
     let!(:set_logged_in_state) { sign_in current_user }
   end

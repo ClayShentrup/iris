@@ -38,7 +38,7 @@ RemoveUnusedMethodsInControllersCheck:
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
 RemoveUnusedMethodsInModelsCheck:
   except_methods: [
-    'Dimension#table_name_prefix'
+    '#table_name_prefix'
   ]
 ReplaceComplexCreationWithFactoryMethodCheck: { attribute_assignment_count: 2 }
 ReplaceInstanceVariableWithLocalVariableCheck: { }

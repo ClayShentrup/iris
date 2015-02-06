@@ -140,23 +140,23 @@ RSpec.shared_examples 'an ApplicationController create' do
     described_class.name.demodulize.gsub(/Controller$/, '').singularize
   end
 
-  def create
+  def post_create
     post :create, model_param_name => model_attributes
   end
 
   describe 'with valid params' do
     it 'creates a new model instance' do
-      expect { create }.to change(model_class, :count).by(1)
+      expect { post_create }.to change(model_class, :count).by(1)
     end
 
     it 'assigns a newly created model instance' do
-      create
+      post_create
       expect(assign).to be_a model_class
       expect(assign).to be_persisted
     end
 
     it 'redirects to the created record' do
-      create
+      post_create
       expect(response).to redirect_to instance_url
     end
   end
