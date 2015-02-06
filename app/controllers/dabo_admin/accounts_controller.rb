@@ -1,6 +1,8 @@
 module DaboAdmin
   # Dabo Admin Accounts Controller
   class AccountsController < ApplicationController
+    before_action EnsureAdminFilter
+
     def system_hospitals
       hospital_collection = HospitalCollection.call(virtual_system)
 
@@ -15,6 +17,22 @@ module DaboAdmin
       @account.users = account_users
 
       flash_success_message('created') if @account.save
+      respond_with :dabo_admin, @account
+    end
+
+    def edit
+      super
+      @account.virtual_system_gid = @account.virtual_system.to_global_id.to_s
+    end
+
+    def update
+      @account = saved_model.tap do |acc|
+        acc.assign_attributes(allowed_params)
+        acc.virtual_system = virtual_system
+        acc.users = account_users
+      end
+
+      flash_success_message('updated') if @account.save
       respond_with :dabo_admin, @account
     end
 

@@ -1,10 +1,14 @@
 // jshint devel: true
 'use strict';
 
-Iris.Views['accounts-new'] = Backbone.View.extend({
+Iris.Views['accounts-edit'] = Backbone.View.extend({
 
   events: {
     'change .system_selection': 'loadHospitals'
+  },
+
+  initialize: function() {
+    _.defer(this. loadHospitals);
   },
 
   loadHospitals: function() {

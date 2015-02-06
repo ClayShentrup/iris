@@ -16,10 +16,9 @@
         %li
           = user.email
 
-= link_to 'Delete this account', |
-  dabo_admin_account_path(@account), |
-  method: :delete, |
+= link_to 'Edit', edit_dabo_admin_account_path(@account)
+\|
+= link_to 'Delete', dabo_admin_account_path(@account), method: :delete, |
   data: { confirm: 'Are you sure?' }
-
-%br
+\|
 = link_to 'Back', dabo_admin_accounts_path

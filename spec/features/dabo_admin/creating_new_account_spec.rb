@@ -1,7 +1,7 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'creating an account' do
-  login(:user)
+  login(:dabo_admin)
 
   let!(:hospital_without_system) { create(:hospital) }
   let!(:hospital_with_system) { create(:hospital, :with_hospital_system) }
@@ -24,6 +24,7 @@ RSpec.feature 'creating an account' do
   end
 
   background do
+    enable_feature(:create_account)
     visit new_dabo_admin_account_path
   end
 

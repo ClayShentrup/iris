@@ -1,21 +1,5 @@
-- if @account.errors.any?
-  %ul.errors
-    - @account.errors.full_messages.each do |msg|
-      %li
-        = msg
+%h1 New Account
 
-= form_for [:dabo_admin, @account] do |f|
-  - @form = f
-  .field.system_selection
-    = f.label :system_name
-    = f.collection_select(:virtual_system_gid, |
-    VirtualHospitalSystemCollection.call, |
-    :to_global_id, |
-    :name, |
-    include_blank: true)
-  = render 'hospital_select', hospital_collection: @hospital_collection
-  .field
-    = f.label :users
-    = f.collection_check_boxes :user_ids, User.all, :id, :email
-  .actions
-    = f.submit
+= render 'form', account: @account
+
+= link_to 'Back', dabo_admin_accounts_path
