@@ -1,30 +1,21 @@
-$font_size: rem(14)
-$line_height: rem(40)
-
 #top_nav
   display: flex
-  font-size: $font_size
-  margin-bottom: rem(16)
 
   .sessions &
     display: none
 
-  >div
-    float: left
-    line-height: rem(26)
-    padding: rem(8)
-
   .logo
     background: transparent image-url('dabo-d-logo.svg') no-repeat center
-    text-indent: -9999px
     +media($desktop)
       background: transparent image-url('dabo-logo.svg') no-repeat center
-      background-size: contain
-      background-origin: content-box
+
+  .menu_icon
+    background: transparent image-url('menu-icon.svg') no-repeat center
 
   .logo,
   .menu_icon
-    flex-grow: 1
+    background-size: contain
+    background-origin: content-box
     +media($mobile)
       max-width: rem(33)
       width: rem(33)
@@ -33,54 +24,20 @@ $line_height: rem(40)
   .metrics > a,
   .news_feed > a
     display: block
-    height: rem(24)
 
-  .menu_icon
-    background: transparent image-url('menu-icon.svg') no-repeat center
-    text-indent: -9999px
+  .logo,
+  .menu_icon,
+  .search
+    flex-grow: 1
 
   .news_feed,
   .metrics
     flex-grow: 3
-    padding: rem(8)
-    text-align: center
 
   .search
-    flex-grow: 1
-    font-size: $font_size
-    padding: 0 rem(8) 0 0
-    +media($tablet_portrait)
-      flex-grow: 4
     +media($desktop)
+      flex-grow: 4
 
     &.hide_on_tablet_portrait.hide_on_desktop
-      padding: 0
-      text-align: center
       input
         display: none
-        float: left
-
-    input
-      border: 0
-      font-size: $font_size
-      line-height: $line_height
-      padding: 0 rem(10)
-      width: 78%
-
-      &:focus
-        outline: 0
-
-    .icon
-      line-height: $line_height
-      vertical-align: middle
-      +media($desktop)
-        width: rem(19)
-      +media($tablet_portrait)
-        width: rem(19)
-
-    .icon_close
-      padding-right: rem(8)
-      +media($desktop)
-        padding-right: 0
-      +media($tablet_portrait)
-        padding-right: 0

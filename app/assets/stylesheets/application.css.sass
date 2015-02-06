@@ -1,6 +1,5 @@
 @import bourbon
 @import neat
-@import reset
 @import variables
 @import flip
 @import jquery-ui/datepicker
@@ -8,7 +7,7 @@
 
 body
   font-family: $helvetica
-  line-height: 1.5
+  font-size: $font_size_base
 
 #outer_container
   +outer-container
@@ -25,34 +24,9 @@ body
 .border_bottom_grey
   border-bottom: rem(1) solid $grey
 
-h1
-  font-size: rem(20)
-
-h2
-  font-size: rem(18)
-
-h3
-  font-size: rem(16)
-
-h4
-  font-size: rem(14)
-
-.centered
-  margin: 0 auto
-
 #main_content
-  padding: 0 rem(10) rem(40)
   +media($desktop)
-    padding-left: rem(30)
-    padding-right: 0
     border-left: rem(1) solid $grey
-
-.text_ellipsis
-  display: inline-block
-  overflow: hidden
-  text-overflow: ellipsis
-  white-space: nowrap
-  width: 90%
 
 .hide_on_mobile
   +media($mobile)
@@ -65,6 +39,3 @@ h4
 .hide_on_desktop
   +media($desktop)
     display: none
-
-.top_buffer
-  margin-top: rem(30)

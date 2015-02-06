@@ -16,6 +16,16 @@
 .col12
   +span-columns(12)
 
+.col6-xs
+  +span-columns(6)
+
+.col3-xs
+  +span-columns(3)
+
+.two_column
+  .two_column
+    padding: 0
+
 +media($desktop)
   .col1
     +span-columns(1)
@@ -54,13 +64,13 @@
     +span-columns(12)
 
   .two_column
-    div:nth-of-type(2n)
-      margin-right: 0
+    padding-right: 0
 
 +media($tablet_portrait)
   .col6.measure_teaser
     +span_columns(6)
 
++media($tablet_portrait_and_desktop)
   .two_column
     div:nth-of-type(2n)
       margin-right: 0

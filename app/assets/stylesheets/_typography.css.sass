@@ -1,0 +1,47 @@
+h1, h2, h3, h4,
+.h1, .h2, .h3, .h4
+  font-weight: $headings_font_weight
+  line-height: $headings_line_height
+
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4
+  margin-top: $line_height_computed
+  margin-bottom: $line_height_computed / 2
+
+h1, .h1
+  font-size: $font_size_h1
+
+h2, .h2
+  font-size: $font_size_h2
+
+h3, .h3
+  font-size: $font_size_h3
+
+h4, .h4
+  font-size: $font_size_h4
+
+p
+  margin: 0 0 $line_height_computed / 2
+  line-height: $line_height_base
+
+.text_center
+  text-align: center
+
+.text_ellipsis
+  display: inline-block
+  overflow: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  width: 90%
+
+.text_hide
+  font: 0/0 a
+  color: transparent
+  text-shadow: none
+  background-color: transparent
+  border: 0
+
+.text_muted
+  color: $grey

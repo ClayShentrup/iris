@@ -9,7 +9,7 @@ Iris.Views['news_items-index'] = Backbone.View.extend({
       });
     }
     $('#news_feed_filter .hide_on_desktop').on('click', function() {
-      $('#news_feed_filter .icon.icon_large.icon_float_right')
+      $('#news_feed_filter .icon.icon_large.float_right')
         .toggleClass('icon_arrow_large_down icon_arrow_large_up');
     });
   }

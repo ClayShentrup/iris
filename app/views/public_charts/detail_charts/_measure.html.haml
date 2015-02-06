@@ -1,24 +1,24 @@
 .measure_detail
   .chart
     = render 'public_charts/detail_charts/default_chart'
-  .actions.border_top_grey.border_bottom_grey
-    .action
+  .actions.inner_padding_small.border_bottom_grey.clearfix
+    .action.col3-xs.text_center
       %span.icon.icon_large.icon_left.icon_comments
       %span.text.hide_on_mobile Discuss
-    .action
+    .action.col3-xs.text_center
       %span.icon.icon_large.icon_left.icon_shared_with_me
       %span.text.hide_on_mobile Share
-    .action
+    .action.col3-xs.text_center
       %span.icon.icon_large.icon_left.icon_book_open
       %span.text.hide_on_mobile Learn
-    .action
+    .action.col3-xs.text_center
       %span.icon.icon_large.icon_left.icon_chart_trend
       %span.text.hide_on_mobile Improve
-  .card_container
-    .new_conversation.border_grey Start a conversation...
-    .card.border_grey
-      .card_title.border_bottom_grey
+  .card_container.inner_padding_large
+    .new_conversation.inner_padding_base.border_grey Start a conversation...
+    .card.top_buffer_base.border_grey
+      .card_title.inner_padding_base.border_bottom_grey
         Conversation title
-        %span.icon.icon_float_right.icon_large.icon_comments
-      .card_body Conversation
-      .card_action.border_top_grey Write a comment...
+        %span.icon.float_right.icon_large.icon_comments.line_height_computed
+      .card_body.inner_padding_base Conversation
+      .card_action.inner_padding_base.border_top_grey Write a comment...

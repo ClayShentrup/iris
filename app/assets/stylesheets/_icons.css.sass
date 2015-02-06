@@ -7,20 +7,17 @@
 
 .icon
   color: $grey
-  font-size: rem(15)
 
-.icon_float_right
-  float: right
+  &.icon_color_dabo_blue
+    color: $dabo_blue
 
-.icon_float_left
-  float: left
-  margin-right: rem(8)
+  &.float_right,
+  &.icon_right
+    margin-left: $padding_base_vertical
 
-.icon_right
-  margin-left: rem(5)
-
-.icon_left
-  margin-right: rem(5)
+  &.float_left,
+  &.icon_left
+    margin-right: $padding_base_vertical
 
 .icon:before
   font-family: 'DaboIcons'
@@ -28,10 +25,12 @@
   -webkit-text-size-adjust: none
 
 .icon_medium
-  font-size: rem(20)
+  font-size: $font_size_h3
 
 .icon_large
-  font-size: rem(24)
+  font-size: $font_size_h3
+  +media($tablet_portrait_and_desktop)
+    @extend .icon_medium
 
 .icon_search:before
   content: "\F002"

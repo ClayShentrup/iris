@@ -1,0 +1,55 @@
+form
+  label
+    display: inline-block
+    font-weight: bold
+
+  .form_control
+    display: block
+    width: 100%
+    height: $input_height_base
+    padding: $padding_base_vertical $padding_base_horizontal
+    font-size: $font_size_base
+    line-height: $line_height_base
+    color: $input_color
+    background-color: $input_bg
+    border-radius: $input_border_radius_base
+    @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
+    @include transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s)
+
+    &:focus
+      border-color: $dabo_blue
+      outline: 0
+      @include box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $dabo_blue_light)
+
+  .no_border
+    border: none
+    padding-left: 0
+    box-shadow: none
+
+    &:focus
+      outline: 0
+      box-shadow: none
+
+  .has_icon
+    .form_control
+      height: auto
+      line-height: $line_height_buffer_base
+      padding: 0
+      @include calc(width, "100% - (#{$input_height_base} * 1.25)")
+
+    .form_control_icon
+      display: block
+      @extend .no_margin
+
+  .has_two_icons
+    .form_control
+      display: inline
+      @include calc(width, "100% - ((#{$input_height_base} * 1.25) * 2)")
+
+  .has_icon,
+  .has_two_icons
+    label
+      & ~ .form_control_icon
+        top: $line_height_computed + .4
+
+

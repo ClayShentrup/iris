@@ -12,7 +12,7 @@ Iris.Views.application = Backbone.View.extend({
     $('#top_nav .search.hide_on_tablet_portrait.hide_on_desktop input')
       .toggle();
     $('#top_nav .nav_btns').toggle();
-    $('#top_nav .search .icon_search').addClass('icon_float_right');
+    this.enterSearchInputFocus();
   },
 
   searchClick: function() {
@@ -24,8 +24,6 @@ Iris.Views.application = Backbone.View.extend({
     $('#top_nav .search .icon_close')
       .removeClass('icon_close')
       .addClass('icon_search');
-    $('#top_nav .search.hide_on_tablet_portrait .icon_search')
-      .removeClass('icon_float_right');
     $('#top_nav .search input').val('').blur();
   },
 
