@@ -43,8 +43,8 @@ $padding_base_horizontal: rem(12)
 
 // Line Heights
 $line_height_base: 1.428571429
-$line_height_computed: floor($font_size_base * $line_height_base)
-$line_height_buffer_base: floor($line_height_computed * ($buffer_base * 2))
+$line_height_computed: floor($font_size_base * $line_height_base) // 20px
+$line_height_buffer_base: $line_height_base * ($buffer_base * 2) // 42.86px
 $line_height_extra_large: $font_size_base * 2
 $line_height_large: 1.5
 $line_height_small: 1.3333333
@@ -60,3 +60,6 @@ $input_border_radius_small: $border_radius_small
 $input_border_focus: $dabo_blue
 $input_color_placeholder: $grey_lighter
 $input_height_base: rem($line_height_computed) + $buffer_small + .5
+
+// Page Elements
+$dropdown_menu_height: rem(45)

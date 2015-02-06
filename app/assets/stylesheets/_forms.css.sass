@@ -38,6 +38,15 @@ form
       display: block
       @extend .no_margin
 
+  .has_two_icons
+    .form_control
+      display: inline
+      @include calc(width, "100% - ((#{$input_height_base} * 1.25) * 2)")
+
+  .has_icon,
+  .has_two_icons
     label
       & ~ .form_control_icon
         top: $line_height_computed + .4
+
+

@@ -1,37 +1,39 @@
-#select_and_compare.defaut_row.clearfix
+#select_and_compare.defaut_row.top_buffer_large.left_buffer_large.clearfix
   .two_column
-    .dropdown_button.hospital.col6.border_grey
+    .dropdown_button.hospital.vertical_padding_base.line_height_buffer_base.col6-xs.border_grey
       %span.text_ellipsis Saint Marys Hospital
-      %span.icon.icon_large.icon_float_right.icon_arrow_large_down
-    .dropdown_button.compare.col6.border_grey
+      %span.icon.icon_large.float_right.icon_arrow_large_down.icon_color_dabo_blue
+    .dropdown_button.compare.vertical_padding_base.line_height_buffer_base.col6-xs.border_grey
       %span.text_ellipsis Rochester, MN
-      %span.icon.icon_large.icon_float_right.icon_arrow_large_down
+      %span.icon.icon_large.float_right.icon_arrow_large_down.icon_color_dabo_blue
   .dropdown_items.hospital.border_grey
-    .search_box.col6.border_bottom_grey
-      %span.icon.icon_large.icon_search
-      %input{placeholder: 'Search a hospital'}
-      %span.icon.icon_large.icon_float_right.icon_close
-    %ul
+    .search_box.vertical_padding_base.line_height_buffer_base.border_bottom_grey
+      %form
+        .has_two_icons
+          %span.icon.icon_large.icon_search.icon_color_dabo_blue.float_left.form_control_icon
+          %input.form_control.no_border{placeholder: 'Search a hospital'}
+          %span.icon.icon_large.icon_close.float_right.form_control_icon
+    %ul.inner_padding_base
+      %li.bottom_buffer_small
+        %p.no_margin Hospital Related to User A
+        %p.text_muted City, State
+      %li.bottom_buffer_small
+        %p.no_margin Hospital Related to User B
+        %p.text_muted City, State
       %li
-        %p Hospital Related to User A
-        %p.subtitle City, State
-      %li
-        %p Hospital Related to User B
-        %p.subtitle City, State
-      %li
-        %p Hospital Related to User C
-        %p.subtitle City, State
+        %p.no_margin Hospital Related to User C
+        %p.text_muted City, State
   .dropdown_items.compare.border_grey
-    %ul
+    %ul.inner_padding_base
+      %li.bottom_buffer_small
+        %p.no_margin City, State of Selected Hospital
+        %p.text_muted 14 Hospital
+      %li.bottom_buffer_small
+        %p.no_margin State of Selected Hospital
+        %p.text_muted 19 Hospitals
+      %li.bottom_buffer_small
+        %p.no_margin Healthcare System of Hospital
+        %p.text_muted 10 Hospitals
       %li
-        %p City, State of Selected Hospital
-        %p.subtitle 14 Hospital
-      %li
-        %p State of Selected Hospital
-        %p.subtitle 19 Hospitals
-      %li
-        %p Healthcare System of Hospital
-        %p.subtitle 10 Hospitals
-      %li
-        %p Nation-wide
-        %p.subtitle 4500 Hospital
+        %p.no_margin Nation-wide
+        %p.text_muted 4500 Hospital
