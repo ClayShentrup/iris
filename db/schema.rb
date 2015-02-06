@@ -17,15 +17,6 @@ ActiveRecord::Schema.define(version: 20150205000631) do
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
-  create_table "accounts", force: :cascade do |t|
-    t.integer  "default_hospital_id"
-    t.integer  "virtual_system_id"
-    t.string   "virtual_system_type"
-    t.datetime "created_at",          null: false
-    t.datetime "updated_at",          null: false
-  end
-
-  add_index "accounts", ["virtual_system_type", "virtual_system_id"], name: "index_accounts_on_virtual_system_type_and_virtual_system_id", using: :btree
 
   create_table "dimension_sample_multi_measures", force: :cascade do |t|
     t.string   "provider_id", null: false
@@ -39,8 +30,8 @@ ActiveRecord::Schema.define(version: 20150205000631) do
 
   create_table "dimension_sample_single_measures", force: :cascade do |t|
     t.string   "provider_id", null: false
-    t.string   "column_name", null: false
     t.string   "dataset_id",  null: false
+    t.string   "column_name", null: false
     t.string   "value",       null: false
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
@@ -107,10 +98,8 @@ ActiveRecord::Schema.define(version: 20150205000631) do
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
     t.boolean  "is_dabo_admin",          default: false, null: false
-    t.integer  "account_id"
   end
 
-  add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
