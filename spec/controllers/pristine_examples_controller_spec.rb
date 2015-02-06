@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe PristineExamplesController do
-  login(:user)
+  login_user
 
   describe 'GET index' do
     save_fixture 'with feature enabled' do

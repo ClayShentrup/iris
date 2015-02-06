@@ -13,12 +13,12 @@ RSpec.shared_examples 'a Dabo Admin page' do
   end
 
   context 'with a Dabo Admin logged in' do
-    login(:dabo_admin)
+    login_admin
     it { expect(get :custom).to be_success }
   end
 
   context 'with a normal user logged in' do
-    login(:user)
+    login_user
     it { expect(get :custom).to redirect_to('/') }
   end
 end

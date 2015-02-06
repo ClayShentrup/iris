@@ -32,7 +32,7 @@ FactoryGirl.define do
     password 'password'
     before(:create, &:skip_confirmation!)
 
-    factory :dabo_admin do
+    trait :dabo_admin do
       is_dabo_admin true
     end
   end

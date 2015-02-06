@@ -1,7 +1,9 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'creating an account' do
-  login(:dabo_admin)
+  login_admin
+
+  let!(:user) { create(:user) }
 
   let!(:hospital_without_system) { create(:hospital) }
   let!(:hospital_with_system) { create(:hospital, :with_hospital_system) }
@@ -45,6 +47,7 @@ RSpec.feature 'creating an account' do
     expect(page).to have_content "Name: #{hospital_system_name}"
     expect(page)
       .to have_content "Default Hospital: #{hospital_with_system.name}"
+    expect(page).to_not have_content user.email
   end
 
   scenario 'when hospital is selected' do
@@ -55,5 +58,15 @@ RSpec.feature 'creating an account' do
     expect(page).to have_content "Name: #{hospital_without_system.name}"
     expect(page)
       .to have_content "Default Hospital: #{hospital_without_system.name}"
+  end
+
+  scenario 'when user is selected' do
+    check user.email
+
+    select(hospital_without_system.name, from: 'account_virtual_system_gid')
+    select(hospital_without_system.name, from: 'account_default_hospital_id')
+    click_on 'Create Account'
+
+    expect(page).to have_content user.email
   end
 end

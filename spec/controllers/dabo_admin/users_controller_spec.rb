@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::UsersController do
-  login(:dabo_admin)
+  login_admin
 
   let(:invalid_attributes) { { is_dabo_admin: nil, password: 'new_password' } }
 
