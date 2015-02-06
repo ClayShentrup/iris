@@ -1,12 +1,13 @@
 # == Schema Information
 #
-# Table name: pristine_examples
+# Table name: accounts
 #
-#  id          :integer          not null, primary key
-#  name        :string
-#  description :text
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id                  :integer          not null, primary key
+#  default_hospital_id :integer          not null
+#  virtual_system_id   :integer          not null
+#  virtual_system_type :string           not null
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
 #
 
 FactoryGirl.define do
