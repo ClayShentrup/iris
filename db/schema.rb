@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(version: 20150205000631) do
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
-
   create_table "dimension_sample_multi_measures", force: :cascade do |t|
     t.string   "provider_id", null: false
     t.string   "measure_id",  null: false
