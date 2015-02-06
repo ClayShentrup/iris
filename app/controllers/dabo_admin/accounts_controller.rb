@@ -7,7 +7,6 @@ module DaboAdmin
       hospital_collection = HospitalCollection.call(virtual_system)
 
       render partial: 'hospital_select',
-             action: 'hospital_select',
              locals: {
                selected_default_hospital_id: nil,
                hospital_collection: hospital_collection,

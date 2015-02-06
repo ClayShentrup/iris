@@ -38,7 +38,6 @@ RSpec.feature 'editing an account' do
     click_on 'Update Account'
 
     expect(page).to have_content "Name: #{new_hospital.name}"
-    expect(page)
-      .to have_content "Default Hospital: #{new_hospital.name}"
+    expect(page).to have_content "Default Hospital: #{new_hospital.name}"
   end
 end
