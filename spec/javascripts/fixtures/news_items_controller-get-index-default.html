@@ -8,201 +8,205 @@
 
 </head>
 <body class='news_items news_items-index' data-current-user-id='42' data-pixel-path='/assets/pixel.gif' data-view-name='news_items-index' id='body'>
-<div class='clearfix' id='top_nav'>
-<div class='logo border_grey'>
+<div class='bottom_buffer_base clearfix' id='top_nav'>
+<div class='logo vertical_padding_small line_height_buffer_base text_center text_hide float_left border_grey'>
 <a href="http://test.host/">Home</a>
 </div>
-<div class='news_feed nav_btns border_grey'>
+<div class='news_feed nav_btns vertical_padding_small line_height_buffer_base text_center float_left border_grey'>
 <a href="/news">News Feed</a>
 </div>
-<div class='metrics nav_btns border_grey'>
+<div class='metrics nav_btns vertical_padding_small line_height_buffer_base text_center float_left border_grey'>
 <a href="/metrics">Metrics</a>
 </div>
-<div class='search hide_on_tablet_portrait hide_on_desktop border_bottom_grey border_top_grey'>
-<form action='/search' class='clearfix' method='get'>
-<input id='q' name='q' type='text'>
-<span class='icon icon_large icon_search'></span>
+<div class='search hide_on_tablet_portrait hide_on_desktop line_height_buffer_base border_bottom_grey border_top_grey'>
+<form action='/search' method='get'>
+<div class='has_icon clearfix vertical_padding_small'>
+<input class='form_control float_left no_border' id='q' name='q' type='text'>
+<span class='no_margin icon icon_large icon_search form_control_icon text_center'></span>
+</div>
 </form>
 </div>
-<div class='search hide_on_mobile border_bottom_grey border_top_grey'>
-<form action='/search' class='clearfix' method='get'>
-<input id='q' name='q' type='text'>
-<span class='icon icon_large icon_float_right icon_search'></span>
+<div class='search hide_on_mobile line_height_buffer_base border_bottom_grey border_top_grey'>
+<form action='/search' method='get'>
+<div class='has_icon clearfix vertical_padding_small'>
+<input class='form_control float_left no_border' id='q' name='q' type='text'>
+<span class='icon icon_large icon_search form_control_icon text_center'></span>
+</div>
 </form>
 </div>
-<div class='menu_icon border_grey'>Menu</div>
+<div class='menu_icon vertical_padding_small text_hide border_grey'>Menu</div>
 </div>
 
 <div id='outer_container'>
 <div class='clearfix border_bottom_grey' id='news_feed_filter'>
-<div class='hide_on_desktop hide_on_tablet_portrait'>
-<div class='mobile_dropdown_button news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_clock'></span>
+<div class='hide_on_desktop hide_on_tablet_portrait affix_beneath_top_nav'>
+<div class='mobile_dropdown_button news_feed_filter_item inner_padding_small line_height_extra_large border_grey'>
+<span class='icon icon_large icon_left icon_clock'></span>
 <span class='text'>Most Recent</span>
-<span class='icon icon_large icon_float_right arrow_icon icon_arrow_large_down'></span>
+<span class='icon icon_large icon_left float_right arrow_icon icon_arrow_large_down'></span>
 </div>
 <div class='dropdown'>
-<div class='news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_comments'></span>
+<div class='news_feed_filter_item inner_padding_small line_height_extra_large border_grey'>
+<span class='icon icon_large icon_left icon_comments'></span>
 <span class='text'>Conversations</span>
 </div>
-<div class='news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_chart_trend'></span>
+<div class='news_feed_filter_item inner_padding_small line_height_extra_large border_grey'>
+<span class='icon icon_large icon_left icon_chart_trend'></span>
 <span class='text'>Quality Projects</span>
 </div>
-<div class='news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_shared_with_me'></span>
+<div class='news_feed_filter_item inner_padding_small line_height_extra_large border_grey'>
+<span class='icon icon_large icon_left icon_shared_with_me'></span>
 <span class='text'>Shared with Me</span>
 </div>
 </div>
 </div>
-<div class='hide_on_mobile'>
-<div class='news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_clock'></span>
+<div class='hide_on_mobile affix_beneath_top_nav'>
+<div class='news_feed_filter_item inner_padding_small line_height_extra_large text_center col3'>
+<span class='icon icon_large icon_left icon_clock'></span>
 <span class='text'>Most Recent</span>
 </div>
-<div class='news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_comments'></span>
+<div class='news_feed_filter_item inner_padding_small line_height_extra_large text_center col3'>
+<span class='icon icon_large icon_left icon_comments'></span>
 <span class='text'>Conversations</span>
 </div>
-<div class='news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_chart_trend'></span>
+<div class='news_feed_filter_item inner_padding_small line_height_extra_large text_center col3'>
+<span class='icon icon_large icon_left icon_chart_trend'></span>
 <span class='text'>Quality Projects</span>
 </div>
-<div class='news_feed_filter_item border_grey'>
-<span class='icon icon_large icon_shared_with_me'></span>
+<div class='news_feed_filter_item inner_padding_small line_height_extra_large text_center col3'>
+<span class='icon icon_large icon_left icon_shared_with_me'></span>
 <span class='text'>Shared with Me</span>
 </div>
 </div>
 
 </div>
-<div id='news_feed_content'>
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='vertical_padding_large' id='news_feed_content'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
 
-<div class='card_container border_grey'>
-<div class='card_title border_bottom_grey'>
+<div class='card_container top_buffer_base border_grey'>
+<div class='card_title inner_padding_base line_height_extra_large border_bottom_grey'>
 <span class='text'>Title</span>
-<span class='icon icon_float_right icon_large icon_comments'></span>
+<span class='icon float_right icon_large icon_comments'></span>
 </div>
-<div class='card_body'>
+<div class='card_body inner_padding_base'>
 Message
 </div>
-<div class='card_action border_top_grey'>
+<div class='card_action inner_padding_base border_top_grey'>
 Action
 </div>
 </div>
