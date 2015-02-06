@@ -1,19 +1,19 @@
 #top_nav.bottom_buffer_base.clearfix
-  .logo.inner_padding_small.line_height_base.text_center.text_hide.float_left.border_grey
+  .logo.vertical_padding_small.line_height_buffer_base.text_center.text_hide.float_left.border_grey
     = link_to 'Home', root_url
-  .news_feed.nav_btns.inner_padding_small.line_height_base.text_center.float_left.border_grey
+  .news_feed.nav_btns.vertical_padding_small.line_height_buffer_base.text_center.float_left.border_grey
     = link_to 'News Feed', news_path
-  .metrics.nav_btns.inner_padding_small.line_height_base.text_center.float_left.border_grey
+  .metrics.nav_btns.vertical_padding_small.line_height_buffer_base.text_center.float_left.border_grey
     = link_to 'Metrics', metrics_path
   - if feature? :navbar_search
-    .search.hide_on_tablet_portrait.hide_on_desktop.line_height_base.border_bottom_grey.border_top_grey
+    .search.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base.border_bottom_grey.border_top_grey
       %form{action: '/search', method: 'get'}
         .has_icon.clearfix.vertical_padding_small
           %input.form_control.float_left.no_border#q{name: 'q', type: 'text'}
           %span.no_margin.icon.icon_large.icon_search.form_control_icon.text_center
-    .search.hide_on_mobile.line_height_base.border_bottom_grey.border_top_grey
+    .search.hide_on_mobile.line_height_buffer_base.border_bottom_grey.border_top_grey
       %form{action: '/search', method: 'get'}
         .has_icon.clearfix.vertical_padding_small
           %input.form_control.float_left.no_border#q{name: 'q', type: 'text'}
           %span.icon.icon_large.icon_search.form_control_icon.text_center
-  .menu_icon.inner_padding_small.text_hide.border_grey Menu
+  .menu_icon.vertical_padding_small.text_hide.border_grey Menu
