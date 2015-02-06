@@ -4,24 +4,24 @@ $max-width: em(1088)
 $dabo_blue: #008ce3
 $dabo_blue_light: lighten($dabo_blue, 20%)
 $grey: #ccc
-$grey_light: lighten($grey, 50%)
-$grey_lighter: lighten($grey, 90%)
+$grey_light: lighten($grey, 8%) // #E0E0E0
+$grey_lighter: lighten($grey, 15%) // #F2F2F2
 $white: #fff
 
 // Breakpoints
-$desktop: min-width 850px
+$mobile: max-width 767px
 $tablet_portrait: min-width 768px max-width 849px
 $tablet_portrait_and_desktop: min-width 768px
-$mobile: max-width 767px
+$desktop: min-width 850px
 
 // Typography
 $font_size_base: 14px
-$font_size_large: rem(ceil(($font_size_base * 1.25)))
-$font_size_small: rem(ceil(($font_size_base * 0.85)))
-$font_size_h1: rem(floor(($font_size_base * 2)))
-$font_size_h2: rem(ceil(($font_size_base * 1.7)))
-$font_size_h3: rem(ceil(($font_size_base * 1.25)))
-$font_size_h4: $font_size_base
+$font_size_large: rem(ceil(($font_size_base * 1.25))) // 18px
+$font_size_small: rem(ceil(($font_size_base * 0.85))) // 12px
+$font_size_h1: rem(floor(($font_size_base * 2))) // 28px
+$font_size_h2: rem(ceil(($font_size_base * 1.7))) // 24px
+$font_size_h3: $font_size_large // 18px
+$font_size_h4: $font_size_base // 14px
 $font_size_icon_medium: rem(ceil(($font_size_base * 1.42)))
 
 $headings_font_weight: 500
@@ -45,13 +45,12 @@ $padding_base_horizontal: rem(12)
 $line_height_base: 1.428571429
 $line_height_computed: floor($font_size_base * $line_height_base) // 20px
 $line_height_buffer_base: $line_height_base * ($buffer_base * 2) // 42.86px
-$line_height_extra_large: $font_size_base * 2
+$line_height_extra_large: $font_size_base * 2 // 28px
 $line_height_large: 1.5
 $line_height_small: 1.3333333
 
 // Form Inputs
 $input_bg: white
-$input_bg_disabled: $grey_light
 $input_color: #000
 $input_border: $grey
 $input_border_radius_base: $border_radius_base
@@ -60,6 +59,3 @@ $input_border_radius_small: $border_radius_small
 $input_border_focus: $dabo_blue
 $input_color_placeholder: $grey_lighter
 $input_height_base: rem($line_height_computed) + $buffer_small + .5
-
-// Page Elements
-$dropdown_menu_height: rem(45)

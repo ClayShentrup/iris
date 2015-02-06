@@ -1,7 +1,7 @@
 =open_button
   background-color: $white
   border-bottom: none
-  @include calc(height, #{$dropdown_menu_height} + #{$buffer_base})
+  @include calc(height, #{$line_height_buffer_base} + #{$buffer_base})
 
   .icon
     @extend .icon_arrow_large_up
@@ -24,7 +24,6 @@
       +open_button
 
   .dropdown_button
-    height: $dropdown_menu_height
     cursor: pointer
     position: relative
     z-index: 2
