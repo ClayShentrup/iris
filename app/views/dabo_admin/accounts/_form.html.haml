@@ -14,7 +14,9 @@
     :to_global_id, |
     :name, |
     include_blank: true)
-  = render 'hospital_select', hospital_collection: @hospital_collection
+  = render('hospital_select', |
+    selected_default_hospital_id: account.default_hospital_id, |
+    hospital_collection: hospital_collection)
   .field
     = f.label :users
     = f.collection_check_boxes :user_ids, User.all, :id, :email

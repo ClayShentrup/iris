@@ -7,10 +7,6 @@ Iris.Views['accounts-edit'] = Backbone.View.extend({
     'change .system_selection': 'loadHospitals'
   },
 
-  initialize: function() {
-    _.defer(this. loadHospitals);
-  },
-
   loadHospitals: function() {
     $('.default_hospital').load(
       '/dabo_admin/accounts/system_hospitals',

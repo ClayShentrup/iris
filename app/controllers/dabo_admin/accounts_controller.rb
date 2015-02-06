@@ -8,7 +8,10 @@ module DaboAdmin
 
       render partial: 'hospital_select',
              action: 'hospital_select',
-             locals: { hospital_collection: hospital_collection }
+             locals: {
+               selected_default_hospital_id: nil,
+               hospital_collection: hospital_collection,
+             }
     end
 
     def create
@@ -23,6 +26,7 @@ module DaboAdmin
     def edit
       super
       @account.virtual_system_gid = @account.virtual_system.to_global_id.to_s
+      @hospital_collection = HospitalCollection.call(@account.virtual_system)
     end
 
     def update

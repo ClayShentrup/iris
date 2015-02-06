@@ -2,6 +2,7 @@
   = label_tag :default_hospital
   = collection_select(:account, |
     :default_hospital_id, |
-    hospital_collection || [], |
+    hospital_collection, |
     :id, |
-    :name)
+    :name, |
+    { selected: selected_default_hospital_id } )
