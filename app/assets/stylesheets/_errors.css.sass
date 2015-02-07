@@ -1,0 +1,18 @@
+$error: #f2dede
+$error_dark: darken($error, 10%)
+$error_darker: darken($error, 60%)
+
+#error_explanation
+  background-color: #f2dede
+  border: rem(1) solid $error_dark
+  border-radius: $border_radius_base
+  color: $error_darker
+  @extend .inner_padding_base
+  @extend .bottom_buffer_large
+
+  ul
+    @extend .vertical_padding_base
+
+  li
+    list-style-type: disc
+    line-height: $line_height_large

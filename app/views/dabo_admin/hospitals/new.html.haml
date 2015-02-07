@@ -1,9 +1,10 @@
 %h1 New Hospital System
 - if @hospital.errors.any?
-  %ul.errors
-    - @hospital.errors.full_messages.each do |msg|
-      %li
-        = msg
+  #error_explanation
+    %ul
+      - @hospital.errors.full_messages.each do |msg|
+        %li
+          = msg
 
 = form_for [:dabo_admin, @hospital] do |f|
   .field
