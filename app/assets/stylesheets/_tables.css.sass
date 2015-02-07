@@ -1,0 +1,96 @@
+th
+  text-align: left
+
+// Baseline styles
+.table
+  width: 100%
+  max-width: 100%
+  // Cells
+  > thead,
+  > tbody,
+  > tfoot
+    > tr
+      > th,
+      > td
+        padding: $buffer_base
+        vertical-align: middle
+        border-top: rem(1) solid $grey
+  > thead > tr > th
+    border-bottom: rem(2) solid $grey
+    font-weight: 900
+  > caption + thead,
+  > thead:first-child
+    > tr:first-child
+      > th,
+      > td
+        border-top: 0
+
+// Condensed table w/ half padding
+.table_condensed
+  > thead,
+  > tbody,
+  > tfoot
+    > tr
+      > th,
+      > td
+        padding: $buffer_small
+
+// Bordered version
+.table_bordered
+  border: rem(1) solid $grey
+  > thead,
+  > tbody,
+  > tfoot
+    > tr
+      > th,
+      > td
+        border: rem(1) solid $grey
+  > thead > tr
+    > th,
+    > td
+      border-bottom-width: rem(2)
+
+// Zebra-striping
+.table_striped
+  tbody > tr:nth-of-type(odd)
+    background-color: $grey_light
+
+.table_hover
+  > tbody > tr:hover
+    background-color: $grey_lighter
+
+.table_responsive
+  overflow-x: auto
+  min-height: 0.01%
+  +media($mobile)
+    width: 100%
+    margin-bottom: $line_height_computed * 0.75
+    overflow-y: hidden
+    border: rem(1) solid $grey
+    > .table
+      margin-bottom: 0
+      > thead,
+      > tbody,
+      > tfoot
+        > tr
+          > th,
+          > td
+            white-space: nowrap
+    > .table_bordered
+      border: 0
+      > thead,
+      > tbody,
+      > tfoot
+        > tr
+          > th:first-child,
+          > td:first-child
+            border-left: 0
+          > th:last-child,
+          > td:last-child
+            border-right: 0
+      > tbody,
+      > tfoot
+        > tr:last-child
+          > th,
+          > td
+            border-bottom: 0

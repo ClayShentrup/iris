@@ -1,9 +1,28 @@
-%p#notice= notice
+.row
+  %p#notice= notice
 
-%p
-  %b Name:
-  = @hospital_system.name
+  %h1 Hospital System Detail
 
-= link_to 'Edit', edit_dabo_admin_hospital_system_path(@hospital_system)
-\|
-= link_to 'Back', dabo_admin_hospital_systems_path
+  .table_responsive.top_buffer_base
+    %table.table.table_bordered.table_hover.bottom_buffer_base
+      %thead
+        %tr
+          %th Name
+          %th
+          %th
+      %tr
+        %td= @hospital_system.name
+        %td.text_center
+          = link_to 'Edit', |
+            edit_dabo_admin_hospital_system_path(@hospital_system), |
+            class: 'btn_blue btn_small'
+        %td.text_center
+          = link_to 'Delete', |
+            dabo_admin_hospital_system_path(@hospital_system), |
+            method: :delete, |
+            data: { confirm: 'Are you sure?' }, |
+            class: 'btn_red btn_small'
+
+
+  = link_to 'Back', dabo_admin_hospital_systems_path
+

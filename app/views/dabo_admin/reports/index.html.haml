@@ -1,20 +1,23 @@
-.form_horizontal.clearfix
-  = form_tag(dabo_admin_reports_path, method: :get, id: :datepicker) do |f|
-    .col3
-      = label_tag :logged_at, 'See report for a different day:'
-    .col9
-      = text_field_tag :logged_at, @date, class: 'datepicker form_control', onchange: "$('#datepicker').submit();"
+.row
+  .form_horizontal.clearfix
+    = form_tag(dabo_admin_reports_path, method: :get, id: :datepicker) do |f|
+      .col3
+        = label_tag :logged_at, 'See report for a different day:'
+      .col9
+        = text_field_tag :logged_at, @date, class: 'datepicker form_control', onchange: "$('#datepicker').submit();"
 
-%h1 Usage Reports for #{@date.strftime('%A, %B %e, %Y')}
+  %h1 Usage Reports for #{@date.strftime('%A, %B %e, %Y')}
 
-%table
-  %tr
-    %th Route
-    %th Hits (total users)
-    - @report.each do |route, count|
-      %tr
-        %td= route
-        %td= count
+  .table_responsive.top_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Route
+          %th Hits (total users)
+      - @report.each do |route, count|
+        %tr
+          %td= route
+          %td= count
 
 
 :javascript

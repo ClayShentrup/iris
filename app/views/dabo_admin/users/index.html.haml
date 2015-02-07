@@ -1,8 +1,16 @@
-.new
-  = link_to 'Create new User', new_dabo_admin_user_path
+.row
+  %h1.float_left Users
+  = link_to 'Create new User', |
+    new_dabo_admin_user_path, |
+    class: 'btn_blue float_right top_buffer_base'
 
-%br
-- @users.each do |user|
-  %ul
-    %li
-      = link_to user.email, dabo_admin_user_path(user)
+.row
+  .table_responsive.top_buffer_base.bottom_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Email
+      - @users.each do |user|
+        %tr
+          %td= link_to user.email, dabo_admin_user_path(user)
+

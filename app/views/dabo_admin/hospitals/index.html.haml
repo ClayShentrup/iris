@@ -1,8 +1,25 @@
-.new
-  = link_to 'Create new Hospital', new_dabo_admin_hospital_path
+.row
+  %h1.float_left Hospitals
+  = link_to 'Add a Hospital', |
+    new_dabo_admin_hospital_path, |
+    class: 'btn_blue top_buffer_base float_right'
 
-%br
-- @hospitals.each do |hospital|
-  %ul
-    %li
-      = link_to hospital.name, dabo_admin_hospital_path(hospital)
+.row
+  .table_responsive.top_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+          %th Provider Id:
+          %th City
+          %th State
+          %th Hospital System
+
+      - @hospitals.each do |hospital|
+        %tr
+          %td
+            = link_to hospital.name, dabo_admin_hospital_path(hospital)
+          %td=hospital.provider_id
+          %td=hospital.city
+          %td=hospital.state
+          %td=hospital.hospital_system_name

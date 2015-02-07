@@ -1,20 +1,29 @@
-%h1 Hospital Systems
+.row
+  %h1.float_left Hospital Systems
+  = link_to 'Add a Hospital System', |
+    new_dabo_admin_hospital_system_path, |
+    class: 'btn_blue float_right top_buffer_base'
 
-%table
-  %tr
-    %th Name
-    %th
-    %th
-    %th
+.row
+  .table_responsive.top_buffer_base.bottom_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+          %th
+          %th
 
-  - @hospital_systems.each do |hospital_system|
-    %tr
-      %td= hospital_system.name
-      %td= link_to 'Show', dabo_admin_hospital_system_path(hospital_system)
-      %td= link_to 'Edit', edit_dabo_admin_hospital_system_path(hospital_system)
-      %td= link_to 'Destroy', dabo_admin_hospital_system_path(hospital_system), method: :delete, data: { confirm: 'Are you sure?' }
-
-%br
-  = link_to 'Add a hospital_system', new_dabo_admin_hospital_system_path
-
-%br
+      - @hospital_systems.each do |hospital_system|
+        %tr
+          %td
+            = link_to hospital_system.name, |
+              dabo_admin_hospital_system_path(hospital_system)
+          %td.text_center
+            = link_to 'Edit', |
+              edit_dabo_admin_hospital_system_path(hospital_system), |
+              class: 'btn_blue btn_small'
+          %td.text_center
+            = link_to 'Delete', |
+              dabo_admin_hospital_system_path(hospital_system), |
+              method: :delete, data: { confirm: 'Are you sure?' }, |
+              class: 'btn_red btn_small'

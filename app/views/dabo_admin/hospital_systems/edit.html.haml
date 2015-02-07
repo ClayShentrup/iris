@@ -1,7 +1,9 @@
-%h1 Editing Hospital System
+.row
+  %h1 Editing #{@hospital_system.name}
 
-= render 'form', hospital_system: @hospital_system
+  = render 'form', hospital_system: @hospital_system
 
-= link_to 'Show', dabo_admin_hospital_system_path(@hospital_system)
-\|
-= link_to 'Back', dabo_admin_hospital_systems_path
+  .bottom_buffer_base
+    = link_to 'Show', dabo_admin_hospital_system_path(@hospital_system)
+    \|
+    = link_to 'Back', dabo_admin_hospital_systems_path

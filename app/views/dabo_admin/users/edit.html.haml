@@ -1,7 +1,9 @@
-%h1 Editing User
+.row
+  %h1 Editing User
 
-= render 'form', user: @user
+  = render 'form', user: @user
 
-= link_to 'Show', dabo_admin_user_path(@user)
-\|
-= link_to 'Back', dabo_admin_users_path
+  .bottom_buffer_base
+    = link_to 'Show', dabo_admin_user_path(@user)
+    \|
+    = link_to 'Back', dabo_admin_users_path

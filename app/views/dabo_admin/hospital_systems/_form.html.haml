@@ -1,7 +1,8 @@
 = form_for [:dabo_admin, hospital_system] do |f|
   - if hospital_system.errors.any?
     #error_explanation
-      %h2= "#{pluralize(hospital_system.errors.count, "error")} prohibited this hospital system from being saved:"
+      %h4
+        = "#{pluralize(hospital_system.errors.count, "error")} prohibited this hospital system from being saved:"
       %ul
         - hospital_system.errors.full_messages.each do |msg|
           %li= msg
@@ -11,4 +12,3 @@
     = f.text_field :name, class: 'form_control'
   .actions
     = f.submit 'Save'
-    = link_to 'Back', dabo_admin_hospital_systems_path(hospital_system)
