@@ -13,7 +13,7 @@ RSpec.feature 'editing an account' do
   def expect_virtual_system_dropdown_to_have_options
     expect(page).to have_select(
       'account_virtual_system_gid',
-      options: ['', hospital_system.name, new_hospital.name],
+      options: [hospital_system.name, new_hospital.name],
       selected: hospital_system.name,
       )
   end
@@ -26,6 +26,13 @@ RSpec.feature 'editing an account' do
       )
   end
 
+  def expect_default_hospital_dropdown_to_have_no_options
+    expect(page).to have_select(
+      'account_default_hospital_id',
+      options: [],
+      )
+  end
+
   background do
     enable_feature(:create_account)
     visit edit_dabo_admin_account_path(account)
@@ -33,12 +40,14 @@ RSpec.feature 'editing an account' do
     expect_default_hospital_dropdown_to_have_options
   end
 
-  scenario 'when hospital system is selected' do
-    select(new_hospital.name, from: 'account_virtual_system_gid')
-    click_on 'Update Account'
+  feature 'when updating the hospital system' do
+    scenario 'the account is updated when changing the system' do
+      select(new_hospital.name, from: 'account_virtual_system_gid')
+      click_on 'Update Account'
 
-    expect(page).to have_content "Name: #{new_hospital.name}"
-    expect(page).to have_content "Default Hospital: #{new_hospital.name}"
+      expect(page).to have_content "Name: #{new_hospital.name}"
+      expect(page).to have_content "Default Hospital: #{new_hospital.name}"
+    end
   end
 
   scenario 'when a user is added to or removed from the account' do

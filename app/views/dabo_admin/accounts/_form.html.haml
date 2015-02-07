@@ -13,7 +13,7 @@
     VirtualHospitalSystemCollection.call, |
     :to_global_id, |
     :name, |
-    include_blank: true)
+    include_blank: account.new_record?)
   = render('hospital_select', |
     selected_default_hospital_id: account.default_hospital_id, |
     hospital_collection: hospital_collection)

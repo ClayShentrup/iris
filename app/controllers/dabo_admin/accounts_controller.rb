@@ -3,14 +3,9 @@ module DaboAdmin
   class AccountsController < ApplicationController
     before_action EnsureAdminFilter
 
-    def system_hospitals
-      hospital_collection = HospitalCollection.call(virtual_system)
-
-      render partial: 'hospital_select',
-             locals: {
-               selected_default_hospital_id: nil,
-               hospital_collection: hospital_collection,
-             }
+    def new
+      super
+      show_hospitals_for_selected_system if request.xhr?
     end
 
     def create
@@ -23,9 +18,13 @@ module DaboAdmin
     end
 
     def edit
-      super
-      @account.virtual_system_gid = @account.virtual_system.to_global_id.to_s
-      @hospital_collection = HospitalCollection.call(@account.virtual_system)
+      if request.xhr?
+        show_hospitals_for_selected_system
+      else
+        super
+        @account.virtual_system_gid = @account.virtual_system.to_global_id.to_s
+        @hospital_collection = HospitalCollection.call(@account.virtual_system)
+      end
     end
 
     def update
@@ -40,6 +39,20 @@ module DaboAdmin
     end
 
     private
+
+    def show_hospitals_for_selected_system
+      if virtual_system.present?
+        hospital_collection = HospitalCollection.call(virtual_system)
+      else
+        hospital_collection = []
+      end
+
+      render partial: 'hospital_select',
+             locals: {
+               selected_default_hospital_id: nil,
+               hospital_collection: hospital_collection,
+             }
+    end
 
     def allowed_params
       params.require(:account)
