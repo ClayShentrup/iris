@@ -8,15 +8,7 @@ Iris.Views['accounts-new'] = Backbone.View.extend({
   },
 
   loadHospitals: function() {
-    Iris.Util.getLoad(
-      '.default_hospital',
-      '/dabo_admin/accounts/new',
-      {
-        account: {
-          'virtual_system_gid': $('.system_selection option:selected').val()
-        }
-      }
-    ).done(function() {
+    Iris.Util.loadHospitals().done(function() {
       $('.system_selection option:empty').remove();
     });
   }
