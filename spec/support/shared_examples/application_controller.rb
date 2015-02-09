@@ -158,6 +158,7 @@ RSpec.shared_examples 'an ApplicationController create' do
     it 'redirects to the created record' do
       post_create
       expect(response).to redirect_to instance_url
+      expect(flash[:notice]).to be_present
     end
   end
 
@@ -184,9 +185,7 @@ RSpec.shared_examples 'an ApplicationController new' do
   include_context 'ApplicationController methods'
   before { get :new }
 
-  specify do
-    expect(response).to be_success
-  end
+  specify { expect(response).to be_success }
 
   it 'assigns a newly created model instance' do
     expect(assign).to be_a_new model_class
@@ -211,6 +210,7 @@ RSpec.shared_examples 'an ApplicationController delete' do
   it 'redirects to the index view' do
     delete_record
     expect(response).to redirect_to index_url
+    expect(flash[:notice]).to be_present
   end
 end
 
