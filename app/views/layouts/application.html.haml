@@ -17,7 +17,8 @@
          } |
        } |
     = render 'layouts/top_nav'
-    = render 'layouts/feedback_bar'
+    - if feature? :feedback_bar
+      = render 'layouts/feedback_bar'
     #outer_container
       = yield
 
