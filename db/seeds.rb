@@ -12,6 +12,7 @@ USERS = [
   {
     email: 'plebe@dabohealth.com',
     password: 'timeandcolorisblue',
+    is_dabo_admin: false,
   },
 ]
 
