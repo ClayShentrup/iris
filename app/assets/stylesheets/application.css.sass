@@ -10,7 +10,9 @@ body
   font-size: $font_size_base
 
 #outer_container
-  +outer-container
+  +clearfix
+  body:not([data-view-name*="charts"]) &
+    +outer-container
 
 .clearfix
   +clearfix
