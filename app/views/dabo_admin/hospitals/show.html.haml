@@ -1,25 +1,28 @@
-- # name, provider id, city and state
-%ul
-  %li
-    Name:
-    = @hospital.name
-  %li
-    Provider Id:
-    = @hospital.provider_id
-  %li
-    City:
-    = @hospital.city
-  %li
-    State:
-    = @hospital.state
-  %li
-    Hospital System:
-    = @hospital.hospital_system_name
+.row
+  %h1 Hospital Detail
 
-= link_to 'Delete this hospital', |
-  dabo_admin_hospital_path(@hospital), |
-  method: :delete, |
-  data: { confirm: 'Are you sure?' }
+  - # name, provider id, city and state
+  .table_responsive.top_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+          %th Provider Id:
+          %th City
+          %th State
+          %th Hospital System
+      %tr
+        %td=@hospital.name
+        %td=@hospital.provider_id
+        %td=@hospital.city
+        %td=@hospital.state
+        %td=@hospital.hospital_system_name
 
-%br
-= link_to 'Back', dabo_admin_hospitals_path
+  .bottom_buffer_base
+    = link_to 'Delete This Hospital', |
+      dabo_admin_hospital_path(@hospital), |
+      method: :delete, |
+      data: { confirm: 'Are you sure?' }, |
+      class: 'btn_red top_buffer_base'
+
+    = link_to 'Back', dabo_admin_hospitals_path, class: 'vertical_padding_small'

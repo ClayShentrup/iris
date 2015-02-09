@@ -1,15 +1,31 @@
-%p#notice= notice
+.row
+  %h1 User Detail
+  %p#notice= notice
 
-%p
-  %b Email:
-  = @user.email
-  = "(unconfirmed email: #{@user.unconfirmed_email})" if @user.unconfirmed_email
-%p
-  %b Is Dabo Admin:
-  = @user.is_dabo_admin
+  .table_responsive.top_buffer_base.bottom_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Email
+          %th Is Dabo Admin
+          %th
+          %th
+      %tr
+        %td
+          = @user.email
+          - if @user.unconfirmed_email
+            = "(unconfirmed email: #{@user.unconfirmed_email})"
+        %td
+          = @user.is_dabo_admin
+        %td.text_center
+          = link_to 'Edit', |
+            edit_dabo_admin_user_path(@user), |
+            class: 'btn_blue text_small'
+        %td.text_center
+          = link_to 'Destroy', |
+            dabo_admin_user_path(@user), |
+            method: :delete, data: { confirm: 'Are you sure?' }, |
+            class: 'btn_red text_small'
 
-= link_to 'Edit', edit_dabo_admin_user_path(@user)
-\|
-= link_to 'Destroy',  dabo_admin_user_path(@user),  method: :delete, data: { confirm: 'Are you sure?' }
-\|
-= link_to 'Back', dabo_admin_users_path
+  .bottom_buffer_base
+    = link_to 'Back', dabo_admin_users_path

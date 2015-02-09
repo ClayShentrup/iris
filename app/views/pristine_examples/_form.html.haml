@@ -8,9 +8,9 @@
 
   .field
     = f.label :name
-    = f.text_field :name
+    = f.text_field :name, class: 'form_control'
   .field
     = f.label :description
-    = f.text_area :description
+    = f.text_area :description, class: 'form_control'
   .actions
     = f.submit 'Save'

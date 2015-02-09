@@ -8,10 +8,10 @@
 
   .field
     = f.label :email
-    = f.text_field :email
+    = f.text_field :email, class: 'form_control'
   .field
     = f.label :password
-    = f.password_field :password, autocomplete: "off"
+    = f.password_field :password, autocomplete: "off", class: 'form_control'
   .field
     = f.label :is_dabo_admin
     = f.check_box :is_dabo_admin

@@ -1,5 +1,7 @@
-%h1 New Hospital System
+.row
+  %h1 New Hospital System
 
-= render 'form', hospital_system: @hospital_system
+  = render 'form', hospital_system: @hospital_system
 
-= link_to 'Back', dabo_admin_hospital_systems_path(@hospital_system)
+  .bottom_buffer_base
+    = link_to 'Back', dabo_admin_hospital_systems_path
