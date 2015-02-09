@@ -1,20 +1,25 @@
-- # name, provider id, city and state
-%ul
-  %li
-    Name:
-    = @account.name
-  %li
-    Type:
-    = @account.virtual_system_type
-  %li
-    Default Hospital:
-    = @account.default_hospital_name
-  %li
-    Users:
-    %ul
-      - @account.users.each do |user|
-        %li
-          = user.email
+.row
+  .table_responsive.top_buffer_base.bottom_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+          %th Type
+          %th Default Hospital
+          %th Users
+      %tr
+        %td
+          = @account.name
+        %td
+          = @account.virtual_system_type
+        %td
+          = @account.default_hospital_name
+        %td
+          %ul
+            - @account.users.each do |user|
+              %li
+                = user.email
+
 
 = link_to 'Edit', edit_dabo_admin_account_path(@account)
 \|

@@ -1,8 +1,13 @@
-.new
-  = link_to 'Create new Account', new_dabo_admin_account_path
+.row
+  .new
+    = link_to 'Create new Account', new_dabo_admin_account_path, class: 'btn_blue'
 
-%br
-- @accounts.each do |account|
-  %ul
-    %li
-      = link_to account.name, dabo_admin_account_path(account)
+  .table_responsive.top_buffer_base.bottom_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+      - @accounts.each do |account|
+        %tr
+          %td
+            = link_to account.name, dabo_admin_account_path(account)

@@ -1,6 +1,8 @@
 require 'feature_spec_helper'
+require 'account_spec_helper'
 
 RSpec.feature 'creating an account' do
+  include AccountSpecHelper
   login_admin
 
   let!(:user) { create(:user) }
@@ -11,18 +13,20 @@ RSpec.feature 'creating an account' do
   let(:hospital_system_name) { hospital_with_system.hospital_system_name }
 
   def expect_virtual_system_dropdown_to_have_options
-    expect(page).to have_select(
+    expect_dropdown_to_have_options(
+      page,
       'account_virtual_system_gid',
-      options: ['', hospital_system_name, hospital_without_system.name],
-      selected: '',
-      )
+      ['', hospital_system_name, hospital_without_system.name],
+      '',
+    )
   end
 
   def expect_default_hospital_dropdown_to_have_no_options
-    expect(page).to have_select(
+    expect_default_dropdown_to_have_no_options(
+      page,
       'account_default_hospital_id',
-      options: [],
-      )
+      [],
+    )
   end
 
   background do
@@ -44,9 +48,9 @@ RSpec.feature 'creating an account' do
     select(hospital_with_system.name, from: 'account_default_hospital_id')
     click_on 'Create Account'
 
-    expect(page).to have_content "Name: #{hospital_system_name}"
+    expect(page).to have_content "#{hospital_system_name}"
     expect(page)
-      .to have_content "Default Hospital: #{hospital_with_system.name}"
+      .to have_content "#{hospital_with_system.name}"
     expect(page).to_not have_content user.email
   end
 
@@ -55,9 +59,9 @@ RSpec.feature 'creating an account' do
     select(hospital_without_system.name, from: 'account_default_hospital_id')
     click_on 'Create Account'
 
-    expect(page).to have_content "Name: #{hospital_without_system.name}"
+    expect(page).to have_content "#{hospital_without_system.name}"
     expect(page)
-      .to have_content "Default Hospital: #{hospital_without_system.name}"
+      .to have_content "#{hospital_without_system.name}"
   end
 
   scenario 'when user is selected' do

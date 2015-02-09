@@ -23,7 +23,7 @@ module DaboAdmin
       else
         super
         @account.virtual_system_gid = @account.virtual_system.to_global_id.to_s
-        @hospital_collection = HospitalCollection.call(@account.virtual_system)
+        @hospital_collection = hospital_collection(@account.virtual_system)
       end
     end
 
@@ -41,17 +41,15 @@ module DaboAdmin
     private
 
     def show_hospitals_for_selected_system
-      if virtual_system.present?
-        hospital_collection = HospitalCollection.call(virtual_system)
-      else
-        hospital_collection = []
-      end
-
       render partial: 'hospital_select',
              locals: {
                selected_default_hospital_id: nil,
-               hospital_collection: hospital_collection,
+               hospital_collection: hospital_collection(virtual_system),
              }
+    end
+
+    def hospital_collection(system)
+      HospitalCollection.call(system)
     end
 
     def allowed_params
@@ -65,7 +63,7 @@ module DaboAdmin
     end
 
     def virtual_system
-      GlobalID::Locator.locate virtual_system_gid if virtual_system_gid
+      GlobalID::Locator.locate virtual_system_gid
     end
 
     def virtual_system_gid
