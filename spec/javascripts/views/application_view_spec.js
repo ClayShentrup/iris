@@ -7,7 +7,7 @@ describe('ApplicationView', function() {
     var view = new Iris.Views.application({el: '#body'});
   });
 
-  describe('click #top_nav .hide_on_desktop .icon', function() {
+  describe('clicking on the search icon', function() {
     it('expands the search box on mobile', function() {
       expect($('#top_nav .nav_btns:visible').length).toBe(2);
       $('#top_nav .hide_on_tablet_portrait.hide_on_desktop .icon_search')
@@ -36,7 +36,7 @@ describe('ApplicationView', function() {
       expect(icon).toHaveClass('icon_close');
     });
   });
-  describe('click #feedback_bar .icon_close', function() {
+  describe('clicking on the close icon', function() {
     it('closes the flash message feedback bar', function() {
       // TODO: Remove append() when fixtures have flash message
       $('#body').append(

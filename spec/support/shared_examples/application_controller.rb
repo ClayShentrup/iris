@@ -266,6 +266,7 @@ RSpec.shared_examples 'an ApplicationController update' do
 
     it 'redirects to the model show' do
       expect(response).to redirect_to instance_url
+      expect(flash[:notice]).to be_present
     end
   end
 
