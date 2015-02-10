@@ -31,4 +31,8 @@ class Hospital < ActiveRecord::Base
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
       .update_attributes!(attributes)
   end
+
+  def hospitals
+    [self]
+  end
 end

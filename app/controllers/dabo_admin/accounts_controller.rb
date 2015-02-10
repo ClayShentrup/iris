@@ -23,7 +23,7 @@ module DaboAdmin
       else
         super
         @account.virtual_system_gid = @account.virtual_system.to_global_id.to_s
-        @hospital_collection = hospital_collection(@account.virtual_system)
+        @hospital_collection = @account.virtual_system.hospitals
       end
     end
 
@@ -44,12 +44,8 @@ module DaboAdmin
       render partial: 'hospital_select',
              locals: {
                selected_default_hospital_id: nil,
-               hospital_collection: hospital_collection(virtual_system),
+               hospital_collection: virtual_system.hospitals,
              }
-    end
-
-    def hospital_collection(system)
-      HospitalCollection.call(system)
     end
 
     def allowed_params
