@@ -10,16 +10,15 @@ RSpec.shared_examples 'a Dabo Admin page' do
     routes.draw do
       get 'custom' => "#{this_controller.controller_path}#custom"
     end
-    get :custom
   end
 
   context 'with a Dabo Admin logged in' do
     login(:dabo_admin)
-    it { expect(response).to be_success }
+    it { expect(get :custom).to be_success }
   end
 
   context 'with a normal user logged in' do
     login(:user)
-    it { is_expected.to redirect_to('/') }
+    it { expect(get :custom).to redirect_to('/') }
   end
 end

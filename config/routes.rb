@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
-    mount Flip::Engine => '/flip'
     devise_for :users
     resource :status, only: :show
 
@@ -9,7 +8,13 @@ Rails.application.routes.draw do
       resources :hospital_systems
       resources :reports, only: :index
       resources :users
+      resources :flip, only: [:index], controller: :features do
+        resources :strategies, only: [:update, :destroy]
+      end
     end
+
+    mount Flip::Engine => '/dabo_admin/flip'
+
     resources :news_items, only: :index
     resources :pristine_examples
 
