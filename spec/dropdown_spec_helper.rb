@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 # This helper file provides shared methods for Dabo Admin Account feature specs
-module AccountSpecHelper
+module DropdownSpecHelper
   def expect_dropdown_to_have_options(page, dropdown_id, options, selected)
     expect(page).to have_select(
       dropdown_id,

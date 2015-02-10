@@ -1,8 +1,8 @@
 require 'feature_spec_helper'
-require 'account_spec_helper'
+require 'dropdown_spec_helper'
 
 RSpec.feature 'editing an account' do
-  include AccountSpecHelper
+  include DropdownSpecHelper
   login_admin
 
   let!(:user) { create(:user) }
