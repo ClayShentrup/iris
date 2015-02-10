@@ -72,7 +72,7 @@ module Iris
       'PublicChartTree::PublicChartNotFoundError' => :not_found,
     )
 
-    host_name = ENV.fetch('APP_NAME')
+    host_name = ENV.fetch('APP_NAME', 'localhost:3000')
     config.action_mailer.default_url_options = {
       host:     "#{host_name}.herokuapp.com",
       protocol: 'https',
