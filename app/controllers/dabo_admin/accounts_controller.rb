@@ -13,8 +13,7 @@ module DaboAdmin
       @account.virtual_system = virtual_system
       @account.users = account_users
 
-      flash_success_message('created') if @account.save
-      respond_with :dabo_admin, @account
+      flash_and_respond('created')
     end
 
     def edit
@@ -28,17 +27,21 @@ module DaboAdmin
     end
 
     def update
-      @account = saved_model.tap do |acc|
-        acc.assign_attributes(allowed_params)
-        acc.virtual_system = virtual_system
-        acc.users = account_users
+      @account = saved_model.tap do |acct|
+        acct.assign_attributes(allowed_params)
+        acct.virtual_system = virtual_system
+        acct.users = account_users
       end
 
-      flash_success_message('updated') if @account.save
-      respond_with :dabo_admin, @account
+      flash_and_respond('updated')
     end
 
     private
+
+    def flash_and_respond(message)
+      flash_success_message(message) if @account.save
+      respond_with :dabo_admin, @account
+    end
 
     def show_hospitals_for_selected_system
       render partial: 'hospital_select',
