@@ -18,7 +18,7 @@ module HospitalSystems
       data_rows.map do |row|
         {
           system_name: row.fetch(:system_name),
-          provider_id: normalized_provider_id(row.fetch(:provider_id).to_i),
+          provider_id: normalized_provider_id(row.fetch(:provider_id)),
         }
       end
     end
