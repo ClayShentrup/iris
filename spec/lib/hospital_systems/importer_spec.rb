@@ -1,13 +1,9 @@
 require 'active_record_spec_helper'
-
 require './app/models/hospital'
 require './app/models/hospital_system'
-
 require 'hospital_systems/importer'
 
 RSpec.describe HospitalSystems::Importer do
-  let(:file_path) { './spec/fixtures/hospital_systems_importer/test_file.xls' }
-
   let!(:hospital_in_universal_system) do
     create(:hospital, provider_id: '200001')
   end
@@ -24,7 +20,14 @@ RSpec.describe HospitalSystems::Importer do
   let(:resources_system_name) { 'Health Resources' }
 
   def import_hospital_systems
-    described_class.call(file_path: file_path) {}
+    described_class.call.force
+  end
+
+  before do
+    stub_const(
+      'HospitalSystems::DataFromSpreadsheet::FILEPATH',
+      './spec/fixtures/hospital_systems_importer/test_file.xls',
+    )
   end
 
   context 'no hospital systems were loaded before' do
@@ -98,18 +101,16 @@ RSpec.describe HospitalSystems::Importer do
   end
 
   context 'with block to handle output messages' do
-    let(:test_logger) { double('test_logger', messages: []) }
-
-    let(:messages) { test_logger.messages.compact }
-
-    before do
-      described_class.call(file_path: file_path) do
-        |message| test_logger.messages << message
-      end
-    end
+    let(:messages) { [] }
 
     it 'passes a warning indicating that one hospital was not found' do
-      expect(messages).to eq(['Hospital not found: Provider id #200004'])
+      described_class.call.each { |message| messages << message }
+      expect(messages).to eq [
+        nil,
+        nil,
+        nil,
+        'Hospital not found: Provider id #200004',
+      ]
     end
   end
 end

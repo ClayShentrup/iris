@@ -1,3 +1,4 @@
+require 'thor'
 require 'thor/rails'
 
 # Thor task to import systems
@@ -7,30 +8,26 @@ require 'thor/rails'
 # ==== Options
 # * <tt>--quiet, -q</tt> - Suppress output
 #
-class HospitalSystemsImporter < Thor
-  DEFAULT_FILE = 'lib/assets/files/hospital_systems.xls'
-
+class ImportHospitalSystems < Thor
   include Thor::Rails
-  desc 'import', 'import or update existing hospital systems'
-  namespace :hospital_systems
-  class_option :quiet, aliases: '-q', desc: 'Suppress output'
 
-  def import(*args)
+  default_task :import
+
+  desc 'import', 'import or update existing hospital systems'
+  class_option :quiet, aliases: '-q', desc: 'Suppress output'
+  def import(*_args)
     output 'Starting system import...'
 
     counter = 0
-    HospitalSystems::Importer.call(file_path: file_path(args)) do |message|
+    HospitalSystems::Importer.call.each do |message|
       counter += 1
       output("\r#{message}", :yellow, true) if message
       output("\r#{counter} rows processed.", :green, false)
-    end
+    end.force
+    nil
   end
 
   private
-
-  def file_path(args)
-    @file_path = args.empty? ? DEFAULT_FILE : args.first
-  end
 
   def output(*args)
     say(*args) unless quiet?

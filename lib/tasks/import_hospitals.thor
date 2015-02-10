@@ -5,12 +5,12 @@ require 'thor/rails'
 # ==== Options
 # * <tt>--quiet, -q</tt> - Suppress output
 #
-class HospitalImporter < Thor
+class ImportHospitals < Thor
   include Thor::Rails
+  default_task :import
   class_option :quiet, aliases: '-q', desc: 'Suppress output'
 
   desc 'import', 'import or update existing hospitals using Socrata'
-  namespace :hospital
   def import
     output 'Starting hospital import...'
 
