@@ -72,8 +72,9 @@ module Iris
       'PublicChartTree::PublicChartNotFoundError' => :not_found,
     )
 
+    host_name = ENV.fetch('APP_NAME')
     config.action_mailer.default_url_options = {
-      host:     'dabo-iris-production.herokuapp.com',
+      host:     "#{host_name}.herokuapp.com",
       protocol: 'https',
     }
 
