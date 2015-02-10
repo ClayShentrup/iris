@@ -32,7 +32,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable, :confirmable, :timeoutable
+         :lockable, :confirmable, :timeoutable, :password_expirable
   belongs_to :account
 
   validates :email, presence: true

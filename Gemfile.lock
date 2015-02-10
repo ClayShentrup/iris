@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/phatworx/devise_security_extension.git
+  revision: 1f35d9630e6cb5ae6208bf9f4a3f4c2bf1efad97
+  specs:
+    devise_security_extension (0.8.0)
+      devise (>= 2.0.0)
+      rails (>= 3.1.1)
+
 GEM
   remote: https://rubygems.org/
   remote: https://b8ab84f5:2186dcf8@gems.contribsys.com/
@@ -377,6 +385,7 @@ DEPENDENCIES
   connection_pool
   database_cleaner
   devise
+  devise_security_extension!
   dotenv
   factory_girl_rails
   fakeredis

@@ -33,3 +33,4 @@ require 'dotenv' if Rails.env.development?
 require 'airbrake' if Rails.env.production?
 require 'newrelic_rpm'
 require 'devise'
+require 'devise_security_extension'
