@@ -1,7 +1,7 @@
 require 'English'
 require 'open3'
 require 'thor/rake_compat'
-require 'rspec/core/rake_task'
+require './spec/support/jasmine_macros'
 
 # Run all tests as we would on CI
 class Tests < Thor
@@ -25,13 +25,7 @@ class Tests < Thor
 
   desc :save_jasmine_fixtures, 'Build jasmine fixtures from rspec'
   def save_jasmine_fixtures
-    require_relative '../../spec/support/jasmine_macros'
-    RSpec::Core::RakeTask.new(:fixtures) do |t|
-      t.rspec_opts = ['-e', "'#{JasmineMacros::SPEC_DESCRIPTION}'"]
-      t.verbose = true
-      t.pattern = 'spec/controllers/*_spec.rb'
-    end
-    Rake::Task['fixtures'].execute
+    `rspec -e "#{JasmineMacros::SPEC_DESCRIPTION}"`
   end
 
   private
