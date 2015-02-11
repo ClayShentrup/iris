@@ -19,5 +19,19 @@ module DimensionSample
     validates :provider_id, presence: true
     validates :column_name, presence: true
     validates :value, presence: true
+
+    def self.data(dataset_id:, column_name:, providers_relation:)
+      where(
+        dataset_id: dataset_id,
+        column_name: column_name,
+      )
+        .joins(<<-JOIN_QUERY)
+          LEFT JOIN hospitals
+          ON dimension_sample_single_measures.provider_id =
+          hospitals.provider_id
+        JOIN_QUERY
+        .merge(providers_relation)
+        .pluck(:value)
+    end
   end
 end
