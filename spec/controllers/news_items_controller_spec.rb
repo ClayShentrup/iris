@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe NewsItemsController do
-  login(:user)
+  login_user
 
   it_behaves_like 'an ApplicationController'
 

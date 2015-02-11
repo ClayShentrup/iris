@@ -3,8 +3,8 @@
 # Table name: pristine_examples
 #
 #  id          :integer          not null, primary key
-#  name        :string
-#  description :text
+#  name        :string           not null
+#  description :text             not null
 #  created_at  :datetime
 #  updated_at  :datetime
 #

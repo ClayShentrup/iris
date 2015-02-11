@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PublicChartsController do
   describe 'GET show' do
-    login(:user)
+    login_user
 
     let(:chart_id) do
       %w[

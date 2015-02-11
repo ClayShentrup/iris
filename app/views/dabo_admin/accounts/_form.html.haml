@@ -1,0 +1,24 @@
+- if account.errors.any?
+  #error_explanation
+    %h2= "#{pluralize(account.errors.count, "error")} prohibited this account from being saved:"
+    %ul
+      - account.errors.full_messages.each do |msg|
+        %li= msg
+
+= form_for [:dabo_admin, account] do |f|
+  - @form = f
+  .field.system_selection
+    = f.label :system_name
+    = f.collection_select(:virtual_system_gid, |
+    VirtualHospitalSystemCollection.call, |
+    :to_global_id, |
+    :name, |
+    include_blank: account.new_record?)
+  = render('hospital_select', |
+    selected_default_hospital_id: account.default_hospital_id, |
+    hospital_collection: hospital_collection)
+  .field
+    = f.label :users
+    = f.collection_check_boxes :user_ids, User.all, :id, :email
+  .actions
+    = f.submit

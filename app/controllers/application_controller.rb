@@ -2,6 +2,7 @@ require 'responders'
 
 # Root controller from which all our controllers inherit.
 class ApplicationController < ActionController::Base
+  include Flip::ControllerFilters
   before_action :authenticate_user!
   before_action :ensure_format_is_html
   respond_to :html

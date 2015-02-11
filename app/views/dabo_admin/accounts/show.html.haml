@@ -1,0 +1,29 @@
+.row
+  .table_responsive.top_buffer_base.bottom_buffer_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+          %th Type
+          %th Default Hospital
+          %th Users
+      %tr
+        %td
+          = @account.name
+        %td
+          = @account.virtual_system_type
+        %td
+          = @account.default_hospital_name
+        %td
+          %ul
+            - @account.users.each do |user|
+              %li
+                = user.email
+
+
+= link_to 'Edit', edit_dabo_admin_account_path(@account)
+\|
+= link_to 'Delete', dabo_admin_account_path(@account), method: :delete, |
+  data: { confirm: 'Are you sure?' }
+\|
+= link_to 'Back', dabo_admin_accounts_path

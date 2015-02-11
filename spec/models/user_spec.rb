@@ -23,6 +23,7 @@
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
 #  is_dabo_admin          :boolean          default("false"), not null
+#  account_id             :integer
 #
 
 require 'active_record_spec_helper'

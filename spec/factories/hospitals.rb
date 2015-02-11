@@ -3,12 +3,12 @@
 # Table name: hospitals
 #
 #  id                 :integer          not null, primary key
-#  name               :string
-#  zip_code           :string
-#  hospital_type      :string
-#  provider_id        :string
-#  state              :string
-#  city               :string
+#  name               :string           not null
+#  zip_code           :string           not null
+#  hospital_type      :string           not null
+#  provider_id        :string           not null
+#  state              :string           not null
+#  city               :string           not null
 #  hospital_system_id :integer
 #
 
@@ -21,8 +21,8 @@ FactoryGirl.define do
     zip_code '90210'
     hospital_type 'Childrens'
 
-    # trait :without_hospital_system do |hospital|
-    #   hospital.hospital_system nil
-    # end
+    trait :with_hospital_system do
+      association :hospital_system
+    end
   end
 end

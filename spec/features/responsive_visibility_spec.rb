@@ -1,7 +1,7 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'responsive design' do
-  login(:user)
+  login_user
 
   given(:url) do
     %w[

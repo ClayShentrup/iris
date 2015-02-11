@@ -4,8 +4,14 @@ module DeviseMacros
     base.include Devise::TestHelpers
   end
 
-  def login(user)
-    let(:current_user) { create user }
+  def login_user
+    let(:current_user) { create :user }
+    simulate_routed_request
+    let!(:set_logged_in_state) { sign_in current_user }
+  end
+
+  def login_admin
+    let(:current_user) { create :user, :dabo_admin }
     simulate_routed_request
     let!(:set_logged_in_state) { sign_in current_user }
   end
