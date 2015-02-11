@@ -5,23 +5,19 @@ RSpec.configure do |config|
     DatabaseCleaner.clean_with :truncation
   end
 
-  config.before(:each) do
+  config.before(:example) do
     DatabaseCleaner.strategy = :transaction
   end
 
-  config.before(:each, type: :feature) do
+  config.before(:example, type: :feature) do
     DatabaseCleaner.strategy = :truncation
   end
 
-  config.before(:each) do
+  config.before(:example) do
     DatabaseCleaner.start
   end
 
-  config.after(:each) do
+  config.after(:example) do
     DatabaseCleaner.clean
   end
-
-  require 'factory_girl'
-  FactoryGirl.find_definitions
-  config.include(FactoryGirl::Syntax::Methods)
 end

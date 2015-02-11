@@ -1,3 +1,4 @@
+require 'spec_helper'
 require 'active_record_spec_helper'
 require './app/models/hospital'
 require './app/models/hospital_system'
@@ -79,7 +80,6 @@ RSpec.describe HospitalSystems::Importer do
 
     it 'associates hospital with systems' do
       import_hospital_systems
-
       universal_system = hospital_in_universal_system.reload.hospital_system
       resources_system = hospital_in_resources_system.reload.hospital_system
 

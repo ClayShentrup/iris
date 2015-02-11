@@ -6,7 +6,6 @@ RSpec.feature 'creating an account' do
   login_admin
 
   let!(:user) { create(:user) }
-
   let!(:hospital_without_system) { create(:hospital) }
   let!(:hospital_with_system) { create(:hospital, :with_hospital_system) }
 
@@ -64,7 +63,6 @@ RSpec.feature 'creating an account' do
     select(hospital_without_system.name, from: 'account_default_hospital_id')
     click_on 'Create Account'
 
-    expect(page).to have_content "#{hospital_without_system.name}"
     expect(page).to have_content "#{hospital_without_system.name}"
   end
 
