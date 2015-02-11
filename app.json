@@ -23,9 +23,6 @@
     "MAILTRAP_API_TOKEN": "will be overwritten",
     "APP_NAME": "will be overwritten"
   },
-  "addons":[
-    "heroku-postgresql:hobby-dev",
-    "mailtrap"
-  ]
+  "addons":["heroku-postgresql:hobby-dev"]
 }
 
