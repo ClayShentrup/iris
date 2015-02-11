@@ -32,8 +32,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable, :confirmable
+         :lockable, :confirmable, :timeoutable
   belongs_to :account
+
   validates :email, presence: true
   validates :is_dabo_admin, inclusion: { in: [true, false] }
 end
