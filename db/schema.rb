@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150209195128) do
+ActiveRecord::Schema.define(version: 20150210000921) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -109,6 +109,7 @@ ActiveRecord::Schema.define(version: 20150209195128) do
     t.string   "unconfirmed_email"
     t.boolean  "is_dabo_admin",          default: false, null: false
     t.integer  "account_id"
+    t.datetime "password_changed_at"
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
