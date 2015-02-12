@@ -1,6 +1,8 @@
+require 'active_support/core_ext/object/blank'
+
 # Takes logline data from DB and returns a hash used to generate the report view
 module Reporting
-  DailyPageViewMetricsReport = Struct.new(:log_lines) do
+  DailyPageViewMetricsReport = Struct.new(:log_lines_data) do
     def self.call(*args)
       new(*args).call
     end
@@ -25,10 +27,6 @@ module Reporting
 
     def page_view_data
       log_lines_data.select { |data| data.fetch('event') == 'Page View' }
-    end
-
-    def log_lines_data
-      log_lines.lazy.map(&:data)
     end
   end
 end

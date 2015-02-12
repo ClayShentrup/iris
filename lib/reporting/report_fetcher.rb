@@ -8,9 +8,10 @@ module Reporting
       log_lines = LogLine.where(
         logged_at: report_day_in_client_time_zone,
       )
+      log_lines_data = log_lines.map(&:data)
       {
         date: report_day_in_client_time_zone.first.to_date,
-        report: report_class.call(log_lines),
+        report: report_class.call(log_lines_data),
       }
     end
   end
