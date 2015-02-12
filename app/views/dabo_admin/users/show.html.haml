@@ -27,5 +27,8 @@
             method: :delete, data: { confirm: 'Are you sure?' }, |
             class: 'btn_red text_small'
 
+  -if @user.locked_at
+    %td= button_to 'Unlock', dabo_admin_user_path(@user), method: :patch, params: {:'user[locked_at]' => nil, :'user[failed_attempts]' => 0}
+
   .bottom_buffer_base
     = link_to 'Back', dabo_admin_users_path

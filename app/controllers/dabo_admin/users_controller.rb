@@ -6,7 +6,13 @@ module DaboAdmin
     private
 
     def model_params
-      params.require(:user).permit(:email, :is_dabo_admin, :password)
+      params.require(:user).permit(
+        :email,
+        :is_dabo_admin,
+        :password,
+        :locked_at,
+        :failed_attempts,
+      )
     end
   end
 end
