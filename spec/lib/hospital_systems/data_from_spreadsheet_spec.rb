@@ -28,6 +28,10 @@ RSpec.describe HospitalSystems::DataFromSpreadsheet do
         system_name: 'Universal Health Services',
         provider_id: '200004',
       },
+      {
+        system_name: 'Department of Veterans Affairs',
+        provider_id: '019048',
+      },
     ]
   end
 

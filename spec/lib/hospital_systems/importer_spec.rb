@@ -110,6 +110,7 @@ RSpec.describe HospitalSystems::Importer do
         nil,
         nil,
         'Hospital not found: Provider id #200004',
+        'Hospital not found: Provider id #019048',
       ]
     end
   end

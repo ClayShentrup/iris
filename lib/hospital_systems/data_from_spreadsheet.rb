@@ -42,7 +42,7 @@ module HospitalSystems
     end
 
     def normalized_provider_id(provider_id)
-      format('%06d', provider_id)
+      format('%06d', provider_id.to_i)
     end
   end
 end
