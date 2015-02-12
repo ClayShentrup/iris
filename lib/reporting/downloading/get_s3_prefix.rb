@@ -1,3 +1,5 @@
+require_relative './get_bucket'
+
 module Reporting
   module Downloading
     # Get the S3 prefix for log files created with flydata

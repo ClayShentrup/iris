@@ -1,3 +1,4 @@
+require 's3/get_buckets'
 require 'get_config'
 
 module Reporting
@@ -6,7 +7,8 @@ module Reporting
     module GetBucket
       class << self
         def call
-          S3::GetBuckets.call[bucket_name_for_logs]
+          aws_s3_bucket_collection = S3::GetBuckets.call
+          aws_s3_bucket_collection[bucket_name_for_logs]
         end
 
         private

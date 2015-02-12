@@ -1,5 +1,5 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test' # We should only do this HERE; stub elsewhere
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
 require 'rails_common_spec_helper'
