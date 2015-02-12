@@ -11,8 +11,6 @@ end
 Capybara.default_driver = :chrome
 
 RSpec.configure do |config|
-  config.use_transactional_fixtures = false
-
   config.extend WardenMacros, type: :feature
   config.include BrowserSizeHelpers, type: :feature
   config.include AuthenticationHelpers, type: :feature
