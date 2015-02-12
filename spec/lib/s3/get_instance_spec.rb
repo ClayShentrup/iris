@@ -1,14 +1,17 @@
-require 'rails_helper'
-require 'aws-sdk'
+require 's3/get_instance'
 
 RSpec.describe S3::GetInstance do
   let(:s3_instance) { instance_double('AWS::S3') }
+  let(:aws_credentials) { 'fake aws credentials' }
 
   before do
-    allow(AWS::S3).to receive(:new).and_return(s3_instance)
+    allow(AWS::S3).to receive(:new).with(aws_credentials)
+      .and_return(s3_instance)
+    allow(GetConfig).to receive(:call).with(:aws_credentials)
+      .and_return(aws_credentials)
   end
 
   it 'returns a new AWS::S3 instance with our credentials' do
-    expect(described_class.call).to eq s3_instance
+    expect(described_class.call).to be s3_instance
   end
 end
