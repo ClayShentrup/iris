@@ -3,8 +3,7 @@
 
   = render 'form', user: @user
 
-  -if @user.locked_at
-    %td= button_to 'Unlock', dabo_admin_user_path(@user), method: :patch, params: {:'user[locked_at]' => nil, :'user[failed_attempts]' => 0}
+  = render 'unlock_button', user: @user
 
   .bottom_buffer_base
     = link_to 'Show', dabo_admin_user_path(@user)

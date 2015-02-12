@@ -1,0 +1,5 @@
+-if user.locked_at
+  %td= button_to 'Unlock',
+    dabo_admin_user_path(user),
+    method: :patch,
+    params: {:'user[locked_at]' => nil, :'user[failed_attempts]' => 0}
