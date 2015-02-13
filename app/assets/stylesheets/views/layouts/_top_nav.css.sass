@@ -1,5 +1,5 @@
 #top_nav
-  display: flex
+  +display(flex)
 
   .sessions &
     display: none
@@ -28,15 +28,15 @@
   .logo,
   .menu_icon,
   .search
-    +prefixer(flex-grow, 1, webkit moz spec)
+    +flex-grow(1)
 
   .news_feed,
   .metrics
-    +prefixer(flex-grow, 3, webkit moz spec)
+    +flex-grow(3)
 
   .search
     +media($desktop)
-      +prefixer(flex-grow, 4, webkit moz spec)
+      +flex-grow(4)
 
     &.hide_on_tablet_portrait.hide_on_desktop
       input
