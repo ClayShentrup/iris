@@ -18,7 +18,7 @@ RSpec.describe HospitalSystems::DataFromSpreadsheet do
       },
       {
         system_name: 'Health Resources',
-        provider_id: '200002',
+        provider_id: '20002F',
       },
       {
         system_name: nil,

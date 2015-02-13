@@ -10,7 +10,7 @@ RSpec.describe HospitalSystems::Importer do
   end
 
   let!(:hospital_in_resources_system) do
-    create(:hospital, provider_id: '200002')
+    create(:hospital, provider_id: '20002F')
   end
 
   let!(:hospital_without_system) do
