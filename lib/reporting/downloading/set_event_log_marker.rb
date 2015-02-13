@@ -5,7 +5,7 @@ module Reporting
       REDIS_KEY = 'event_log_marker'
 
       def self.call(marker)
-        RedisUtil::GetConnection.call.set(REDIS_KEY, marker)
+        $redis.set(REDIS_KEY, marker)
       end
     end
   end

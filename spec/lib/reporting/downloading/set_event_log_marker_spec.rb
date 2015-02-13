@@ -10,7 +10,7 @@ RSpec.describe Reporting::Downloading::SetEventLogMarker do
   end
 
   def time_to_live
-    RedisUtil::GetConnection.call.ttl(described_class.const_get(:REDIS_KEY))
+    $redis.ttl(described_class.const_get(:REDIS_KEY))
   end
 
   it 'persists the log marker forever' do

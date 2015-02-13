@@ -7,7 +7,7 @@ RSpec.describe Reporting::Downloading::GetEventLogMarker do
   end
 
   before do
-    RedisUtil::GetConnection.call.set(
+    $redis.set(
       Reporting::Downloading::SetEventLogMarker::REDIS_KEY,
       marker,
     )
