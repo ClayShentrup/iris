@@ -23,7 +23,7 @@ class ImportHospitalSystems < Thor
       counter += 1
       output("\r#{message}", :yellow, true) if message
       output("\r#{counter} rows processed.", :green, false)
-    end.force
+    end
     nil
   end
 
