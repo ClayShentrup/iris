@@ -191,6 +191,10 @@ GEM
     parser (2.2.0.2)
       ast (>= 1.1, < 3.0)
     pg (0.18.1)
+    pg_search (0.7.9)
+      activerecord (>= 3.1)
+      activesupport (>= 3.1)
+      arel
     phantomjs (1.9.8.0)
     powerpack (0.0.9)
     pry (0.10.1)
@@ -400,6 +404,7 @@ DEPENDENCIES
   newrelic_rpm
   overcommit
   pg
+  pg_search
   pry-byebug
   rack-timeout
   rails

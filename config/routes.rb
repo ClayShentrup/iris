@@ -22,6 +22,8 @@ Rails.application.routes.draw do
     resource :metrics, only: :show, controller: :charts_root
     get 'metrics/*id', to: 'public_charts#show'
 
+    get 'search/hospitals', to: 'search#hospitals'
+
     # product-friendly aliases
     get :news, to: 'news_items#index'
 

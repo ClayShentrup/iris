@@ -27,6 +27,10 @@ class Hospital < ActiveRecord::Base
 
   scope :without_system, -> { where(hospital_system_id: nil) }
 
+  # Postgres search
+  include PgSearch
+  pg_search_scope :search_by_name, against: :name
+
   def self.create_or_update(attributes)
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
       .update_attributes!(attributes)

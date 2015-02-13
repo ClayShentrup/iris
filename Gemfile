@@ -7,6 +7,7 @@ ruby '2.2.0'
 gem 'rails'
 
 gem 'pg'
+gem 'pg_search'
 gem 'unicorn'
 gem 'rack-timeout'
 gem 'thin'
