@@ -27,5 +27,7 @@
             method: :delete, data: { confirm: 'Are you sure?' }, |
             class: 'btn_red text_small'
 
+  = render 'unlock_button', user: @user
+
   .bottom_buffer_base
     = link_to 'Back', dabo_admin_users_path

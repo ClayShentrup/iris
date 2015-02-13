@@ -2,6 +2,9 @@
   .login.top_buffer_large.bottom_buffer_large.centered
     #login_logo.centered.bottom_buffer_large
     %h2.bottom_buffer_base Sign In
+    - if alert
+      #error_explanation
+        %p= alert
     = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
       .field
         = f.label :email

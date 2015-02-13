@@ -3,6 +3,8 @@
 
   = render 'form', user: @user
 
+  = render 'unlock_button', user: @user
+
   .bottom_buffer_base
     = link_to 'Show', dabo_admin_user_path(@user)
     \|
