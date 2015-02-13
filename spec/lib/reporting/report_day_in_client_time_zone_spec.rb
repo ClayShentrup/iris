@@ -1,6 +1,5 @@
 require 'timecop'
-require 'active_support/core_ext/time/zones'
-require 'reporting/report_day_in_client_time_zone'
+require 'rails_helper'
 
 RSpec.describe Reporting::ReportDayInClientTimeZone, :time do
   let(:now) { beginning_of_yesterday + 1.day + 23.hours }
@@ -8,7 +7,7 @@ RSpec.describe Reporting::ReportDayInClientTimeZone, :time do
   let(:client_time_zone) { Time.find_zone!('Melbourne') }
 
   def stub_client_time_zone
-    allow(APP_CONFIG).to receive(:client_time_zone)
+    allow(Rails.application.config).to receive(:client_time_zone)
       .and_return(client_time_zone)
   end
 

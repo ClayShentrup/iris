@@ -7,7 +7,8 @@ RSpec.describe S3::GetBucket do
   let(:bucket) { instance_double(AWS::S3::Bucket) }
 
   before do
-    allow(APP_CONFIG).to receive(:aws_bucket_name).and_return(bucket_name)
+    allow(Rails.application.config).to receive(:aws_bucket_name)
+      .and_return(bucket_name)
     allow(S3::GetBuckets).to receive(:call).and_return(buckets)
     allow(buckets).to receive(:[]).with(bucket_name).and_return(bucket)
   end

@@ -62,10 +62,10 @@ RSpec.describe Reporting::Downloading::Manager, :vcr do
 
   describe '#call' do
     before do
-      allow(APP_CONFIG).to receive(:aws_credentials)
+      allow(GetConfig).to receive(:call).with(:aws_credentials)
         .and_return(fake_aws_credentials)
 
-      allow(APP_CONFIG).to receive(:aws_bucket_name)
+      allow(GetConfig).to receive(:call).with(:aws_bucket_name)
         .and_return('dabo-iris-test')
 
       stub_const(

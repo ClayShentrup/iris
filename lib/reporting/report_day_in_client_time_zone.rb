@@ -1,6 +1,3 @@
-require 'active_support/core_ext/numeric/time'
-require 'active_support/core_ext/date/calculations'
-
 # Returns a DateTime object in the client's timezone, defined in application.rb.
 module Reporting
   ReportDayInClientTimeZone = Struct.new(:report_date_string) do
@@ -26,7 +23,7 @@ module Reporting
     end
 
     def client_time_zone
-      APP_CONFIG.client_time_zone
+      Rails.application.config.client_time_zone
     end
   end
 end
