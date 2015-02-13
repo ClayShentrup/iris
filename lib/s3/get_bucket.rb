@@ -3,7 +3,7 @@ module S3
   module GetBucket
     def self.call
       GetBuckets.call[
-        Rails.application.config.aws_bucket_name
+        APP_CONFIG.aws_bucket_name
       ]
     end
   end

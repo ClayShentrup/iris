@@ -1,14 +1,21 @@
 require 'reporting/downloading/get_s3_prefix'
 
 RSpec.describe Reporting::Downloading::GetS3Prefix, :vcr do
+  let(:aws_credentials) do
+    {
+      access_key_id: '123',
+      secret_access_key: 'abc',
+    }
+  end
+
   before do
-    allow(GetConfig).to receive(:call).with(:aws_bucket_name)
-      .and_return('dabo-iris-environment-name')
-    allow(GetConfig).to receive(:call).with(:aws_credentials)
-      .and_return(
-        access_key_id: '123',
-        secret_access_key: 'abc',
-      )
+    stub_const(
+      'APP_CONFIG',
+      double(
+        aws_bucket_name: 'dabo-iris-environment-name',
+        aws_credentials: aws_credentials,
+      ),
+    )
   end
 
   it 'gets the prefix for the Heroku system logs saved by Flydata' do

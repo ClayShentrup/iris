@@ -7,8 +7,10 @@ RSpec.describe S3::GetInstance do
   before do
     allow(AWS::S3).to receive(:new).with(aws_credentials)
       .and_return(s3_instance)
-    allow(GetConfig).to receive(:call).with(:aws_credentials)
-      .and_return(aws_credentials)
+    stub_const(
+      'APP_CONFIG',
+      double(aws_credentials: aws_credentials),
+    )
   end
 
   it 'returns a new AWS::S3 instance with our credentials' do

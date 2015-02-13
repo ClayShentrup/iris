@@ -2,7 +2,7 @@
 
 worker_processes Integer(ENV.fetch('WEB_CONCURRENCY', nil) || 3)
 
-# if Rails.application.config.development_web_server
+# if APP_CONFIG.development_web_server
 if ENV['RACK_ENV'] == 'development'
   timeout 86_400
   # For developers using Boxen

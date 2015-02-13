@@ -61,13 +61,21 @@ RSpec.describe Reporting::Downloading::Manager, :vcr do
   end
 
   describe '#call' do
+    let(:aws_credentials) do
+      {
+        access_key_id: '123',
+        secret_access_key: 'abc',
+      }
+    end
+
     before do
-      allow(GetConfig).to receive(:call).with(:aws_credentials)
-        .and_return(fake_aws_credentials)
-
-      allow(GetConfig).to receive(:call).with(:aws_bucket_name)
-        .and_return('dabo-iris-test')
-
+      stub_const(
+        'APP_CONFIG',
+        double(
+          aws_bucket_name: 'dabo-iris-environment-name',
+          aws_credentials: aws_credentials,
+        ),
+      )
       stub_const(
         'Reporting::Downloading::Manager::TEMP_DIRECTORY',
         tmpdir,
@@ -78,7 +86,8 @@ RSpec.describe Reporting::Downloading::Manager, :vcr do
       expect(fake_s3_object).to receive(:url_for).and_return fixture_url_1
       expect(fake_s3_object).to receive(:url_for).and_return fixture_url_2
 
-      # expect(GetLogger).to receive(:info).with(String)
+      stub_const('LOGGER', instance_double('ActiveSupport::Logger'))
+      expect(LOGGER).to receive(:info).once.with(instance_of(String))
 
       subject.call
     end

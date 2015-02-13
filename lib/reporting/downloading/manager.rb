@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'get_logger'
 
 module Reporting
   module Downloading
@@ -70,7 +69,7 @@ module Reporting
                             .call(log_line)
             Downloading::StoreLogLine.call(log_line_data)
           rescue JSON::ParserError => parse_error
-            GetLogger.info "Bad JSON from event pixel: #{parse_error}"
+            LOGGER.info "Bad JSON from event pixel: #{parse_error}"
           end
         end
         Downloading::SetEventLogMarker.call(
