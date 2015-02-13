@@ -28,15 +28,15 @@
   .logo,
   .menu_icon,
   .search
-    flex-grow: 1
+    +prefixer(flex-grow, 1, webkit moz spec)
 
   .news_feed,
   .metrics
-    flex-grow: 3
+    +prefixer(flex-grow, 3, webkit moz spec)
 
   .search
     +media($desktop)
-      flex-grow: 4
+      +prefixer(flex-grow, 4, webkit moz spec)
 
     &.hide_on_tablet_portrait.hide_on_desktop
       input
