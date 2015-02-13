@@ -1,5 +1,4 @@
 require 's3/get_buckets'
-require 'get_config'
 
 module Reporting
   module Downloading
@@ -18,7 +17,7 @@ module Reporting
         end
 
         def bucket_name
-          GetConfig.call(:aws_bucket_name)
+          APP_CONFIG.aws_bucket_name
         end
       end
     end

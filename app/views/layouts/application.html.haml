@@ -6,7 +6,7 @@
     = stylesheet_link_tag    'application', media: 'all',
       'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    - if Rails.application.config.turbolinks_debugging_enabled
+    - if APP_CONFIG.turbolinks_debugging_enabled
       = javascript_include_tag 'turbolinks_debugging', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body#body{ class: [controller_name, controller_action_name], |

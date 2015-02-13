@@ -2,9 +2,9 @@ require 'reporting/downloading/get_s3_prefix'
 
 RSpec.describe Reporting::Downloading::GetS3Prefix, :vcr do
   before do
-    allow(GetConfig).to receive(:call).with(:aws_bucket_name)
+    allow(APP_CONFIG).to receive(:aws_bucket_name)
       .and_return('dabo-iris-environment-name')
-    allow(GetConfig).to receive(:call).with(:aws_credentials)
+    allow(APP_CONFIG).to receive(:aws_credentials)
       .and_return(
         access_key_id: '123',
         secret_access_key: 'abc',
