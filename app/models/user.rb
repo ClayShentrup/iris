@@ -37,11 +37,11 @@ class User < ActiveRecord::Base
          :lockable, :confirmable, :timeoutable, :password_expirable
 
   belongs_to :account
-
+  # Some validations are enforced through devise config.
+  # See initializers/devise.rb for more information.
   validates :email, presence: true
   validates :is_dabo_admin, inclusion: { in: [true, false] }
   validates :password,
-            length: { minimum: 8 },
             password_strength: true,
             presence: true,
             unless: :updating_without_password?
