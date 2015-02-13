@@ -26,15 +26,29 @@
 #  account_id             :integer
 #
 
+require './app/validators/password_strength_validator'
+
 # An entity to log into the system
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  # :lockable, and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :lockable, :confirmable, :timeoutable, :password_expirable
+
   belongs_to :account
 
   validates :email, presence: true
   validates :is_dabo_admin, inclusion: { in: [true, false] }
+  validates :password,
+            length: { minimum: 8 },
+            password_strength: true,
+            presence: true,
+            unless: :updating_without_password?
+
+  private
+
+  def updating_without_password?
+    password.nil? && encrypted_password.present?
+  end
 end

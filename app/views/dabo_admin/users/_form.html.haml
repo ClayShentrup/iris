@@ -9,9 +9,10 @@
   .field
     = f.label :email
     = f.text_field :email, class: 'form_control'
-  .field
-    = f.label :password
-    = f.password_field :password, autocomplete: "off", class: 'form_control'
+  - if user.new_record?
+    .field
+      = f.label :password
+      = f.password_field :password, autocomplete: "off", class: 'form_control'
   .field
     = f.label :is_dabo_admin
     = f.check_box :is_dabo_admin
