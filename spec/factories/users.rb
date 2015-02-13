@@ -29,7 +29,7 @@
 FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@factory.com" }
-    password 'password'
+    password 'password123'
     before(:create, &:skip_confirmation!)
 
     trait :dabo_admin do
