@@ -1,5 +1,5 @@
 require 'active_record_spec_helper'
-require 'support/redis'
+# require 'support/redis'
 require './app/models/log_line'
 require 's3/get_buckets'
 require 's3/get_instance'
