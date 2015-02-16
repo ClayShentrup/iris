@@ -18,15 +18,15 @@ form
     color: $input_color
     background-color: $input_bg
     border-radius: $input_border_radius_base
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
     @extend .border_grey
     @extend .bottom_buffer_base
-    +box-shadow(inset 0 1px 1px rgba(0,0,0,.075))
     +transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s)
 
     &:focus
       border-color: $dabo_blue
+      box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $dabo_blue_light
       outline: 0
-      +box-shadow(inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $dabo_blue_light)
 
     &.no_border
       border-width: 0
