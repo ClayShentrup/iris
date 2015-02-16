@@ -15,40 +15,6 @@ end
 RSpec.shared_examples 'an ApplicationController without authentication' do
   include_context 'ApplicationController custom route'
 
-  describe 'before filters' do
-    let(:headers) { {} }
-    let(:params) { {} }
-
-    before do
-      request.headers.merge!(headers)
-      get :custom, params
-    end
-
-    describe 'handling a non-HTML request' do
-      shared_examples 'a non-HTML request' do
-        it 'renders nothing' do
-          expect(response.body).to eq ''
-        end
-
-        it 'sets the status code to unacceptable' do
-          expect(response.status).to eq 406
-        end
-      end
-
-      context 'extension is non-HTML' do
-        let(:params) { { format: :json } }
-
-        it_behaves_like 'a non-HTML request'
-      end
-
-      context 'the headers accept something other than HTML' do
-        let(:headers) { { 'HTTP_ACCEPT' => 'application/json' } }
-
-        it_behaves_like 'a non-HTML request'
-      end
-    end
-  end
-
   describe 'rendering views in controller specs' do
     # This ensures that rspec_rails config.render_views is set to true,
     # ensuring that our templates correctly render, which further tests

@@ -29,7 +29,9 @@ class Hospital < ActiveRecord::Base
 
   # Postgres search
   include PgSearch
-  pg_search_scope :search_by_name, against: :name
+  pg_search_scope :search_by_name, against: :name, using: {
+    tsearch: { prefix: true },
+  }
 
   def self.create_or_update(attributes)
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))

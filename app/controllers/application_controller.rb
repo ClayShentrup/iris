@@ -4,18 +4,11 @@ require 'responders'
 class ApplicationController < ActionController::Base
   include Flip::ControllerFilters
   before_action :authenticate_user!
-  before_action :ensure_format_is_html
   respond_to :html
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
-
-  def ensure_format_is_html
-    return if request.format == 'html'
-    render nothing: true,
-           status: 406
-  end
 
   def index
     instance_variable_set(
