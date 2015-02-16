@@ -27,10 +27,6 @@
 #
 
 require 'active_record_spec_helper'
-
-require 'devise'
-require 'devise/orm/active_record'
-
 require './app/models/user'
 
 RSpec.describe User, type: :model do
@@ -50,4 +46,6 @@ RSpec.describe User, type: :model do
     specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
     specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
   end
+
+  it { is_expected.to belong_to :account }
 end

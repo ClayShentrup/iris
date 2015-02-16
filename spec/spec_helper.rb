@@ -1,10 +1,9 @@
 require 'codeclimate-test-reporter'
 CodeClimate::TestReporter.start
 
-require 'jasmine'
-require 'support/vcr_setup'
 require 'pry'
-require 'timecop'
+require 'support/vcr_setup'
+require 'support/timecop'
 
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run

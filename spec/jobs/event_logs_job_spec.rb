@@ -1,17 +1,15 @@
-require 'rails_helper'
-require 'timecop'
+require 'active_job_spec_helper'
+require './app/jobs/event_logs_job'
 
 RSpec.describe EventLogsJob, type: :job do
-  let(:now) { Time.zone.parse('2014-09-24 16:30:53 -0700') }
-
-  before do
-    allow(Reporting::Downloading::Manager).to receive(:call)
-  end
-
   def work
-    Timecop.freeze(now.to_s) do
+    Timecop.freeze('2014-09-24 16:30:53 -0700') do
       described_class.perform_now
     end
+  end
+
+  before do
+    stub_const('Reporting::Downloading::Manager', double)
   end
 
   it 'fetches the logs' do

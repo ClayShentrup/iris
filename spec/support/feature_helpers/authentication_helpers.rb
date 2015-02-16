@@ -7,6 +7,10 @@ module AuthenticationHelpers
     click_button 'Sign in'
   end
 
+  def log_in_user
+    log_in(create(:user))
+  end
+
   def log_out
     click_link 'Sign out'
   end
