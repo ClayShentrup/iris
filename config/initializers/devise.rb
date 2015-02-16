@@ -262,4 +262,10 @@ Devise.setup do |config|
 
   # Should the password expire (e.g 3.months)
   config.expire_password_after = 90.days
+
+  # How often save old passwords in archive
+  config.password_archiving_count = 5
+
+  # Deny old password (true, false, count)
+  config.deny_old_passwords = true
 end

@@ -38,7 +38,8 @@ class User < ActiveRecord::Base
   # :lockable, and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :lockable, :confirmable, :timeoutable, :password_expirable
+         :lockable, :confirmable, :timeoutable, :password_expirable,
+         :password_archivable
 
   belongs_to :account
   # Some validations are enforced through devise config.
