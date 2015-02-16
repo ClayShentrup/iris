@@ -1,5 +1,4 @@
 require 'feature_spec_helper'
-require 'dropdown_spec_helper'
 
 RSpec.feature 'editing an account' do
   include DropdownSpecHelper
@@ -13,28 +12,18 @@ RSpec.feature 'editing an account' do
   let!(:new_hospital) { create(:hospital) }
 
   def expect_virtual_system_dropdown_to_have_options
-    expect_dropdown_to_have_options(
-      page,
+    expect(page).to have_select(
       'account_virtual_system_gid',
-      [hospital_system.name, new_hospital.name],
-      hospital_system.name,
+      options: [hospital_system.name, new_hospital.name],
+      selected: hospital_system.name,
     )
   end
 
   def expect_default_hospital_dropdown_to_have_options
-    expect_dropdown_to_have_options(
-      page,
+    expect(page).to have_select(
       'account_default_hospital_id',
-      [hospital.name],
-      hospital.name,
-    )
-  end
-
-  def expect_default_hospital_dropdown_to_have_no_options
-    expect_default_dropdown_to_have_no_options(
-      page,
-      'account_default_hospital_id',
-      [],
+      options: [hospital.name],
+      selected: hospital.name,
     )
   end
 
