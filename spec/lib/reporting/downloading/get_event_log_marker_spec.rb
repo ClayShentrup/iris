@@ -7,9 +7,11 @@ RSpec.describe Reporting::Downloading::GetEventLogMarker do
   end
 
   before do
-    $redis_pool.with do |redis|
-      redis.set(Reporting::Downloading::SetEventLogMarker::REDIS_KEY, marker)
-    end
+    # redis = Redis.new
+    $redis.set(
+      Reporting::Downloading::SetEventLogMarker::REDIS_KEY,
+      marker,
+    )
   end
 
   it 'persists the log marker forever' do

@@ -1,7 +1,13 @@
 default: &default
   adapter: postgresql
   encoding: unicode
-  pool: 5
+  #pool: 5
+  # PER HEROKU
+  # If you are using the Puma web server we recommend setting the pool value to
+  # equal ENV.fetch('MAX_THREADS'). When using multiple processes each process will
+  # contain its own pool so as long as no worker process has more than
+  # ENV.fetch('MAX_THREADS') then this setting should be adequate.
+  pool: <%= ENV.fetch('MAX_THREADS', 5) %>
 
 development:
   <<: *default

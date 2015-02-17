@@ -29,7 +29,7 @@
 require 'active_record_spec_helper'
 require './app/models/user'
 
-RSpec.describe User, type: :model do
+RSpec.describe User do
   describe 'columns' do
     specify do
       is_expected.to have_db_column(:email).of_type(:string)
