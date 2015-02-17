@@ -1,3 +1,4 @@
+require 'pg_search'
 # == Schema Information
 #
 # Table name: hospitals

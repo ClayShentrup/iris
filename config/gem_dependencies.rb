@@ -34,4 +34,3 @@ require 'airbrake' if Rails.env.production?
 require 'newrelic_rpm'
 require 'devise'
 require 'devise_security_extension'
-require 'pg_search'
