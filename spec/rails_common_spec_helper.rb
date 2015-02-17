@@ -1,6 +1,8 @@
+ENV['RAILS_ENV'] = 'test'
 require 'active_record'
 require 'shoulda/matchers'
 require 'factory_girl'
+require './spec/support/database_cleaner'
 
 if ActiveRecord::Migrator.needs_migration?
   require_relative '../config/application'
