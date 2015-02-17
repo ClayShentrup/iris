@@ -1,9 +1,10 @@
+// jshint nonew: false
 'use strict';
 
 describe('ApplicationView', function() {
 
   beforeEach(function() {
-    loadFixtures('news_items_controller-get-index-default.html');
+    loadFixture('news_items_controller-get-index-default');
     var view = new Iris.Views.application({el: '#body'});
   });
 

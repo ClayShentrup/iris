@@ -9,11 +9,11 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   },
 
   initialize: function() {
-    // for future feature (search_box_ajax will change to search_box)
-    var search = $('.search_box_ajax input').autocomplete({
+    var that = this;
+    $('.search_box input').autocomplete({
       source: function(request, response) {
         var ul = $('.dropdown_items.hospital ul');
-        $.get('/search/hospitals/?term=' + request.term, function(result) {
+        $.get(that._searchEndpoint(request.term), function(result) {
           _.each(result, function(item) {
             var li = $('<li>')
               .addClass('bottom_buffer_small link')
@@ -51,10 +51,14 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   },
 
   _clickAutoselectItem: function(event) {
-    return false; // for future feature
-    // var name = $(event.currentTarget).find('p:first').text();
-    // $('.hospital_name').html(name);
-    // this._toggleDropdownHospital();
+    var name = $(event.currentTarget).find('p:first').text();
+    $('.hospital_name').html(name);
+    this._toggleDropdownHospital();
+  },
+
+  _searchEndpoint: function(requestTerm) {
+    // TODO: Get this from a path helper in the Rails template
+    return '/hospital_search_results/?term=' + requestTerm;
   }
 
 });

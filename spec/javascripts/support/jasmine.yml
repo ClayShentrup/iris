@@ -11,8 +11,10 @@
 #   - dist/**/*.js
 #
 src_files:
-  - assets/application.js
+  - assets/application_core.js
   - assets/jasmine-jquery.js
+  - spec/javascripts/support/mock-ajax.js
+
 
 # stylesheets
 #

@@ -12,12 +12,6 @@
 // https://github.com/sstephenson/sprockets#sprockets-directives
 // for details about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require jquery-ui/datepicker
-//= require jquery-ui/autocomplete
-//= require turbolinks
-//= require underscore
-//= require backbone
-//= require application/initialize_javascript
-//= require_tree ./application
+
+//= require application_core
+//= require initialize_javascript

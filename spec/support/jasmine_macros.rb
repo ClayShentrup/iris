@@ -1,10 +1,9 @@
 # Module for saving html fixtures for use in jasmine
 module JasmineMacros
-  SPEC_DESCRIPTION = 'saves the fixture'
   FIXTURE_DIRECTORY = 'spec/javascripts/fixtures'
 
-  def save_fixture(name, &block)
-    let_filename name
+  def save_fixture(name, options = { type: :html }, &block)
+    let_filename(name, options.fetch(:type))
     let_fixture_path
 
     before do
@@ -14,16 +13,17 @@ module JasmineMacros
       )
     end
 
-    it "#{SPEC_DESCRIPTION}" do
-      instance_eval(&block)
+    it 'saves the fixture' do
+      instance_eval(&block) if block
       File.write(fixture_path, response.body)
     end
   end
 
-  def let_filename(name)
+  def let_filename(name, type)
     let!(:filename) do
-      "#{self.class.example.full_description} #{name}"
-        .underscore.parameterize + '.html'
+      filename = "#{self.class.example.full_description} #{name}"
+                 .underscore.parameterize + '.' + type.to_s
+      type == :json ? 'json/' + filename : filename
     end
   end
 

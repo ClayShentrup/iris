@@ -1,10 +1,7 @@
+// This file is only used for the application, not for jasmine tests
+//
 // jshint nonew: false
 'use strict';
-
-var Iris = {
-  Views: {},
-  Util: {}
-};
 
 $(document).on('ready page:load', function() {
   new Iris.Views.application({el: '#body'});
@@ -14,7 +11,7 @@ $(document).on('ready page:load', function() {
 
   if (View) {
     new View({
-      el: 'body'
+      el: '#body'
     });
   }
 });

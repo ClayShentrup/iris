@@ -60,7 +60,7 @@ In your controllers specs, wrap any command that gets a response (like get :show
 `save_fixtures 'fixture name' do`. This will generate an html file in
 `spec/javascripts/features/`.
 
-Then in your jasmine specs, use `loadFixtures('the-generated-file.html')`
+Then in your jasmine specs, use `loadFixture('the-generated-file')`
 in a beforeEach to have it available in the `#body` div.
 
 If you are testing features that are hiding behind a feature flip, you will
