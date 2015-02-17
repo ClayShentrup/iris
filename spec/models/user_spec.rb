@@ -27,6 +27,10 @@
 #
 
 require 'active_record_no_rails_helper'
+
+require 'devise'
+require 'devise/orm/active_record'
+require 'devise_security_extension'
 require './app/models/user'
 
 RSpec.describe User do
@@ -47,6 +51,24 @@ RSpec.describe User do
     specify { is_expected.to validate_presence_of(:email) }
     specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
     specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
+
+    describe 'Devise passsword archivable' do
+      let(:user) { create(:user, password: old_password) }
+      let(:old_password) { 'flameindeedhighwaypiece' }
+      let(:new_password) { 'shineaccordingtreehit' }
+      let(:used_password_error) do
+        'translation missing: ' \
+        'en.activerecord.errors.models.user.attributes.password.taken_in_past'
+      end
+
+      it 'does not allow an already used password' do
+        user.update(password: new_password)
+        expect(user.errors[:password]).not_to include used_password_error
+
+        user.update(password: old_password)
+        expect(user.errors[:password]).to include used_password_error
+      end
+    end
   end
 
   it { is_expected.to belong_to :account }
