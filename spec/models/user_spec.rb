@@ -48,25 +48,37 @@ RSpec.describe User do
   end
 
   describe 'validations' do
-    specify { is_expected.to validate_presence_of(:email) }
-    specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
-    specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
+    before { expect(subject).to be_valid }
 
-    describe 'Devise passsword archivable' do
-      let(:user) { create(:user, password: old_password) }
-      let(:old_password) { 'flameindeedhighwaypiece' }
-      let(:new_password) { 'shineaccordingtreehit' }
-      let(:used_password_error) do
-        'translation missing: ' \
-        'en.activerecord.errors.models.user.attributes.password.taken_in_past'
-      end
+    context 'no need to access the database' do
+      subject { build_stubbed(described_class) }
 
-      it 'does not allow an already used password' do
-        user.update(password: new_password)
-        expect(user.errors[:password]).not_to include used_password_error
+      specify { is_expected.to validate_presence_of(:email) }
+      specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
+      specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
+    end
 
-        user.update(password: old_password)
-        expect(user.errors[:password]).to include used_password_error
+    context 'requires a record to be saved' do
+      subject { create(described_class) }
+
+      describe 'Devise passsword archivable' do
+        subject do
+          create(described_class).tap do |user|
+            user.update(password: new_password)
+          end
+        end
+
+        let(:new_password) { 'shineaccordingtreehit' }
+
+        def update_password
+          subject.update(password: new_password)
+        end
+
+        it 'does not allow an already used password' do
+          expect { update_password }
+            .to change { subject.errors[:password].length }
+            .from(0).to(1)
+        end
       end
     end
   end
