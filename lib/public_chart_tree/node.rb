@@ -1,3 +1,4 @@
+require 'active_support/core_ext/object/blank'
 # .
 class PublicChartTree
   # A Node creates a consistent interface to NestedNode instances

@@ -1,6 +1,4 @@
 require 'public_chart_tree'
-require 'active_support/core_ext/object/json'
-require './config/initializers/measures'
 
 RSpec.describe PublicChartTree do
   subject { tree.find(id) }
@@ -38,13 +36,13 @@ RSpec.describe PublicChartTree do
 
   let(:measures) do
     {
-      MORT_30_HF: mort_30_hf.to_hash,
-      MORT_30_AMI: mort_30_ami.to_hash,
+      MORT_30_HF: mort_30_hf.to_h,
+      MORT_30_AMI: mort_30_ami.to_h,
     }
   end
 
   before do
-    stub_const('Measures', measures)
+    stub_const('MEASURES', measures)
   end
 
   context 'at the navigation root' do
