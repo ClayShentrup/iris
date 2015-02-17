@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'reporting/downloading/get_local_filepath_for_key'
 
 RSpec.describe Reporting::Downloading::GetLocalFilepathForKey do
   let(:file_key) do

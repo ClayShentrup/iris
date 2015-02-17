@@ -1,5 +1,5 @@
 require 'aws-sdk'
-require 'rails_helper'
+require 's3/get_bucket'
 
 RSpec.describe S3::GetBucket do
   let(:buckets) { instance_double(AWS::S3::BucketCollection) }

@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'reporting/downloading/get_event_log_marker'
 
 RSpec.describe Reporting::Downloading::GetEventLogMarker do
   let(:marker) do

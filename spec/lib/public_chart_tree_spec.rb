@@ -1,5 +1,6 @@
 require 'public_chart_tree'
 require 'active_support/core_ext/object/json'
+require './config/initializers/measures'
 
 RSpec.describe PublicChartTree do
   subject { tree.find(id) }

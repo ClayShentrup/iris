@@ -1,4 +1,4 @@
-require 'rails_helper'
+require 'reporting/downloading/latest_s3_key_getter'
 require 's3/get_instance'
 require 'aws-sdk'
 
@@ -40,6 +40,19 @@ RSpec.describe Reporting::Downloading::LatestS3KeyGetter, :vcr do
       Reporting_Downloading_GetLatestS3Keys
       loads_the_keys_lazily
     ].join('/')
+  end
+
+  before do
+    stub_const(
+      'APP_CONFIG',
+      double(
+        aws_bucket_name: 'dabo-iris-test',
+        aws_credentials: {
+          access_key_id: '123',
+          secret_access_key: 'abc',
+        },
+      ),
+    )
   end
 
   it 'gets the full list of .gz files' do

@@ -1,4 +1,6 @@
-require 'rails_helper'
+require 'active_record_spec_helper'
+require 'reporting/downloading/store_log_line'
+require './app/models/log_line'
 
 RSpec.describe Reporting::Downloading::StoreLogLine do
   let(:log_line_attributes) do

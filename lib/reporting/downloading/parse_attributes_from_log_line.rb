@@ -1,3 +1,5 @@
+require 'rack'
+
 module Reporting
   module Downloading
     # Read log line and get relevant information

@@ -1,4 +1,5 @@
-require 'rails_helper'
+require 'reporting/downloading/set_event_log_marker'
+require 'support/redis'
 
 RSpec.describe Reporting::Downloading::SetEventLogMarker do
   let(:marker_prefix) do

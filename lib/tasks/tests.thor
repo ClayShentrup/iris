@@ -15,7 +15,13 @@ class Tests < Thor
     'cane' => 'bundle exec cane',
     'rails_best_practices' => 'bundle exec rails_best_practices',
     'jasmine' => 'rake jasmine:ci',
-    'rspec' => 'bundle exec rspec',
+    'rspec lib' => 'bundle exec rspec spec/lib',
+    'rspec models' => 'bundle exec rspec spec/models',
+    'rspec jobs' => 'bundle exec rspec spec/jobs',
+    'rspec helpers' => 'bundle exec rspec spec/helpers',
+    'rspec routing' => 'bundle exec rspec spec/routing',
+    'rspec controllers' => 'bundle exec rspec spec/controllers',
+    'rspec features' => 'bundle exec rspec spec/features',
   }
 
   desc :check, 'run all CI tasks'
