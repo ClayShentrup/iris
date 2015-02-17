@@ -54,6 +54,7 @@ end
 group :development, :test do
   gem 'pry-byebug'
   gem 'rspec-rails'
+  gem 'rspec-core', '~> 3.2.0'
   gem 'shoulda-matchers'
   gem 'factory_girl_rails'
   gem 'jasmine'
