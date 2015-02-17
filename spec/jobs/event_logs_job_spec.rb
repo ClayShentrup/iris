@@ -1,4 +1,4 @@
-require 'active_job_spec_helper'
+require 'active_job'
 require './app/jobs/event_logs_job'
 
 RSpec.describe EventLogsJob, type: :job do
