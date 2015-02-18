@@ -32,8 +32,4 @@ class Feature < ActiveRecord::Base
   feature :feedback_bar,
           default: false,
           description: 'Global feedback messages'
-
-  feature :create_account,
-          default: false,
-          description: 'Creating and editing an account'
 end

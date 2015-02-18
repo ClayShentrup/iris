@@ -28,7 +28,6 @@ RSpec.feature 'editing an account' do
   end
 
   background do
-    enable_feature(:create_account)
     visit edit_dabo_admin_account_path(account)
     expect_virtual_system_dropdown_to_have_options
     expect_default_hospital_dropdown_to_have_options

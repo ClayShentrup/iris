@@ -19,7 +19,6 @@ RSpec.feature 'creating an account' do
   end
 
   background do
-    enable_feature(:create_account)
     visit new_dabo_admin_account_path
   end
 
