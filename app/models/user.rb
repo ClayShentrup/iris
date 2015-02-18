@@ -28,8 +28,8 @@
 
 require 'devise'
 require 'devise/orm/active_record'
-require './app/validators/password_strength_validator'
 require 'devise_security_extension'
+require './app/validators/password_strength_validator'
 require './app/models/account'
 
 # An entity to log into the system

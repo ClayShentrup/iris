@@ -59,23 +59,22 @@ RSpec.describe User do
     end
 
     context 'requires a record to be saved' do
-      subject { create(described_class) }
+      describe 'Devise password archivable' do
+        subject { create(described_class, password: used_password) }
 
-      describe 'Devise passsword archivable' do
-        subject do
-          create(described_class).tap do |user|
-            user.update(password: new_password)
-          end
-        end
-
+        let(:used_password) { 'pushvisitbuilttail' }
         let(:new_password) { 'shineaccordingtreehit' }
 
-        def update_password
-          subject.update(password: new_password)
+        def update_password(password)
+          subject.update(password: password)
+        end
+
+        before do
+          update_password(new_password)
         end
 
         it 'does not allow an already used password' do
-          expect { update_password }
+          expect { update_password(used_password) }
             .to change { subject.errors[:password].length }
             .from(0).to(1)
         end
