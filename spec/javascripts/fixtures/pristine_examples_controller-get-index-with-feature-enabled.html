@@ -1,69 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Dabo Health</title>
-    <meta content='width=device-width, initial-scale=1' name='viewport'>
-    <link rel="stylesheet" media="all" href="/assets/jquery-ui/theme.css?body=1" data-turbolinks-track="true" />
-    <link rel="stylesheet" media="all" href="/assets/jquery-ui/core.css?body=1" data-turbolinks-track="true" />
-    <link rel="stylesheet" media="all" href="/assets/application.css?body=1" data-turbolinks-track="true" />
-    <script src="/assets/jquery.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/jquery_ujs.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/jquery-ui/core.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/jquery-ui/datepicker.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/jquery-ui/widget.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/jquery-ui/position.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/jquery-ui/menu.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/jquery-ui/autocomplete.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/turbolinks.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/underscore.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/backbone.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/initialize_javascript.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/util/load_hospitals.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/util/log_event.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/views/application_view.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/views/dabo_admin/accounts/edit.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/views/dabo_admin/accounts/new.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/views/news_feeds/index.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/views/pristine_examples/index.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application/views/public_charts/show.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/application.js?body=1" data-turbolinks-track="true"></script>
-    <script src="/assets/turbolinks_debugging.js?body=1" data-turbolinks-track="true"></script>
-    
-  </head>
-  <body class='pristine_examples pristine_examples-index' data-current-user-id='42' data-pixel-path='/assets/pixel.gif' data-view-name='pristine_examples-index' id='body'>
-    <div class='bottom_buffer_base clearfix' id='top_nav'>
-      <div class='logo inner_padding_small line_height_buffer_base text_center float_left border_grey'>
-        <a class="text_hide" href="http://test.host/">Home</a>
-      </div>
-      <div class='news_feed nav_btns vertical_padding_small line_height_buffer_base text_center float_left border_grey'>
-        <a href="/news">News Feed</a>
-      </div>
-      <div class='metrics nav_btns vertical_padding_small line_height_buffer_base text_center float_left border_grey'>
-        <a href="/metrics">Metrics</a>
-      </div>
-      <div class='menu_icon inner_padding_small text_hide border_grey'>Menu</div>
-    </div>
-    <div id='outer_container'>
-      <h1>Listing pristine_examples</h1>
-      <table>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th></th>
-          <th></th>
-          <th></th>
-        </tr>
-      </table>
-      <br>
-        <a href="/pristine_examples/new">New Pristine example</a>
-      </br>
-      <br>
-      <a id="test" href="/pristine_examples">Click me to test JavaScript event handler assignment</a>
-    </div>
-    <!-- This log out link is for engineering. Please do not remove. -->
-    <ul>
-      <li>test@test.com</li>
-    </ul>
-    <a rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
-  </body>
+<head>
+<title>Dabo Health</title>
+<meta content='width=device-width, initial-scale=1' name='viewport'>
+<link rel="stylesheet" media="all" href="/assets/application.css" data-turbolinks-track="true" />
+<script src="/assets/application.js" data-turbolinks-track="true"></script>
+
+</head>
+<body class='pristine_examples pristine_examples-index' data-current-user-id='42' data-pixel-path='/assets/pixel.gif' data-view-name='pristine_examples-index' id='body'>
+<div class='bottom_buffer_base clearfix' id='top_nav'>
+<div class='logo inner_padding_small line_height_buffer_base text_center float_left border_grey'>
+<a class="text_hide" href="http://test.host/">Home</a>
+</div>
+<div class='news_feed nav_btns vertical_padding_small line_height_buffer_base text_center float_left border_grey'>
+<a href="/news">News Feed</a>
+</div>
+<div class='metrics nav_btns vertical_padding_small line_height_buffer_base text_center float_left border_grey'>
+<a href="/metrics">Metrics</a>
+</div>
+<div class='menu_icon inner_padding_small text_hide border_grey'>Menu</div>
+</div>
+
+<div id='outer_container'>
+<h1>Listing pristine_examples</h1>
+<table>
+<tr>
+<th>Name</th>
+<th>Description</th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</table>
+<br>
+<a href="/pristine_examples/new">New Pristine example</a>
+</br>
+<br>
+<a id="test" href="/pristine_examples">Click me to test JavaScript event handler assignment</a>
+
+</div>
+<!-- This log out link is for engineering. Please do not remove. -->
+<ul>
+<li>test@test.com</li>
+</ul>
+<a rel="nofollow" data-method="delete" href="/users/sign_out">Sign out</a>
+</body>
 </html>

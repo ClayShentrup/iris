@@ -60,11 +60,11 @@ th
     background-color: $grey_lighter
 
 .table_responsive
-  overflow-x: auto
   min-height: 0.01%
   +media($mobile)
     width: 100%
     margin-bottom: $line_height_computed * 0.75
+    overflow-x: auto
     overflow-y: hidden
     border: rem(1) solid $grey
     > .table
