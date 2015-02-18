@@ -1,3 +1,6 @@
+require 's3/get_object_for_any_bucket'
+require 'active_support/core_ext/numeric/time'
+
 # Returns a public URL for an S3 bucket from an S3 object.
 module S3
   GetPublicUrlForAnyBucket = Struct.new(:options) do

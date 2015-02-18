@@ -5,7 +5,7 @@ module Reporting
     # Gets the event log marker
     module GetEventLogMarker
       def self.call
-        $redis.get(SetEventLogMarker::REDIS_KEY)
+        REDIS.get(SetEventLogMarker::REDIS_KEY)
       end
     end
   end

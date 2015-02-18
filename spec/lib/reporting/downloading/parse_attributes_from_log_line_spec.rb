@@ -1,4 +1,4 @@
-require 'active_record_spec_helper'
+require 'active_record_no_rails_helper'
 require 'reporting/downloading/parse_attributes_from_log_line'
 
 RSpec.describe Reporting::Downloading::ParseAttributesFromLogLine do

@@ -1,15 +1,10 @@
-require 'active_record_spec_helper'
-# require 'support/redis'
-require './app/models/log_line'
-require 's3/get_buckets'
-require 's3/get_instance'
-require 's3/get_public_url_for_any_bucket'
-require 's3/get_object_for_any_bucket'
-require 'reporting/downloading'
-
-Dir['./lib/reporting/downloading/*.rb'].each { |file| require file }
+require 'active_record_no_rails_helper'
+require 'reporting/downloading/manager'
+require 'support/redis'
 
 RSpec.describe Reporting::Downloading::Manager, :vcr do
+  include StubRedis
+
   let(:tmpdir) { Dir.mktmpdir }
   let(:gzipped_log_file_1) do
     File.join(
@@ -80,6 +75,7 @@ RSpec.describe Reporting::Downloading::Manager, :vcr do
         'Reporting::Downloading::Manager::TEMP_DIRECTORY',
         tmpdir,
       )
+      stub_redis
 
       allow(S3::GetObjectForAnyBucket)
         .to receive(:call).and_return fake_s3_object

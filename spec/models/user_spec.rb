@@ -26,10 +26,12 @@
 #  account_id             :integer
 #
 
-require 'active_record_spec_helper'
+require 'active_record_no_rails_helper'
 require './app/models/user'
 
 RSpec.describe User do
+  subject { build_stubbed(described_class) }
+
   describe 'columns' do
     specify do
       is_expected.to have_db_column(:email).of_type(:string)

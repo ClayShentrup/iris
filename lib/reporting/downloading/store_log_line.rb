@@ -1,3 +1,5 @@
+require './app/models/log_line'
+
 module Reporting
   module Downloading
     # Save log line locally

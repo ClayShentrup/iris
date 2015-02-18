@@ -1,4 +1,15 @@
 require 'fileutils'
+require_relative './get_file_keys'
+require_relative './key_getter_with_marker_tracking'
+require_relative './get_event_log_marker'
+require_relative './latest_s3_key_getter'
+require 's3/get_public_url_for_any_bucket'
+require_relative 'get_local_filepath_for_key'
+require_relative 'curl_log_to_file'
+require_relative 'write_pixel_lines_to_temp_file'
+require_relative 'each_log_line'
+require_relative 'parse_attributes_from_log_line'
+require_relative 'store_log_line'
 
 module Reporting
   module Downloading

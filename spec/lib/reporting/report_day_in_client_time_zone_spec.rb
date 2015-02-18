@@ -1,4 +1,3 @@
-require 'timecop'
 require 'active_support/core_ext/time/zones'
 require 'reporting/report_day_in_client_time_zone'
 

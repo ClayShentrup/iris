@@ -10,7 +10,7 @@
 #  updated_at          :datetime         not null
 #
 
-require 'active_record_spec_helper'
+require 'active_record_no_rails_helper'
 require './app/models/account'
 
 RSpec.describe Account, type: :model do

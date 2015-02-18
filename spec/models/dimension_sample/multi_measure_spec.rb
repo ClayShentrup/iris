@@ -12,7 +12,7 @@
 #  dataset_id  :string           not null
 #
 
-require 'active_record_spec_helper'
+require 'active_record_no_rails_helper'
 require './app/models/dimension_sample/multi_measure'
 
 RSpec.describe DimensionSample::MultiMeasure do

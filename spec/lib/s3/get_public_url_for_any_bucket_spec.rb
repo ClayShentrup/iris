@@ -1,7 +1,4 @@
-require 'active_support/time'
-require 'timecop'
 require 's3/get_public_url_for_any_bucket'
-require 's3/get_object_for_any_bucket'
 
 RSpec.describe S3::GetPublicUrlForAnyBucket do
   let(:bucket_class_and_key) do

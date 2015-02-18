@@ -1,3 +1,5 @@
+require_relative '../downloading'
+
 module Reporting
   module Downloading
     # Get list of file keys to download

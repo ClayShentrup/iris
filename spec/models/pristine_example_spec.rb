@@ -9,7 +9,7 @@
 #  updated_at  :datetime
 #
 
-require 'active_record_spec_helper'
+require 'active_record_no_rails_helper'
 require './app/models/pristine_example'
 
 RSpec.describe PristineExample do

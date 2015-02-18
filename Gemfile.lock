@@ -309,7 +309,7 @@ GEM
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     sexp_processor (4.4.5)
-    shoulda-matchers (2.7.0)
+    shoulda-matchers (2.8.0)
       activesupport (>= 3.0.0)
     sidekiq (3.3.0)
       celluloid (>= 0.16.0)

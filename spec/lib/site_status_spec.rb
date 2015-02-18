@@ -1,4 +1,4 @@
-require 'active_record_spec_helper'
+require 'active_record_no_rails_helper'
 require 'site_status'
 
 RSpec.describe SiteStatus do

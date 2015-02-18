@@ -1,9 +1,8 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-ENV['RAILS_ENV'] = 'test' # We should only do this HERE; stub elsewhere
 require 'fakeredis/rspec'
 require File.expand_path('../../config/environment', __FILE__)
 require 'rspec/rails'
-require 'rails_common_spec_helper'
+require 'active_record_helper'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -41,4 +40,9 @@ RSpec.configure do |config|
   # We also want controller specs to render the view, as a basic sanity check
   # that everything is set up that's required to correctly render.
   config.render_views
+end
+
+def maintain_test_schema
+  ActiveRecord::Base.maintain_test_schema = true
+  ActiveRecord::Migration.maintain_test_schema!
 end

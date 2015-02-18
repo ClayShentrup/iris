@@ -11,7 +11,7 @@
 #  updated_at  :datetime         not null
 #
 
-require 'active_record_spec_helper'
+require 'active_record_no_rails_helper'
 require './app/models/dimension_sample/single_measure'
 require './app/models/hospital'
 

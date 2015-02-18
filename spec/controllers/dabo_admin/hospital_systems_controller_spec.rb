@@ -14,14 +14,4 @@ RSpec.describe DaboAdmin::HospitalSystemsController do
   it_behaves_like 'an ApplicationController update'
 
   it_behaves_like 'a Dabo Admin page'
-
-  context 'performance', :performance do
-    before do
-      create_list :hospital_system, 10
-    end
-
-    it 'takes a short time to execute' do
-      expect { get :index }.to take_less_than :short_time
-    end
-  end
 end
