@@ -17,7 +17,7 @@
          } |
        } |
     = render 'layouts/top_nav'
-    - if feature? :feedback_bar
+    - if flash.any?
       = render 'layouts/feedback_bar'
     #outer_container
       = yield

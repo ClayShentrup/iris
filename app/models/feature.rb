@@ -28,8 +28,4 @@ class Feature < ActiveRecord::Base
   feature :navbar_search,
           default: false,
           description: 'Initial navbar search UI'
-
-  feature :feedback_bar,
-          default: false,
-          description: 'Global feedback messages'
 end
