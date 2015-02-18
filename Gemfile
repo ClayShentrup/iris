@@ -16,7 +16,6 @@ gem 'newrelic_rpm'
 gem 'devise'
 gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git'
 gem 'aws-sdk'
-gem 'connection_pool'
 gem 'sidekiq-pro'
 gem 'sinatra' # for Sidekiq admin panel
 gem 'jquery-ui-rails'

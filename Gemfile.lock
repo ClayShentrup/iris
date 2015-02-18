@@ -389,7 +389,6 @@ DEPENDENCIES
   cane
   capybara
   codeclimate-test-reporter
-  connection_pool
   database_cleaner
   devise
   devise_security_extension!
