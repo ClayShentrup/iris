@@ -1,8 +1,9 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
-require 'fakeredis/rspec'
+ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../../config/environment', __FILE__)
-require 'rspec/rails'
 require 'active_record_helper'
+maintain_test_schema
+require 'rspec/rails'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -14,6 +15,8 @@ require 'active_record_helper'
 Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 
 RSpec.configure do |config|
+  database = ActiveRecord::Base.connection_config.fetch(:database)
+  fail unless database == 'iris_test'
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
@@ -40,9 +43,4 @@ RSpec.configure do |config|
   # We also want controller specs to render the view, as a basic sanity check
   # that everything is set up that's required to correctly render.
   config.render_views
-end
-
-def maintain_test_schema
-  ActiveRecord::Base.maintain_test_schema = true
-  ActiveRecord::Migration.maintain_test_schema!
 end
