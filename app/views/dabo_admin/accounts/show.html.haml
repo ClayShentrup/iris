@@ -15,7 +15,7 @@
         %td
           = @account.default_hospital_name
         %td
-          %ul
+          %ul.unstyled
             - @account.users.each do |user|
               %li
                 = user.email
