@@ -39,6 +39,3 @@ Style/AndOr:
 Style/ClassAndModuleChildren:
   Exclude:
     - 'app/controllers/**/*'
-
-GlobalVars:
-  AllowedVariables: ['REDIS']
