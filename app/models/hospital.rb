@@ -16,6 +16,8 @@ require 'pg_search'
 # Represents a hospital entity fetched from Socrata's API.
 class Hospital < ActiveRecord::Base
   include PgSearch
+  SEARCH_RESULTS_LIMIT = 10
+
   belongs_to :hospital_system
   has_one :account, as: :virtual_system
   validates :provider_id, uniqueness: true, presence: true
@@ -29,7 +31,10 @@ class Hospital < ActiveRecord::Base
 
   scope :without_system, -> { where(hospital_system_id: nil) }
 
-  # Postgres search
+  scope(:search_results, lambda do |term|
+    search_by_name(term).limit(SEARCH_RESULTS_LIMIT)
+  end)
+
   pg_search_scope :search_by_name, against: :name, using: {
     tsearch: { prefix: true },
   }
