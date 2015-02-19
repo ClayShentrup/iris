@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     resource :status, only: :show
 
     namespace :dabo_admin do
+      get '/', to: 'dabo_admins#index'
+      resources :dabo_admins, only: :index
       resources :hospitals
       resources :hospital_systems
       resources :accounts
@@ -23,7 +25,6 @@ Rails.application.routes.draw do
 
     resource :metrics, only: :show, controller: :charts_root
     get 'metrics/*id', to: 'public_charts#show'
-
     get 'search/hospitals', to: 'search#hospitals'
 
     # product-friendly aliases

@@ -26,6 +26,21 @@ p
   margin: 0 0 $line_height_computed / 2
   line-height: $line_height_base
 
+ul,
+ol
+  padding-left: $buffer_base
+
+ul.unstyled,
+ol.unstyled
+  padding-left: 0
+  list-style: none
+
+p,
+ul,
+ol
+  &:last-child
+    margin-bottom: 0
+
 .text_center
   text-align: center
 
