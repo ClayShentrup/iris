@@ -1,7 +1,6 @@
 require 'sidekiq'
 
 redis_options = {
-  url: ENV.fetch('REDIS_PROVIDER', nil),
   namespace: 'sidekiq',
 }
 
