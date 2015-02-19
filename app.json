@@ -26,7 +26,6 @@
   },
   "addons":[
     "heroku-postgresql:hobby-dev",
-    "mailtrap",
     "rediscloud"
   ]
 }
