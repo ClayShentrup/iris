@@ -1,3 +1,5 @@
+# Do not directly require this in a spec, it is a common dependency of Rails
+# and ActiveRecord spec_helpers.
 require 'active_record'
 require 'rails_common_spec_helper'
 require 'factory_girl'
