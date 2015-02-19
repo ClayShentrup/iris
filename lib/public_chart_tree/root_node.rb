@@ -13,6 +13,10 @@ class PublicChartTree
       def short_title
         ''
       end
+
+      def siblings_and_self
+        []
+      end
     end
   end
 end

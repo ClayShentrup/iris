@@ -25,5 +25,15 @@ class PublicChartTree
         Node.new(child_internal_node)
       end
     end
+
+    def leaf?
+      children.blank?
+    end
+
+    def siblings_and_self
+      internal_node.siblings_and_self.map do |internal_node|
+        Node.new(internal_node)
+      end
+    end
   end
 end

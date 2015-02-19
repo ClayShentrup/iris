@@ -18,6 +18,7 @@ class PublicChartTree
              :short_title,
              :search,
              :parent_breadcrumb,
+             :siblings_and_self,
              to: :embedded_node
 
     def children
