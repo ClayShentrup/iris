@@ -49,17 +49,17 @@ RSpec.describe Hospital do
       subject { build_stubbed(described_class) }
 
       it { is_expected.to be_valid }
+
+      it { is_expected.to validate_presence_of(:provider_id) }
+      it { is_expected.to validate_presence_of(:name) }
+      it { is_expected.to validate_presence_of(:city) }
+      it { is_expected.to validate_presence_of(:state) }
     end
 
     context 'requires a record to be saved' do
       before { create(described_class) }
       it { is_expected.to validate_uniqueness_of(:provider_id) }
     end
-
-    it { is_expected.to validate_presence_of(:provider_id) }
-    it { is_expected.to validate_presence_of(:name) }
-    it { is_expected.to validate_presence_of(:city) }
-    it { is_expected.to validate_presence_of(:state) }
   end
 
   describe '.create_or_update' do
