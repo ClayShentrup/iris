@@ -6,7 +6,8 @@ class PasswordStrengthValidator < ActiveModel::EachValidator
   MIN_SPECIAL_CHARACTER_COUNT = 3
   LONG_PASSWORD_MIN_LENGTH = 15
   SPECIAL_CHARACTER_REGEX = /[A-Z]|[0-9]|(\W|_)/
-  ERROR_MESSAGE = 'does not meet minimum requirements.'
+  ERROR_MESSAGE = 'containing less than 15 characters needs to have a ' \
+                  'minimum of 3 uppercase, numeric, or special characters'
 
   def validate_each(record, attribute, value)
     @record = record

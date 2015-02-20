@@ -37,9 +37,8 @@ class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
-         :lockable, :confirmable, :timeoutable, :password_expirable,
-         :password_archivable
+         :recoverable, :rememberable, :trackable, :lockable, :confirmable,
+         :timeoutable, :password_expirable, :password_archivable
 
   belongs_to :account
   # Some validations are enforced through devise config.
@@ -49,6 +48,7 @@ class User < ActiveRecord::Base
   validates :password,
             password_strength: true,
             presence: true,
+            length: { minimum: 8 },
             unless: :updating_without_password?
 
   private
