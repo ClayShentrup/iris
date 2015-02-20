@@ -41,6 +41,30 @@
       input
         @extend .hidden
 
+    ul.results
+      line-height: $line_height_buffer_xl
+      position: absolute
+      width: 100%
+      z-index: 1000
+      margin-top: rem(1)
+      margin-left: $results_margin_offset
+
+      li.category ul.measures
+        margin-left: $results_margin_inner
+        overflow: hidden
+
+      .icon
+        margin-right: $results_margin_icon
+
+    .search_container
+      position: relative
+
+.search_background
+  position: absolute
+  width: 100%
+  background-color: $white
+  +calc(margin-top, "-#{$buffer_base}")
+
 svg
   #top_nav &
     @extend .vertical_align_middle
@@ -52,3 +76,22 @@ svg
 
   #top_nav .menu_icon &
     width: $icon_size_small
+
+
+// .search_results
+//   +display(flex)
+//   background-color: $white
+//   position: absolute
+//   width: 100%
+//   z-index: 1000
+//   margin-top: -($buffer_base)
+
+//   .flex_1
+//     +flex-grow(1)
+
+//   .flex_3
+//     +flex-grow(3)
+
+//   .search
+//     +flex-grow(4)
+

@@ -1,0 +1,10 @@
+%form{action: '/search', method: 'get'}
+  .has_icon.clearfix.vertical_padding_small.line_height_buffer_base
+    %input.form_control.float_left.no_border.no_margin#q{name: 'q', type: 'text'}
+    %span.icon.icon_size_small.icon_search.float_right.form_control_icon
+      = render 'shared/icon', icon: '#icon_search'
+    %span.icon.icon_size_small.icon_close.float_right.form_control_icon.hidden
+      = render 'shared/icon', icon: '#icon_close'
+
+.search_container
+  %ul.unstyled.results

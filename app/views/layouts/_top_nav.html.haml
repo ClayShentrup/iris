@@ -9,21 +9,11 @@
     = link_to 'Metrics', metrics_path
   - if feature? :navbar_search
     .search.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base.border_bottom_grey.border_top_grey
-      %form{action: '/search', method: 'get'}
-        .has_icon.clearfix.vertical_padding_small.line_height_buffer_base
-          %input.form_control.float_left.no_border.no_margin#q{name: 'q', type: 'text'}
-          %span.icon.icon_size_small.icon_search.float_right.form_control_icon
-            = render 'shared/icon', icon: '#icon_search'
-          %span.icon.icon_size_small.icon_close.float_right.form_control_icon.hidden
-            = render 'shared/icon', icon: '#icon_close'
+      = render partial: 'layouts/search_form'
     .search.hide_on_mobile.line_height_buffer_base.border_bottom_grey.border_top_grey
-      %form{action: '/search', method: 'get'}
-        .has_icon.clearfix.vertical_padding_small.line_height_buffer_base
-          %input.form_control.float_left.no_border.no_margin#q{name: 'q', type: 'text'}
-          %span.icon.icon_size_small.icon_search.float_right.form_control_icon
-            = render 'shared/icon', icon: '#icon_search'
-          %span.icon.icon_size_small.icon_close.float_right.form_control_icon.no_margin.hidden
-            = render 'shared/icon', icon: '#icon_close'
+      = render partial: 'layouts/search_form'
   .menu_icon.text_right.vertical_padding_small.border_grey
     %span.top_margin_small.bottom_margin_small.icon.icon_size_base
       = render 'shared/icon', icon: '#icon_user'
+
+

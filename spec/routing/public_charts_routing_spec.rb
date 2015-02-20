@@ -16,9 +16,9 @@ RSpec.describe PublicChartsController do
 
     specify do
       expect(get: path).to route_to(
-          'public_charts#show',
-          id: public_chart_id,
-        )
+        'public_charts#show',
+        id: public_chart_id,
+      )
     end
   end
 end

@@ -38,6 +38,8 @@ Rails.application.routes.draw do
     # product-friendly aliases
     get :news, to: 'news_items#index'
 
+    resources :measures_search_results, only: :index
+
     root 'news_items#index'
   end
 end

@@ -1,0 +1,8 @@
+- @categories.each do |category|
+  %li.category.bottom_buffer_small.top_buffer_base
+    %div.float_left.icon.icon_size_base.icon_left
+      = render 'shared/icon', icon: '#icon_graph_bar'
+    %div.text_muted.link= category.fetch(:name)
+    %ul.measures.unstyled
+      - category.fetch(:measures).each do |measure|
+        %li.left_buffer_small.line_height_small.link= measure
