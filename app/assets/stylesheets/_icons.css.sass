@@ -1,15 +1,17 @@
-@font-face
-  font-family: 'DaboIcons'
-  src: font-url('daboicons.eot')
-  src: font-url('daboicons.eot?#iefix') format('embedded-opentype'), font-url('daboicons.woff') format('woff'), font-url('daboicons.ttf') format('truetype'), font-url('daboicons.svg#d273f2b17af35a29b2d7665aeb6deba9') format('svg')
-  font-style: normal
-  font-weight: 400
+$icon_size_base: rem(25)
 
 .icon
-  color: $grey
+  display: inline-block
 
   &.icon_color_dabo_blue
-    color: $dabo_blue
+    svg
+      fill: $dabo_blue
+
+  &.icon_size_base
+    height: $icon_size_base
+    svg
+      height: $icon_size_base
+      width: $icon_size_base
 
   &.float_right,
   &.icon_right
@@ -19,16 +21,31 @@
   &.icon_left
     margin-right: $padding_base_vertical
 
-.icon:before
+  &.float_right,
+  &.float_left
+    svg
+      @extend .vertical_align_middle
+
+  svg
+    fill: $grey
+
+@font-face
   font-family: 'DaboIcons'
-  -webkit-font-smoothing: antialiased
-  -webkit-text-size-adjust: none
+  src: font-url('daboicons.eot')
+  src: font-url('daboicons.eot?#iefix') format('embedded-opentype'), font-url('daboicons.woff') format('woff'), font-url('daboicons.ttf') format('truetype'), font-url('daboicons.svg#d273f2b17af35a29b2d7665aeb6deba9') format('svg')
+  font-style: normal
+  font-weight: 400
 
-.icon_large
-  font-size: $font_size_h2
+// .icon:before
+//   font-family: 'DaboIcons'
+//   -webkit-font-smoothing: antialiased
+//   -webkit-text-size-adjust: none
 
-.icon_medium
-  font-size: $font_size_h3
+// .icon_large
+//   font-size: $font_size_h2
+
+// .icon_medium
+//   font-size: $font_size_h3
 
 .icon_search:before
   content: "\F002"
