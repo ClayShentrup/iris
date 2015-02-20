@@ -6,15 +6,20 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'click .dropdown_button.hospital': '_toggleDropdownHospital',
     'click .dropdown_button.compare': '_toggleDropdownCompare',
     'click .dropdown_items.hospital li': '_clickAutoselectItem',
-    'keydown input': '_preventEnterFromSubmitting'
+    'keydown input': '_preventEnterFromSubmitting',
+    'click .search_box .icon_close' : '_closeSearchHospital'
   },
 
   initialize: function() {
     _.bindAll(this, '_autocompleteSource');
 
-    this.$('.search_box input').autocomplete({
+    this._searchBoxInput().autocomplete({
       source: this._autocompleteSource
     });
+  },
+
+  _searchBoxInput: function() {
+    return this.$('.search_box input');
   },
 
   _autocompleteSource: function(request, response) {
@@ -58,6 +63,12 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
       event.preventDefault();
       return false;
     }
+  },
+
+  _closeSearchHospital: function() {
+    this._searchResults().empty();
+    this._searchBoxInput().val('');
+    this._toggleDropdownHospital();
   }
 
 });
