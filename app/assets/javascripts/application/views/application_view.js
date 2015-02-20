@@ -6,7 +6,7 @@ Iris.Views.application = Backbone.View.extend({
     'click #top_nav .search .icon_search'   : 'searchClick',
     'click #top_nav .search .icon_close'    : 'toggleCloseIcon',
     'focus #top_nav .search input'          : 'toggleSearchIcon',
-    'click #feedback_bar .icon'             : 'dismissFlashMessage'
+    'click #feedback_bar .icon_close'       : 'dismissFlashMessage'
   },
 
   expandSearchBox: function() {
