@@ -5,11 +5,9 @@ RSpec.describe NewsItemsController do
 
   it_behaves_like 'an ApplicationController'
 
-  describe 'GET index' do
-    save_fixture 'default' do
-      enable_feature :navbar_search
-      get :index
-    end
+  save_fixture do
+    enable_feature :navbar_search
+    get :index
   end
 
   describe 'GET index' do

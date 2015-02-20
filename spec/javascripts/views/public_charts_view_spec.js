@@ -15,11 +15,9 @@ describe('PublicChartsView', function() {
     var searchInput;
     var searchEndpoint = '/hospital_search_results/?term=';
     var oneHospitalFixture =
-      'hospital_search_results_controller-index-' +
-      'return-one-hospital-one_hopsital.html';
+      'hospital_search_results_controller-index-return-one-hospital.html';
     var twoHospitalsFixture =
-      'hospital_search_results_controller-index-' +
-      'return-two-hospitals-two_hopsitals.html';
+      'hospital_search_results_controller-index-return-two-hospitals.html';
 
     beforeEach(function() {
       resultsDropdown = $('.dropdown_items.hospital');

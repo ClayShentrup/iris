@@ -28,12 +28,12 @@ RSpec.describe HospitalSearchResultsController do
         expect(response.body).to have_content(ucsf_parnassus)
       end
 
-      save_fixture 'two-hopsitals'
+      save_fixture
     end
 
     describe 'return one hospital' do
       let(:search_term) { ucsf_mission_bay }
-      save_fixture 'one-hopsital'
+      save_fixture
     end
   end
 end
