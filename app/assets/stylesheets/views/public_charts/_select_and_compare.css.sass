@@ -28,8 +28,13 @@
     position: relative
     z-index: 2
 
+    +media($mobile)
+      .icon_size_base
+        svg
+          width: $icon_size_xs
+
     .text_ellipsis
-      width: 80%
+      width: 78%
 
   .dropdown_items
     display: none
@@ -45,3 +50,6 @@
 
   .icon_close
     cursor: pointer
+
+  svg
+    vertical-align: middle

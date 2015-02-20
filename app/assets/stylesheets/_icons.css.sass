@@ -1,4 +1,7 @@
+$icon_size_large: rem(32)
 $icon_size_base: rem(25)
+$icon_size_small: rem(20)
+$icon_size_xs: rem(18)
 
 .icon
   display: inline-block
@@ -13,6 +16,24 @@ $icon_size_base: rem(25)
       height: $icon_size_base
       width: $icon_size_base
 
+  &.icon_size_large
+    height: $icon_size_large
+    svg
+      height: $icon_size_large
+      width: $icon_size_large
+
+  &.icon_size_small
+    height: $icon_size_small
+    svg
+      height: $icon_size_small
+      width: $icon_size_small
+
+  &.icon_size_xs
+    height: $icon_size_xs
+    svg
+      height: $icon_size_xs
+      width: $icon_size_xs
+
   &.float_right,
   &.icon_right
     margin-left: $padding_base_vertical
@@ -20,11 +41,6 @@ $icon_size_base: rem(25)
   &.float_left,
   &.icon_left
     margin-right: $padding_base_vertical
-
-  &.float_right,
-  &.float_left
-    svg
-      @extend .vertical_align_middle
 
   svg
     fill: $grey

@@ -3,22 +3,27 @@
     = render 'public_charts/detail_charts/default_chart'
   .actions.inner_padding_small.border_bottom_grey.clearfix
     .action.col3-xs.text_center
-      %span.icon.icon_large.icon_left.icon_comments
-      %span.text.hide_on_mobile Discuss
+      %span.icon.icon_size_base.icon_left.vertical_align_middle
+        = render 'shared/icon', icon: '#icon_conversation'
+      %span.text.hide_on_mobile.vertical_align_middle Discuss
     .action.col3-xs.text_center
-      %span.icon.icon_large.icon_left.icon_shared_with_me
-      %span.text.hide_on_mobile Share
+      %span.icon.icon_size_base.icon_left.vertical_align_middle
+        = render 'shared/icon', icon: '#icon_share'
+      %span.text.hide_on_mobile.vertical_align_middle Share
     .action.col3-xs.text_center
-      %span.icon.icon_large.icon_left.icon_book_open
-      %span.text.hide_on_mobile Learn
+      %span.icon.icon_size_base.icon_left.vertical_align_middle
+        = render 'shared/icon', icon: '#icon_book_text'
+      %span.text.hide_on_mobile.vertical_align_middle Learn
     .action.col3-xs.text_center
-      %span.icon.icon_large.icon_left.icon_chart_trend
-      %span.text.hide_on_mobile Improve
+      %span.icon.icon_size_base.icon_left.vertical_align_middle
+        = render 'shared/icon', icon: '#icon_chart_trend'
+      %span.text.hide_on_mobile.vertical_align_middle Improve
   .card_container.inner_padding_large
     .new_conversation.inner_padding_base.border_grey Start a conversation...
     .card.top_buffer_base.border_grey
-      .card_title.inner_padding_base.border_bottom_grey
-        Conversation title
-        %span.icon.float_right.icon_large.icon_comments.line_height_computed
+      .card_title.inner_padding_base.line_height_base.border_bottom_grey
+        %span.text Conversation title
+        %span.icon.icon_size_base.float_right.vertical_align_middle
+          = render 'shared/icon', icon: '#icon_conversation'
       .card_body.inner_padding_base Conversation
       .card_action.inner_padding_base.border_top_grey Write a comment...
