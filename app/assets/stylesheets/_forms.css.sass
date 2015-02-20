@@ -33,6 +33,9 @@ form
       padding-left: 0
       box-shadow: none
 
+    &.no_margin
+      @extend .no_margin
+
       &:focus
         outline: 0
         box-shadow: none
@@ -44,7 +47,6 @@ form
       +calc(width, "100% - (#{$input_height_base} * 1.25)")
 
     .form_control_icon
-      display: block
       @extend .no_margin
 
   .has_two_icons

@@ -6,7 +6,7 @@ Iris.Views.application = Backbone.View.extend({
     'click #top_nav .search .icon_search'   : 'searchClick',
     'click #top_nav .search .icon_close'    : 'toggleCloseIcon',
     'focus #top_nav .search input'          : 'toggleSearchIcon',
-    'click #feedback_bar .icon_close'       : 'dismissFlashMessage'
+    'click #feedback_bar .icon'             : 'dismissFlashMessage'
   },
 
   expandSearchBox: function() {
@@ -23,15 +23,17 @@ Iris.Views.application = Backbone.View.extend({
 
   toggleCloseIcon: function() {
     $('#top_nav .search .icon_close')
-      .removeClass('icon_close')
-      .addClass('icon_search');
+      .addClass('hidden');
     $('#top_nav .search input').val('').blur();
+    $('#top_nav .search .icon_search')
+      .removeClass('hidden');
   },
 
   toggleSearchIcon: function() {
     $('#top_nav .search .icon_search')
-      .removeClass('icon_search')
-      .addClass('icon_close');
+      .addClass('hidden');
+    $('#top_nav .search .icon_close')
+      .removeClass('hidden');
   },
 
   enterSearchInputFocus: function() {

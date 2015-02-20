@@ -1,6 +1,9 @@
 #top_nav.bottom_buffer_base.clearfix
-  .logo.inner_padding_small.line_height_buffer_base.text_center.float_left.border_grey
-    = link_to 'Home', root_url, class: 'text_hide'
+  .logo.inner_padding_small.float_left.border_grey
+    = link_to root_url, class: 'icon icon_color_dabo_blue icon_size_base hide_on_mobile text_left' do
+      = render 'shared/icon', icon: '#icon_dabo-logo'
+    = link_to root_url, class: 'icon icon_color_dabo_blue icon_size_base hide_on_tablet_portrait hide_on_desktop' do
+      = render 'shared/icon', icon: '#icon_dabo-d-logo'
   .news_feed.nav_btns.vertical_padding_small.line_height_buffer_base.text_center.float_left.border_grey
     = link_to 'News Feed', news_path
   .metrics.nav_btns.vertical_padding_small.line_height_buffer_base.text_center.float_left.border_grey
@@ -8,12 +11,20 @@
   - if feature? :navbar_search
     .search.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base.border_bottom_grey.border_top_grey
       %form{action: '/search', method: 'get'}
-        .has_icon.clearfix.vertical_padding_small
-          %input.form_control.float_left.no_border#q{name: 'q', type: 'text'}
-          %span.no_margin.icon.icon_large.icon_search.form_control_icon.text_center
+        .has_icon.clearfix.vertical_padding_small.line_height_buffer_base
+          %input.form_control.float_left.no_border.no_margin#q{name: 'q', type: 'text'}
+          %span.icon.icon_size_small.icon_search.float_right.form_control_icon
+            = render 'shared/icon', icon: '#icon_search'
+          %span.icon.icon_size_small.icon_close.float_right.form_control_icon.hidden
+            = render 'shared/icon', icon: '#icon_close'
     .search.hide_on_mobile.line_height_buffer_base.border_bottom_grey.border_top_grey
       %form{action: '/search', method: 'get'}
-        .has_icon.clearfix.vertical_padding_small
-          %input.form_control.float_left.no_border#q{name: 'q', type: 'text'}
-          %span.icon.icon_large.icon_search.form_control_icon.text_center
-  .menu_icon.inner_padding_small.text_hide.border_grey Menu
+        .has_icon.clearfix.vertical_padding_small.line_height_buffer_base
+          %input.form_control.float_left.no_border.no_margin#q{name: 'q', type: 'text'}
+          %span.icon.icon_size_small.icon_search.float_right.form_control_icon
+            = render 'shared/icon', icon: '#icon_search'
+          %span.icon.icon_size_small.icon_close.float_right.form_control_icon.no_margin.hidden
+            = render 'shared/icon', icon: '#icon_close'
+  .menu_icon.text_center.border_grey
+    %span.top_buffer_small.bottom_buffer_small.icon.icon_size_base
+      = render 'shared/icon', icon: '#icon_user'

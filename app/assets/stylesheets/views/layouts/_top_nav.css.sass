@@ -4,26 +4,20 @@
   .sessions &
     display: none
 
-  .logo
-    background: transparent image-url('dabo-d-logo.svg') no-repeat center
-    +media($desktop)
-      background: transparent image-url('dabo-logo.svg') no-repeat center
-
-  .menu_icon
-    background: transparent image-url('menu-icon.svg') no-repeat center
+  a
+    @extend .block
+    &.hide_on_mobile
+      @extend .hide_on_mobile
+    &.hide_on_tablet_portrait
+      @extend .hide_on_tablet_portrait
+    &.hide_on_desktop
+      @extend .hide_on_desktop
 
   .logo,
   .menu_icon
-    background-size: contain
-    background-origin: content-box
     +media($mobile)
-      max-width: rem(33)
-      width: rem(33)
-
-  .logo > a,
-  .metrics > a,
-  .news_feed > a
-    display: block
+      max-width: $line_height_buffer_base
+      width: $line_height_buffer_base
 
   .logo,
   .menu_icon,
@@ -40,4 +34,16 @@
 
     &.hide_on_tablet_portrait.hide_on_desktop
       input
-        display: none
+        @extend .hidden
+
+svg
+  #top_nav &
+    @extend .vertical_align_middle
+
+  #top_nav .logo &
+    width: $icon_size_xs
+    +media($tablet_portrait_and_desktop)
+      width: rem(70)
+
+  #top_nav .menu_icon &
+    width: $icon_size_small
