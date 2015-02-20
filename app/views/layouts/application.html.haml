@@ -16,8 +16,8 @@
            current_user_id: current_user.try(:id) |
          } |
        } |
-    = render 'layouts/top_nav'
     = render 'shared/icon_definitions'
+    = render 'layouts/top_nav'
     - if flash.any?
       = render 'layouts/feedback_bar'
     #outer_container

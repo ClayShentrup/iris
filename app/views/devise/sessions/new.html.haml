@@ -1,6 +1,6 @@
 .row
-  .login.top_buffer_large.bottom_buffer_large.centered
-    #login_logo.centered.bottom_buffer_large
+  .login.top_buffer_large.centered
+    = render 'devise/shared/logo'
     %h2.bottom_buffer_base Sign In
     - if alert
       #error_explanation
