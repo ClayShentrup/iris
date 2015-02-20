@@ -6,7 +6,7 @@ RSpec.feature 'creating an account' do
 
   let!(:user) { create(:user) }
   let!(:hospital_without_system) { create(:hospital) }
-  let!(:hospital_with_system) { create(:hospital, :with_hospital_system) }
+  let!(:hospital_with_system) { create(:hospital_with_system) }
 
   let(:hospital_system_name) { hospital_with_system.hospital_system_name }
 

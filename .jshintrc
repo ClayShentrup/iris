@@ -13,7 +13,12 @@
   "globals": {
     "Iris": true, // Our JS namespace
     "Backbone": true, // defined by Backbone.js
-    "_": true // defined by Underscore.js
+    "_": true, // defined by Underscore.js
+    "getJSONFixture": true, // jasmine-jquery
+    "loadFixture": true, // jsamine-jquery
+    "stubAjaxRequest": true,
+    "searchAutocomplete": true
+
   },
   "jasmine": true,
   "jquery": true, // allow `$` as global variable

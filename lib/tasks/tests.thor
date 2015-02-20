@@ -31,14 +31,16 @@ class Tests < Thor
 
   desc :save_jasmine_fixtures, 'Build jasmine fixtures from rspec'
   def save_jasmine_fixtures
-    `rspec -e "#{JasmineMacros::SPEC_DESCRIPTION}"`
+    run_command 'bundle exec rspec spec/controllers'
   end
 
   private
 
   def results(commands)
-    commands.values.map do |command|
-      Open3.pipeline("#{command}").first.success?
-    end
+    commands.values.map { |command| run_command(command) }
+  end
+
+  def run_command(command)
+    Open3.pipeline("#{command}").first.success?
   end
 end

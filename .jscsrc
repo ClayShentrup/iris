@@ -1,4 +1,8 @@
 {
   "preset": "google",
-  "excludeFiles": ["vendor/bundle/**"]
+  "excludeFiles": [
+    "vendor/bundle/**",
+    "spec/javascripts/helpers/**",
+    "public/assets"
+  ]
 }

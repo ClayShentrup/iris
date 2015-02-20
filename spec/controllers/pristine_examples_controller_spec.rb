@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe PristineExamplesController do
   login_user
 
-  describe 'GET index' do
-    save_fixture 'with feature enabled' do
+  describe 'with feature enabled' do
+    save_fixture do
       enable_feature(:pristine_example)
       get :index
     end

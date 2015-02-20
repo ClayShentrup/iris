@@ -5,33 +5,30 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   events: {
     'click .dropdown_button.hospital': '_toggleDropdownHospital',
     'click .dropdown_button.compare': '_toggleDropdownCompare',
-    'click .dropdown_items.hospital li': '_clickAutoselectItem'
+    'click .dropdown_items.hospital li': '_clickAutoselectItem',
+    'keydown input': '_preventEnterFromSubmitting',
+    'click .search_box .icon_close' : '_closeSearchHospital'
   },
 
   initialize: function() {
-    // for future feature (search_box_ajax will change to search_box)
-    var search = $('.search_box_ajax input').autocomplete({
-      source: function(request, response) {
-        var ul = $('.dropdown_items.hospital ul');
-        $.get('/search/hospitals/?term=' + request.term, function(result) {
-          _.each(result, function(item) {
-            var li = $('<li>')
-              .addClass('bottom_buffer_small link')
-              .attr('data-value', item.id)
-              .appendTo(ul);
+    _.bindAll(this, '_autocompleteSource');
 
-            $('<p>').html(item.name).addClass('no_margin')
-            .appendTo(li);
-
-            $('<p>').html(item.city + ', ' + item.state).addClass('text_muted')
-            .appendTo(li);
-
-            response([]);
-          });
-        });
-      }
+    this._searchBoxInput().autocomplete({
+      source: this._autocompleteSource
     });
+  },
 
+  _searchBoxInput: function() {
+    return this.$('.search_box input');
+  },
+
+  _autocompleteSource: function(request, response) {
+    this._searchResults().load(this._searchEndpoint(request.term));
+    response([]);
+  },
+
+  _searchResults: function() {
+    return this.$('.dropdown_items.hospital ul');
   },
 
   _toggleDropdownHospital: function() {
@@ -51,10 +48,27 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   },
 
   _clickAutoselectItem: function(event) {
-    return false; // for future feature
-    // var name = $(event.currentTarget).find('p:first').text();
-    // $('.hospital_name').html(name);
-    // this._toggleDropdownHospital();
+    var name = $(event.currentTarget).find('p:first').text();
+    $('.hospital_name').html(name);
+    this._toggleDropdownHospital();
+  },
+
+  _searchEndpoint: function(requestTerm) {
+    // TODO: Get this from a path helper in the Rails template
+    return '/hospital_search_results/?term=' + encodeURIComponent(requestTerm);
+  },
+
+  _preventEnterFromSubmitting: function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      return false;
+    }
+  },
+
+  _closeSearchHospital: function() {
+    this._searchResults().empty();
+    this._searchBoxInput().val('');
+    this._toggleDropdownHospital();
   }
 
 });

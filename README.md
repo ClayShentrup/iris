@@ -57,8 +57,13 @@ Iris uses [RSpec](http://rspec.info/) for ruby tests and [Jasmine](http://jasmin
 
 ### Javascript Fixtures ###
 In your controllers specs, wrap any command that gets a response (like get :show) in
-`save_fixtures 'fixture name' do`. This will generate an html file in
+`save_fixtures do`. This will generate an html file in
 `spec/javascripts/features/`.
+
+Alternatively, you can add `save_fixtures` to the bottom of a test that calls
+`get` and it will save the response body as the fixture. However, this method
+will not stub out the user id and user email in the headers and footers,
+meaning the fixture could change each time controller specs are run.
 
 Then in your jasmine specs, use `loadFixtures('the-generated-file.html')`
 in a beforeEach to have it available in the `#body` div.
