@@ -1,41 +1,29 @@
-require 'active_support/core_ext/object/blank'
 # .
 class PublicChartTree
-  # A Node creates a consistent interface to NestedNode instances
-  # or RootNode .
-  class Node
+  # Delegates methods to a PublicChartTree InternalNode, for use outside of
+  # PublicChartTree. Prevents us from unnecessarily exposing InternalNode
+  # methods outside of PublicChartTree.
+  Node = Struct.new(:internal_node) do
     attr_reader :children
     delegate :id,
-             :short_title,
-             to: :parent, prefix: true
-    delegate :build_breadcrumb,
-             :dimensions,
-             :id_components,
-             :long_title,
-             :parent,
-             :short_title,
              :type,
-             to: :@embedded_node
-
-    def initialize(embedded_node:)
-      @embedded_node = embedded_node
-      @children = []
-    end
-
-    def id
-      id_components.join('/')
-    end
+             :parent_is_root?,
+             :short_title,
+             :long_title,
+             :children,
+             :parent_id,
+             :breadcrumb,
+             :parent_short_title,
+             to: :internal_node
 
     def breadcrumbs
-      parent.breadcrumb + breadcrumb
+      internal_node.parent_breadcrumb + breadcrumb
     end
 
-    def breadcrumb
-      build_breadcrumb(self)
-    end
-
-    def parent_is_root?
-      parent_id.blank?
+    def children
+      internal_node.children.map do |child_internal_node|
+        Node.new(child_internal_node)
+      end
     end
   end
 end

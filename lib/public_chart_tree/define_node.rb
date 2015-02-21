@@ -1,5 +1,5 @@
 require 'active_support/core_ext/module/delegation'
-require_relative 'node'
+require_relative 'internal_node'
 require_relative 'nested_node'
 
 # .
@@ -22,7 +22,7 @@ class PublicChartTree
     end
 
     def node
-      @node ||= Node.new(embedded_node: embedded_node)
+      @node ||= InternalNode.new(embedded_node: embedded_node)
     end
 
     def measure_source(*args, &definition_block)

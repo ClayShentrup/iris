@@ -5,6 +5,10 @@ class PublicChartTree
     attr_writer :id_component
     attr_accessor :dimensions, :long_title
 
+    delegate :breadcrumb,
+             to: :parent,
+             prefix: true
+
     def id_components
       parent.id_components + [id_component]
     end

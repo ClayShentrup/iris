@@ -1,6 +1,7 @@
 require 'active_support/core_ext/string/inflections'
 require 'public_chart_tree/define_node'
 require 'public_chart_tree/root_node'
+require 'public_chart_tree/node'
 
 # Establishes a DSL for specifiying our public data chart hierarchy
 class PublicChartTree
@@ -12,8 +13,14 @@ class PublicChartTree
   end
 
   def find(identifier)
-    @node_map.fetch(identifier)
+    Node.new(find_internal_node(identifier))
   rescue KeyError
     raise PublicChartNotFoundError
+  end
+
+  private
+
+  def find_internal_node(identifier)
+    @node_map.fetch(identifier)
   end
 end
