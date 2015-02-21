@@ -1,7 +1,19 @@
+.main_content
+  &.measures
+    border-left: rem(1) solid $grey
+    +media($mobile)
+      padding-left: 0
+      padding-right: 0
+
 .detail_chart
   height: rem(200) // Temporary height for wireframing purposes
   +media($tablet_portrait)
     height: rem(300) // Temporary height for wireframing purposes
-
   +media($desktop)
     height: rem(400) // Temporary height for wireframing purposes
+
+.detail_chart,
+.actions_container
+  +media($tablet_portrait_and_desktop)
+    margin-left: -($buffer_large)
+    margin-right: -($buffer_large)

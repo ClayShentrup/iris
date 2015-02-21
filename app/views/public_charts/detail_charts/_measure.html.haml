@@ -1,24 +1,25 @@
 .measure_detail
   .chart
     = render 'public_charts/detail_charts/default_chart'
-  .actions.inner_padding_small.border_bottom_grey.clearfix
-    .action.col3-xs.text_center
-      %span.icon.icon_size_base.icon_left.vertical_align_middle
-        = render 'shared/icon', icon: '#icon_conversation'
-      %span.text.hide_on_mobile.vertical_align_middle Discuss
-    .action.col3-xs.text_center
-      %span.icon.icon_size_base.icon_left.vertical_align_middle
-        = render 'shared/icon', icon: '#icon_share'
-      %span.text.hide_on_mobile.vertical_align_middle Share
-    .action.col3-xs.text_center
-      %span.icon.icon_size_base.icon_left.vertical_align_middle
-        = render 'shared/icon', icon: '#icon_book_text'
-      %span.text.hide_on_mobile.vertical_align_middle Learn
-    .action.col3-xs.text_center
-      %span.icon.icon_size_base.icon_left.vertical_align_middle
-        = render 'shared/icon', icon: '#icon_chart_trend'
-      %span.text.hide_on_mobile.vertical_align_middle Improve
-  .card_container.inner_padding_large
+  .actions_container.border_bottom_grey
+    .actions.inner_content.horizontal_padding_small.clearfix
+      .action.col3-xs.text_center
+        %span.icon.icon_size_base.icon_left.vertical_align_middle
+          = render 'shared/icon', icon: '#icon_conversation'
+        %span.text.hide_on_mobile.vertical_align_middle Discuss
+      .action.col3-xs.text_center
+        %span.icon.icon_size_base.icon_left.vertical_align_middle
+          = render 'shared/icon', icon: '#icon_share'
+        %span.text.hide_on_mobile.vertical_align_middle Share
+      .action.col3-xs.text_center
+        %span.icon.icon_size_base.icon_left.vertical_align_middle
+          = render 'shared/icon', icon: '#icon_book_text'
+        %span.text.hide_on_mobile.vertical_align_middle Learn
+      .action.col3-xs.text_center
+        %span.icon.icon_size_base.icon_left.vertical_align_middle
+          = render 'shared/icon', icon: '#icon_chart_trend'
+        %span.text.hide_on_mobile.vertical_align_middle Improve
+  .card_container.inner_content.row.top_buffer_large
     .new_conversation.inner_padding_base.border_grey Start a conversation...
     .card.top_buffer_base.border_grey
       .card_title.inner_padding_base.line_height_base.border_bottom_grey

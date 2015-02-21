@@ -9,11 +9,16 @@ body
   font-family: $helvetica
   font-size: $font_size_base
 
-#outer_container
-  +clearfix
-  body:not([data-view-name*="charts"]) &
-    +outer-container
+.main_content,
+.inner_content
+  +outer-container
 
+.main_content
+  body[data-view-name*="charts"] &,
+  body[data-view-name*="news"] &
+    max-width: 100%
+
+.main_content,
 .clearfix
   +clearfix
 
@@ -25,10 +30,6 @@ body
 
 .border_bottom_grey
   border-bottom: rem(1) solid $grey
-
-#main_content
-  +media($desktop)
-    border-left: rem(1) solid $grey
 
 .hide_on_mobile
   +media($mobile)
