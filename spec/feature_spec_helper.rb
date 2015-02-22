@@ -9,6 +9,11 @@ end
 
 Capybara.default_driver = :chrome
 
+Capybara.server do |app, port|
+  require 'rack/handler/thin'
+  Rack::Handler::Thin.run(app, Port: port)
+end
+
 RSpec.configure do |config|
   config.extend WardenMacros, type: :feature
   config.include BrowserSizeHelpers, type: :feature

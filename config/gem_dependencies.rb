@@ -18,8 +18,9 @@ require 'neat'
 require 'backbone-rails'
 require 'jquery-ui-rails'
 
-# Dependencies for Unicorn
+# Dependencies for Puma
 require 'rack-timeout'
+# Dependency for feature flip
 require 'flip'
 
 if Rails.env.development? || Rails.env.test?
