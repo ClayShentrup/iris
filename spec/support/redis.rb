@@ -5,6 +5,6 @@ require 'new_redis_instance'
 # is tested in Rails-less specs
 module StubRedis
   def stub_redis
-    stub_const('REDIS', NewRedisInstance.call)
+    stub_const('REDIS', Redis.new)
   end
 end
