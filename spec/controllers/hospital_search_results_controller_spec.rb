@@ -36,4 +36,30 @@ RSpec.describe HospitalSearchResultsController do
       save_fixture
     end
   end
+
+  describe '#show' do
+    login_user
+
+    let(:hospital_system_name) { 'Test System' }
+    let(:hospital_system) do
+      create(:hospital_system, name: hospital_system_name)
+    end
+    let(:selected_hospital) do
+      create(:hospital, hospital_system: hospital_system)
+    end
+
+    before do
+      get 'show', id: selected_hospital.id
+    end
+
+    describe 'hospital to compare' do
+      it 'returns hospital comparison options' do
+        expect(response.body).to have_css('li', text: 'San Francisco, CA')
+        expect(response.body).to have_css('li', text: 'CA')
+        expect(response.body).to have_css('li', text: hospital_system_name)
+      end
+
+      save_fixture
+    end
+  end
 end

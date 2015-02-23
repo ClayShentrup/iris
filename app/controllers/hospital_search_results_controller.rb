@@ -4,4 +4,9 @@ class HospitalSearchResultsController < ApplicationController
     render partial: 'hospital',
            collection: Hospital.search_results(params.fetch(:term))
   end
+
+  def show
+    render partial: 'show',
+           locals: { hospital: Hospital.find(params.require(:id)) }
+  end
 end
