@@ -56,6 +56,18 @@ RSpec.describe PublicChartTree do
         tree.find('private-data'),
       ]
     end
+
+    describe '#siblings_and_self' do
+      it 'returns an empty array' do
+        expect(subject.siblings_and_self).to eq []
+      end
+    end
+
+    describe '#leaf?' do
+      it 'returns false' do
+        expect(subject.leaf?).to be false
+      end
+    end
   end
 
   let(:expected_breadcrumbs) do
@@ -68,6 +80,8 @@ RSpec.describe PublicChartTree do
   shared_examples 'a child node' do
     specify { expect(subject.id).to eq id }
     let(:parent_is_root?) { false }
+    let(:is_leaf?) { false }
+    let(:expected_siblings_and_self) { [subject] }
 
     it 'returns the children' do
       actual_child_ids = subject.children.map(&:id)
@@ -80,6 +94,16 @@ RSpec.describe PublicChartTree do
     specify { expect(subject.parent_id).to eq expected_parent_id }
     specify { expect(subject.parent_is_root?).to be parent_is_root? }
     specify { expect(subject.type).to eq expected_type }
+
+    describe '#siblings_and_self' do
+      specify do
+        expect(subject.siblings_and_self).to eq expected_siblings_and_self
+      end
+    end
+
+    describe '#leaf?' do
+      specify { expect(subject.leaf?).to be is_leaf? }
+    end
   end
 
   context 'at a measure source node' do
@@ -89,9 +113,11 @@ RSpec.describe PublicChartTree do
     let(:expected_type) { 'measure_source' }
     let(:expected_child_ids) { ['public-data/value-based-purchasing'] }
     let(:expected_breadcrumbs) { [subject.short_title] }
+    let(:private_data) { tree.find('private-data') }
 
     it_behaves_like 'a child node' do
       let(:parent_is_root?) { true }
+      let(:expected_siblings_and_self) { [subject, private_data] }
     end
   end
 
@@ -164,6 +190,14 @@ RSpec.describe PublicChartTree do
     let(:expected_short_title) { measure.short_title }
     let(:expected_type) { 'measure' }
     let(:expected_child_ids) { [] }
+    let(:sibling_measures) do
+      [
+        tree
+          .find("#{expected_parent_id}/acute-myocardial-infarction-mortality"),
+        tree
+          .find("#{expected_parent_id}/heart-failure-mortality"),
+      ]
+    end
 
     shared_examples 'a mortality measure node' do
       specify do
@@ -176,12 +210,20 @@ RSpec.describe PublicChartTree do
       let(:measure) { mort_30_ami }
       let(:id) { "#{expected_parent_id}/acute-myocardial-infarction-mortality" }
       it_behaves_like 'a mortality measure node'
+      it_behaves_like 'a child node' do
+        let(:is_leaf?) { true }
+        let(:expected_siblings_and_self) { sibling_measures }
+      end
     end
 
     describe 'MORT_30_HF' do
       let(:measure) { mort_30_hf }
       let(:id) { "#{expected_parent_id}/heart-failure-mortality" }
       it_behaves_like 'a mortality measure node'
+      it_behaves_like 'a child node' do
+        let(:is_leaf?) { true }
+        let(:expected_siblings_and_self) { sibling_measures }
+      end
     end
   end
 
