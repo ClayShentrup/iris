@@ -44,6 +44,10 @@ class Hospital < ActiveRecord::Base
       .update_attributes!(attributes)
   end
 
+  def city_and_state
+    "#{city}, #{state}"
+  end
+
   def hospitals
     [self]
   end

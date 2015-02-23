@@ -40,9 +40,8 @@ RSpec.describe HospitalSearchResultsController do
   describe '#show' do
     login_user
 
-    let(:hospital_system_name) { 'Test System' }
     let(:hospital_system) do
-      create(:hospital_system, name: hospital_system_name)
+      create(:hospital_system, name: 'Test System')
     end
     let(:selected_hospital) do
       create(:hospital, hospital_system: hospital_system)
@@ -54,9 +53,18 @@ RSpec.describe HospitalSearchResultsController do
 
     describe 'hospital to compare' do
       it 'returns hospital comparison options' do
-        expect(response.body).to have_css('li', text: 'San Francisco, CA')
-        expect(response.body).to have_css('li', text: 'CA')
-        expect(response.body).to have_css('li', text: hospital_system_name)
+        expect(response.body).to have_css(
+          'li:nth-child(1)',
+          text: selected_hospital.city_and_state,
+        )
+        expect(response.body).to have_css(
+          'li:nth-child(2)',
+          text: selected_hospital.state,
+        )
+        expect(response.body).to have_css(
+          'li:nth-child(3)',
+          text: selected_hospital.hospital_system_name,
+        )
       end
 
       save_fixture

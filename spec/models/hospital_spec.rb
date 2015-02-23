@@ -106,4 +106,11 @@ RSpec.describe Hospital do
         .as(:name)
     end
   end
+
+  describe '#city_and_state' do
+    let(:hospital) { create(described_class) }
+    specify do
+      expect(hospital.city_and_state).to eq('San Francisco, CA')
+    end
+  end
 end
