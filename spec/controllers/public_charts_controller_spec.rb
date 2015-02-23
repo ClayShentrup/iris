@@ -14,10 +14,8 @@ RSpec.describe PublicChartsController do
       ].join('/')
     end
 
-    describe 'saves fixture' do
-      save_fixture do
-        get :show, id: 'public-data'
-      end
+    save_fixture 'for_public-data' do
+      get :show, id: 'public-data'
     end
 
     specify do
