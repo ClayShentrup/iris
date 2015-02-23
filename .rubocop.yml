@@ -35,7 +35,7 @@ Style/AndOr:
   # Whether `and` and `or` are banned only in conditionals (conditionals)
   # or completely (always).
   # They read better, more like normal English.
-  EnforcedStyle: conditionals
+  Enabled: false
 
 Style/ClassAndModuleChildren:
   Exclude:

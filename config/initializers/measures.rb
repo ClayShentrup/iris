@@ -8,7 +8,7 @@ MEASURES = {
     long_title:  'Acute Myocardial Infarction 30-day Mortality Rate',
   },
   MORT_30_PN: {
-    short_title: 'Pnuemonia Mortality',
+    short_title: 'Pneumonia Mortality',
     long_title:  'Pneumonia 30-day Mortality Rate',
   },
   PSI_90: {

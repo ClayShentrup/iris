@@ -58,14 +58,15 @@ RSpec.describe PublicChartTree do
     end
   end
 
-  shared_examples 'a nested node' do
+  let(:expected_breadcrumbs) do
+    [
+      subject.parent_short_title,
+      subject.short_title,
+    ]
+  end
+
+  shared_examples 'a child node' do
     specify { expect(subject.id).to eq id }
-    let(:expected_breadcrumb_ids) do
-      [
-        expected_parent_id,
-        id,
-      ]
-    end
     let(:parent_is_root?) { false }
 
     it 'returns the children' do
@@ -73,7 +74,7 @@ RSpec.describe PublicChartTree do
       expect(actual_child_ids).to eq expected_child_ids
     end
     specify do
-      expect(subject.breadcrumbs.map(&:id)).to eq expected_breadcrumb_ids
+      expect(subject.breadcrumbs).to eq expected_breadcrumbs
     end
     specify { expect(subject.short_title).to eq expected_short_title }
     specify { expect(subject.parent_id).to eq expected_parent_id }
@@ -85,11 +86,11 @@ RSpec.describe PublicChartTree do
     let(:id) { 'public-data' }
     let(:expected_short_title) { 'Public Data' }
     let(:expected_parent_id) { '' }
-    let(:expected_type) { :measure_source }
+    let(:expected_type) { 'measure_source' }
     let(:expected_child_ids) { ['public-data/value-based-purchasing'] }
+    let(:expected_breadcrumbs) { [subject.short_title] }
 
-    it_behaves_like 'a nested node' do
-      let(:expected_breadcrumb_ids) { [id] }
+    it_behaves_like 'a child node' do
       let(:parent_is_root?) { true }
     end
   end
@@ -99,14 +100,14 @@ RSpec.describe PublicChartTree do
     let(:id) { "#{parent_id}/value-based-purchasing" }
     let(:expected_short_title) { 'Value Based Purchasing' }
     let(:expected_parent_id) { 'public-data' }
-    let(:expected_type) { :bundle }
+    let(:expected_type) { 'bundle' }
     let(:expected_child_ids) do
       %w[
         public-data/value-based-purchasing/outcome-of-care
       ]
     end
 
-    it_behaves_like 'a nested node'
+    it_behaves_like 'a child node'
     specify { expect(subject.parent_short_title).to eq 'Public Data' }
   end
 
@@ -114,12 +115,12 @@ RSpec.describe PublicChartTree do
     let(:expected_parent_id) { 'public-data/value-based-purchasing' }
     let(:id) { "#{expected_parent_id}/outcome-of-care" }
     let(:expected_short_title) { 'Outcome of Care' }
-    let(:expected_type) { :domain }
+    let(:expected_type) { 'domain' }
     let(:expected_child_ids) do
       ['public-data/value-based-purchasing/outcome-of-care/mortality']
     end
 
-    it_behaves_like 'a nested node'
+    it_behaves_like 'a child node'
 
     specify do
       expect(subject.parent_short_title).to eq 'Value Based Purchasing'
@@ -132,7 +133,7 @@ RSpec.describe PublicChartTree do
     end
     let(:id) { "#{expected_parent_id}/mortality" }
     let(:expected_short_title) { 'Mortality' }
-    let(:expected_type) { :category }
+    let(:expected_type) { 'category' }
     let(:mort_30_ami_id) do
       "#{expected_parent_id}/mortality/acute-myocardial-infarction-mortality"
     end
@@ -146,7 +147,7 @@ RSpec.describe PublicChartTree do
       ]
     end
 
-    it_behaves_like 'a nested node'
+    it_behaves_like 'a child node'
 
     specify { expect(subject.parent_short_title).to eq 'Outcome of Care' }
   end
@@ -161,7 +162,7 @@ RSpec.describe PublicChartTree do
       ].join('/')
     end
     let(:expected_short_title) { measure.short_title }
-    let(:expected_type) { :measure }
+    let(:expected_type) { 'measure' }
     let(:expected_child_ids) { [] }
 
     shared_examples 'a mortality measure node' do
@@ -191,6 +192,62 @@ RSpec.describe PublicChartTree do
       expect { subject }.to raise_error(
         PublicChartTree::PublicChartNotFoundError,
       )
+    end
+  end
+
+  describe 'search' do
+    let(:result) { measure_source.search(search_term) }
+    let(:measure_source) { tree.find('public-data') }
+
+    def returns_expected_results
+      expect(result.to_h).to eq expected_result
+    end
+
+    context 'within the same bundle' do
+      let(:vbp_bundle_node) { tree.find('public-data/value-based-purchasing') }
+
+      context 'match on bundle' do
+        let(:search_term) { 'Value Bas' }
+        let(:expected_result) do
+          {
+            short_title: 'Public Data',
+            children: [
+              {
+                short_title: 'Value Based Purchasing',
+                children: [],
+              },
+            ],
+          }
+        end
+        let(:expected_bundle_node) { tree.find(node_id) }
+
+        it { returns_expected_results }
+      end
+
+      context 'match on domain' do
+        let(:outcome_of_care_domain_node) do
+          tree.find('public-data/value-based-purchasing/outcome-of-care')
+        end
+        let(:search_term) { 'Outcome' }
+        let(:expected_result) do
+          {
+            short_title: 'Public Data',
+            children: [
+              {
+                short_title: 'Value Based Purchasing',
+                children: [
+                  {
+                    short_title: 'Outcome of Care',
+                    children: [],
+                  },
+                ],
+              },
+            ],
+          }
+        end
+
+        it { returns_expected_results }
+      end
     end
   end
 end

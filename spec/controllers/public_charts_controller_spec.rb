@@ -10,7 +10,7 @@ RSpec.describe PublicChartsController do
         value-based-purchasing
         outcome-of-care
         mortality
-        pnuemonia-mortality
+        pneumonia-mortality
       ].join('/')
     end
 

@@ -1,6 +1,11 @@
 require 'active_support/core_ext/module/delegation'
 require_relative 'internal_node'
-require_relative 'nested_node'
+require_relative 'child_node'
+require_relative 'measure_source'
+require_relative 'bundle'
+require_relative 'domain'
+require_relative 'category'
+require_relative 'measure'
 
 # .
 class PublicChartTree
@@ -13,40 +18,39 @@ class PublicChartTree
 
     def call
       instance_eval(&definition_block) if definition_block
-      insert_node_into_tree
-      node
+      insert_internal_node_into_tree
     end
 
-    def insert_node_into_tree
-      node_map[node.id] = node
+    def insert_internal_node_into_tree
+      node_map[internal_node.id] = internal_node
     end
 
-    def node
-      @node ||= InternalNode.new(embedded_node: embedded_node)
-    end
-
-    def measure_source(*args, &definition_block)
-      create_child_node(*args, definition_block, :measure_source)
+    def internal_node
+      @internal_node ||= InternalNode.new(embedded_node)
     end
 
     def long_title(long_title)
       embedded_node.long_title = long_title
     end
 
+    def measure_source(*args, &definition_block)
+      create_child_node(*args, definition_block, MeasureSource)
+    end
+
     def bundle(*args, &definition_block)
-      create_child_node(*args, definition_block, :bundle)
+      create_child_node(*args, definition_block, Bundle)
     end
 
     def domain(*args, &definition_block)
-      create_child_node(*args, definition_block, :domain)
+      create_child_node(*args, definition_block, Domain)
     end
 
     def category(*args, &definition_block)
-      create_child_node(*args, definition_block, :category)
+      create_child_node(*args, definition_block, Category)
     end
 
     def measure(*args, &definition_block)
-      create_child_node(*args, definition_block, :measure)
+      create_child_node(*args, definition_block, Measure)
     end
 
     def measures(*measures)
@@ -59,13 +63,13 @@ class PublicChartTree
       end
     end
 
-    def create_child_node(short_title, definition_block, node_type)
-      child_node = NestedNode.new(
-        node,
-        short_title,
-        node_type,
+    def create_child_node(short_title, definition_block, child_node_class)
+      generic_child_node = ChildNode.new(
+        parent: internal_node,
+        short_title: short_title,
       )
-      node.children << self.class.call(
+      child_node = child_node_class.new(generic_child_node)
+      internal_node.children << self.class.call(
         child_node,
         node_map,
         definition_block,

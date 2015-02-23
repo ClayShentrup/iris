@@ -4,20 +4,20 @@ class PublicChartTree
   # PublicChartTree. Prevents us from unnecessarily exposing InternalNode
   # methods outside of PublicChartTree.
   Node = Struct.new(:internal_node) do
-    attr_reader :children
     delegate :id,
-             :type,
+             :search,
              :parent_is_root?,
              :short_title,
              :long_title,
-             :children,
              :parent_id,
              :breadcrumb,
+             :parent_breadcrumb,
              :parent_short_title,
+             :type,
              to: :internal_node
 
     def breadcrumbs
-      internal_node.parent_breadcrumb + breadcrumb
+      parent_breadcrumb + breadcrumb
     end
 
     def children

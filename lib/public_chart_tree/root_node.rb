@@ -6,8 +6,12 @@ class PublicChartTree
         []
       end
 
-      def build_breadcrumb(_node)
+      def breadcrumb
         []
+      end
+
+      def short_title
+        ''
       end
     end
   end

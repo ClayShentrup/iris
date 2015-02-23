@@ -1,38 +1,58 @@
 require 'active_support/core_ext/object/blank'
+require 'active_support/core_ext/string/inflections'
+
 # .
 class PublicChartTree
-  # A Node creates a consistent interface to NestedNode instances
+  # A Node creates a consistent interface to ChildNode instances
   # or RootNode .
-  class InternalNode
-    attr_reader :children
+  InternalNode = Struct.new(:embedded_node) do
     delegate :id,
              :short_title,
              to: :parent, prefix: true
-    delegate :build_breadcrumb,
-             :dimensions,
+    delegate :breadcrumb,
+             :build_breadcrumb,
+             :bundle,
              :id_components,
              :long_title,
              :parent,
              :short_title,
-             :type,
+             :search,
              :parent_breadcrumb,
-             to: :@embedded_node
+             to: :embedded_node
 
-    def initialize(embedded_node:)
-      @embedded_node = embedded_node
-      @children = []
+    def children
+      @children ||= []
     end
 
     def id
       id_components.join('/')
     end
 
-    def breadcrumb
-      build_breadcrumb(self)
-    end
-
     def parent_is_root?
       parent_id.blank?
+    end
+
+    def search(search_term)
+      search_result_node.tap do |search_result_node|
+        search_tree_root.search(
+          search_term: search_term,
+          current_result_node: search_result_node,
+        )
+      end
+    end
+
+    def type
+      embedded_node.class.name.demodulize.underscore
+    end
+
+    private
+
+    def search_tree_root
+      @search_tree_root = SearchNode.new(self)
+    end
+
+    def search_result_node
+      search_tree_root.result_node
     end
   end
 end
