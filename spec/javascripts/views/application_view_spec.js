@@ -4,7 +4,7 @@
 describe('ApplicationView', function() {
 
   beforeEach(function() {
-    loadFixture('news_items_controller-get-index-default');
+    loadFixture('news_items_controller');
     var view = new Iris.Views.application({el: '#body'});
   });
 
