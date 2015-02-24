@@ -1,0 +1,73 @@
+%h1 Typography
+%h2 Headings
+%h1
+  %code h1
+  The quick brown fox jumped over the lazy dog
+%h2
+  %code h2
+  The quick brown fox jumped over the lazy dog
+%h3
+  %code h3
+  The quick brown fox jumped over the lazy dog
+%h4
+  %code h4
+  The quick brown fox jumped over the lazy dog
+
+%h2
+  Paragraphs
+%p
+  %code p
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+%h2 Lists
+%h3 Styled Lists
+.row
+  .col6
+    %h4.no_margin
+      %code %ul
+    %ul.no_margin
+      %li Item 1
+      %li Item 2
+      %li Item 3
+  .col6
+    %h4.no_margin
+      %code %ol
+    %ol
+      %li Item 1
+      %li Item 2
+      %li Item 3
+
+%h3 Unstyled Lists
+.row
+  .col6
+    %h4.no_margin
+      %code %ul.unstyled
+    %ul.unstyled
+      %li Item 1
+      %li Item 2
+      %li Item 3
+  .col6
+    %h4.no_margin
+      %code %ol.unstyled
+    %ol.unstyled
+      %li Item 1
+      %li Item 2
+      %li Item 3
+
+%h2 Text Treatments
+%code
+  %p.text_center .text_center
+%p.text_center The quick brown fox jumped over the lazy dog
+%code
+  %p.text_right .text_right
+%p.text_right The quick brown fox jumped over the lazy dog
+%code
+  %p .text_ellipsis
+%p.text_ellipsis Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+%code
+  %p .text_hide
+%code
+  %p.text_muted.top_buffer_base .text_muted
+%p.text_muted The quick brown fox jumped over the lazy dog
+
+%hr.top_buffer_large.bottom_buffer_large
