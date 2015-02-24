@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
     devise_for :users
     resource :status, only: :show
-    get '/styleguides', to: 'styleguides#index'
+    get '/styleguide', to: 'styleguides#index'
 
     namespace :dabo_admin do
       get '/', to: 'dabo_admins#index'
