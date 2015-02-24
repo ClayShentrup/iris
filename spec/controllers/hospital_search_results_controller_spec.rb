@@ -48,22 +48,30 @@ RSpec.describe HospitalSearchResultsController do
     end
 
     before do
+      create(
+        :hospital,
+        city: selected_hospital.city,
+        state: selected_hospital.state,
+      )
+      create(:hospital, city: 'Los Angeles', state: selected_hospital.state)
+      create(:hospital, hospital_system: hospital_system, state: 'NY')
+
       get 'show', id: selected_hospital.id
     end
 
     describe 'hospital to compare' do
       it 'returns hospital comparison options' do
-        expect(response.body).to have_css(
-          'li:nth-child(1)',
-          text: selected_hospital.city_and_state,
+        expect(response.body).to have_content(
+          "#{selected_hospital.city_and_state} 2 Hospitals",
         )
-        expect(response.body).to have_css(
-          'li:nth-child(2)',
-          text: selected_hospital.state,
+        expect(response.body).to have_content(
+          "#{selected_hospital.state} 3 Hospitals",
         )
-        expect(response.body).to have_css(
-          'li:nth-child(3)',
-          text: selected_hospital.hospital_system_name,
+        expect(response.body).to have_content(
+          "#{selected_hospital.hospital_system_name} 2 Hospitals",
+        )
+        expect(response.body).to have_content(
+          'Nation-wide 4 Hospitals',
         )
       end
 

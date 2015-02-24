@@ -7,6 +7,15 @@ class HospitalSearchResultsController < ApplicationController
 
   def show
     render partial: 'show',
-           locals: { hospital: Hospital.find(params.require(:id)) }
+           locals: {
+             hospital_comparison:
+               Hospitals::HospitalComparison.new(current_hospital),
+           }
+  end
+
+  private
+
+  def current_hospital
+    Hospital.find(params.require(:id))
   end
 end

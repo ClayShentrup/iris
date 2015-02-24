@@ -1,12 +1,16 @@
 %li.bottom_buffer_small
-  %p.no_margin= hospital.city_and_state
-  %p.text_muted 14 Hospital
+  %p.no_margin= hospital_comparison.city_and_state
+  %p.text_muted
+    = pluralize(hospital_comparison.hospitals_in_city_count, 'Hospital')
 %li.bottom_buffer_small
-  %p.no_margin= hospital.state
-  %p.text_muted 19 Hospitals
+  %p.no_margin= hospital_comparison.state
+  %p.text_muted
+    = pluralize(hospital_comparison.hospitals_in_state_count, 'Hospital')
 %li.bottom_buffer_small
-  %p.no_margin= hospital.hospital_system_name
-  %p.text_muted 10 Hospitals
+  %p.no_margin= hospital_comparison.hospital_system_name
+  %p.text_muted
+    = pluralize(hospital_comparison.hospitals_in_system_count, 'Hospital')
 %li
   %p.no_margin Nation-wide
-  %p.text_muted 4500 Hospital
+  %p.text_muted
+    = pluralize(hospital_comparison.hospitals_count, 'Hospital')

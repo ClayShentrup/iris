@@ -35,6 +35,13 @@ class Hospital < ActiveRecord::Base
     search_by_name(term).limit(SEARCH_RESULTS_LIMIT)
   end)
 
+  # Should there be an index on the city and state search combo?
+  scope(:in_same_city, lambda do |hospital|
+    where(city: hospital.city, state: hospital.state)
+  end)
+
+  scope(:in_same_state, ->(hospital) { where(state: hospital.state) })
+
   pg_search_scope :search_by_name, against: :name, using: {
     tsearch: { prefix: true },
   }
