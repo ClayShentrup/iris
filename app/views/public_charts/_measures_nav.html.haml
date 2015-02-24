@@ -2,7 +2,7 @@
   .measures_nav_btn.back_btn_container.inner_padding_small.line_height_buffer_xl.border_bottom_grey.clearfix
     = link_to(back_button_options(node),
       { class: 'back_btn text_ellipsis' }) do
-      %span.icon.icon_size_small.float_left.icon_color_dabo_blue
+      %span.icon.icon_size_small.float_left.icon_brand_color_primary
         = render 'shared/icon', icon: '#icon_arrow_large_left', klass: 'vertical_align_middle'
       %span.parent_node_text.hide_on_mobile= node.parent_short_title
     %span.current_node_text.centered.text_center.hide_on_desktop.text_ellipsis
