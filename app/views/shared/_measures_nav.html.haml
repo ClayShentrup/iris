@@ -7,19 +7,14 @@
       %span.parent_node_text.hide_on_mobile= parent_link_text(node)
     %span.current_node_text.centered.text_center.hide_on_desktop.text_ellipsis
       = node.short_title
-  .measures_nav_btn.measures_nav_current_node.inner_padding_small.line_height_buffer_xl.text_center.hide_on_mobile.hide_on_tablet_portrait.border_bottom_grey
-    %span.text_ellipsis
-      = node.short_title
 
-  - if node.children
-    - node.children.each do |child|
-      .measures_nav_btn.forward_btn.inner_padding_small.line_height_buffer_xl.hide_on_mobile.hide_on_tablet_portrait.border_bottom_grey.clearfix
-        = link_to id: child.id do
-          %span.text_ellipsis
-            = child.short_title
-          %span.icon.icon_size_small.float_right.icon_color_dabo_blue
-            = render 'shared/icon', icon: '#icon_arrow_large_right', klass: 'vertical_align_middle'
-
+  - if node.leaf?
+    - node.siblings_and_self.each do |child|
+      - if child.id == node.id
+        = render 'shared/current_node_nav', node: node
+      -else
+        = render 'shared/node_nav', node: child
   - else
-    = render 'shared/'
-
+    = render 'shared/current_node_nav', node: node
+    - node.children.each do |child|
+      = render 'shared/node_nav', node: child

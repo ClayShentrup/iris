@@ -13,7 +13,7 @@ describe('PublicChartsView', function() {
 
   beforeEach(function() {
     loadFixture(
-      'public_charts_controller-get-show-saves-fixture'
+      'public_charts_controller-get-show-for_public-data'
     );
     new Iris.Views['public_charts-show']({el: '#body'});
 
