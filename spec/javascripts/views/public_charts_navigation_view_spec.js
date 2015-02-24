@@ -17,18 +17,18 @@ describe('PublicChartsNavigationView', function() {
       expect(measuresNavContainer).toContainText('Pneumonia Mortality');
     });
 
-    it('shows selected measure without arrow', function() {
+    it('does not show right arrow or link for current node', function() {
       var currentNode = $('.measures_nav_current_node');
       expect(currentNode).toContainText('Pneumonia Mortality');
       expect(currentNode).not.toContainElement('a');
       expect(currentNode).not.toContainElement('svg');
     });
 
-    it('shows sibling measure with link and arrow', function() {
+    it('shows sibling measure with link and no arrow', function() {
       var siblingNode = $('.measures_nav_btn.forward_btn');
       expect(siblingNode).toContainText('Heart Failure Mortality');
       expect(siblingNode).toContainElement('a');
-      expect(siblingNode).toContainElement('svg');
+      expect(siblingNode).not.toContainElement('svg');
     });
   });
 
