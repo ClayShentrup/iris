@@ -1,0 +1,204 @@
+%h1 Typography
+%h2 Headings
+%h1
+  %code h1
+  The quick brown fox jumped over the lazy dog
+%h2
+  %code h2
+  The quick brown fox jumped over the lazy dog
+%h3
+  %code h3
+  The quick brown fox jumped over the lazy dog
+%h4
+  %code h4
+  The quick brown fox jumped over the lazy dog
+
+%h2
+  Paragraphs
+%p
+  %code p
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+%h2 Lists
+%h3 Styled Lists
+.row
+  .col6
+    %h4.no_margin
+      %code %ul
+    %ul.no_margin
+      %li Item 1
+      %li Item 2
+      %li Item 3
+  .col6
+    %h4.no_margin
+      %code %ol
+    %ol
+      %li Item 1
+      %li Item 2
+      %li Item 3
+
+%h3 Unstyled Lists
+.row
+  .col6
+    %h4.no_margin
+      %code %ul.unstyled
+    %ul.unstyled
+      %li Item 1
+      %li Item 2
+      %li Item 3
+  .col6
+    %h4.no_margin
+      %code %ol.unstyled
+    %ol.unstyled
+      %li Item 1
+      %li Item 2
+      %li Item 3
+
+%h2 Text Treatments
+%code
+  %p.text_center text_center
+%p.text_center The quick brown fox jumped over the lazy dog
+%code
+  %p.text_right text_right
+%p.text_right The quick brown fox jumped over the lazy dog
+%code
+  %p text_ellipsis
+%p.text_ellipsis Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+%code
+  %p text_hide
+%code
+  %p.text_muted.top_buffer_base text_muted
+%p.text_muted The quick brown fox jumped over the lazy dog
+
+%hr.top_buffer_large.bottom_buffer_large
+
+%h1 Buttons
+%div
+  = link_to 'Button Blue', root_url, class: 'btn_blue bottom_buffer_large'
+  %code .btn_blue
+%div
+  = link_to 'Button Red', root_url, class: 'btn_red bottom_buffer_large'
+  %code .btn_red
+%div
+  = link_to 'Small Button', root_url, class: 'btn_blue btn_small'
+  %code .btn_small .btn_blue
+
+%hr.top_buffer_large.bottom_buffer_large
+
+%h1 Responsive Grid
+.row
+  .col1.horizontal_padding_base.border_grey.text_center
+    %code .col1
+  .col2.inner_padding_base.border_grey.text_center
+    %code .col2
+  .col3.inner_padding_base.border_grey.text_center
+    %code .col3
+  .col6.inner_padding_base.border_grey.text_center
+    %code .col6
+.row.top_buffer_base
+  .col5.inner_padding_base.border_grey.text_center
+    %code .col5
+  .col7.inner_padding_base.border_grey.text_center
+    %code .col7
+.row.top_buffer_base
+  .col10.inner_padding_base.border_grey.text_center
+    %code .col10
+  .col2.inner_padding_base.border_grey.text_center
+    %code .col2
+.row.top_buffer_base
+  .col8.inner_padding_base.border_grey.text_center
+    %code .col8
+  .col4.inner_padding_base.border_grey.text_center
+    %code .col4
+
+%h2 Mobile Non-Collapsing Grid
+.row.top_buffer_base
+  .col6-xs.inner_padding_base.border_grey.text_center
+    %code .col6-xs
+  .col6-xs.inner_padding_base.border_grey.text_center
+    %code .col6-xs
+.row.top_buffer_base
+  .col3-xs.inner_padding_base.border_grey.text_center
+    %code .col3-xs
+  .col3-xs.inner_padding_base.border_grey.text_center
+    %code .col3-xs
+  .col3-xs.inner_padding_base.border_grey.text_center
+    %code .col3-xs
+  .col3-xs.inner_padding_base.border_grey.text_center
+    %code .col3-xs
+
+%hr.top_buffer_large.bottom_buffer_large
+
+%h1 Forms
+= form_tag("/search", method: "get") do
+  = label_tag(:q, "Label tag")
+  = text_field_tag(:q, nil, class: 'form_control')
+
+/ form
+/   label
+/     display: inline-block
+/     font-weight: bold
+/     @extend .bottom_buffer_small
+
+/     .form_horizontal &
+/       line-height: $input_height_base
+
+/   select,
+/   .form_control
+/     display: block
+/     width: 100%
+/     height: $input_height_base
+/     padding: $padding_base_vertical $padding_base_horizontal
+/     font-size: $font_size_base
+/     line-height: $line_height_base
+/     color: $input_color
+/     background-color: $input_bg
+/     border-radius: $input_border_radius_base
+/     box-shadow: inset 0 1px 1px rgba(0,0,0,.075)
+/     @extend .border_grey
+/     @extend .bottom_buffer_base
+/     +transition(border-color ease-in-out .15s, box-shadow ease-in-out .15s)
+
+/     &:focus
+/       border-color: $dabo_blue
+/       box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px $dabo_blue_light
+/       outline: 0
+
+/     &.no_border
+/       border-width: 0
+/       padding-left: 0
+/       box-shadow: none
+
+/     &.no_margin
+/       @extend .no_margin
+
+/       &:focus
+/         outline: 0
+/         box-shadow: none
+
+/   .has_icon
+/     .form_control
+/       line-height: $line_height_buffer_base
+/       padding: 0
+/       +calc(width, "100% - (#{$input_height_base} * 1.25)")
+
+/     .form_control_icon
+/       @extend .no_margin
+
+/   .has_two_icons
+/     .form_control
+/       display: inline
+/       +calc(width, "100% - ((#{$input_height_base} * 1.25) * 2)")
+
+/   .has_icon,
+/   .has_two_icons
+/     label
+/       & ~ .form_control_icon
+/         top: $line_height_computed + .4
+
+/   .actions
+/     @extend .top_buffer_large
+/     @extend .bottom_buffer_large
+
+/   textarea.form_control
+/     height: auto
