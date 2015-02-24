@@ -1,4 +1,4 @@
-#top_nav.bottom_buffer_base.clearfix
+#top_nav.bottom_margin_base.clearfix
   .logo.inner_padding_small.float_left.border_grey
     = link_to root_url, class: 'icon icon_brand_color_primary icon_size_base text_left' do
       = render 'shared/icon', icon: '#icon_dabo-logo', klass: 'hide_on_mobile'
@@ -25,5 +25,5 @@
           %span.icon.icon_size_small.icon_close.float_right.form_control_icon.no_margin.hidden
             = render 'shared/icon', icon: '#icon_close'
   .menu_icon.text_right.vertical_padding_small.border_grey
-    %span.top_buffer_small.bottom_buffer_small.icon.icon_size_base
+    %span.top_margin_small.bottom_margin_small.icon.icon_size_base
       = render 'shared/icon', icon: '#icon_user'

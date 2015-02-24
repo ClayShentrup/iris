@@ -2,7 +2,7 @@
   %h1 Hospital Detail
 
   - # name, provider id, city and state
-  .table_responsive.top_buffer_base
+  .table_responsive.top_margin_base
     %table.table.table_bordered.table_hover
       %thead
         %tr
@@ -18,11 +18,11 @@
         %td=@hospital.state
         %td=@hospital.hospital_system_name
 
-  .bottom_buffer_base
+  .bottom_margin_base
     = link_to 'Delete This Hospital', |
       dabo_admin_hospital_path(@hospital), |
       method: :delete, |
       data: { confirm: 'Are you sure?' }, |
-      class: 'btn_red top_buffer_base'
+      class: 'btn_red top_margin_base'
 
     = link_to 'Back', dabo_admin_hospitals_path, class: 'vertical_padding_small'
