@@ -1,10 +1,13 @@
+require 'nokogiri'
 # Build jasmine fixtures in the rspec instances (like 'it' and 'before' blocks)
 module JasmineTestHelpers
   FIXTURE_DIRECTORY = 'spec/javascripts/fixtures'
 
   def save_fixture(name = nil)
     @fixture_name = name
-    File.write(jasmine_fixture_path, response.body)
+    body_el = extract_html_body
+    content = body_el || response.body
+    File.write(jasmine_fixture_path, content)
   end
 
   def stub_current_user
@@ -15,6 +18,10 @@ module JasmineTestHelpers
   end
 
   private
+
+  def extract_html_body
+    Nokogiri::HTML(response.body).css('body').first
+  end
 
   def jasmine_filename
     name = "#{self.class.example.full_description} #{name}"
