@@ -8,13 +8,4 @@
     %span.current_node_text.centered.text_center.hide_on_desktop.text_ellipsis
       = node.short_title
 
-  - if node.leaf?
-    - node.siblings_and_self.each do |child|
-      - if child.id == node.id
-        = render 'shared/current_node_nav', node: node
-      -else
-        = render 'shared/node_nav', node: child
-  - else
-    = render 'shared/current_node_nav', node: node
-    - node.children.each do |child|
-      = render 'shared/node_nav', node: child
+  = render "public_charts/measures_nav/#{node.type}", node: node

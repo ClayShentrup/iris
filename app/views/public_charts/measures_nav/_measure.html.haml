@@ -1,0 +1,5 @@
+- node.siblings_and_self.each do |child|
+  - if child.id == node.id
+    = render 'shared/current_node_nav', node: node
+  -else
+    = render 'shared/node_nav', node: child

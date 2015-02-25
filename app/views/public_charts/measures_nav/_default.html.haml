@@ -1,0 +1,3 @@
+= render 'shared/current_node_nav', node: node
+- node.children.each do |child|
+  = render 'shared/node_nav', node: child
