@@ -3,7 +3,7 @@
 var withoutMockAjax = function(callback){
   try {
     jasmine.Ajax.uninstall();
-    callback();
+    return callback();
   } finally {
     jasmine.Ajax.install();
   }
