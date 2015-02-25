@@ -27,10 +27,6 @@ class PublicChartTree
       false
     end
 
-    def siblings_and_self
-      parent.children
-    end
-
     private
 
     def id_component

@@ -18,7 +18,6 @@ class PublicChartTree
              :short_title,
              :search,
              :parent_breadcrumb,
-             :siblings_and_self,
              to: :embedded_node
 
     def children
@@ -27,10 +26,6 @@ class PublicChartTree
 
     def id
       id_components.join('/')
-    end
-
-    def parent_is_root?
-      parent_id.blank?
     end
 
     def search(search_term)

@@ -11,11 +11,7 @@ class PublicChartTree
       end
 
       def short_title
-        ''
-      end
-
-      def siblings_and_self
-        []
+        'Metrics'
       end
     end
   end

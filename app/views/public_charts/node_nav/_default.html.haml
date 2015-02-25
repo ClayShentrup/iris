@@ -2,6 +2,6 @@
   = link_to id: node.id do
     %span.text_ellipsis
       = node.short_title
-    - unless node.leaf?
+    - unless current_node.type == 'measure'
       %span.icon.icon_size_small.float_right.icon_color_dabo_blue
         = render 'shared/icon', icon: '#icon_arrow_large_right', klass: 'vertical_align_middle'

@@ -6,7 +6,6 @@ class PublicChartTree
   Node = Struct.new(:internal_node) do
     delegate :id,
              :search,
-             :parent_is_root?,
              :short_title,
              :long_title,
              :parent_id,
@@ -26,14 +25,8 @@ class PublicChartTree
       end
     end
 
-    def leaf?
-      children.blank?
-    end
-
-    def siblings_and_self
-      internal_node.siblings_and_self.map do |internal_node|
-        Node.new(internal_node)
-      end
+    def parent
+      Node.new(internal_node.parent)
     end
   end
 end

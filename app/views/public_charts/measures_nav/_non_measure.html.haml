@@ -1,0 +1,9 @@
+- unless current_node.type == 'measure'
+  = render partial: 'public_charts/node_nav',
+           as: :node,
+           object: node,
+           locals: { current_node: current_node }
+= render partial: 'public_charts/node_nav',
+         as: :node,
+         collection: node.children,
+         locals: { current_node: current_node }

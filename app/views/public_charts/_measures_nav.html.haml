@@ -4,8 +4,7 @@
       { class: 'back_btn text_ellipsis' }) do
       %span.icon.icon_size_small.float_left.icon_color_dabo_blue
         = render 'shared/icon', icon: '#icon_arrow_large_left', klass: 'vertical_align_middle'
-      %span.parent_node_text.hide_on_mobile= parent_link_text(node)
+      %span.parent_node_text.hide_on_mobile= node.parent_short_title
     %span.current_node_text.centered.text_center.hide_on_desktop.text_ellipsis
       = node.short_title
-
-  = render "public_charts/measures_nav/#{node.type}", node: node
+  = render 'public_charts/measures_nav/node', node: node, current_node: node
