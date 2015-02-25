@@ -7,6 +7,10 @@ module ApplicationHelper
     ].join('-')
   end
 
+  def render_feedback_bar
+    render 'layouts/feedback_bar' if flash.any?
+  end
+
   private
 
   def rendered_action

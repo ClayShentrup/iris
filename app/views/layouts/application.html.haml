@@ -18,8 +18,8 @@
        } |
     = render 'shared/icon_definitions'
     = render 'layouts/top_nav'
-    - if flash.any?
-      = render 'layouts/feedback_bar'
+    - unless @custom_feedback_bar
+      = render_feedback_bar
     .main_content
       = yield
 
