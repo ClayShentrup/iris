@@ -51,15 +51,10 @@ describe('PublicChartsView', function() {
   });
 
   describe('selecting a hospital', function() {
-    var compareEndpoint = '/hospital_search_results/';
-    var compareFixture =
-      'hospital_search_results_controller-show-hospital-to-compare.html';
-
-    it('refreshes the compare dropdown', function() {
-      var hospitalCityAndState;
-      var hospitalState;
-      var hospitalSystem;
-      var hospitalNation;
+    beforeEach(function() {
+      var compareEndpoint = '/hospital_search_results/';
+      var compareFixture =
+        'hospital_search_results_controller-show-hospital-to-compare.html';
 
       stubAjaxRequest(searchEndpoint + 'UCSF', oneHospitalFixture);
       searchAutocomplete(searchInput, 'UCSF');
@@ -69,12 +64,14 @@ describe('PublicChartsView', function() {
 
       stubAjaxRequest(compareEndpoint + hospitalId, compareFixture);
       hospitalDropdown.find('li').click();
-      jasmine.clock().tick();
+    });
 
-      hospitalCityAndState = $('.dropdown_items.compare ul li:first');
-      hospitalState = $('.dropdown_items.compare ul li:nth-child(2)');
-      hospitalSystem = $('.dropdown_items.compare ul li:nth-child(3)');
-      hospitalNation = $('.dropdown_items.compare ul li:last');
+    it('refreshes the compare dropdown', function() {
+      var compareDropdown = $('.dropdown_items.compare');
+      var hospitalCityAndState = compareDropdown.find('ul li:first');
+      var hospitalState = compareDropdown.find('ul li:nth-child(2)');
+      var hospitalSystem = compareDropdown.find('ul li:nth-child(3)');
+      var hospitalNation = compareDropdown.find('ul li:last');
 
       expect(hospitalCityAndState).toContainText('San Francisco');
       expect(hospitalCityAndState).toContainText('2 Hospitals');
@@ -84,6 +81,14 @@ describe('PublicChartsView', function() {
       expect(hospitalSystem).toContainText('2 Hospitals');
       expect(hospitalNation).toContainText('Nation-wide');
       expect(hospitalNation).toContainText('4 Hospitals');
+    });
+
+    it('updates hospital name and city in dropdown buttons', function() {
+      var hospitalName = $('.dropdown_button.hospital .hospital_name');
+      var hospitalCityAndState = $('.dropdown_button.compare .compare_name');
+
+      expect(hospitalName).toContainText('UCSF Mission Bay');
+      expect(hospitalCityAndState).toContainText('San Francisco, CA');
     });
   });
 

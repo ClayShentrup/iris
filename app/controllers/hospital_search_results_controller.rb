@@ -1,16 +1,13 @@
 # Handles ajax searches across the app (like autocomplete)
 class HospitalSearchResultsController < ApplicationController
+  layout false
+
   def index
-    render partial: 'hospital',
-           collection: Hospital.search_results(params.fetch(:term))
+    @hospitals = Hospital.search_results(params.fetch(:term))
   end
 
   def show
-    render partial: 'show',
-           locals: {
-             hospital_comparison:
-               Hospitals::HospitalComparison.new(current_hospital),
-           }
+    @hospital_comparison = Hospitals::HospitalComparison.new(current_hospital)
   end
 
   private

@@ -26,4 +26,12 @@ module PublicChartsHelper
       only_path: true,
     )
   end
+
+  def hospital_data_attributes(hospital)
+    {
+      hospital_id: hospital.id,
+      hospital_name: hospital.name,
+      hospital_city_and_state: hospital.city_and_state,
+    }
+  end
 end
