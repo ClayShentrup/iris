@@ -4,5 +4,6 @@
 class PublicChartsController < ApplicationController
   def show
     @node = PUBLIC_CHARTS_TREE.find(params.fetch(:id))
+    @custom_feedback_bar = true
   end
 end
