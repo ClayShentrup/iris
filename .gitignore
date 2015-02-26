@@ -11,4 +11,4 @@ tmp
 node_modules
 .sass-cache/
 public/assets
-spec/javascripts/fixtures/
+
