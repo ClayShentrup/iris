@@ -1,0 +1,12 @@
+= render 'user_profiles/user_nav'
+= render 'user_profiles/user_profile_image'
+= render 'user_profiles/segmented_controls'
+
+.inner_padding_large
+  %p.line_height_buffer_xl How to use dabo
+
+  %p.line_height_buffer_xl Invite colleague
+
+  %p.line_height_buffer_xl= link_to 'Sign out', destroy_user_session_path, method: :delete
+  %p.last_sign_on.text_muted
+    = "Last signed on: #{current_user.last_sign_on} from #{current_user.current_sign_in_ip}"

@@ -1,0 +1,5 @@
+.user_profile_img.top_margin_base.bottom_margin_large.text_center
+  =link_to user_profile_path('info'), class: 'icon border_grey inner_padding_large' do
+    = render 'shared/icon', icon: '#icon_user'
+
+  %p.top_margin_base= current_user.email
