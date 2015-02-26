@@ -1,0 +1,9 @@
+= render 'user_profiles/user_nav', user_name: current_user.email
+= render 'user_profiles/segmented_controls'
+
+.inner_padding_large
+  %p.line_height_buffer_xl= link_to 'Accounts', dabo_admin_accounts_path
+  %p.line_height_buffer_xl= link_to 'Hospital Systems', dabo_admin_hospital_systems_path
+  %p.line_height_buffer_xl= link_to 'Hospitals', dabo_admin_hospitals_path
+  %p.line_height_buffer_xl= link_to 'Reports', dabo_admin_reports_path
+  %p.line_height_buffer_xl= link_to 'Users', dabo_admin_users_path

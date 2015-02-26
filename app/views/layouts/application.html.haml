@@ -30,4 +30,4 @@
         %p.no_margin= link_to 'Sign out', destroy_user_session_path, method: :delete
 
         -if current_user.is_dabo_admin
-          %p= link_to 'Dabo Admin Panel', dabo_admin_path
+          %p= link_to 'Dabo Admin Panel', user_profile_path('admin')

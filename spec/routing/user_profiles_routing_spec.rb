@@ -4,7 +4,7 @@ RSpec.describe UserProfilesController do
   describe 'user profiles routing' do
     let(:path) { "/user_profiles/#{page_id}" }
 
-    %w[menu info settings].each do |page_id|
+    %w[menu info settings admin].each do |page_id|
       context page_id do
         let(:page_id) { page_id }
         it 'routes to the correct page' do

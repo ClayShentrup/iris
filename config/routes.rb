@@ -8,8 +8,6 @@ Rails.application.routes.draw do
     get '/styleguide', to: 'styleguides#index'
 
     namespace :dabo_admin do
-      get '/', to: 'dabo_admins#index'
-      resources :dabo_admins, only: :index
       resources :hospitals
       resources :hospital_systems
       resources :accounts
