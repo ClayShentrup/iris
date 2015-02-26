@@ -1,16 +1,16 @@
-require_relative './jasmine_test_helpers'
+require_relative './save_jasmine_fixture'
 
 # Build jasmine fixtures in the rspec classes (like 'describe' blocks)
 module JasmineMacros
-  def self.extended(base)
-    base.include JasmineTestHelpers
-  end
+  EXAMPLE_NAME = 'saves the fixture'
 
-  def save_fixture(name = nil, &block)
-    it 'saves the fixture' do
-      stub_current_user
+  def save_fixture(&block)
+    it EXAMPLE_NAME do
       instance_eval(&block) if block_given?
-      save_fixture(name)
+      SaveJasmineFixture.call(
+        response.body,
+        self.class.example.full_description,
+      )
     end
   end
 end
