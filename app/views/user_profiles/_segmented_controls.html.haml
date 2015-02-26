@@ -1,5 +1,5 @@
 #segmented_controls.clearfix
-  = link_to user_profile_path('notifications'), class: 'icon icon_size_small line_height_buffer_base border_grey text_center' do
+  %span.icon.icon_size_small.line_height_buffer_base.border_grey.text_center
     = render 'shared/icon', icon: '#icon_alarm', klass: 'vertical_align_middle'
   = link_to user_profile_path('settings'), class: 'icon icon_size_small line_height_buffer_base border_grey text_center' do
     = render 'shared/icon', icon: '#icon_settings', klass: 'vertical_align_middle'
