@@ -1,0 +1,75 @@
+%h1#forms.section_title Forms
+%code.preserve_whitespace
+  :preserve
+    %form{action: '/search', method: 'get'}
+      %label Form label
+      %input.form_control#q{name: 'q', type: 'text'}
+      %label Select dropdown
+      %select
+        %option Jona
+        %option Sean
+        %option Eagle
+
+%form{action: '/search', method: 'get', class: 'top_margin_base'}
+  %label Form label
+  %input.form_control#q{name: 'q', type: 'text'}
+  %label Select dropdown
+  %select
+    %option Jona
+    %option Sean
+    %option Eagle
+
+%h2 Forms with icons
+%h3 Form with One Icon
+%code.preserve_whitespace
+  :preserve
+    %form{action: '/search', method: 'get'}
+      .has_icon.clearfix.line_height_buffer_base
+        %input.form_control.float_left.no_margin#q{name: 'q', type: 'text'}
+        %span.icon.icon_size_small.icon_search.float_right.form_control_icon
+          = render 'shared/icon', icon: '#icon_search'
+%form{action: '/search', method: 'get', class: 'top_margin_base'}
+  .has_icon.clearfix.line_height_buffer_base
+    %input.form_control.float_left.no_margin#q{name: 'q', type: 'text'}
+    %span.icon.icon_size_small.icon_search.float_right.form_control_icon
+      = render 'shared/icon', icon: '#icon_search'
+
+%h3 Form with Two Icons
+%code.preserve_whitespace
+  :preserve
+    %form
+      .has_two_icons.line_height_buffer_base
+        %span.icon.icon_size_xs.icon_brand_color_primary.float_left.form_control_icon
+          = render 'shared/icon', icon: '#icon_search', klass: 'vertical_align_middle'
+        %input.form_control{placeholder: 'Search a hospital'}
+        %span.icon.icon_size_xs.float_right.form_control_icon.icon_close
+          = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
+%form.top_margin_base
+  .has_two_icons.line_height_buffer_base
+    %span.icon.icon_size_xs.icon_brand_color_primary.float_left.form_control_icon
+      = render 'shared/icon', icon: '#icon_search', klass: 'vertical_align_middle'
+    %input.form_control{placeholder: 'Search a hospital'}
+    %span.icon.icon_size_xs.float_right.form_control_icon.icon_close
+      = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
+
+%h2 Form without Border
+%code.preserve_whitespace
+  :preserve
+    %form
+      .has_two_icons.line_height_buffer_base
+        %span.icon.icon_size_xs.icon_brand_color_primary.float_left.form_control_icon
+          = render 'shared/icon', icon: '#icon_search', klass: 'vertical_align_middle'
+        %input.form_control.no_border{placeholder: 'Search a hospital'}
+        %span.icon.icon_size_xs.float_right.form_control_icon.icon_close
+          = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
+%form.top_margin_base
+  .has_two_icons.line_height_buffer_base
+    %span.icon.icon_size_xs.icon_brand_color_primary.float_left.form_control_icon
+      = render 'shared/icon', icon: '#icon_search', klass: 'vertical_align_middle'
+    %input.form_control.no_border{placeholder: 'Search a hospital'}
+    %span.icon.icon_size_xs.float_right.form_control_icon.icon_close
+      = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
+
+%h2 Form with Text Area
+%form{action: '/search', method: 'get'}
+  %textarea.form_control#q{name: 'q'}

@@ -1,18 +1,18 @@
-#select_and_compare.row.inner_content.top_buffer_base.two_column.clearfix
+#select_and_compare.row.inner_content.top_margin_base.two_column.clearfix
   .two_column
     .dropdown_button.hospital.vertical_padding_base.col6-xs.border_grey
       %span.text_ellipsis.line_height_buffer_base.hospital_name Saint Marys Hospital
-      %span.icon.icon_size_base.float_right.icon_color_dabo_blue.line_height_buffer_base
+      %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle'
     .dropdown_button.compare.vertical_padding_base.col6-xs.border_grey
       %span.text_ellipsis.line_height_buffer_base Rochester, MN
-      %span.icon.icon_size_base.float_right.icon_color_dabo_blue.line_height_buffer_base
+      %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle'
   .dropdown_items.hospital.border_grey
     .search_box.vertical_padding_base.line_height_buffer_base.border_bottom_grey
       %form
         .has_two_icons
-          %span.icon.icon_size_xs.icon_color_dabo_blue.float_left.form_control_icon
+          %span.icon.icon_size_xs.icon_brand_color_primary.float_left.form_control_icon
             = render 'shared/icon', icon: '#icon_search', klass: 'vertical_align_middle'
           %input.form_control.no_border{placeholder: 'Search a hospital'}
           %span.icon.icon_size_xs.float_right.form_control_icon.icon_close
@@ -21,13 +21,13 @@
   .dropdown_items.compare.border_grey
     %h4.no_margin.vertical_padding_xl.border_bottom_grey.line_height_buffer_xl.inner_padding_base Compare to
     %ul.unstyled
-      %li.bottom_buffer_small
+      %li.bottom_margin_small
         %p.no_margin City, State of Selected Hospital
         %p.text_muted 14 Hospital
-      %li.bottom_buffer_small
+      %li.bottom_margin_small
         %p.no_margin State of Selected Hospital
         %p.text_muted 19 Hospitals
-      %li.bottom_buffer_small
+      %li.bottom_margin_small
         %p.no_margin Healthcare System of Hospital
         %p.text_muted 10 Hospitals
       %li

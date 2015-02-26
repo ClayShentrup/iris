@@ -1,0 +1,18 @@
+.styleguide
+  & .styleguide_nav
+    background: $white
+    position: fixed
+    width: 100%
+    top: 0
+    z-index: 10
+
+  h1.section_title
+    &:before
+      display: block
+      content: ' '
+      margin-top: rem(-100)
+      height: rem(100)
+      visibility: hidden
+
+    &:first-of-type
+      margin-top: rem(100)
