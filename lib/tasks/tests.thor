@@ -1,11 +1,11 @@
 require 'English'
 require 'open3'
-require 'thor/rake_compat'
+# require 'thor/rake_compat'
 require './spec/support/jasmine_macros'
 
 # Run all tests as we would on CI
 class Tests < Thor
-  include Thor::RakeCompat
+  # include Thor::RakeCompat
   default_task :check
 
   COMMANDS = {
@@ -20,15 +20,21 @@ class Tests < Thor
 
   desc :check, 'run all CI tasks'
   def check
+    delete_jasmine_fixtures
     exit 1 unless results(COMMANDS).all?
   end
 
   desc :save_jasmine_fixtures, 'Build jasmine fixtures from rspec'
   def save_jasmine_fixtures
-    run_command 'bundle exec rspec spec/controllers'
+    delete_jasmine_fixtures
+    run_command "bundle exec rspec -e '#{JasmineMacros::EXAMPLE_NAME}'"
   end
 
   private
+
+  def delete_jasmine_fixtures
+    FileUtils.rm_rf("#{SaveJasmineFixture::FIXTURE_DIRECTORY}/.")
+  end
 
   def results(commands)
     commands.values.map { |command| run_command(command) }
