@@ -19,29 +19,29 @@ User.create!(
   &:skip_confirmation!
 )
 
-HospitalSystem.create!(name: 'Dabo Health System')
+hospital_system = HospitalSystem.create!(name: 'Mayo Health System')
 
 hospitals = Hospital.create!(
   [
     {
-      name: 'Dabo Hospital Bel Air',
-      provider_id: '999999',
-      city: 'Bel Air',
-      state: 'CA',
-      zip_code: '90077',
-      hospital_type: 'Bourgeois',
+      name: 'MAYO CLINIC HOSPITAL',
+      zip_code: '85054',
+      hospital_type: 'Acute Care Hospitals',
+      provider_id: '030103',
+      state: 'AZ',
+      city: 'PHOENIX',
     },
     {
-      name: 'Dabo Hospital West Philly',
-      provider_id: '999998',
-      city: 'Philadelphia',
-      state: 'PA',
-      zip_code: '19019',
-      hospital_type: 'Playground',
+      name: 'MAYO CLINIC',
+      zip_code: '32224',
+      hospital_type: 'Acute Care Hospitals',
+      provider_id: '100151',
+      state: 'FL',
+      city: 'JACKSONVILLE',
     },
   ],
 ) do |hospital|
-  hospital.hospital_system = HospitalSystem.find_by!(name: 'Dabo Health System')
+  hospital.hospital_system = hospital_system
 end
 
 DimensionSample::SingleMeasure.create!(
