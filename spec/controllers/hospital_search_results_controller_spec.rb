@@ -13,7 +13,9 @@ RSpec.describe HospitalSearchResultsController do
         create(:hospital, name: ucsf_parnassus),
       ]
     end
-    let!(:non_matching_hospital) { create(:hospital, name: 'Other Hospital') }
+    let!(:non_matching_hospital) do
+      create(:hospital, name: 'Other Hospital')
+    end
 
     before do
       get 'index', term: search_term
@@ -26,6 +28,7 @@ RSpec.describe HospitalSearchResultsController do
       it 'calls index and returns search results' do
         expect(response.body).to have_content(ucsf_mission_bay)
         expect(response.body).to have_content(ucsf_parnassus)
+        expect(response.body).not_to have_content(non_matching_hospital)
       end
 
       save_fixture

@@ -5,7 +5,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   events: {
     'click .dropdown_button.hospital': '_toggleDropdownHospital',
     'click .dropdown_button.compare': '_toggleDropdownCompare',
-    'click .dropdown_items.hospital li': '_clickAutoselectItem',
+    'click .dropdown_items.hospital li': '_selectHospital',
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchHospital'
   },
@@ -47,10 +47,26 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     return this.$('#select_and_compare');
   },
 
-  _clickAutoselectItem: function(event) {
-    var name = $(event.currentTarget).find('p:first').text();
+  _selectHospital: function(event) {
+    var selectedHospital = $(event.currentTarget);
+    var name = selectedHospital.find('p:first').text();
+
     $('.hospital_name').html(name);
     this._toggleDropdownHospital();
+    this._refreshCompareDropdown(selectedHospital.data('hospital-id'));
+  },
+
+  _refreshCompareDropdown: function(hospitalId) {
+    this._compareResults().load(this._compareEndpoint(hospitalId));
+  },
+
+  _compareResults: function() {
+    return this.$('.dropdown_items.compare ul');
+  },
+
+  _compareEndpoint: function(hospitalId) {
+    // TODO: Get this from a path helper in the Rails template
+    return '/hospital_search_results/' + hospitalId;
   },
 
   _searchEndpoint: function(requestTerm) {
