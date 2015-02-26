@@ -2,7 +2,7 @@ require 'active_support/core_ext/object/blank'
 require 'active_support/core_ext/string/inflections'
 
 # .
-class PublicChartTree
+class PublicChartsTree
   # A Node creates a consistent interface to ChildNode instances
   # or RootNode .
   InternalNode = Struct.new(:embedded_node) do
@@ -18,6 +18,7 @@ class PublicChartTree
              :short_title,
              :search,
              :parent_breadcrumb,
+             :value_dimension,
              to: :embedded_node
 
     def children

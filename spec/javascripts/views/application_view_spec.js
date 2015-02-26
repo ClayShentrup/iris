@@ -41,7 +41,6 @@ describe('ApplicationView', function() {
   });
   describe('clicking on the close icon', function() {
     it('closes the flash message feedback bar', function() {
-      // TODO: Remove append() when fixtures have flash message
       $('#body').append(
         '<div id="feedback_bar" class="line_height_buffer_base.' +
         'vertical_padding_small">' +

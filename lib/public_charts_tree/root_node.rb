@@ -1,4 +1,4 @@
-class PublicChartTree
+class PublicChartsTree
   # Provides a degenerative case for recursive breadcrumb definition.
   module RootNode
     class << self

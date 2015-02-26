@@ -20,7 +20,7 @@ module DimensionSample
     validates :column_name, presence: true
     validates :value, presence: true
 
-    def self.data(dataset_id:, column_name:, providers_relation:)
+    def self.data(dataset_id:, column_name:, providers:)
       where(
         dataset_id: dataset_id,
         column_name: column_name,
@@ -30,7 +30,7 @@ module DimensionSample
           ON dimension_sample_single_measures.provider_id =
           hospitals.provider_id
         JOIN_QUERY
-        .merge(providers_relation)
+        .merge(providers)
         .pluck(:value)
     end
   end

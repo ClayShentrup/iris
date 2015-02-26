@@ -97,7 +97,7 @@ RSpec.describe DimensionSample::SingleMeasure do
       create_dimension_sample(column_name: 'bad_column_name')
     end
 
-    let(:providers_relation) do
+    let(:providers) do
       Hospital.where(
         provider_id: [relevant_provider_id_1, relevant_provider_id_2],
       )
@@ -114,7 +114,7 @@ RSpec.describe DimensionSample::SingleMeasure do
       described_class.data(
         dataset_id: 'ypbt-wvdk',
         column_name: 'weighted_outcome_domain_score',
-        providers_relation: providers_relation,
+        providers: providers,
       )
     end
 

@@ -69,7 +69,7 @@ module Iris
     # "installation" via config vars.
     config.client_time_zone = Time.find_zone!('Central Time (US & Canada)')
     config.action_dispatch.rescue_responses.merge!(
-      'PublicChartTree::PublicChartNotFoundError' => :not_found,
+      'PublicChartsTree::PublicChartNotFoundError' => :not_found,
     )
 
     host_name = ENV.fetch('APP_NAME', 'localhost:3000')

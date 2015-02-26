@@ -1,6 +1,6 @@
 # .
-class PublicChartTree
+class PublicChartsTree
   # Delegates to a child node and adds a type.
-  class Domain < SimpleDelegator
+  class Measure < SimpleDelegator
   end
 end

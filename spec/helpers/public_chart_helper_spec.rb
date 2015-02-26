@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe PublicChartsHelper do
   describe '#back_button_options' do
     let(:node) do
-      instance_double(PublicChartTree::Node,
+      instance_double(PublicChartsTree::Node,
                       type: type,
                       parent_id: parent_id,
       )
@@ -42,7 +42,7 @@ RSpec.describe PublicChartsHelper do
 
   describe '#node_link' do
     let(:node) do
-      instance_double(PublicChartTree::Node,
+      instance_double(PublicChartsTree::Node,
                       id: id,
                       short_title: short_title,
       )

@@ -1,6 +1,6 @@
 # .
-class PublicChartTree
-  # A ChildNode instance represents any node below the root.
+class PublicChartsTree
+  # Extends a Node with search functionality
   class SearchNode < SimpleDelegator
     def match?(search_term)
       short_title.include?(search_term)

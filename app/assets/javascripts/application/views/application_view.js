@@ -37,8 +37,6 @@ Iris.Views.application = Backbone.View.extend({
   },
 
   enterSearchInputFocus: function() {
-    // TODO: needs to be split mobile and desktop
-    // because focus can not be called on 2 elements
     $('#top_nav .search input').focus();
   },
 

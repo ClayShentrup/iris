@@ -21,7 +21,7 @@ User.create!(
 
 HospitalSystem.create!(name: 'Dabo Health System')
 
-Hospital.create!(
+hospitals = Hospital.create!(
   [
     {
       name: 'Dabo Hospital Bel Air',
@@ -43,3 +43,38 @@ Hospital.create!(
 ) do |hospital|
   hospital.hospital_system = HospitalSystem.find_by!(name: 'Dabo Health System')
 end
+
+DimensionSample::SingleMeasure.create!(
+  [
+    {
+      dataset_id: 'ypbt-wvdk',
+      column_name: 'weighted_outcome_domain_score',
+      value: '17.127',
+      provider_id: hospitals.fetch(0).provider_id,
+    },
+    {
+      dataset_id: 'ypbt-wvdk',
+      column_name: 'weighted_outcome_domain_score',
+      value: '27.128',
+      provider_id: hospitals.fetch(1).provider_id,
+    },
+    {
+      dataset_id: 'ypbt-wvdk',
+      column_name: 'weighted_clinical_process_of_care_domain_score',
+      value: '15.133',
+      provider_id: hospitals.fetch(0).provider_id,
+    },
+    {
+      dataset_id: 'ypbt-wvdk',
+      column_name: 'weighted_efficency_domain_score',
+      value: '9.031',
+      provider_id: hospitals.fetch(0).provider_id,
+    },
+    {
+      dataset_id: 'ypbt-wvdk',
+      column_name: 'weighted_patient_experience_of_care_score',
+      value: '8.462',
+      provider_id: hospitals.fetch(1).provider_id,
+    },
+  ],
+)

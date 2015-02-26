@@ -1,5 +1,5 @@
 # Search result node.
-class PublicChartTree
+class PublicChartsTree
   SearchResultNode = Struct.new(:node) do
     delegate :id,
              :short_title,

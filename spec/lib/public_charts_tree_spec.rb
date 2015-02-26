@@ -1,12 +1,20 @@
-require 'public_chart_tree'
+require 'public_charts_tree'
 
-RSpec.describe PublicChartTree do
-  subject { tree.find(id) }
+require 'dimension_samples_getter/single_measure'
+
+RSpec.describe PublicChartsTree do
+  subject { find(node_id) }
+  let(:providers) { double('providers relation') }
 
   let(:tree) do
     described_class.new do
       measure_source 'Public Data' do
         bundle 'Value Based Purchasing' do
+          value DimensionSamplesGetter::SingleMeasure.new(
+            dataset_id: VBP_DATASET_ID,
+            column_name: VBP_COLUMN_NAME,
+          )
+
           domain 'Outcome of Care' do
             category 'Mortality' do
               measures :MORT_30_AMI,
@@ -41,19 +49,34 @@ RSpec.describe PublicChartTree do
     }
   end
 
+  let(:expected_data) do
+    {
+      bars: [],
+    }
+  end
+
+  let(:single_measure_model) { double('DimensionSample::SingleMeasure') }
+
+  def find(node_id)
+    tree.find_node(node_id, providers: providers)
+  end
+
   before do
     stub_const('MEASURES', measures)
+    stub_const('VBP_DATASET_ID', 'ypbt-wvdk')
+    stub_const('VBP_COLUMN_NAME', 'weighted_outcome_domain_score')
+    stub_const('DimensionSample::SingleMeasure', single_measure_model)
   end
 
   context 'at the navigation root' do
-    let(:id) { '' }
+    let(:node_id) { '' }
 
-    specify { expect(subject.id).to eq id }
+    specify { expect(subject.id).to eq node_id }
 
     it 'returns the children' do
       expect(subject.children).to eq [
-        tree.find('public-data'),
-        tree.find('private-data'),
+        find('public-data'),
+        find('private-data'),
       ]
     end
   end
@@ -66,7 +89,7 @@ RSpec.describe PublicChartTree do
   end
 
   shared_examples 'a child node' do
-    specify { expect(subject.id).to eq id }
+    specify { expect(subject.id).to eq node_id }
 
     it 'returns the children' do
       actual_child_ids = subject.children.map(&:id)
@@ -78,10 +101,18 @@ RSpec.describe PublicChartTree do
     specify { expect(subject.short_title).to eq expected_short_title }
     specify { expect(subject.parent_id).to eq expected_parent_id }
     specify { expect(subject.type).to eq expected_type }
+
+    describe '#data' do
+      let(:providers) { double('providers') }
+
+      it 'returns data for the specified providers' do
+        expect(subject.data).to eq expected_data
+      end
+    end
   end
 
   context 'at a measure source node' do
-    let(:id) { 'public-data' }
+    let(:node_id) { 'public-data' }
     let(:expected_short_title) { 'Public Data' }
     let(:expected_parent_id) { '' }
     let(:expected_type) { 'measure_source' }
@@ -94,7 +125,7 @@ RSpec.describe PublicChartTree do
 
   context 'at a bundle node' do
     let(:parent_id) { 'public-data' }
-    let(:id) { "#{parent_id}/value-based-purchasing" }
+    let(:node_id) { "#{parent_id}/value-based-purchasing" }
     let(:expected_short_title) { 'Value Based Purchasing' }
     let(:expected_parent_id) { 'public-data' }
     let(:expected_type) { 'bundle' }
@@ -104,13 +135,54 @@ RSpec.describe PublicChartTree do
       ]
     end
 
-    it_behaves_like 'a child node'
+    it_behaves_like 'a child node' do
+      let(:providers) { double('providers') }
+      let(:single_measure_model) do
+        double('DimensionSamplesGetter::SingleMeasure').tap do |model|
+          allow(model).to receive(:data).with(
+            dataset_id: VBP_DATASET_ID,
+            column_name: VBP_COLUMN_NAME,
+            providers: providers,
+          ).and_return(values)
+        end
+      end
+      let(:values) do
+        [
+          '17.888',
+          '13.1250000000',
+          '9.75',
+        ]
+      end
+      let(:expected_data) do
+        {
+          bars: [
+            {
+              value: '17.888',
+            },
+            {
+              value: '13.1250000000',
+            },
+            {
+              value: '9.75',
+            },
+          ],
+        }
+      end
+
+      before do
+        stub_const(
+          'Dimension::SingleMeasure',
+          single_measure_model,
+        )
+      end
+    end
+
     specify { expect(subject.parent_short_title).to eq 'Public Data' }
   end
 
   context 'at a domain node' do
     let(:expected_parent_id) { 'public-data/value-based-purchasing' }
-    let(:id) { "#{expected_parent_id}/outcome-of-care" }
+    let(:node_id) { "#{expected_parent_id}/outcome-of-care" }
     let(:expected_short_title) { 'Outcome of Care' }
     let(:expected_type) { 'domain' }
     let(:expected_child_ids) do
@@ -128,7 +200,7 @@ RSpec.describe PublicChartTree do
     let(:expected_parent_id) do
       'public-data/value-based-purchasing/outcome-of-care'
     end
-    let(:id) { "#{expected_parent_id}/mortality" }
+    let(:node_id) { "#{expected_parent_id}/mortality" }
     let(:expected_short_title) { 'Mortality' }
     let(:expected_type) { 'category' }
     let(:mort_30_ami_id) do
@@ -179,39 +251,41 @@ RSpec.describe PublicChartTree do
 
     describe 'MORT_30_AMI' do
       let(:measure) { mort_30_ami }
-      let(:id) { "#{expected_parent_id}/acute-myocardial-infarction-mortality" }
+      let(:node_id) do
+        "#{expected_parent_id}/acute-myocardial-infarction-mortality"
+      end
       it_behaves_like 'a mortality measure node'
       it_behaves_like 'a child node'
     end
 
     describe 'MORT_30_HF' do
       let(:measure) { mort_30_hf }
-      let(:id) { "#{expected_parent_id}/heart-failure-mortality" }
+      let(:node_id) { "#{expected_parent_id}/heart-failure-mortality" }
       it_behaves_like 'a mortality measure node'
       it_behaves_like 'a child node'
     end
   end
 
   context 'with an invalid identifier' do
-    let(:id) { 'fake_path' }
+    let(:node_id) { 'fake_path' }
 
     it 'raises an exception' do
       expect { subject }.to raise_error(
-        PublicChartTree::PublicChartNotFoundError,
+        PublicChartsTree::PublicChartNotFoundError,
       )
     end
   end
 
   describe 'search' do
     let(:result) { measure_source.search(search_term) }
-    let(:measure_source) { tree.find('public-data') }
+    let(:measure_source) { find('public-data') }
 
     def returns_expected_results
       expect(result.to_h).to eq expected_result
     end
 
     context 'within the same bundle' do
-      let(:vbp_bundle_node) { tree.find('public-data/value-based-purchasing') }
+      let(:vbp_bundle_node) { find('public-data/value-based-purchasing') }
 
       context 'match on bundle' do
         let(:search_term) { 'Value Bas' }
@@ -226,14 +300,14 @@ RSpec.describe PublicChartTree do
             ],
           }
         end
-        let(:expected_bundle_node) { tree.find(node_id) }
+        let(:expected_bundle_node) { find(node_id) }
 
         it { returns_expected_results }
       end
 
       context 'match on domain' do
         let(:outcome_of_care_domain_node) do
-          tree.find('public-data/value-based-purchasing/outcome-of-care')
+          find('public-data/value-based-purchasing/outcome-of-care')
         end
         let(:search_term) { 'Outcome' }
         let(:expected_result) do

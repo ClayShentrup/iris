@@ -8,7 +8,7 @@ require_relative 'category'
 require_relative 'measure'
 
 # .
-class PublicChartTree
+class PublicChartsTree
   # A developer-friendly way to build the static chart tree for public data.
   # See implementation config/initializers/public_charts_tree.
   DefineNode = Struct.new(:embedded_node, :node_map, :definition_block) do
@@ -31,6 +31,10 @@ class PublicChartTree
 
     def long_title(long_title)
       embedded_node.long_title = long_title
+    end
+
+    def value(value_dimension)
+      embedded_node.value_dimension = value_dimension
     end
 
     def measure_source(*args, &definition_block)
@@ -56,9 +60,8 @@ class PublicChartTree
     def measures(*measures)
       measures.each do |measure_id|
         measure = MEASURES.fetch(measure_id)
-        measure_long_title = measure.fetch(:long_title)
         measure(measure.fetch(:short_title)) do
-          long_title measure_long_title
+          long_title measure.fetch(:long_title)
         end
       end
     end
