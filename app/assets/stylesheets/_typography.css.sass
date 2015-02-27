@@ -52,7 +52,13 @@ ol
   overflow: hidden
   text-overflow: ellipsis
   white-space: nowrap
-  width: 80%
+  width: 100%
+
+  &.with_small_icon
+    +calc(width, "100% - #{$icon_size_small} - #{$padding_base_vertical}")
+
+  &.with_base_icon
+    +calc(width, "100% - #{$icon_size_base} - #{$padding_base_vertical}")
 
 .text_hide
   font-size: 0

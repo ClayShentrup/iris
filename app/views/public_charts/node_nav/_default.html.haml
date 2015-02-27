@@ -1,6 +1,6 @@
 .measures_nav_btn.forward_btn.inner_padding_small.line_height_buffer_xl.hide_on_mobile.hide_on_tablet_portrait.border_bottom_grey.clearfix
   = link_to id: node.id do
-    %span.text_ellipsis
+    %span.text_ellipsis{ class: ('with_small_icon' unless current_node.type == 'measure') }
       = node.short_title
     - unless current_node.type == 'measure'
       %span.icon.icon_size_small.float_right.icon_brand_color_primary
