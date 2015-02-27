@@ -45,6 +45,18 @@ RSpec.shared_examples 'an ApplicationController' do
   end
 end
 
+RSpec.shared_examples 'a view with session data' do
+  let(:last_sign_on) do
+    current_user.current_sign_in_at.strftime('%d-%b-%Y %H:%M %Z').upcase
+  end
+
+  it 'shows the current users email, current sign on time, and ip' do
+    expect(response.body).to include current_user.email
+    expect(response.body).to include last_sign_on
+    expect(response.body).to include current_user.current_sign_in_ip.to_s
+  end
+end
+
 RSpec.shared_context 'ApplicationController methods' do
   let(:model_class) { model_name.constantize }
   let(:namespace) { "#{described_class.name.deconstantize.underscore}" }
@@ -76,6 +88,7 @@ end
 
 RSpec.shared_examples 'an ApplicationController index' do
   include_context 'ApplicationController methods'
+  it_behaves_like 'a view with session data'
 
   before do
     create_list(model_class, 2)
@@ -149,6 +162,7 @@ end
 
 RSpec.shared_examples 'an ApplicationController new' do
   include_context 'ApplicationController methods'
+  it_behaves_like 'a view with session data'
   before { get :new }
 
   specify { expect(response).to be_success }
@@ -183,6 +197,7 @@ end
 RSpec.shared_examples 'an ApplicationController show' do
   include_context 'ApplicationController methods'
   include_context 'ApplicationController methods with an existing record'
+  it_behaves_like 'a view with session data'
   before { get :show, id: model_instance }
 
   specify do
@@ -197,6 +212,7 @@ end
 RSpec.shared_examples 'an ApplicationController edit' do
   include_context 'ApplicationController methods'
   include_context 'ApplicationController methods with an existing record'
+  it_behaves_like 'a view with session data'
   before { get :edit, id: model_instance }
 
   specify do

@@ -51,10 +51,6 @@ class User < ActiveRecord::Base
             length: { minimum: 8 },
             unless: :updating_without_password?
 
-  def last_sign_on
-    current_sign_in_at.strftime('%d-%b-%Y %H:%M %Z').upcase
-  end
-
   private
 
   def updating_without_password?

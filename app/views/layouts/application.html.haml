@@ -26,7 +26,9 @@
     / These links are for engineering. Please do not remove.
     - if user_signed_in?
       .inner_padding_base
-        %p.no_margin= current_user.email
+        %p.no_margin
+          = "#{current_user.email} logged in at #{last_sign_on} from "
+          = current_user.current_sign_in_ip
         %p.no_margin= link_to 'Sign out', destroy_user_session_path, method: :delete
 
         -if current_user.is_dabo_admin
