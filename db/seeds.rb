@@ -3,24 +3,7 @@
 # The data can then be loaded with the rake db:seed (or created alongside the
 # db with db:reset).
 
-User.create!(
-  [
-    {
-      email: 'admin@dabohealth.com',
-      password: 'timeandcolorisblue',
-      is_dabo_admin: true,
-    },
-    {
-      email: 'plebe@dabohealth.com',
-      password: 'timeandcolorisblue',
-      is_dabo_admin: false,
-    },
-  ],
-  &:skip_confirmation!
-)
-
 hospital_system = HospitalSystem.create!(name: 'Mayo Health System')
-
 hospitals = Hospital.create!(
   [
     {
@@ -42,6 +25,29 @@ hospitals = Hospital.create!(
   ],
 ) do |hospital|
   hospital.hospital_system = hospital_system
+end
+
+account = Account.create!(
+  virtual_system: hospital_system,
+  default_hospital: hospitals.first,
+)
+
+User.create!(
+  [
+    {
+      email: 'admin@dabohealth.com',
+      password: 'timeandcolorisblue',
+      is_dabo_admin: true,
+    },
+    {
+      email: 'plebe@dabohealth.com',
+      password: 'timeandcolorisblue',
+      is_dabo_admin: false,
+    },
+  ],
+) do |user|
+  user.account = account
+  user.skip_confirmation!
 end
 
 DimensionSample::SingleMeasure.create!(

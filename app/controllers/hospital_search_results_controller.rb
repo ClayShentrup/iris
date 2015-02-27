@@ -7,7 +7,8 @@ class HospitalSearchResultsController < ApplicationController
   end
 
   def show
-    @hospital_comparison = Hospitals::HospitalComparison.new(current_hospital)
+    @hospital_compare_presenter =
+      Hospitals::HospitalComparePresenter.new(current_hospital)
   end
 
   private

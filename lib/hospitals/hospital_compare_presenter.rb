@@ -5,9 +5,15 @@ module Hospitals
   # Encapsulates the information needed to show the options to compare one
   # hospital against others in the same city, state, system or across
   # the country
-  class HospitalComparison
+  class HospitalComparePresenter
     attr_reader :hospital
-    delegate :city_and_state, :state, :hospital_system_name, to: :hospital
+    delegate :name,
+             :city_and_state,
+             :state,
+             to: :hospital,
+             prefix: true
+
+    delegate :hospital_system_name, to: :hospital
 
     def initialize(hospital)
       @hospital = hospital
@@ -21,13 +27,22 @@ module Hospitals
       Hospital.in_same_state(hospital).count
     end
 
+    def hospital_system?
+      hospital_system.present?
+    end
+
     def hospitals_in_system_count
-      hospital_system = hospital.hospital_system
       hospital_system.hospitals_count
     end
 
     def hospitals_count
       Hospital.count
+    end
+
+    private
+
+    def hospital_system
+      hospital.hospital_system
     end
   end
 end

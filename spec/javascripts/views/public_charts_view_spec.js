@@ -21,6 +21,20 @@ describe('PublicChartsView', function() {
     hospitalDropdown = $('.dropdown_items.hospital');
   });
 
+  it('shows compare options for default hospital', function() {
+    var compareDropdown = $('.dropdown_items.compare');
+    var hospitalCityAndState = compareDropdown.find('ul li:first');
+    var hospitalState = compareDropdown.find('ul li:nth-child(2)');
+    var hospitalNation = compareDropdown.find('ul li:last');
+
+    expect(hospitalCityAndState).toContainText('SAN FRANCISCO, CA');
+    expect(hospitalCityAndState).toContainText('0 Hospitals');
+    expect(hospitalState).toContainText('CA');
+    expect(hospitalState).toContainText('0 Hospitals');
+    expect(hospitalNation).toContainText('Nation-wide');
+    expect(hospitalNation).toContainText('0 Hospitals');
+  });
+
   describe('typing into the search input', function() {
     beforeEach(function() {
       expect(hospitalDropdown).toBeHidden();
@@ -54,7 +68,8 @@ describe('PublicChartsView', function() {
     beforeEach(function() {
       var compareEndpoint = '/hospital_search_results/';
       var compareFixture =
-        'hospital_search_results_controller-show-hospital-to-compare.html';
+        'hospital_search_results_controller-show-hospital-to-compare-' +
+        'has-hospital-system.html';
 
       stubAjaxRequest(searchEndpoint + 'UCSF', oneHospitalFixture);
       searchAutocomplete(searchInput, 'UCSF');
@@ -73,7 +88,7 @@ describe('PublicChartsView', function() {
       var hospitalSystem = compareDropdown.find('ul li:nth-child(3)');
       var hospitalNation = compareDropdown.find('ul li:last');
 
-      expect(hospitalCityAndState).toContainText('San Francisco');
+      expect(hospitalCityAndState).toContainText('SAN FRANCISCO, CA');
       expect(hospitalCityAndState).toContainText('2 Hospitals');
       expect(hospitalState).toContainText('CA');
       expect(hospitalState).toContainText('3 Hospitals');
@@ -88,7 +103,7 @@ describe('PublicChartsView', function() {
       var hospitalCityAndState = $('.dropdown_button.compare .compare_name');
 
       expect(hospitalName).toContainText('UCSF Mission Bay');
-      expect(hospitalCityAndState).toContainText('San Francisco, CA');
+      expect(hospitalCityAndState).toContainText('SAN FRANCISCO, CA');
     });
   });
 

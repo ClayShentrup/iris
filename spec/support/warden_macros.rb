@@ -1,4 +1,4 @@
-# Macros for logging in users
+# Macros for logging in users in feature specs
 module WardenMacros
   def self.extended(base)
     base.include Warden::Test::Helpers

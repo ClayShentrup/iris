@@ -43,26 +43,32 @@ RSpec.describe HospitalSearchResultsController do
   describe '#show' do
     login_user
 
-    let(:hospital_system) do
-      create(:hospital_system, name: 'Test System')
-    end
-    let(:selected_hospital) do
-      create(:hospital, hospital_system: hospital_system)
-    end
-
-    before do
+    let!(:hospital_in_same_city) do
       create(
         :hospital,
         city: selected_hospital.city,
         state: selected_hospital.state,
       )
+    end
+    let!(:hospital_in_same_state) do
       create(:hospital, city: 'Los Angeles', state: selected_hospital.state)
-      create(:hospital, hospital_system: hospital_system, state: 'NY')
-
-      get 'show', id: selected_hospital.id
     end
 
-    describe 'hospital to compare' do
+    context 'hospital to compare has hospital system' do
+      let(:hospital_system) do
+        create(:hospital_system, name: 'Test System')
+      end
+      let(:selected_hospital) do
+        create(:hospital, hospital_system: hospital_system)
+      end
+      let!(:hospital_in_same_system) do
+        create(:hospital, hospital_system: hospital_system, state: 'NY')
+      end
+
+      before do
+        get 'show', id: selected_hospital.id
+      end
+
       it 'returns hospital comparison options' do
         expect(response.body).to have_content(
           "#{selected_hospital.city_and_state} 2 Hospitals",
@@ -76,9 +82,31 @@ RSpec.describe HospitalSearchResultsController do
         expect(response.body).to have_content(
           'Nation-wide 4 Hospitals',
         )
+        expect(response.body).to have_css('li', count: 4)
       end
 
       save_fixture
+    end
+
+    context 'hospital to compare does not have hospital system' do
+      let(:selected_hospital) { create(:hospital) }
+
+      before do
+        get 'show', id: selected_hospital.id
+      end
+
+      it 'returns hospital comparison options' do
+        expect(response.body).to have_content(
+          "#{selected_hospital.city_and_state} 2 Hospitals",
+        )
+        expect(response.body).to have_content(
+          "#{selected_hospital.state} 3 Hospitals",
+        )
+        expect(response.body).to have_content(
+          'Nation-wide 3 Hospitals',
+        )
+        expect(response.body).to have_css('li', count: 3)
+      end
     end
   end
 end

@@ -1,11 +1,13 @@
 #select_and_compare.row.inner_content.top_margin_base.two_column.clearfix
   .two_column
     .dropdown_button.hospital.vertical_padding_base.col6-xs.border_grey
-      %span.text_ellipsis.with_base_icon.line_height_buffer_base.hospital_name Saint Marys Hospital
+      %span.text_ellipsis.with_base_icon.line_height_buffer_base.hospital_name
+        = hospital_compare_presenter.hospital_name
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle'
     .dropdown_button.compare.vertical_padding_base.col6-xs.border_grey
-      %span.text_ellipsis.with_base_icon.line_height_buffer_base.compare_name Rochester, MN
+      %span.text_ellipsis.with_base_icon.line_height_buffer_base.compare_name
+        = hospital_compare_presenter.hospital_city_and_state
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle'
   .dropdown_items.hospital.border_grey
@@ -21,15 +23,4 @@
   .dropdown_items.compare.border_grey
     %h4.no_margin.vertical_padding_xl.border_bottom_grey.line_height_buffer_xl.inner_padding_base Compare to
     %ul.unstyled
-      %li.bottom_margin_small
-        %p.no_margin City, State of Selected Hospital
-        %p.text_muted 14 Hospital
-      %li.bottom_margin_small
-        %p.no_margin State of Selected Hospital
-        %p.text_muted 19 Hospitals
-      %li.bottom_margin_small
-        %p.no_margin Healthcare System of Hospital
-        %p.text_muted 10 Hospitals
-      %li
-        %p.no_margin Nation-wide
-        %p.text_muted 4500 Hospital
+      = render partial: 'hospital_search_results/compare', locals: { hospital_compare_presenter: hospital_compare_presenter }
