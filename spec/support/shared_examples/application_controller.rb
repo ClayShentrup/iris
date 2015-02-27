@@ -200,13 +200,20 @@ RSpec.shared_examples 'an ApplicationController show' do
   it_behaves_like 'a view with session data'
   before { get :show, id: model_instance }
 
-  specify do
-    expect(response).to be_success
-  end
+  specify { expect(response).to be_success }
 
   it 'assigns a new model' do
     expect(assign).to eq model_instance
   end
+end
+
+RSpec.shared_examples 'an ApplicationController show without a model' do
+  include_context 'ApplicationController methods'
+
+  before { get :show }
+
+  specify { expect(response).to be_success }
+  specify { expect(response).to render_template :show }
 end
 
 RSpec.shared_examples 'an ApplicationController edit' do
