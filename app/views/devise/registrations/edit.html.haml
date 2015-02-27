@@ -5,12 +5,12 @@
     = devise_error_messages!
     .field
       = f.label :current_password
-      = f.password_field :current_password, autocomplete: "off", class: 'form_control'
+      = f.password_field :current_password, autocomplete: 'off', required: true, class: 'form_control'
     .field
       = f.label :password
-      = f.password_field :password, autocomplete: "off", class: 'form_control'
+      = f.password_field :password, autocomplete: 'off', required: true, class: 'form_control'
     .field
       = f.label :password_confirmation
-      = f.password_field :password_confirmation, autocomplete: "off", class: 'form_control'
+      = f.password_field :password_confirmation, autocomplete: 'off', required: true, class: 'form_control'
     .actions
-      = f.submit "Update"
+      = f.submit 'Update'
