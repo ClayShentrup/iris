@@ -1,8 +1,8 @@
 #segmented_controls.clearfix
   %span.icon.icon_size_small.line_height_buffer_base.border_grey.text_center
     = render 'shared/icon', icon: '#icon_alarm', klass: 'vertical_align_middle'
-  = link_to user_profile_path('settings'), class: 'icon icon_size_small line_height_buffer_base border_grey text_center' do
+  = link_to user_profiles_settings_path, class: 'icon icon_size_small line_height_buffer_base border_grey text_center' do
     = render 'shared/icon', icon: '#icon_settings', klass: 'vertical_align_middle'
   - if current_user.is_dabo_admin?
-    = link_to user_profile_path('admin'), class: 'icon icon_size_small line_height_buffer_base border_grey text_center' do
+    = link_to user_profiles_admin_path, class: 'icon icon_size_small line_height_buffer_base border_grey text_center' do
       = render 'shared/icon', icon: '#icon_list_add', klass: 'vertical_align_middle'

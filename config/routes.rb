@@ -18,10 +18,16 @@ Rails.application.routes.draw do
       end
     end
 
+    namespace :user_profiles do
+      resource :admin
+      resource :info
+      resource :menu
+      resource :settings, only: [:show]
+    end
+
     mount Flip::Engine => '/dabo_admin/flip'
     resources :news_items, only: :index
     resources :pristine_examples
-    resources :user_profiles
     resource :metrics, only: :show, controller: :charts_root
     get 'metrics/*id', to: 'public_charts#show'
 
