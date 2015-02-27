@@ -1,6 +1,7 @@
 require 'public_charts_tree'
-
-require 'dimension_samples_getter/single_measure'
+require 'dimension_sample_managers/socrata'
+require 'socrata/dimension_sample_getters/single_measure'
+require 'socrata/datasets/hospital_value_based_purchasing'
 
 RSpec.describe PublicChartsTree do
   subject { find(node_id) }
@@ -10,11 +11,12 @@ RSpec.describe PublicChartsTree do
     described_class.new do
       measure_source 'Public Data' do
         bundle 'Value Based Purchasing' do
-          value DimensionSamplesGetter::SingleMeasure.new(
-            dataset_id: VBP_DATASET_ID,
-            column_name: VBP_COLUMN_NAME,
+          value DimensionSampleManagers::Socrata.new(
+            dataset: 'HospitalValueBasedPurchasing',
+            options: {
+              column_name: WEIGHTED_OUTCOME_DOMAIN_SCORE,
+            },
           )
-
           domain 'Outcome of Care' do
             category 'Mortality' do
               measures :MORT_30_AMI,
@@ -63,8 +65,7 @@ RSpec.describe PublicChartsTree do
 
   before do
     stub_const('MEASURES', measures)
-    stub_const('VBP_DATASET_ID', 'ypbt-wvdk')
-    stub_const('VBP_COLUMN_NAME', 'weighted_outcome_domain_score')
+    stub_const('WEIGHTED_OUTCOME_DOMAIN_SCORE', 'weighted_outcome_domain_score')
     stub_const('DimensionSample::SingleMeasure', single_measure_model)
   end
 
@@ -138,10 +139,10 @@ RSpec.describe PublicChartsTree do
     it_behaves_like 'a child node' do
       let(:providers) { double('providers') }
       let(:single_measure_model) do
-        double('DimensionSamplesGetter::SingleMeasure').tap do |model|
+        class_double('DimensionSample::SingleMeasure').tap do |model|
           allow(model).to receive(:data).with(
-            dataset_id: VBP_DATASET_ID,
-            column_name: VBP_COLUMN_NAME,
+            column_name: WEIGHTED_OUTCOME_DOMAIN_SCORE,
+            dataset_id: 'ypbt-wvdk',
             providers: providers,
           ).and_return(values)
         end

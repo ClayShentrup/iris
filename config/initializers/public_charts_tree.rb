@@ -2,11 +2,12 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
   measure_source 'Public Data' do
     bundle 'Value Based Purchasing' do
       domain 'Outcome of Care' do
-        value DimensionSamplesGetter::SingleMeasure.new(
-          dataset_id: 'ypbt-wvdk',
-          column_name: 'weighted_outcome_domain_score',
+        value DimensionSampleManagers::Socrata.new(
+          dataset: 'HospitalValueBasedPurchasing',
+          options: {
+            column_name: 'weighted_outcome_domain_score',
+          },
         )
-
         category 'Mortality' do
           measures :MORT_30_HF,
                    :MORT_30_AMI,
@@ -20,9 +21,11 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         end
       end
       domain 'Process of Care' do
-        value DimensionSamplesGetter::SingleMeasure.new(
-          dataset_id: 'ypbt-wvdk',
-          column_name: 'weighted_clinical_process_of_care_domain_score',
+        value DimensionSampleManagers::Socrata.new(
+          dataset: 'HospitalValueBasedPurchasing',
+          options: {
+            column_name: 'weighted_clinical_process_of_care_domain_score',
+          },
         )
         category 'Heart Failure' do
           measures :HF_1
@@ -42,9 +45,11 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         end
       end
       domain 'Patient Experience of Care' do
-        value DimensionSamplesGetter::SingleMeasure.new(
-          dataset_id: 'ypbt-wvdk',
-          column_name: 'weighted_patient_experience_of_care_score',
+        value DimensionSampleManagers::Socrata.new(
+          dataset: 'HospitalValueBasedPurchasing',
+          options: {
+            column_name: 'weighted_patient_experience_of_care_score',
+          },
         )
         category 'Communication' do
           measures :H_COMP_1_A_P,
@@ -69,9 +74,11 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         end
       end
       domain 'Efficiency of Care' do
-        value DimensionSamplesGetter::SingleMeasure.new(
-          dataset_id: 'ypbt-wvdk',
-          column_name: 'weighted_efficency_domain_score',
+        value DimensionSampleManagers::Socrata.new(
+          dataset: 'HospitalValueBasedPurchasing',
+          options: {
+            column_name: 'weighted_efficency_domain_score',
+          },
         )
         measures :MSPB_1
       end
