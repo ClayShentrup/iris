@@ -19,9 +19,9 @@ Rails.application.routes.draw do
     end
 
     namespace :user_profiles do
-      resource :admin
-      resource :info
-      resource :menu
+      resource :admin, only: [:show]
+      resource :info, only: [:show]
+      resource :menu, only: [:show]
       resource :settings, only: [:show]
     end
 
