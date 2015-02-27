@@ -83,7 +83,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         measures :MSPB_1
       end
     end
-    bundle 'Hospital Acquired Conditions' do
+    bundle 'Hospital-Acquired Conditions' do
       domain 'Patient Safety Indicator' do
         measures :PSI_90
       end
@@ -92,14 +92,14 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
                  :HAI_2_SIR
       end
     end
-    bundle 'Readmission' do
+    bundle 'Readmissions Reduction Program' do
       measures :READM_30_AMI,
                :READM_30_HF,
                :READM_30_PN,
                :READM_30_COPD,
                :READM_30_HIP_KNEE
     end
-    bundle 'HCAHPS' do
+    bundle 'Hospital Consumer Assessment of Healthcare Providers and Systems' do
       category 'Communication' do
         measures :H_COMP_1_A_P,
                  :H_COMP_2_A_P,
@@ -128,7 +128,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         measures :H_RECMND_DY
       end
     end
-    bundle 'SCIP' do
+    bundle 'Surgical Care Improvement Project' do
       category 'Timely Surgical Care' do
         measures :OP_6,
                  :SCIP_INF_1,
