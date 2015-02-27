@@ -20,10 +20,10 @@ module DimensionSample
     validates :column_name, presence: true
     validates :value, presence: true
 
-    def self.data(dataset_id:, column_name:, providers:)
+    def self.data(dataset_id:, options:, providers:)
       where(
         dataset_id: dataset_id,
-        column_name: column_name,
+        column_name: options.fetch(:column_name),
       )
         .joins(<<-JOIN_QUERY)
           LEFT JOIN hospitals

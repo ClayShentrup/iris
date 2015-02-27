@@ -1,6 +1,5 @@
 require 'public_charts_tree'
 require 'dimension_sample_managers/socrata'
-require 'socrata/dimension_sample_getters/single_measure'
 require 'socrata/datasets/hospital_value_based_purchasing'
 
 RSpec.describe PublicChartsTree do
@@ -141,8 +140,10 @@ RSpec.describe PublicChartsTree do
       let(:single_measure_model) do
         class_double('DimensionSample::SingleMeasure').tap do |model|
           allow(model).to receive(:data).with(
-            column_name: WEIGHTED_OUTCOME_DOMAIN_SCORE,
             dataset_id: 'ypbt-wvdk',
+            options: {
+              column_name: WEIGHTED_OUTCOME_DOMAIN_SCORE,
+            },
             providers: providers,
           ).and_return(values)
         end

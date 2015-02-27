@@ -7,7 +7,7 @@ module DimensionSampleManagers
     end
 
     def data(providers)
-      data_getter_class.call(
+      dimension_sample_model_class.data(
         dataset_id: dataset_id,
         providers: providers,
         options: options,
@@ -16,12 +16,16 @@ module DimensionSampleManagers
 
     private
 
-    def data_getter_class
-      data_getter_class_name.constantize
+    def provider_id_column_name
+      dataset_class.const_get('PROVIDER_ID_COLUMN_NAME')
     end
 
-    def data_getter_class_name
-      "Socrata::DimensionSampleGetters::#{dataset_type}"
+    def dimension_sample_model_class
+      dimension_sample_model_class_name.constantize
+    end
+
+    def dimension_sample_model_class_name
+      "DimensionSample::#{dataset_type}"
     end
 
     def dataset_id
