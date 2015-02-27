@@ -1,8 +1,6 @@
 require 'nokogiri'
 # Build jasmine fixtures in the rspec instances (like 'it' and 'before' blocks)
 SaveJasmineFixture = Struct.new(:response_body, :full_description) do
-  FIXTURE_DIRECTORY = 'spec/javascripts/fixtures'
-
   def self.call(*args)
     new(*args).call
   end
@@ -29,7 +27,7 @@ SaveJasmineFixture = Struct.new(:response_body, :full_description) do
 
   def jasmine_fixture_path
     fixture_path = File.join(
-      Rails.root, FIXTURE_DIRECTORY, jasmine_filename
+      Rails.root, JasmineMacros::FIXTURE_DIRECTORY, jasmine_filename
     )
     fixture_directory = File.dirname(fixture_path)
     FileUtils.mkdir_p fixture_directory unless File.exist?(fixture_directory)

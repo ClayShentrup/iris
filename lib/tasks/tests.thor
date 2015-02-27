@@ -1,11 +1,9 @@
 require 'English'
 require 'open3'
-# require 'thor/rake_compat'
 require './spec/support/jasmine_macros'
 
 # Run all tests as we would on CI
 class Tests < Thor
-  # include Thor::RakeCompat
   default_task :check
 
   COMMANDS = {
@@ -33,7 +31,7 @@ class Tests < Thor
   private
 
   def delete_jasmine_fixtures
-    FileUtils.rm_rf("#{SaveJasmineFixture::FIXTURE_DIRECTORY}/.")
+    FileUtils.rm_rf("#{JasmineMacros::FIXTURE_DIRECTORY}/.")
   end
 
   def results(commands)
