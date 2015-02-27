@@ -11,6 +11,10 @@ module ApplicationHelper
     render 'layouts/feedback_bar' if flash.any?
   end
 
+  def last_sign_on
+    current_user.current_sign_in_at.strftime('%d-%b-%Y %H:%M %Z').upcase
+  end
+
   private
 
   def rendered_action

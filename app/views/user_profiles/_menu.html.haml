@@ -9,4 +9,4 @@
 
   %p.line_height_buffer_xl= link_to 'Sign out', destroy_user_session_path, method: :delete
   %p.last_sign_on.text_muted
-    = "Last signed on: #{current_user.last_sign_on} from #{current_user.current_sign_in_ip}"
+    = "Last signed on: #{last_sign_on} from #{current_user.current_sign_in_ip}"
