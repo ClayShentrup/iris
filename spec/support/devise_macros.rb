@@ -5,21 +5,13 @@ module DeviseMacros
   end
 
   def login_user
-    let(:current_user) do
-      create :user,
-             current_sign_in_at: Time.now,
-             current_sign_in_ip: IPAddr.new
-    end
+    let(:current_user) { create :user_with_devise_session }
     simulate_routed_request
     let!(:set_logged_in_state) { sign_in current_user }
   end
 
   def login_admin
-    let(:current_user) do
-      create :dabo_admin,
-             current_sign_in_at: Time.now,
-             current_sign_in_ip: IPAddr.new
-    end
+    let(:current_user) { create :dabo_admin }
     simulate_routed_request
     let!(:set_logged_in_state) { sign_in current_user }
   end

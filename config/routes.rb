@@ -3,7 +3,7 @@ require 'sidekiq/web'
 
 Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
-    devise_for :users
+    devise_for :users, controllers: { registrations: :registrations }
     resource :status, only: :show
     get '/styleguide', to: 'styleguides#index'
 
