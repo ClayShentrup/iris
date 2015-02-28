@@ -6,14 +6,31 @@ module Socrata
   #   - Hardcodes the domain and page size ("limit")
   #   - Provides pagination functionality
   class SimpleSodaClient
+    include Enumerable
+
     DOMAIN = 'data.medicare.gov'
     PAGE_SIZE = 1000
 
-    def initialize(dataset_id:, required_columns:, row_filter:)
+    attr_reader :length
+
+    def initialize(dataset_id:, required_columns:)
       @dataset_id = dataset_id
       @required_columns = required_columns
-      @row_filter = row_filter
     end
+
+    def each(&block)
+      @length = 0
+      page = 1
+      loop do
+        page_of_results = get(page: page)
+        @length += page_of_results.length
+        page_of_results.each(&block)
+        break unless possible_next_page?
+        page += 1
+      end
+    end
+
+    private
 
     def get(page:)
       @most_recent_result = convert_hashie_objects_to_hashes(
@@ -26,8 +43,6 @@ module Socrata
         @most_recent_result.size == PAGE_SIZE
     end
 
-    private
-
     def convert_hashie_objects_to_hashes(array_of_hashie_objects)
       array_of_hashie_objects.map(&:to_hash)
     end
@@ -38,7 +53,6 @@ module Socrata
         '$limit' => PAGE_SIZE,
         '$select' => @required_columns.join(','),
         '$offset' => offset,
-        '$where' => where,
       )
     end
 
@@ -53,11 +67,6 @@ module Socrata
     def offset_for_page(page_with_one_based_index)
       page_with_zero_based_index = page_with_one_based_index - 1
       page_with_zero_based_index * PAGE_SIZE
-    end
-
-    def where
-      return '' unless @row_filter
-      "#{@row_filter.fetch(:column_name)} = '#{@row_filter.fetch(:value)}'"
     end
   end
 end

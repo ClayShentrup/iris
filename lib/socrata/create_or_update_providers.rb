@@ -1,4 +1,4 @@
-require_relative './result_iterator'
+require_relative './simple_soda_client'
 
 module Socrata
   # We need to import CMS provider data from Socrata. This is the core wrapper
@@ -15,7 +15,7 @@ module Socrata
     ]
 
     def self.call
-      providers = ResultIterator.new(
+      providers = SimpleSodaClient.new(
         dataset_id: DATASET_ID,
         required_columns: REQUIRED_COLUMNS,
       )
