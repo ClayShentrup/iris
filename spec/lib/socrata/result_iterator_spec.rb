@@ -24,15 +24,15 @@ RSpec.describe Socrata::ResultIterator, :vcr do
   it 'gets some results' do
     expect(results).to eq [
       {
-        'name' => 'SOUTHEAST ALABAMA MEDICAL CENTER',
+        'hospital_name' => 'SOUTHEAST ALABAMA MEDICAL CENTER',
         'provider_id' => '010001',
       },
       {
-        'name' => 'MARSHALL MEDICAL CENTER SOUTH',
+        'hospital_name' => 'MARSHALL MEDICAL CENTER SOUTH',
         'provider_id' => '010005',
       },
       {
-        'name' => 'MIZELL MEMORIAL HOSPITAL',
+        'hospital_name' => 'MIZELL MEMORIAL HOSPITAL',
         'provider_id' => '010007',
       },
     ]

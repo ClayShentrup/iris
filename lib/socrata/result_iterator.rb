@@ -19,10 +19,7 @@ module Socrata
       loop do
         page_of_results = client.get(page: page)
         @length += page_of_results.length
-        page_of_results.each do |hospital_attributes|
-          hospital_attributes['name'] = hospital_attributes
-                                        .delete('hospital_name')
-        end.each(&block)
+        page_of_results.each(&block)
         break unless client.possible_next_page?
         page += 1
       end

@@ -14,16 +14,18 @@ class ImportHospitals < Thor
   def import
     output 'Starting hospital import...'
 
-    counter = 0
-    total_rows = Socrata::CreateOrUpdateHospitals.call do
-      counter += 1
-      output("\r#{counter} hospitals processed.", :green, false)
+    total_rows = Socrata::CreateOrUpdateProviders.call do |index|
+      indicate_progress(index)
     end
 
     output "\nWent through #{total_rows} hospitals."
   end
 
   private
+
+  def indicate_progress(index)
+    output("\r#{index + 1} hospitals processed.", :green, false)
+  end
 
   def output(*args)
     say(*args) unless quiet?
