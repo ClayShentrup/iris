@@ -30,7 +30,7 @@ RSpec.describe Constraints::DaboAdmin do
     context 'an admin user' do
       let(:user) { double('User', is_dabo_admin?: true) }
 
-      it 'denies a non-admin user' do
+      it 'allows access to an admin user' do
         expect(constraint.matches?(request)).to be_truthy
       end
     end

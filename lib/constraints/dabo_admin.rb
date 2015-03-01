@@ -1,7 +1,5 @@
-require 'warden'
-
 module Constraints
-  # Only allow authenticated admins access.
+  # Only allow authenticated admins access to precious resources.
   class DaboAdmin
     def matches?(request)
       warden(request).authenticated? && warden(request).user.is_dabo_admin?
