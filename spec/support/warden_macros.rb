@@ -2,6 +2,7 @@
 module WardenMacros
   def self.extended(base)
     base.include Warden::Test::Helpers
+    Warden.test_mode!
   end
 
   def login_user

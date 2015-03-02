@@ -1,14 +1,19 @@
+# .
 module Constraints
   # Only allow authenticated admins access to precious resources.
-  class DaboAdmin
-    def matches?(request)
-      warden(request).authenticated? && warden(request).user.is_dabo_admin?
+  DaboAdmin = Struct.new(:request) do
+    def self.matches?(request)
+      new(request).matches?
+    end
+
+    def matches?
+      warden.authenticated? && warden.user.is_dabo_admin?
     end
 
     private
 
-    def warden(request)
-      request.env['warden']
+    def warden
+      request.env.fetch('warden')
     end
   end
 end

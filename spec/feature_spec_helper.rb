@@ -15,9 +15,6 @@ Capybara.server do |app, port|
 end
 
 RSpec.configure do |config|
-  config.extend WardenMacros, type: :feature
   config.include BrowserSizeHelpers, type: :feature
   config.include AuthenticationHelpers, type: :feature
 end
-
-Warden.test_mode!

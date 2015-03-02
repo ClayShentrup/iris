@@ -1,7 +1,7 @@
 require './lib/constraints/dabo_admin'
 
 RSpec.describe Constraints::DaboAdmin do
-  subject(:constraint) { described_class.new }
+  subject(:constraint) { described_class }
   let(:request) { instance_double('Request', env: { 'warden' => warden }) }
   let(:warden) { double('Warden') }
 

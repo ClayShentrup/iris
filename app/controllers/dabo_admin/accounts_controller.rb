@@ -1,8 +1,6 @@
 module DaboAdmin
   # Dabo Admin Accounts Controller
   class AccountsController < ApplicationController
-    before_action EnsureAdminFilter
-
     def new
       super
       show_hospitals_for_selected_system if request.xhr?

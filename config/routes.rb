@@ -8,17 +8,17 @@ Rails.application.routes.draw do
     resource :status, only: :show
     get :styleguide, to: 'styleguides#index'
 
-    constraints Constraints::DaboAdmin.new do
+    constraints Constraints::DaboAdmin do
       mount Flip::Engine => '/flip'
       mount Sidekiq::Web => '/sidekiq'
-    end
 
-    namespace :dabo_admin do
-      resources :hospitals
-      resources :hospital_systems
-      resources :accounts
-      resources :reports, only: :index
-      resources :users
+      namespace :dabo_admin do
+        resources :hospitals
+        resources :hospital_systems
+        resources :accounts
+        resources :reports, only: :index
+        resources :users
+      end
     end
 
     namespace :user_profiles do
