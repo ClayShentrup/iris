@@ -7,6 +7,7 @@
   "enforceall": true, // start out strict
   "strict": true, // must have "'use strict';"
   "es5": false, // fixes a bug in JSHint
+  "es3": false, // fixes a bug related to JSON global. https://github.com/jshint/jshint/issues/2213
   "nocomma": false, // fixes: https://github.com/jshint/jshint/issues/2044
 
   //Environment
