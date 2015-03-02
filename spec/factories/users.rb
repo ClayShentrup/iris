@@ -33,7 +33,12 @@ FactoryGirl.define do
     before(:create, &:skip_confirmation!)
   end
 
-  factory :dabo_admin, parent: :user do
+  factory :dabo_admin, parent: :user_with_devise_session do
     is_dabo_admin true
+  end
+
+  factory :user_with_devise_session, parent: :user do
+    current_sign_in_at Time.now
+    current_sign_in_ip IPAddr.new
   end
 end

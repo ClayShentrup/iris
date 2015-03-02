@@ -1,10 +1,10 @@
 #user_nav_container
   .row
     .nav_btn.back_btn_container.inner_padding_small.line_height_buffer_xl.clearfix.text_center
-      = link_to user_profile_path('menu'), class: 'icon icon_color_dabo_blue icon_size_small float_left' do
+      = link_to root_url, class: 'icon icon_color_dabo_blue icon_size_small float_left' do
         = render 'shared/icon', icon: '#icon_arrow_large_left', klass: 'vertical_align_middle icon_color_dabo_blue'
         = local_assigns[:back_btn_text]
-      = local_assigns[:user_name]
+      = local_assigns[:title]
       - if local_assigns[:edit_btn_text]
         %span.float_right
-          = link_to local_assigns[:edit_btn_text], user_profile_path('menu')
+          = edit_btn_text
