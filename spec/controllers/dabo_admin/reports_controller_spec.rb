@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe DaboAdmin::ReportsController do
   login_admin
 
-  it_behaves_like 'a Dabo Admin page'
-
   describe 'GET show' do
     let(:report_and_date) do
       {

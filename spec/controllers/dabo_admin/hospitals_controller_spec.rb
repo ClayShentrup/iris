@@ -13,6 +13,4 @@ RSpec.describe DaboAdmin::HospitalsController do
   it_behaves_like 'an ApplicationController create'
   it_behaves_like 'an ApplicationController show'
   it_behaves_like 'an ApplicationController delete'
-
-  it_behaves_like 'a Dabo Admin page'
 end

@@ -13,8 +13,6 @@ RSpec.describe DaboAdmin::UsersController do
   it_behaves_like 'an ApplicationController show'
   it_behaves_like 'an ApplicationController delete'
 
-  it_behaves_like 'a Dabo Admin page'
-
   describe 'PUT #update' do
     let(:user) { create(:user) }
 
