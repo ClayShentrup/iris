@@ -18,4 +18,8 @@ RSpec.describe Account, type: :model do
     it { is_expected.to validate_presence_of(:default_hospital) }
     it { is_expected.to validate_presence_of(:virtual_system) }
   end
+
+  it { is_expected.to belong_to :virtual_system }
+  it { is_expected.to belong_to :default_hospital }
+  it { is_expected.to have_many(:users) }
 end

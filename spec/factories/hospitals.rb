@@ -12,11 +12,13 @@
 #  hospital_system_id :integer
 #
 
+require './app/models/hospital'
+
 FactoryGirl.define do
   factory :hospital do
     sequence(:provider_id) { |n| n.to_s.rjust(6, '0') }
     sequence(:name) { |n| "My Hospital #{n}" }
-    city 'San Francisco'
+    city 'SAN FRANCISCO'
     state 'CA'
     zip_code '90210'
     hospital_type 'Childrens'

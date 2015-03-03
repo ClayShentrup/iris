@@ -35,6 +35,12 @@ class Hospital < ActiveRecord::Base
     search_by_name(term).limit(SEARCH_RESULTS_LIMIT)
   end)
 
+  scope(:in_same_city, lambda do |hospital|
+    where(city: hospital.city, state: hospital.state)
+  end)
+
+  scope(:in_same_state, ->(hospital) { where(state: hospital.state) })
+
   pg_search_scope :search_by_name, against: :name, using: {
     tsearch: { prefix: true },
   }
@@ -42,6 +48,10 @@ class Hospital < ActiveRecord::Base
   def self.create_or_update(attributes)
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
       .update_attributes!(attributes)
+  end
+
+  def city_and_state
+    "#{city}, #{state}"
   end
 
   def hospitals

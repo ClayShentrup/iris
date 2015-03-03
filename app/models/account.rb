@@ -10,6 +10,9 @@
 #  updated_at          :datetime         not null
 #
 
+require './app/models/hospital_system'
+require './app/models/user'
+
 # An entity that represents a client account
 class Account < ActiveRecord::Base
   belongs_to :virtual_system, polymorphic: true

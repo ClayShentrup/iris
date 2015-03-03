@@ -16,7 +16,8 @@
     "Backbone": true, // defined by Backbone.js
     "_": true, // defined by Underscore.js
     "getJSONFixture": true, // jasmine-jquery
-    "loadFixture": true, // jsamine-jquery
+    "loadFixture": true, // jasmine-jquery
+    "readFixtures": true, // jasmine-jquery
     "stubAjaxRequest": true,
     "searchAutocomplete": true
 
