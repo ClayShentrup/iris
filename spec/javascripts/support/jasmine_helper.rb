@@ -10,6 +10,9 @@
 #
 # Example: prevent PhantomJS auto install, uses PhantomJS already on your path.
 Jasmine.configure do |config|
+  unless ENV.fetch('SKIP_FIXTURES', nil)
+    require 'thor/runner'
+    Thor::Runner.start ['tests:save_jasmine_fixtures']
+  end
   config.prevent_phantom_js_auto_install = false
 end
-#

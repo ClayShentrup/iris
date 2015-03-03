@@ -5,40 +5,9 @@ describe('ApplicationView', function() {
 
   beforeEach(function() {
     loadFixture('news_items_controller');
-    var view = new Iris.Views.application({el: '#body'});
+    var view = new Iris.Views['layouts/application']({el: '#body'});
   });
 
-  describe('clicking on the search icon', function() {
-    it('expands the search box on mobile', function() {
-      expect($('#top_nav .nav_btns:visible').length).toBe(2);
-      $('#top_nav .hide_on_tablet_portrait.hide_on_desktop .icon_search')
-        .click();
-      expect($('#top_nav .nav_btns:visible').length).toBe(0);
-    });
-
-    it('click changes icon from search to close on mobile', function() {
-      // TODO: check focus, see appplication_view.js
-      var iconSearch = $('#top_nav .search.hide_on_desktop .icon_search');
-      var iconClose = $('#top_nav .search.hide_on_desktop .icon_close');
-      var input = $('#top_nav .search.hide_on_desktop input');
-      expect(iconSearch).not.toHaveClass('hidden');
-      expect(iconClose).toHaveClass('hidden');
-      iconSearch.click();
-      expect(iconSearch).toHaveClass('hidden');
-      expect(iconClose).not.toHaveClass('hidden');
-    });
-
-    it('click changes icon from search to close on desktop', function() {
-      var iconSearch = $('#top_nav .search.hide_on_mobile .icon_search');
-      var iconClose = $('#top_nav .search.hide_on_mobile .icon_close');
-      var input = $('#top_nav .search.hide_on_mobile input');
-      expect(iconSearch).not.toHaveClass('hidden');
-      expect(iconClose).toHaveClass('hidden');
-      iconSearch.click();
-      expect(iconSearch).toHaveClass('hidden');
-      expect(iconClose).not.toHaveClass('hidden');
-    });
-  });
   describe('clicking on the close icon', function() {
     it('closes the flash message feedback bar', function() {
       $('#body').append(

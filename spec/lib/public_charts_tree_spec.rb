@@ -322,7 +322,7 @@ RSpec.describe PublicChartsTree do
       let(:vbp_bundle_node) { find('public-data/value-based-purchasing') }
 
       context 'match on bundle' do
-        let(:search_term) { 'Value Bas' }
+        let(:search_term) { 'VaLuE bAs' }
         let(:expected_result) do
           {
             short_title: 'Public Data',

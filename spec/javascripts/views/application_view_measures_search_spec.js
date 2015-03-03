@@ -3,8 +3,8 @@
 
 describe('ApplicationViewMeasuresSearch', function() {
 
-  var measuresFixturePath = 'measures_search_results_controller.html';
-  var searchEndpoint = '/measures_search_results/?term=';
+  var measuresFixturePath = 'measure_search_results_controller.html';
+  var searchEndpoint = '/measure_search_results?term=';
   var search;
   var searchInput;
   var searchResults;
@@ -13,7 +13,7 @@ describe('ApplicationViewMeasuresSearch', function() {
   beforeEach(function() {
     loadFixture('news_items_controller');
     mainContent = $('.main_content');
-    new Iris.Views.application({el: '#body'});
+    new Iris.Views['layouts/application']({el: '#body'});
   });
 
   describe('for desktop', function() {
@@ -24,10 +24,10 @@ describe('ApplicationViewMeasuresSearch', function() {
     });
 
     it('returns results for a search and hides main content', function() {
-      stubAjaxRequest(searchEndpoint + 'heart', measuresFixturePath);
-      searchAutocomplete(searchInput, 'heart');
+      stubAjaxRequest(searchEndpoint + 'patient', measuresFixturePath);
+      searchAutocomplete(searchInput, 'patient');
       expect(searchResults).toContainElement(
-        $('ul.measures li.left_buffer_small')
+        $('li.left_buffer_small.line_height_small.link')
       );
       expect($('.main_content')).toHaveCss({opacity: '0'});
     });

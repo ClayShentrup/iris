@@ -1,4 +1,4 @@
-%form{action: '/search', method: 'get'}
+%form{data: {url: measure_search_results_path}}
   .has_icon.clearfix.vertical_padding_small.line_height_buffer_base
     %input.form_control.float_left.no_border.no_margin#q{name: 'q', type: 'text'}
     %span.icon.icon_size_small.icon_search.float_right.form_control_icon

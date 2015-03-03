@@ -4,7 +4,7 @@
 'use strict';
 
 $(document).on('ready page:load', function() {
-  new Iris.Views.application({el: '#body'});
+  new Iris.Views['layouts/application']({el: '#body'});
 
   var viewName = $('body').data('viewName');
   var View = Iris.Views[viewName];

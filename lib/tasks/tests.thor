@@ -13,7 +13,7 @@ class Tests < Thor
     'cane' => 'bundle exec cane',
     'rails_best_practices' => 'bundle exec rails_best_practices',
     'rspec' => 'bundle exec rspec',
-    'jasmine' => 'rake jasmine:ci',
+    'jasmine' => 'SKIP_FIXTURES=true rake jasmine:ci',
   }
 
   desc :check, 'run all CI tasks'

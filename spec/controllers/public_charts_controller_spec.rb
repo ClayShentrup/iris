@@ -30,6 +30,7 @@ RSpec.describe PublicChartsController do
     context 'Public Data' do
       let(:node_id) { 'public-data' }
       save_fixture
+      specify { expect(response).to be_success }
     end
 
     describe 'metrics navigation' do

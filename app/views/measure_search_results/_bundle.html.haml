@@ -1,0 +1,9 @@
+%li.category.bottom_buffer_small.top_buffer_base
+  .float_left.icon.icon_size_base.icon_left
+    = render 'shared/icon', icon: '#icon_graph_bar'
+  .text_muted.link= highlight(node_link(bundle), term)
+  %ul.measures.unstyled
+    = render partial: 'child',
+             as: :child,
+             collection: bundle.children,
+             locals: { term: term }

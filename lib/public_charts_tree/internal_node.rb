@@ -16,7 +16,6 @@ class PublicChartsTree
              :long_title,
              :parent,
              :short_title,
-             :search,
              :parent_breadcrumb,
              :value_dimension,
              to: :embedded_node
