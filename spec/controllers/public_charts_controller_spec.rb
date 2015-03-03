@@ -49,6 +49,13 @@ RSpec.describe PublicChartsController do
             ].join('/')
           end
 
+          it 'shows grandparent' do
+            is_expected.to have_css(
+              measures_nav_container,
+              text: 'Outcome of Care',
+            )
+          end
+
           it 'shows sibling measures' do
             is_expected.to have_css(
               measures_nav_container,
@@ -86,26 +93,40 @@ RSpec.describe PublicChartsController do
       end
 
       context 'for non-measures' do
-        let(:node_id) { 'public-data/value-based-purchasing' }
+        let(:node_id) do
+          %w[
+            public-data
+            value-based-purchasing
+            outcome-of-care
+            mortality
+          ].join('/')
+        end
 
         it 'shows the current node' do
           is_expected.to have_css(
             measures_nav_container,
-            text: 'Value Based Purchasing',
+            text: 'Mortality',
           )
         end
 
         it 'does not show sibling nodes' do
           is_expected.not_to have_css(
             measures_nav_container,
-            text: 'Hospital Acquired Conditions',
+            text: 'Patient Safety Indicator',
           )
         end
 
         it 'shows child nodes' do
           is_expected.to have_css(
             measures_nav_container,
-            text: 'Outcome of Care',
+            text: 'Heart Failure Mortality',
+          )
+        end
+
+        it 'doen not show grandparent' do
+          is_expected.not_to have_css(
+            measures_nav_container,
+            text: 'Value Based Purchasing',
           )
         end
       end
