@@ -10,6 +10,7 @@ describe('PublicChartsView', function() {
     'hospital_search_results_controller-index-return-one-hospital.html';
   var twoHospitalsFixture =
     'hospital_search_results_controller-index-return-two-hospitals.html';
+  var compareDropdown;
 
   beforeEach(function() {
     loadFixture(
@@ -104,6 +105,27 @@ describe('PublicChartsView', function() {
 
       expect(hospitalName).toContainText('UCSF Mission Bay');
       expect(hospitalCityAndState).toContainText('SAN FRANCISCO, CA');
+    });
+  });
+
+  describe('selecting a compare option', function() {
+    beforeEach(function() {
+      var compareFixture =
+        'hospital_search_results_controller-show-hospital-to-compare-' +
+        'has-hospital-system.html';
+
+      compareDropdown = $('.dropdown_items.compare');
+    });
+
+    it('updates compare title in dropdown button', function() {
+      var compareName = $('.dropdown_button.compare .compare_name');
+      expect(compareName).toContainText('SAN FRANCISCO, CA');
+
+      compareName.click();
+      compareDropdown.find('li').eq(2).click();
+
+      expect(compareName).toContainText('Nation-wide');
+      expect($('.dropdown_items.compare')).toBeHidden();
     });
   });
 
