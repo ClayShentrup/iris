@@ -13,6 +13,10 @@ class PublicChartsTree
       def short_title
         'Metrics'
       end
+
+      def value_dimension
+        nil
+      end
     end
   end
 end

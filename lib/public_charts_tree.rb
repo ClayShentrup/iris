@@ -19,9 +19,21 @@ class PublicChartsTree
     raise PublicChartNotFoundError
   end
 
+  def refresh
+    dimension_sample_managers.each(&:refresh)
+  end
+
   private
 
   def find_internal_node(node_id)
     @internal_node_map.fetch(node_id)
+  end
+
+  def dimension_sample_managers
+    all_nodes.map(&:value_dimension).compact
+  end
+
+  def all_nodes
+    @internal_node_map.values
   end
 end

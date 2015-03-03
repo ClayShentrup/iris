@@ -48,7 +48,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         value DimensionSampleManagers::Socrata.new(
           dataset: 'HospitalValueBasedPurchasing',
           options: {
-            column_name: 'weighted_patient_experience_of_care_score',
+            column_name: 'weighted_patient_experience_of_care_domain_score',
           },
         )
         category 'Communication' do
@@ -77,7 +77,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         value DimensionSampleManagers::Socrata.new(
           dataset: 'HospitalValueBasedPurchasing',
           options: {
-            column_name: 'weighted_efficency_domain_score',
+            column_name: 'weighted_efficiency_domain_score',
           },
         )
         measures :MSPB_1

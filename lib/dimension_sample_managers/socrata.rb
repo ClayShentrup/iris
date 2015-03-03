@@ -1,5 +1,4 @@
 require 'socrata/dimension_sample_refreshers/single_measure'
-require './app/models/dimension_sample/single_measure'
 # .
 module DimensionSampleManagers
   # Satisfies the DimensionSampleManager interface to retrieve and refresh data.

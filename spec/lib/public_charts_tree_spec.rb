@@ -68,6 +68,38 @@ RSpec.describe PublicChartsTree do
     stub_const('DimensionSample::SingleMeasure', single_measure_model)
   end
 
+  describe '#refresh' do
+    let(:tree) do
+      described_class.new do
+        measure_source 'Public Data' do
+          bundle 'Value Based Purchasing' do
+            value DIMENSION_SAMPLE_MANAGER_1
+
+            domain 'Outcome of Care' do
+              value DIMENSION_SAMPLE_MANAGER_2
+            end
+          end
+        end
+      end
+    end
+    before do
+      stub_const(
+        'DIMENSION_SAMPLE_MANAGER_1',
+        instance_double(DimensionSampleManagers::Socrata),
+      )
+      stub_const(
+        'DIMENSION_SAMPLE_MANAGER_2',
+        instance_double(DimensionSampleManagers::Socrata),
+      )
+    end
+
+    it 'refreshes all dimension sample managers' do
+      expect(DIMENSION_SAMPLE_MANAGER_1).to receive(:refresh)
+      expect(DIMENSION_SAMPLE_MANAGER_2).to receive(:refresh)
+      tree.refresh
+    end
+  end
+
   context 'at the navigation root' do
     let(:node_id) { '' }
 
