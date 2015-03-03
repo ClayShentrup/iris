@@ -51,7 +51,6 @@ RSpec.feature 'responsive design' do
   background do
     visit url
     resize_to(width)
-    check
   end
 
   feature 'on tablet portrait' do

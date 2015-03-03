@@ -95,9 +95,6 @@ Iris.Views['layouts/search_form'] = Backbone.View.extend({
   },
 
   _toggleNavButtons: function(show) {
-    if (this._isDesktop()) {
-      return;
-    }
     this.options.applicationView.toggleNavButtons(show);
   },
 
