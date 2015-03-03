@@ -36,8 +36,6 @@ RSpec.describe HospitalSystems::DataFromSpreadsheet do
   end
 
   it 'is lazy' do
-    # This allows us to output a counter of rows processed as we go through them
-    lazy_enum = results.map { fail }
-    expect { lazy_enum.force }.to raise_error RuntimeError
+    results.map { fail }
   end
 end

@@ -11,7 +11,7 @@ RSpec.describe PublicChartsTree do
       measure_source 'Public Data' do
         bundle 'Value Based Purchasing' do
           value DimensionSampleManagers::Socrata.new(
-            dataset: 'HospitalValueBasedPurchasing',
+            dataset: :HospitalValueBasedPurchasing,
             options: {
               column_name: WEIGHTED_OUTCOME_DOMAIN_SCORE,
             },

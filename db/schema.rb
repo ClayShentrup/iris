@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150216190011) do
+ActiveRecord::Schema.define(version: 20150302233101) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20150216190011) do
     t.datetime "updated_at",  null: false
   end
 
+  add_index "dimension_sample_single_measures", ["provider_id", "dataset_id", "column_name"], name: "index_dimension_sample_single_measures_unique", unique: true, using: :btree
+
   create_table "features", force: :cascade do |t|
     t.string   "key",                        null: false
     t.boolean  "enabled",    default: false, null: false
@@ -70,7 +72,9 @@ ActiveRecord::Schema.define(version: 20150216190011) do
     t.integer "hospital_system_id"
   end
 
+  add_index "hospitals", ["city", "state"], name: "index_hospitals_on_city_and_state", using: :btree
   add_index "hospitals", ["hospital_system_id"], name: "index_hospitals_on_hospital_system_id", using: :btree
+  add_index "hospitals", ["state"], name: "index_hospitals_on_state", using: :btree
 
   create_table "log_lines", force: :cascade do |t|
     t.string   "heroku_request_id", null: false

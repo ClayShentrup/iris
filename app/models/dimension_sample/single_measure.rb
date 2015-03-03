@@ -33,5 +33,11 @@ module DimensionSample
         .merge(providers)
         .pluck(:value)
     end
+
+    def self.create_or_update!(attributes)
+      find_or_initialize_by(
+        attributes.slice(:column_name, :dataset_id, :provider_id),
+      ).update_attributes!(attributes)
+    end
   end
 end

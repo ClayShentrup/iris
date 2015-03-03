@@ -1,0 +1,70 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/ypbt-wvdk.json?$limit=1000&$offset=0&$select=provider_number,weighted_outcome_domain_score
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Mon, 02 Mar 2015 19:50:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:15:49 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_number",":id","weighted_outcome_domain_score",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","meta_data","number","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '1'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_number" : "010087",
+          "weighted_outcome_domain_score" : "0.000000000000"
+        }
+        , {
+          "provider_number" : "010092",
+          "weighted_outcome_domain_score" : "12.600000000000"
+        }
+        , {
+          "provider_number" : "010103",
+          "weighted_outcome_domain_score" : "7.200000000000"
+        }
+        , {
+          "provider_number" : "010317"
+        }
+         ]
+    http_version:
+  recorded_at: Mon, 02 Mar 2015 19:50:01 GMT

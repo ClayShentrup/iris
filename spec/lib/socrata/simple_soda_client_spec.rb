@@ -39,6 +39,6 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
   end
 
   it 'stores the length' do
-    expect(subject.to_a.length).to be 3
+    expect(results.size).to be 3
   end
 end

@@ -18,14 +18,14 @@ module Socrata
       providers = SimpleSodaClient.new(
         dataset_id: DATASET_ID,
         required_columns: REQUIRED_COLUMNS,
-      )
+      ).to_a
       providers.each_with_index do |provider_attributes, index|
         provider_attributes['name'] = provider_attributes
                                       .delete('hospital_name')
         Hospital.create_or_update(provider_attributes)
         yield index
       end
-        .length
+      providers.length
     end
   end
 end

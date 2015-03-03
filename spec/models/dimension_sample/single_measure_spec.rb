@@ -42,6 +42,20 @@ RSpec.describe DimensionSample::SingleMeasure do
     it { is_expected.to validate_presence_of(:value) }
   end
 
+  describe 'indexes' do
+    it 'hase a unique index on provider_id, column_name, and dataset_id' do
+      expect do
+        2.times do
+          create(:dimension_sample_single_measure,
+                 provider_id: '102101',
+                 dataset_id: '893x-ot20',
+                 column_name: 'foo_bar',
+          )
+        end
+      end.to raise_error(ActiveRecord::RecordNotUnique)
+    end
+  end
+
   describe '.data' do
     let(:chart_attributes) do
       {
@@ -125,6 +139,72 @@ RSpec.describe DimensionSample::SingleMeasure do
         relevant_dimension_sample_1_value,
         relevant_dimension_sample_2_value,
       ]
+    end
+  end
+
+  describe '.create_or_update' do
+    let(:existing_sample_attributes) do
+      {
+        provider_id: provider_id,
+        dataset_id: dataset_id,
+        column_name: column_name,
+        value: value,
+      }
+    end
+    let(:new_sample_attributes) do
+      existing_sample_attributes.merge(new_attribute)
+    end
+
+    let(:column_name) { 'weighted_outcome_domain_score' }
+    let(:dataset_id) { 'ypbt-wvdk' }
+    let(:provider_id) { '123456' }
+    let(:value) { '42.42424242' }
+    let!(:existing_dimension_sample) do
+      create(:dimension_sample_single_measure, existing_sample_attributes)
+    end
+    let(:most_recent_attributes) do
+      described_class.last.attributes.symbolize_keys
+    end
+
+    def create_or_update!
+      described_class.create_or_update!(new_sample_attributes)
+    end
+
+    context 'attributes match an existing record' do
+      let(:new_attribute) { { value: '10.8274' } }
+
+      it 'finds and updates the existing record' do
+        expect { create_or_update! }
+          .to change { existing_dimension_sample.reload.attributes }
+          .to(hash_including(new_attribute.stringify_keys))
+      end
+    end
+
+    context 'with a different column_name' do
+      let(:new_attribute) { { column_name: 'new_outcome_domain_score_name' } }
+
+      it 'makes a new record' do
+        expect { create_or_update! }.to change(described_class, :count).by(1)
+        expect(most_recent_attributes).to include new_sample_attributes
+      end
+    end
+
+    context 'with a different dataset_id' do
+      let(:new_attribute) { { dataset_id: 'blah-blah' } }
+
+      it 'makes a new record' do
+        expect { create_or_update! }.to change(described_class, :count).by(1)
+        expect(most_recent_attributes).to include new_sample_attributes
+      end
+    end
+
+    context 'with a different provider_id' do
+      let(:new_attribute) { { provider_id: '0000002' } }
+
+      it 'makes a new record' do
+        expect { create_or_update! }.to change(described_class, :count).by(1)
+        expect(most_recent_attributes).to include new_sample_attributes
+      end
     end
   end
 end

@@ -11,8 +11,6 @@ module Socrata
     DOMAIN = 'data.medicare.gov'
     PAGE_SIZE = 1000
 
-    attr_reader :length
-
     def initialize(dataset_id:, required_columns:)
       @dataset_id = dataset_id
       @required_columns = required_columns
