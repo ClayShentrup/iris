@@ -10,6 +10,8 @@ RSpec.describe PublicChartsController do
     end
 
     before do
+      enable_feature :grandparent_back_button
+
       allow(PUBLIC_CHARTS_TREE).to receive(:find_node).with(
         node_id,
         providers: all_hospitals,
