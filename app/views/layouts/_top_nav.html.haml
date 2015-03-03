@@ -7,11 +7,10 @@
     = link_to 'News Feed', news_path
   .metrics.nav_btns.vertical_padding_small.line_height_buffer_base.text_center.float_left.border_grey
     = link_to 'Metrics', metrics_path
-  - if feature? :navbar_search
-    .search.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base.border_bottom_grey.border_top_grey
-      = render partial: 'layouts/search_form'
-    .search.hide_on_mobile.line_height_buffer_base.border_bottom_grey.border_top_grey
-      = render partial: 'layouts/search_form'
+  .search.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base.border_bottom_grey.border_top_grey
+    = render partial: 'layouts/search_form'
+  .search.hide_on_mobile.line_height_buffer_base.border_bottom_grey.border_top_grey
+    = render partial: 'layouts/search_form'
   .menu_icon.text_right.vertical_padding_small.border_grey
     %span.top_margin_small.bottom_margin_small.icon.icon_size_base
       = render 'shared/icon', icon: '#icon_user'

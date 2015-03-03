@@ -2,9 +2,6 @@ require 'feature_spec_helper'
 
 RSpec.feature 'responsive design' do
   login_user
-  before do
-    enable_feature :navbar_search
-  end
 
   feature 'searches measures' do
     background do

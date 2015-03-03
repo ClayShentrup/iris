@@ -25,10 +25,6 @@ class Feature < ActiveRecord::Base
           default: false,
           description: 'How our code should look.'
 
-  feature :navbar_search,
-          default: false,
-          description: 'Initial navbar search UI.'
-
   feature :grandparent_back_button,
           default: false,
           description: 'Back button to grandparent on measure nodes.'
