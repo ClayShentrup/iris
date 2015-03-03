@@ -23,6 +23,7 @@ Boxen will:
 
 * Ensure Postgresql is installed and running
 * Install project version of Ruby and automatically run `bundle install`
+* Install required npm packages (jshint, jscs) by running `npm install`
 * Prepare development and test databases as well as default config/database.yml
 * Setup nginx/dnsmasq so you can access the development server at `http://iris.dev/`
 
@@ -151,7 +152,7 @@ Treat `.env` like a schema for environment keys. Those needed to run the app in 
 
 ### Javascript ###
 
-- TBD
+- Javascript code quality is ensured by two npm packages: JsHint and JSCS. They will run automatically as a pre-commit hooks.
 
 ### Ruby ###
 [Rubocop](https://github.com/bbatsov/rubocop) is configured in `.rubocop.yml` to enforce code quality and style standards based on the [Ruby Style Guide](https://github.com/bbatsov/ruby-style-guide) and runs every time you commit using a pre-commit hook.

@@ -44,13 +44,13 @@ PreCommit:
     enabled: true
     description: 'Analyzing with JSHint'
     required_executable: 'jshint'
-    install_command: 'npm install -g jshint'
+    install_command: 'npm install'
 
   Jscs:
     enabled: true
     description: 'Analyzing with JSCS'
     required_executable: 'jscs'
-    install_command: 'npm install -g jscs'
+    install_command: 'npm install'
 
   RailsBestPractices:
     enabled: true

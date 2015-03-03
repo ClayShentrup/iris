@@ -1,0 +1,11 @@
+{
+  "name": "iris",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/dabohealth/iris.git"
+  },
+  "devDependencies": {
+    "jscs": "1.11.3",
+    "jshint": "2.6.3"
+  }
+}
