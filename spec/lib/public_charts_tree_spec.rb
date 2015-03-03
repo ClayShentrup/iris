@@ -4,19 +4,15 @@ require 'socrata/datasets/hospital_value_based_purchasing'
 
 RSpec.describe PublicChartsTree do
   subject { find(node_id) }
-  let(:providers) { double('providers relation') }
 
+  let(:providers) { double('providers relation') }
   let(:tree) do
     described_class.new do
       measure_source 'Public Data' do
         bundle 'Value Based Purchasing' do
-          value DimensionSampleManagers::Socrata.new(
-            dataset: :HospitalValueBasedPurchasing,
-            options: {
-              column_name: WEIGHTED_OUTCOME_DOMAIN_SCORE,
-            },
-          )
+          value VALUE_DIMENSION_SAMPLE_MANAGER
           domain 'Outcome of Care' do
+            value VALUE_DIMENSION_SAMPLE_MANAGER
             category 'Mortality' do
               measures :MORT_30_AMI,
                        :MORT_30_HF
@@ -28,35 +24,34 @@ RSpec.describe PublicChartsTree do
       measure_source 'Private Data'
     end
   end
-
-  let(:mort_30_ami) do
-    OpenStruct.new(
-      short_title: 'Acute Myocardial Infarction Mortality',
-      long_title: 'Acute Myocardial Infarction 30-day Mortality Rate',
-    )
+  let(:value_dimension_sample_manager) do
+    instance_double(DimensionSampleManagers::Socrata)
   end
-
-  let(:mort_30_hf) do
-    OpenStruct.new(
-      short_title: 'Heart Failure Mortality',
-      long_title: 'Heart Failure 30-day Mortality Rate',
-    )
-  end
-
   let(:measures) do
     {
       MORT_30_HF: mort_30_hf.to_h,
       MORT_30_AMI: mort_30_ami.to_h,
     }
   end
-
+  let(:mort_30_ami) do
+    OpenStruct.new(
+      short_title: 'Acute Myocardial Infarction Mortality',
+      long_title: 'Acute Myocardial Infarction 30-day Mortality Rate',
+      value: value_dimension_sample_manager,
+    )
+  end
+  let(:mort_30_hf) do
+    OpenStruct.new(
+      short_title: 'Heart Failure Mortality',
+      long_title: 'Heart Failure 30-day Mortality Rate',
+      value: value_dimension_sample_manager,
+    )
+  end
   let(:expected_data) do
     {
       bars: [],
     }
   end
-
-  let(:single_measure_model) { double('DimensionSample::SingleMeasure') }
 
   def find(node_id)
     tree.find_node(node_id, providers: providers)
@@ -64,38 +59,13 @@ RSpec.describe PublicChartsTree do
 
   before do
     stub_const('MEASURES', measures)
-    stub_const('WEIGHTED_OUTCOME_DOMAIN_SCORE', 'weighted_outcome_domain_score')
-    stub_const('DimensionSample::SingleMeasure', single_measure_model)
+    stub_const('VALUE_DIMENSION_SAMPLE_MANAGER', value_dimension_sample_manager)
   end
 
   describe '#refresh' do
-    let(:tree) do
-      described_class.new do
-        measure_source 'Public Data' do
-          bundle 'Value Based Purchasing' do
-            value DIMENSION_SAMPLE_MANAGER_1
-
-            domain 'Outcome of Care' do
-              value DIMENSION_SAMPLE_MANAGER_2
-            end
-          end
-        end
-      end
-    end
-    before do
-      stub_const(
-        'DIMENSION_SAMPLE_MANAGER_1',
-        instance_double(DimensionSampleManagers::Socrata),
-      )
-      stub_const(
-        'DIMENSION_SAMPLE_MANAGER_2',
-        instance_double(DimensionSampleManagers::Socrata),
-      )
-    end
-
     it 'refreshes all dimension sample managers' do
-      expect(DIMENSION_SAMPLE_MANAGER_1).to receive(:refresh)
-      expect(DIMENSION_SAMPLE_MANAGER_2).to receive(:refresh)
+      expect(value_dimension_sample_manager).to receive(:refresh)
+        .exactly(4).times
       tree.refresh
     end
   end
@@ -127,15 +97,34 @@ RSpec.describe PublicChartsTree do
       actual_child_ids = subject.children.map(&:id)
       expect(actual_child_ids).to eq expected_child_ids
     end
-    specify do
-      expect(subject.breadcrumbs).to eq expected_breadcrumbs
-    end
+
+    specify { expect(subject.breadcrumbs).to eq expected_breadcrumbs }
     specify { expect(subject.short_title).to eq expected_short_title }
     specify { expect(subject.parent_id).to eq expected_parent_id }
     specify { expect(subject.type).to eq expected_type }
+  end
+
+  shared_examples 'a chart node' do
+    it_behaves_like 'a child node'
 
     describe '#data' do
-      let(:providers) { double('providers') }
+      let(:values) do
+        [
+          '17.888',
+          '13.1250000000',
+          '9.75',
+        ]
+      end
+      let(:expected_data) do
+        {
+          bars: values.map { |value| { value: value } },
+        }
+      end
+
+      before do
+        allow(value_dimension_sample_manager).to receive(:data).with(providers)
+          .and_return(values)
+      end
 
       it 'returns data for the specified providers' do
         expect(subject.data).to eq expected_data
@@ -167,49 +156,7 @@ RSpec.describe PublicChartsTree do
       ]
     end
 
-    it_behaves_like 'a child node' do
-      let(:providers) { double('providers') }
-      let(:single_measure_model) do
-        class_double('DimensionSample::SingleMeasure').tap do |model|
-          allow(model).to receive(:data).with(
-            dataset_id: 'ypbt-wvdk',
-            options: {
-              column_name: WEIGHTED_OUTCOME_DOMAIN_SCORE,
-            },
-            providers: providers,
-          ).and_return(values)
-        end
-      end
-      let(:values) do
-        [
-          '17.888',
-          '13.1250000000',
-          '9.75',
-        ]
-      end
-      let(:expected_data) do
-        {
-          bars: [
-            {
-              value: '17.888',
-            },
-            {
-              value: '13.1250000000',
-            },
-            {
-              value: '9.75',
-            },
-          ],
-        }
-      end
-
-      before do
-        stub_const(
-          'Dimension::SingleMeasure',
-          single_measure_model,
-        )
-      end
-    end
+    it_behaves_like 'a chart node'
 
     specify { expect(subject.parent_short_title).to eq 'Public Data' }
   end
@@ -223,7 +170,7 @@ RSpec.describe PublicChartsTree do
       ['public-data/value-based-purchasing/outcome-of-care/mortality']
     end
 
-    it_behaves_like 'a child node'
+    it_behaves_like 'a chart node'
 
     specify do
       expect(subject.parent_short_title).to eq 'Value Based Purchasing'
@@ -267,14 +214,6 @@ RSpec.describe PublicChartsTree do
     let(:expected_short_title) { measure.short_title }
     let(:expected_type) { 'measure' }
     let(:expected_child_ids) { [] }
-    let(:sibling_measures) do
-      [
-        tree
-          .find("#{expected_parent_id}/acute-myocardial-infarction-mortality"),
-        tree
-          .find("#{expected_parent_id}/heart-failure-mortality"),
-      ]
-    end
 
     shared_examples 'a mortality measure node' do
       specify do
@@ -289,7 +228,7 @@ RSpec.describe PublicChartsTree do
         "#{expected_parent_id}/acute-myocardial-infarction-mortality"
       end
       it_behaves_like 'a mortality measure node'
-      it_behaves_like 'a child node'
+      it_behaves_like 'a chart node'
     end
 
     describe 'MORT_30_HF' do

@@ -14,7 +14,7 @@ class PublicChartsTree
         'Metrics'
       end
 
-      def value_dimension
+      def value_dimension_manager
         nil
       end
     end

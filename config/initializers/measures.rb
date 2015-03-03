@@ -149,6 +149,12 @@ MEASURES = {
     short_title: 'Medicare Spending per Beneficiary',
     long_title:  'Medicare hospital spending per patient ' \
                  '(Medicare Spending per Beneficiary)',
+    value: DimensionSampleManagers::Socrata.new(
+      dataset: :HospitalSpendingPerPatient,
+      options: {
+        column_name: :score,
+      },
+    ),
   },
   READM_30_AMI: {
     short_title: 'Acute Myocardial Infarction Readmission',

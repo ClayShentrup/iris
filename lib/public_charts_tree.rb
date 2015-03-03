@@ -30,7 +30,7 @@ class PublicChartsTree
   end
 
   def dimension_sample_managers
-    all_nodes.map(&:value_dimension).compact
+    all_nodes.map(&:value_dimension_manager).compact
   end
 
   def all_nodes

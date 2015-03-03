@@ -3,9 +3,9 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
     bundle 'Value Based Purchasing' do
       domain 'Outcome of Care' do
         value DimensionSampleManagers::Socrata.new(
-          dataset: 'HospitalValueBasedPurchasing',
+          dataset: :HospitalValueBasedPurchasing,
           options: {
-            column_name: 'weighted_outcome_domain_score',
+            column_name: :weighted_outcome_domain_score,
           },
         )
         category 'Mortality' do
@@ -22,9 +22,9 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
       end
       domain 'Process of Care' do
         value DimensionSampleManagers::Socrata.new(
-          dataset: 'HospitalValueBasedPurchasing',
+          dataset: :HospitalValueBasedPurchasing,
           options: {
-            column_name: 'weighted_clinical_process_of_care_domain_score',
+            column_name: :weighted_clinical_process_of_care_domain_score,
           },
         )
         category 'Heart Failure' do
@@ -48,7 +48,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         value DimensionSampleManagers::Socrata.new(
           dataset: 'HospitalValueBasedPurchasing',
           options: {
-            column_name: 'weighted_patient_experience_of_care_domain_score',
+            column_name: :weighted_patient_experience_of_care_domain_score,
           },
         )
         category 'Communication' do
@@ -77,7 +77,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
         value DimensionSampleManagers::Socrata.new(
           dataset: 'HospitalValueBasedPurchasing',
           options: {
-            column_name: 'weighted_efficiency_domain_score',
+            column_name: :weighted_efficiency_domain_score,
           },
         )
         measures :MSPB_1

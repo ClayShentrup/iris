@@ -15,7 +15,7 @@ class PublicChartsController < ApplicationController
   private
 
   def providers
-    Hospital.all
+    Hospital.limit(5)
   end
 
   def default_hospital

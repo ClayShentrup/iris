@@ -2,6 +2,7 @@ require 'active_record_no_rails_helper'
 require 'dimension_sample_managers/socrata'
 require 'socrata/datasets/hospital_value_based_purchasing'
 require './app/models/hospital'
+require './app/models/dimension_sample/single_measure'
 
 RSpec.describe DimensionSampleManagers::Socrata, :vcr do
   subject do

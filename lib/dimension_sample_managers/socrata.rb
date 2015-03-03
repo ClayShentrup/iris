@@ -26,7 +26,7 @@ module DimensionSampleManagers
     private
 
     def provider_id_column_name
-      dataset_class.const_get('PROVIDER_ID_COLUMN_NAME')
+      dataset_class.const_get('PROVIDER_ID_COLUMN_NAME').to_s
     end
 
     def dimension_sample_model_class

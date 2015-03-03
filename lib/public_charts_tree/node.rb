@@ -15,7 +15,7 @@ class PublicChartsTree
              :parent_short_title,
              :type,
              :data,
-             :value_dimension,
+             :value_dimension_manager,
              :id_components,
              to: :internal_node
 
@@ -40,8 +40,8 @@ class PublicChartsTree
     end
 
     def bars(providers)
-      return [] unless value_dimension.present? # temp until tree is complete
-      value_dimension.data(providers).map do |value|
+      return [] unless value_dimension_manager.present? # temporary until done
+      value_dimension_manager.data(providers).map do |value|
         {
           value: value,
         }
@@ -54,7 +54,7 @@ class PublicChartsTree
 
     private :breadcrumb,
             :parent_breadcrumb,
-            :value_dimension,
+            :value_dimension_manager,
             :id_components
   end
 end

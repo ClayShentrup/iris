@@ -26,6 +26,8 @@
 #  account_id             :integer
 #
 
+require 'ipaddr'
+
 FactoryGirl.define do
   factory :user do
     sequence(:email) { |n| "user#{n}@factory.com" }

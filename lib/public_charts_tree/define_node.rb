@@ -33,8 +33,8 @@ class PublicChartsTree
       embedded_node.long_title = long_title
     end
 
-    def value(value_dimension)
-      embedded_node.value_dimension = value_dimension
+    def value(value_dimension_manager)
+      embedded_node.value_dimension_manager = value_dimension_manager
     end
 
     def measure_source(*args, &definition_block)
@@ -62,6 +62,7 @@ class PublicChartsTree
         measure = MEASURES.fetch(measure_id)
         measure(measure.fetch(:short_title)) do
           long_title measure.fetch(:long_title)
+          value measure.fetch(:value, nil)
         end
       end
     end
