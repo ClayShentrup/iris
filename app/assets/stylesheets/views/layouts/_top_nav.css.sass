@@ -1,3 +1,7 @@
+$results_margin_inner: rem(40)
+$results_margin_offset: -($results_margin_inner)
+$results_width: 100 - $results_margin_inner
+
 #top_nav
   +display(flex)
 
@@ -38,33 +42,28 @@
     a
       min-width: rem(96)
 
-  .news_feed a
-    +media($mobile)
-      border-left: 0
-
-  .metrics a
-    +media($mobile)
-      border-right: 0
-
   .search
     input
       height: $line_height_buffer_base
 
     ul.results
-      line-height: $line_height_buffer_xl
-      position: absolute
-      width: 100%
-      z-index: 1000
-      margin-top: rem(1)
       margin-left: $results_margin_offset
+      position: absolute
+      width: 100vw
+      z-index: 900
+      @extend .inner_padding_small
+      +media($tablet_portrait_and_desktop)
+        width: 100%
 
       ul.measures
-        margin-left: $results_margin_inner
-        overflow: hidden
+        margin-left: $buffer_large
+
+      > li.category
+        > ul.measures
+          margin-left: $results_margin_inner + rem(27)
 
       .icon
-        margin-right: $results_margin_icon
-        margin-left: -($line_height_buffer_base)
+        margin-right: $buffer_base
 
     .search_results_container
       position: relative

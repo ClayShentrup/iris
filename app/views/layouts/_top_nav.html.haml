@@ -1,17 +1,17 @@
-#top_nav.bottom_margin_base.clearfix
-  .logo.inner_padding_small.float_left.border_grey
+#top_nav.bottom_margin_base.border_grey.clearfix
+  .logo.inner_padding_small.float_left.border_right_grey
     = link_to root_url, class: 'icon icon_brand_color_primary icon_size_base text_left' do
       = render 'shared/icon', icon: '#icon_dabo-logo', klass: 'hide_on_mobile'
       = render 'shared/icon', icon: '#icon_dabo-d-logo', klass: 'hide_on_tablet_portrait hide_on_desktop'
-  .news_feed.nav_btns.line_height_buffer_base.text_center.float_left.border_top_grey.border_bottom_grey
+  .news_feed.nav_btns.line_height_buffer_base.text_center.float_left
     = link_to 'News Feed', news_path, class: 'float_right border_left_grey'
-  .metrics.nav_btns.line_height_buffer_base.text_center.float_left.border_top_grey.border_bottom_grey
-    = link_to 'Metrics', metrics_path, class: 'float_left border_right_grey border_left_grey'
-  .search.search_starting_width.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base.border_bottom_grey.border_top_grey.border_left_grey
+  .metrics.nav_btns.line_height_buffer_base.text_center.float_left
+    = link_to 'Metrics', metrics_path, class: 'float_left border_left_grey border_right_grey'
+  .search.search_starting_width.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base
     = render partial: 'layouts/search_form'
-  .search.search_starting_width.hide_on_mobile.line_height_buffer_base.border_bottom_grey.border_top_grey.border_left_grey
+  .search.search_starting_width.hide_on_mobile.line_height_buffer_base.border_left_grey
     = render partial: 'layouts/search_form'
-  .menu_icon.text_center.vertical_padding_small.border_grey
+  .menu_icon.text_center.vertical_padding_small.border_left_grey
     %span.top_margin_small.bottom_margin_small.icon.icon_size_base
       = render 'shared/icon', icon: '#icon_user'
 
