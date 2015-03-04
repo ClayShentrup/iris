@@ -3,8 +3,11 @@
   border-bottom: none
   +calc(height, #{$line_height_buffer_base} + #{$buffer_base})
 
-  .icon
-    @extend .icon_arrow_large_up
+  .icon_arrow_up
+    display: inline
+
+  .icon_arrow_down
+    display: none
 
 #select_and_compare
   &.show_hospital
@@ -27,6 +30,9 @@
     cursor: pointer
     position: relative
     z-index: 2
+
+    .icon_arrow_up
+      display: none
 
     +media($mobile)
       .icon_size_base

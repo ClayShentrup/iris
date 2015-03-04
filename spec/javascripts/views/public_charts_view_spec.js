@@ -144,4 +144,41 @@ describe('PublicChartsView', function() {
       expect(hospitalDropdown.find('ul')).toBeEmpty();
     });
   });
+
+  describe('hospital dropdown button', function() {
+    beforeEach(function() {
+      this.dropdownButton = $('.dropdown_button.hospital');
+    });
+
+    itBehavesLikeDropdownButton();
+  });
+
+  describe('compare dropdown button', function() {
+    beforeEach(function() {
+      this.dropdownButton = $('.dropdown_button.compare');
+    });
+
+    itBehavesLikeDropdownButton();
+  });
+
+  function itBehavesLikeDropdownButton() {
+    beforeEach(function() {
+      this.arrowUp = this.dropdownButton.find('.icon_arrow_up');
+      this.arrowDown = this.dropdownButton.find('.icon_arrow_down');
+    });
+
+    it('displays arrow down when closed', function() {
+      expect(this.arrowUp).toBeHidden();
+      expect(this.arrowDown).toBeVisible();
+    });
+
+    it('displays arrow up when opened', function() {
+      this.dropdownButton.click();
+      expect(this.arrowUp).toBeVisible();
+      expect(this.arrowDown).toBeHidden();
+      this.dropdownButton.click();
+      expect(this.arrowUp).toBeHidden();
+      expect(this.arrowDown).toBeVisible();
+    });
+  }
 });

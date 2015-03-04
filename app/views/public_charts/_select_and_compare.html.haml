@@ -4,12 +4,14 @@
       %span.text_ellipsis.with_base_icon.line_height_buffer_base.hospital_name
         = hospital_compare_presenter.hospital_name
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
-        = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle'
+        = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle icon_arrow_down'
+        = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
     .dropdown_button.compare.vertical_padding_base.col6-xs.border_grey
       %span.text_ellipsis.with_base_icon.line_height_buffer_base.compare_name
         = hospital_compare_presenter.hospital_city_and_state
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
-        = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle'
+        = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle icon_arrow_down'
+        = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
   .dropdown_items.hospital.border_grey
     .search_box.vertical_padding_base.line_height_buffer_base.border_bottom_grey
       %form
