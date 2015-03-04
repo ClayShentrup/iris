@@ -46,6 +46,9 @@ $results_width: 100 - $results_margin_inner
     input
       height: $line_height_buffer_base
 
+    .search_results_container
+      position: relative
+
     ul.results
       margin-left: $results_margin_offset
       position: absolute
@@ -65,8 +68,6 @@ $results_width: 100 - $results_margin_inner
       .icon
         margin-right: $buffer_base
 
-    .search_results_container
-      position: relative
 
 .search_background
   background-color: $white
@@ -75,9 +76,6 @@ $results_width: 100 - $results_margin_inner
   +calc(margin-top, "-#{$buffer_base}")
 
 svg
-  #top_nav &
-    @extend .vertical_align_middle
-
   #top_nav .logo &
     width: $icon_size_xs
     +media($tablet_portrait_and_desktop)
