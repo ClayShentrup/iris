@@ -24,19 +24,16 @@
       max-width: $line_height_buffer_base
       width: $line_height_buffer_base
 
-  .logo,
-  .menu_icon,
   .search
     +flex-grow(1)
+    &.search_starting_width
+      max-width: $line_height_buffer_base
 
   .news_feed,
   .metrics
     +flex-grow(3)
 
   .search
-    +media($desktop)
-      +flex-grow(4)
-
     &.hide_on_tablet_portrait.hide_on_desktop
       input
         @extend .hidden
