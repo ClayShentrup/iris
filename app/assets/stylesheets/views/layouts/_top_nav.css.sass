@@ -18,10 +18,12 @@
     &.hide_on_desktop
       @extend .hide_on_desktop
 
+  .menu_icon,
+  .search
+    width: $line_height_buffer_base
+
   .logo,
-  .menu_icon
     +media($mobile)
-      max-width: $line_height_buffer_base
       width: $line_height_buffer_base
 
   .search
@@ -31,12 +33,22 @@
 
   .news_feed,
   .metrics
-    +flex-grow(3)
+    +flex-grow(1)
+
+    a
+      min-width: rem(96)
+
+  .news_feed a
+    +media($mobile)
+      border-left: 0
+
+  .metrics a
+    +media($mobile)
+      border-right: 0
 
   .search
-    &.hide_on_tablet_portrait.hide_on_desktop
-      input
-        @extend .hidden
+    input
+      height: $line_height_buffer_base
 
     ul.results
       line-height: $line_height_buffer_xl
@@ -46,21 +58,21 @@
       margin-top: rem(1)
       margin-left: $results_margin_offset
 
-      li.category ul.measures
+      ul.measures
         margin-left: $results_margin_inner
         overflow: hidden
 
       .icon
         margin-right: $results_margin_icon
-        margin-left: rem(-42)
+        margin-left: -($line_height_buffer_base)
 
     .search_results_container
       position: relative
 
 .search_background
+  background-color: $white
   position: absolute
   width: 100%
-  background-color: $white
   +calc(margin-top, "-#{$buffer_base}")
 
 svg
