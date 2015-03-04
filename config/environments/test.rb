@@ -38,4 +38,5 @@ Rails.application.configure do
   config.force_ssl = false
 
   config.active_job.queue_adapter = :test
+  config.styleguide_enabled = true
 end

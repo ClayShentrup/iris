@@ -1,7 +1,7 @@
 # Renders the styleguide view(s)
-class StyleguidesController < ApplicationController
-  skip_before_action :authenticate_user!
-  def index
-    render layout: 'styleguide'
+class StyleguidesController < ActionController::Base
+  layout false
+
+  def show
   end
 end

@@ -3,11 +3,9 @@ require 'rails_helper'
 RSpec.describe StyleguidesController do
   it_behaves_like 'an ApplicationController without authentication'
 
-  before { get :index }
+  before { get :show }
 
-  specify do
-    expect(response).to be_success
-  end
+  specify { expect(response).to be_success }
 
   it 'renders style guide' do
     expect(response.body).to include 'Dabo Health Styleguide'
