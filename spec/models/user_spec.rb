@@ -32,18 +32,23 @@ require 'devise'
 require 'devise/orm/active_record'
 require 'devise_security_extension'
 require './app/models/user'
+require './app/models/account'
 
 RSpec.describe User do
   subject { build_stubbed(described_class) }
 
   describe 'columns' do
-    specify do
+    it do
       is_expected.to have_db_column(:email).of_type(:string)
         .with_options(null: false)
     end
-    specify do
+    it do
       is_expected.to have_db_column(:is_dabo_admin).of_type(:boolean)
         .with_options(null: false)
+    end
+    it do
+      is_expected.to have_db_column(:unique_session_id).of_type(:string)
+        .with_options(limit: 20)
     end
   end
 

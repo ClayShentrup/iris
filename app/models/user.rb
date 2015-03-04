@@ -36,9 +36,17 @@ require './app/validators/password_strength_validator'
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :lockable, and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :lockable, :confirmable,
-         :timeoutable, :password_expirable, :password_archivable
+  devise :confirmable,
+         :database_authenticatable,
+         :lockable,
+         :password_archivable,
+         :password_expirable,
+         :recoverable,
+         :registerable,
+         :rememberable,
+         :session_limitable,
+         :timeoutable,
+         :trackable
 
   belongs_to :account
 
