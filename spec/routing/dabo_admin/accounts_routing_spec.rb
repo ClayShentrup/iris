@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe DaboAdmin::UsersController do
+RSpec.describe DaboAdmin::AccountsController do
   it_behaves_like('a DaboAdmin index route')
   it_behaves_like('a DaboAdmin new route')
   it_behaves_like('a DaboAdmin show route')
