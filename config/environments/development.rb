@@ -50,4 +50,5 @@ Rails.application.configure do
   config.action_mailer.file_settings = {
     location: 'tmp/mails',
   }
+  config.styleguide_enabled = true
 end

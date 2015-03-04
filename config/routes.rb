@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
     devise_for :users, controllers: { registrations: :registrations }
     resource :status, only: :show
-    get :styleguide, to: 'styleguides#index'
+
+    resource :styleguide, only: :show if APP_CONFIG.styleguide_enabled
 
     constraints Constraints::DaboAdmin do
       mount Flip::Engine => '/flip'

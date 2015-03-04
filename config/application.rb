@@ -88,6 +88,8 @@ module Iris
       enable_starttls_auto: true,
     }
 
+    config.styleguide_enabled = false
+
     config.to_prepare do
       Devise::SessionsController.layout 'authentication'
       Devise::PasswordsController.layout 'authentication'
