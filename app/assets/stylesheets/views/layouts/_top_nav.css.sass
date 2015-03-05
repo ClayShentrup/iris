@@ -1,3 +1,6 @@
+$results_margin_inner: rem(40)
+$results_margin_offset: -($results_margin_inner)
+
 #top_nav
   +display(flex)
 
@@ -18,58 +21,62 @@
     &.hide_on_desktop
       @extend .hide_on_desktop
 
-  .logo,
-  .menu_icon
-    +media($mobile)
-      max-width: $line_height_buffer_base
-      width: $line_height_buffer_base
-
-  .logo,
-  .menu_icon,
+  .news_feed,
+  .metrics,
   .search
     +flex-grow(1)
 
-  .news_feed,
-  .metrics
-    +flex-grow(3)
+  .news_feed a,
+  .metrics a
+    width: 100%
+    +media($tablet_portrait_and_desktop)
+      max-width: rem(200)
+
+  .menu_icon,
+  .search_starting_width
+    max-width: $line_height_buffer_base
+    width: $line_height_buffer_base
+
+  .logo,
+    +media($mobile)
+      width: $line_height_buffer_base
 
   .search
-    +media($desktop)
-      +flex-grow(4)
+    input
+      height: $line_height_buffer_base
 
-    &.hide_on_tablet_portrait.hide_on_desktop
-      input
-        @extend .hidden
-
-    ul.results
-      line-height: $line_height_buffer_xl
-      position: absolute
-      width: 100%
-      z-index: 1000
-      margin-top: rem(1)
-      margin-left: $results_margin_offset
-
-      li.category ul.measures
-        margin-left: $results_margin_inner
-        overflow: hidden
-
-      .icon
-        margin-right: $results_margin_icon
-        margin-left: rem(-42)
-
-    .search_container
+    .search_results_container
       position: relative
 
+    ul.results
+      margin-left: $results_margin_offset
+      position: absolute
+      width: 135%
+      z-index: 900
+      @extend .inner_padding_small
+      +media($tablet_portrait_and_desktop)
+        width: 100%
+
+      ul.measures
+        margin-left: $buffer_large
+
+      > li.category
+        > a
+          line-height: $icon_size_base
+
+        > ul.measures
+          margin-left: $results_margin_inner + rem(27)
+
+      .icon
+        margin-right: $buffer_base
+
 .search_background
+  background-color: $white
   position: absolute
   width: 100%
-  background-color: $white
   +calc(margin-top, "-#{$buffer_base}")
 
 svg
-  #top_nav &
-    @extend .vertical_align_middle
-
   #top_nav .logo &
     width: $icon_size_xs
     +media($tablet_portrait_and_desktop)

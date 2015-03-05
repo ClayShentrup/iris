@@ -37,8 +37,10 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     this._setContentOpacity(0);
   },
 
-  toggleNavButtons: function(show) {
+  toggleNavButtonsAndResizeSearchBar: function(show) {
     this.$('.nav_btns').toggleClass('hidden', !show);
+    this.$('.top_nav_spacer').toggleClass('hidden', !show);
+    this.$('.search').toggleClass('search_starting_width', show);
   },
 
   _setContentOpacity: function(opacity) {
