@@ -1,6 +1,5 @@
 $results_margin_inner: rem(40)
 $results_margin_offset: -($results_margin_inner)
-$nav_btn_min_width: rem(96)
 
 #top_nav
   +display(flex)
@@ -29,13 +28,9 @@ $nav_btn_min_width: rem(96)
 
   .news_feed a,
   .metrics a
-    min-width: $nav_btn_min_width
+    width: 100%
     +media($tablet_portrait_and_desktop)
-      min-width: $nav_btn_min_width * 2
-
-  .news_feed a
-    +media($mobile)
-      border-left: 0
+      max-width: rem(200)
 
   .menu_icon,
   .search_starting_width
