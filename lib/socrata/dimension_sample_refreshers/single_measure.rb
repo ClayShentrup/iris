@@ -22,7 +22,7 @@ module Socrata
       private
 
       def processed_dimension_samples
-        valid_dimension_samples.map do |dimension_sample|
+        available_dimension_samples.map do |dimension_sample|
           {
             column_name: value_column_name,
             dataset_id: dataset_id,
@@ -32,9 +32,10 @@ module Socrata
         end
       end
 
-      def valid_dimension_samples
+      def available_dimension_samples
         dimension_samples.select do |dimension_sample|
-          dimension_sample.key?(value_column_name)
+          dimension_sample.key?(value_column_name) and
+          dimension_sample.fetch(value_column_name) != 'Not Available'
         end
       end
 

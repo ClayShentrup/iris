@@ -63,6 +63,10 @@ http_interactions:
           "weighted_outcome_domain_score" : "7.200000000000"
         }
         , {
+          "provider_number" : "010415",
+          "weighted_outcome_domain_score" : "Not Available"
+        }
+        , {
           "provider_number" : "010317"
         }
          ]

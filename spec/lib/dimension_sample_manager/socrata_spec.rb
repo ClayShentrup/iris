@@ -33,6 +33,7 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
         010087
         010103
         010317
+        010415
       ]
     end
 

@@ -4,9 +4,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
       domain 'Outcome of Care' do
         value DimensionSampleManagers::Socrata.new(
           dataset: :HospitalValueBasedPurchasing,
-          options: {
-            column_name: :weighted_outcome_domain_score,
-          },
+          options: { column_name: :weighted_outcome_domain_score },
         )
         category 'Mortality' do
           measures :MORT_30_HF,
@@ -46,7 +44,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
       end
       domain 'Patient Experience of Care' do
         value DimensionSampleManagers::Socrata.new(
-          dataset: 'HospitalValueBasedPurchasing',
+          dataset: :HospitalValueBasedPurchasing,
           options: {
             column_name: :weighted_patient_experience_of_care_domain_score,
           },
@@ -75,15 +73,17 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
       end
       domain 'Efficiency of Care' do
         value DimensionSampleManagers::Socrata.new(
-          dataset: 'HospitalValueBasedPurchasing',
-          options: {
-            column_name: :weighted_efficiency_domain_score,
-          },
+          dataset: :HospitalValueBasedPurchasing,
+          options: { column_name: :weighted_efficiency_domain_score },
         )
         measures :MSPB_1
       end
     end
     bundle 'Hospital-Acquired Conditions' do
+      value DimensionSampleManagers::Socrata.new(
+          dataset: :HacReductionProgram,
+          options: { column_name: :total_hac_score },
+      )
       domain 'Patient Safety Indicator' do
         measures :PSI_90
       end
