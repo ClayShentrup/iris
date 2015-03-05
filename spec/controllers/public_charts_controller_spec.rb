@@ -4,9 +4,14 @@ RSpec.describe PublicChartsController do
   describe 'GET show' do
     login_user
 
-    let(:some_hospitals) { Hospital.limit(5) }
+    let(:some_hospitals) { hospitals_relation(0) }
     let!(:node) do
       PUBLIC_CHARTS_TREE.find_node(node_id, providers: some_hospitals)
+    end
+
+    def hospitals_relation(count)
+      create_list(Hospital, count)
+      Hospital.limit(5)
     end
 
     before do
@@ -20,7 +25,7 @@ RSpec.describe PublicChartsController do
 
     describe 'assigned node' do
       let(:node_id) { 'public-data' }
-      let!(:some_hospitals) { create_list(Hospital, 2) }
+      let(:some_hospitals) { hospitals_relation(2) }
 
       it 'it sets the node' do
         expect(assigns(:node)).to eq node
