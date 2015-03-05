@@ -27,7 +27,7 @@ describe('ApplicationViewMeasuresSearch', function() {
       stubAjaxRequest(searchEndpoint + 'patient', measuresFixturePath);
       searchAutocomplete(searchInput, 'patient');
       expect(searchResults).toContainElement(
-        $('li.line_height_small.link')
+        $('li.line_height_base.link')
       );
       expect($('.main_content')).toHaveCss({opacity: '0'});
     });

@@ -1,5 +1,6 @@
 $results_margin_inner: rem(40)
 $results_margin_offset: -($results_margin_inner)
+$nav_btn_min_width: rem(96)
 
 #top_nav
   +display(flex)
@@ -21,25 +22,29 @@ $results_margin_offset: -($results_margin_inner)
     &.hide_on_desktop
       @extend .hide_on_desktop
 
-  .menu_icon,
+  .news_feed,
+  .metrics,
   .search
+    +flex-grow(1)
+
+  .news_feed a,
+  .metrics a
+    min-width: $nav_btn_min_width
+    +media($tablet_portrait_and_desktop)
+      min-width: $nav_btn_min_width * 2
+
+  .news_feed a
+    +media($mobile)
+      border-left: 0
+
+  .menu_icon,
+  .search_starting_width
+    max-width: $line_height_buffer_base
     width: $line_height_buffer_base
 
   .logo,
     +media($mobile)
       width: $line_height_buffer_base
-
-  .search
-    +flex-grow(1)
-    &.search_starting_width
-      max-width: $line_height_buffer_base
-
-  .news_feed,
-  .metrics
-    +flex-grow(1)
-
-    a
-      min-width: rem(96)
 
   .search
     input
@@ -51,7 +56,7 @@ $results_margin_offset: -($results_margin_inner)
     ul.results
       margin-left: $results_margin_offset
       position: absolute
-      width: 100vw
+      width: 135%
       z-index: 900
       @extend .inner_padding_small
       +media($tablet_portrait_and_desktop)
@@ -61,12 +66,14 @@ $results_margin_offset: -($results_margin_inner)
         margin-left: $buffer_large
 
       > li.category
+        > a
+          line-height: $icon_size_base
+
         > ul.measures
           margin-left: $results_margin_inner + rem(27)
 
       .icon
         margin-right: $buffer_base
-
 
 .search_background
   background-color: $white
