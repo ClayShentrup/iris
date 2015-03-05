@@ -45,7 +45,7 @@ class Hospital < ActiveRecord::Base
     tsearch: { prefix: true },
   }
 
-  def self.create_or_update(attributes)
+  def self.create_or_update!(attributes)
     find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
       .update_attributes!(attributes)
   end

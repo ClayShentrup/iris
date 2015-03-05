@@ -63,7 +63,7 @@ RSpec.describe Hospital do
   end
 
   describe '.create_or_update' do
-    let(:hospital_attributes) do
+    let(:new_attributes) do
       {
         'name' => 'Hospital Name',
         'zip_code' => '36301',
@@ -75,14 +75,16 @@ RSpec.describe Hospital do
     end
     let(:provider_id) { '123456' }
 
-    def create_or_update
-      described_class.create_or_update(hospital_attributes)
+    def create_or_update!
+      described_class.create_or_update!(new_attributes)
     end
 
     context 'no hospital exists with this provider_id' do
       it 'creates the hospital' do
-        expect { create_or_update }.to change(Hospital, :count).by(1)
-        expect(Hospital.last.attributes).to include hospital_attributes
+        expect { create_or_update! }
+          .to change(described_class, :count).by(1)
+        expect(described_class.last.attributes)
+          .to include new_attributes
       end
     end
 
@@ -92,9 +94,9 @@ RSpec.describe Hospital do
       end
 
       it 'updates its attributes' do
-        expect { create_or_update }.not_to change(Hospital, :count)
-        expect(existing_hospital.reload.attributes)
-          .to include hospital_attributes
+        expect { create_or_update! }
+          .to change { existing_hospital.reload.attributes }
+          .to hash_including(new_attributes)
       end
     end
   end

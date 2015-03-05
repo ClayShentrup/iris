@@ -63,7 +63,7 @@ RSpec.describe DimensionSample::SingleMeasure do
         column_name: column_name,
       }
     end
-    let(:dimension_sample_attributes) do
+    let(:attributes) do
       chart_attributes.merge(
         value: relevant_dimension_sample_1_value,
       )
@@ -120,7 +120,7 @@ RSpec.describe DimensionSample::SingleMeasure do
     def create_dimension_sample(custom_attributes)
       create(
         :dimension_sample_single_measure,
-        dimension_sample_attributes.merge(custom_attributes),
+        attributes.merge(custom_attributes),
       )
     end
 
@@ -143,7 +143,7 @@ RSpec.describe DimensionSample::SingleMeasure do
   end
 
   describe '.create_or_update' do
-    let(:existing_sample_attributes) do
+    let(:existing_attributes) do
       {
         provider_id: provider_id,
         dataset_id: dataset_id,
@@ -151,8 +151,8 @@ RSpec.describe DimensionSample::SingleMeasure do
         value: value,
       }
     end
-    let(:new_sample_attributes) do
-      existing_sample_attributes.merge(new_attribute)
+    let(:new_attributes) do
+      existing_attributes.merge(new_attribute)
     end
 
     let(:column_name) { 'weighted_outcome_domain_score' }
@@ -160,23 +160,26 @@ RSpec.describe DimensionSample::SingleMeasure do
     let(:provider_id) { '123456' }
     let(:value) { '42.42424242' }
     let!(:existing_dimension_sample) do
-      create(:dimension_sample_single_measure, existing_sample_attributes)
+      create(
+        :dimension_sample_single_measure,
+        existing_attributes,
+      )
     end
     let(:most_recent_attributes) do
       described_class.last.attributes.symbolize_keys
     end
 
     def create_or_update!
-      described_class.create_or_update!(new_sample_attributes)
+      described_class.create_or_update!(new_attributes)
     end
 
     context 'attributes match an existing record' do
       let(:new_attribute) { { value: '10.8274' } }
 
-      it 'finds and updates the existing record' do
+      it 'updates the existing record' do
         expect { create_or_update! }
           .to change { existing_dimension_sample.reload.attributes }
-          .to(hash_including(new_attribute.stringify_keys))
+          .to hash_including(new_attributes.stringify_keys)
       end
     end
 
@@ -185,7 +188,7 @@ RSpec.describe DimensionSample::SingleMeasure do
 
       it 'makes a new record' do
         expect { create_or_update! }.to change(described_class, :count).by(1)
-        expect(most_recent_attributes).to include new_sample_attributes
+        expect(most_recent_attributes).to include new_attributes
       end
     end
 
@@ -194,7 +197,7 @@ RSpec.describe DimensionSample::SingleMeasure do
 
       it 'makes a new record' do
         expect { create_or_update! }.to change(described_class, :count).by(1)
-        expect(most_recent_attributes).to include new_sample_attributes
+        expect(most_recent_attributes).to include new_attributes
       end
     end
 
@@ -203,7 +206,7 @@ RSpec.describe DimensionSample::SingleMeasure do
 
       it 'makes a new record' do
         expect { create_or_update! }.to change(described_class, :count).by(1)
-        expect(most_recent_attributes).to include new_sample_attributes
+        expect(most_recent_attributes).to include new_attributes
       end
     end
   end
