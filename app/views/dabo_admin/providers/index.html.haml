@@ -1,0 +1,25 @@
+.row
+  %h1.float_left Providers
+  = link_to 'Add a Provider', |
+    new_dabo_admin_provider_path, |
+    class: 'btn_blue top_margin_base float_right'
+
+.row
+  .table_responsive.top_margin_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+          %th Provider Id:
+          %th City
+          %th State
+          %th Hospital System
+
+      - @providers.each do |provider|
+        %tr
+          %td
+            = link_to provider.name, dabo_admin_provider_path(provider)
+          %td=provider.socrata_provider_id
+          %td=provider.city
+          %td=provider.state
+          %td=provider.hospital_system_name

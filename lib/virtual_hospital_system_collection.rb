@@ -1,4 +1,4 @@
-# Helper class that returns an array of all hospital systems and hospitals that
+# Helper class that returns an array of all hospital systems and providers that
 # are not part of systems
 class VirtualHospitalSystemCollection
   class << self
@@ -6,12 +6,12 @@ class VirtualHospitalSystemCollection
   end
 
   def call
-    systems_and_hospitals.sort_by(&:name)
+    systems_and_providers.sort_by(&:name)
   end
 
   private
 
-  def systems_and_hospitals
-    HospitalSystem.all + Hospital.without_system
+  def systems_and_providers
+    HospitalSystem.all + Provider.without_system
   end
 end

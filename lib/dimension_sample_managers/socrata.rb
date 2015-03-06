@@ -29,7 +29,7 @@ module DimensionSampleManagers
       if dataset_class.const_defined?('PROVIDER_ID_COLUMN_NAME')
         dataset_class.const_get('PROVIDER_ID_COLUMN_NAME').to_s
       else
-        'provider_id'
+        'socrata_provider_id'
       end
     end
 

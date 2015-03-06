@@ -1,22 +1,22 @@
 # == Schema Information
 #
-# Table name: hospitals
+# Table name: providers
 #
 #  id                 :integer          not null, primary key
 #  name               :string           not null
 #  zip_code           :string           not null
 #  hospital_type      :string           not null
-#  provider_id        :string           not null
+#  socrata_provider_id        :string           not null
 #  state              :string           not null
 #  city               :string           not null
 #  hospital_system_id :integer
 #
 
 require 'active_record_no_rails_helper'
-require './app/models/hospital'
+require './app/models/provider'
 require './app/models/hospital_system'
 
-RSpec.describe Hospital do
+RSpec.describe Provider do
   describe 'columns' do
     it do
       is_expected.to have_db_column(:name).of_type(:string)
@@ -31,7 +31,7 @@ RSpec.describe Hospital do
         .with_options(null: false)
     end
     it do
-      is_expected.to have_db_column(:provider_id).of_type(:string)
+      is_expected.to have_db_column(:socrata_provider_id).of_type(:string)
         .with_options(null: false)
     end
     it do
@@ -50,7 +50,7 @@ RSpec.describe Hospital do
 
       it { is_expected.to be_valid }
 
-      it { is_expected.to validate_presence_of(:provider_id) }
+      it { is_expected.to validate_presence_of(:socrata_provider_id) }
       it { is_expected.to validate_presence_of(:name) }
       it { is_expected.to validate_presence_of(:city) }
       it { is_expected.to validate_presence_of(:state) }
@@ -58,29 +58,29 @@ RSpec.describe Hospital do
 
     context 'requires a record to be saved' do
       before { create(described_class) }
-      it { is_expected.to validate_uniqueness_of(:provider_id) }
+      it { is_expected.to validate_uniqueness_of(:socrata_provider_id) }
     end
   end
 
   describe '.create_or_update' do
     let(:new_attributes) do
       {
-        'name' => 'Hospital Name',
+        'name' => 'Provider Name',
         'zip_code' => '36301',
         'hospital_type' => 'A really good one',
-        'provider_id' => provider_id,
+        'socrata_provider_id' => socrata_provider_id,
         'state' => 'AL',
         'city' => 'Dothan',
       }
     end
-    let(:provider_id) { '123456' }
+    let(:socrata_provider_id) { '123456' }
 
     def create_or_update!
       described_class.create_or_update!(new_attributes)
     end
 
-    context 'no hospital exists with this provider_id' do
-      it 'creates the hospital' do
+    context 'no provider exists with this socrata_provider_id' do
+      it 'creates the provider' do
         expect { create_or_update! }
           .to change(described_class, :count).by(1)
         expect(described_class.last.attributes)
@@ -88,14 +88,14 @@ RSpec.describe Hospital do
       end
     end
 
-    context 'a hospital already exists with this provider_id' do
-      let!(:existing_hospital) do
-        create(:hospital, provider_id: provider_id)
+    context 'a provider already exists with this socrata_provider_id' do
+      let!(:existing_provider) do
+        create(:provider, socrata_provider_id: socrata_provider_id)
       end
 
       it 'updates its attributes' do
         expect { create_or_update! }
-          .to change { existing_hospital.reload.attributes }
+          .to change { existing_provider.reload.attributes }
           .to hash_including(new_attributes)
       end
     end
@@ -110,9 +110,9 @@ RSpec.describe Hospital do
   end
 
   describe '#city_and_state' do
-    let(:hospital) { create(described_class) }
+    let(:provider) { create(described_class) }
     specify do
-      expect(hospital.city_and_state).to eq('SAN FRANCISCO, CA')
+      expect(provider.city_and_state).to eq('SAN FRANCISCO, CA')
     end
   end
 end

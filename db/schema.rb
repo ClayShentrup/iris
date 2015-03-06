@@ -11,43 +11,43 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150303224724) do
+ActiveRecord::Schema.define(version: 20150306012037) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
   create_table "accounts", force: :cascade do |t|
-    t.integer  "default_hospital_id", null: false
+    t.integer  "default_provider_id", null: false
     t.integer  "virtual_system_id",   null: false
     t.string   "virtual_system_type", null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
 
-  add_index "accounts", ["default_hospital_id"], name: "index_accounts_on_default_hospital_id", using: :btree
+  add_index "accounts", ["default_provider_id"], name: "index_accounts_on_default_provider_id", using: :btree
   add_index "accounts", ["virtual_system_type", "virtual_system_id"], name: "index_accounts_on_virtual_system_type_and_virtual_system_id", using: :btree
 
   create_table "dimension_sample_multi_measures", force: :cascade do |t|
-    t.string   "provider_id", null: false
-    t.string   "measure_id",  null: false
-    t.string   "column_name", null: false
-    t.string   "value",       null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
-    t.string   "dataset_id",  null: false
+    t.string   "socrata_provider_id", null: false
+    t.string   "measure_id",          null: false
+    t.string   "column_name",         null: false
+    t.string   "value",               null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
+    t.string   "dataset_id",          null: false
   end
 
   create_table "dimension_sample_single_measures", force: :cascade do |t|
-    t.string   "provider_id", null: false
-    t.string   "dataset_id",  null: false
-    t.string   "column_name", null: false
-    t.string   "value",       null: false
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "socrata_provider_id", null: false
+    t.string   "dataset_id",          null: false
+    t.string   "column_name",         null: false
+    t.string   "value",               null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
   end
 
-  add_index "dimension_sample_single_measures", ["provider_id", "dataset_id", "column_name"], name: "index_dimension_sample_single_measures_unique", unique: true, using: :btree
+  add_index "dimension_sample_single_measures", ["socrata_provider_id", "dataset_id", "column_name"], name: "index_dimension_sample_single_measures_unique", unique: true, using: :btree
 
   create_table "features", force: :cascade do |t|
     t.string   "key",                        null: false
@@ -61,20 +61,6 @@ ActiveRecord::Schema.define(version: 20150303224724) do
   end
 
   add_index "hospital_systems", ["name"], name: "index_hospital_systems_on_name", using: :btree
-
-  create_table "hospitals", force: :cascade do |t|
-    t.string  "name",               null: false
-    t.string  "zip_code",           null: false
-    t.string  "hospital_type",      null: false
-    t.string  "provider_id",        null: false
-    t.string  "state",              null: false
-    t.string  "city",               null: false
-    t.integer "hospital_system_id"
-  end
-
-  add_index "hospitals", ["city", "state"], name: "index_hospitals_on_city_and_state", using: :btree
-  add_index "hospitals", ["hospital_system_id"], name: "index_hospitals_on_hospital_system_id", using: :btree
-  add_index "hospitals", ["state"], name: "index_hospitals_on_state", using: :btree
 
   create_table "log_lines", force: :cascade do |t|
     t.string   "heroku_request_id", null: false
@@ -100,6 +86,20 @@ ActiveRecord::Schema.define(version: 20150303224724) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "providers", force: :cascade do |t|
+    t.string  "name",                null: false
+    t.string  "zip_code",            null: false
+    t.string  "hospital_type",       null: false
+    t.string  "socrata_provider_id", null: false
+    t.string  "state",               null: false
+    t.string  "city",                null: false
+    t.integer "hospital_system_id"
+  end
+
+  add_index "providers", ["city", "state"], name: "index_providers_on_city_and_state", using: :btree
+  add_index "providers", ["hospital_system_id"], name: "index_providers_on_hospital_system_id", using: :btree
+  add_index "providers", ["state"], name: "index_providers_on_state", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                                             null: false

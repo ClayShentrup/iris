@@ -1,6 +1,6 @@
 require_relative 'data_from_spreadsheet'
 
-# Import Hospital systems and associate hospital to them
+# Import Hospital systems and associate providers to them
 module HospitalSystems
   Importer = Struct.new(:data) do
     def self.call
@@ -8,24 +8,24 @@ module HospitalSystems
     end
 
     def call
-      if hospital_exists_in_our_database?
-        associate_hospital_with_system
+      if provider_exists_in_our_database?
+        associate_provider_with_system
         nil
       else
-        "Hospital not found: Provider id ##{data.fetch(:provider_id)}"
+        "Provider not found: ##{data.fetch(:socrata_provider_id)}"
       end
     end
 
-    def hospital_exists_in_our_database?
-      hospital.present?
+    def provider_exists_in_our_database?
+      provider.present?
     end
 
-    def hospital
-      Hospital.find_by(provider_id: data.fetch(:provider_id))
+    def provider
+      Provider.find_by(socrata_provider_id: data.fetch(:socrata_provider_id))
     end
 
-    def associate_hospital_with_system
-      hospital.update_attributes!(hospital_system: hospital_system)
+    def associate_provider_with_system
+      provider.update_attributes!(hospital_system: hospital_system)
     end
 
     def hospital_system

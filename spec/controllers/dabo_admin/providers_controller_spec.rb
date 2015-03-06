@@ -1,10 +1,16 @@
 require 'rails_helper'
 
-RSpec.describe DaboAdmin::HospitalsController do
+RSpec.describe DaboAdmin::ProvidersController do
   login_admin
 
   let(:invalid_attributes) do
-    attributes_for(Hospital, provider_id: '', name: '', city: '', state: '')
+    attributes_for(
+      Provider,
+      socrata_provider_id: '',
+      name: '',
+      city: '',
+      state: '',
+    )
   end
 
   it_behaves_like 'an ApplicationController'

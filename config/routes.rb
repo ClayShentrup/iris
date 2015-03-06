@@ -14,7 +14,7 @@ Rails.application.routes.draw do
       mount Sidekiq::Web => '/sidekiq'
 
       namespace :dabo_admin do
-        resources :hospitals
+        resources :providers
         resources :hospital_systems
         resources :accounts
         resources :reports, only: :index
@@ -34,7 +34,7 @@ Rails.application.routes.draw do
     resource :metrics, only: :show, controller: :charts_root
     get 'metrics/*id', to: 'public_charts#show'
 
-    resources :hospital_search_results, only: [:index, :show]
+    resources :provider_search_results, only: [:index, :show]
 
     # product-friendly aliases
     get :news, to: 'news_items#index'

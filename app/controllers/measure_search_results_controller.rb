@@ -12,6 +12,6 @@ class MeasureSearchResultsController < ApplicationController
   private
 
   def provider_subset
-    Hospital.first(5)
+    Provider.first(5)
   end
 end
