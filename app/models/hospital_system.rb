@@ -9,8 +9,8 @@
 # Represents a system entity
 class HospitalSystem < ActiveRecord::Base
   validates :name, presence: true
-  has_many :providers
+  has_many :hospitals
   has_one :account, as: :virtual_system
 
-  delegate :count, to: :providers, prefix: true
+  delegate :count, to: :hospitals, prefix: true
 end

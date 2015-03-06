@@ -2,13 +2,13 @@
   .two_column
     .dropdown_button.hospital.vertical_padding_base.col6-xs.border_grey
       %span.text_ellipsis.with_base_icon.line_height_buffer_base.hospital_name
-        = provider_compare_presenter.provider_name
+        = hospital_compare_presenter.hospital_name
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle icon_arrow_down'
         = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
     .dropdown_button.compare.vertical_padding_base.col6-xs.border_grey
       %span.text_ellipsis.with_base_icon.line_height_buffer_base.compare_name
-        = provider_compare_presenter.provider_city_and_state
+        = hospital_compare_presenter.hospital_city_and_state
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle icon_arrow_down'
         = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
@@ -18,11 +18,11 @@
         .has_two_icons
           %span.icon.icon_size_xs.icon_brand_color_primary.float_left.form_control_icon
             = render 'shared/icon', icon: '#icon_search', klass: 'vertical_align_middle'
-          %input.form_control.no_border{placeholder: 'Search a provider'}
+          %input.form_control.no_border{placeholder: 'Search a hospital'}
           %span.icon.icon_size_xs.float_right.form_control_icon.icon_close
             = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
     %ul.unstyled
   .dropdown_items.compare.border_grey
     %h4.no_margin.vertical_padding_xl.border_bottom_grey.line_height_buffer_xl.inner_padding_base Compare to
     %ul.unstyled
-      = render partial: 'provider_search_results/compare', locals: { provider_compare_presenter: provider_compare_presenter }
+      = render partial: 'hospital_search_results/compare', locals: { hospital_compare_presenter: hospital_compare_presenter }

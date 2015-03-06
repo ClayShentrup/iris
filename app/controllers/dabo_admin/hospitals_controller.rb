@@ -1,16 +1,16 @@
 module DaboAdmin
-  # Dabo Admin Providers Controller
-  class ProvidersController < ApplicationController
+  # Dabo Admin Hospitals Controller
+  class HospitalsController < ApplicationController
     private
 
     def model_params
-      params.require(:provider)
+      params.require(:hospital)
         .permit(
           :city,
           :hospital_system_id,
           :hospital_type,
           :name,
-          :socrata_provider_id,
+          :provider_id,
           :state,
           :zip_code,
         )

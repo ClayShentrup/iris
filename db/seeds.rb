@@ -4,13 +4,13 @@
 # db with db:reset).
 
 hospital_system = HospitalSystem.create!(name: 'Mayo Health System')
-providers = Provider.create!(
+hospitals = Hospital.create!(
   [
     {
       name: 'MAYO CLINIC HOSPITAL',
       zip_code: '85054',
       hospital_type: 'Acute Care Hospitals',
-      socrata_provider_id: '030103',
+      provider_id: '030103',
       state: 'AZ',
       city: 'PHOENIX',
     },
@@ -18,18 +18,18 @@ providers = Provider.create!(
       name: 'MAYO CLINIC',
       zip_code: '32224',
       hospital_type: 'Acute Care Hospitals',
-      socrata_provider_id: '100151',
+      provider_id: '100151',
       state: 'FL',
       city: 'JACKSONVILLE',
     },
   ],
-) do |provider|
-  provider.hospital_system = hospital_system
+) do |hospital|
+  hospital.hospital_system = hospital_system
 end
 
 account = Account.create!(
   virtual_system: hospital_system,
-  default_provider: providers.first,
+  default_hospital: hospitals.first,
 )
 
 User.create!(
@@ -56,31 +56,31 @@ DimensionSample::SingleMeasure.create!(
       dataset_id: 'ypbt-wvdk',
       column_name: 'weighted_outcome_domain_score',
       value: '17.127',
-      socrata_provider_id: providers.fetch(0).socrata_provider_id,
+      provider_id: hospitals.fetch(0).provider_id,
     },
     {
       dataset_id: 'ypbt-wvdk',
       column_name: 'weighted_outcome_domain_score',
       value: '27.128',
-      socrata_provider_id: providers.fetch(1).socrata_provider_id,
+      provider_id: hospitals.fetch(1).provider_id,
     },
     {
       dataset_id: 'ypbt-wvdk',
       column_name: 'weighted_clinical_process_of_care_domain_score',
       value: '15.133',
-      socrata_provider_id: providers.fetch(0).socrata_provider_id,
+      provider_id: hospitals.fetch(0).provider_id,
     },
     {
       dataset_id: 'ypbt-wvdk',
       column_name: 'weighted_efficency_domain_score',
       value: '9.031',
-      socrata_provider_id: providers.fetch(0).socrata_provider_id,
+      provider_id: hospitals.fetch(0).provider_id,
     },
     {
       dataset_id: 'ypbt-wvdk',
       column_name: 'weighted_patient_experience_of_care_score',
       value: '8.462',
-      socrata_provider_id: providers.fetch(1).socrata_provider_id,
+      provider_id: hospitals.fetch(1).provider_id,
     },
   ],
 )

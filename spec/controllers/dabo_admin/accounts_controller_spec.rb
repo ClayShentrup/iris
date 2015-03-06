@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe DaboAdmin::AccountsController do
   let(:instance_url) { dabo_admin_account_path Account.last }
-  let(:virtual_system) { create(:hospital_system_with_provider) }
-  let(:default_provider) { virtual_system.providers.first }
+  let(:virtual_system) { create(:hospital_system_with_hospital) }
+  let(:default_hospital) { virtual_system.hospitals.first }
   let(:invalid_account) do
     {
       virtual_system_gid: '',
-      default_provider_id: '',
+      default_hospital_id: '',
       user_ids: [],
     }
   end
@@ -25,7 +25,7 @@ RSpec.describe DaboAdmin::AccountsController do
     let(:valid_account) do
       {
         virtual_system_gid: virtual_system.to_global_id,
-        default_provider_id: default_provider.id,
+        default_hospital_id: default_hospital.id,
         user_ids: [users.first.id, users.second.id],
       }
     end
@@ -66,7 +66,7 @@ RSpec.describe DaboAdmin::AccountsController do
     let(:new_attributes) do
       {
         virtual_system_gid: virtual_system.to_global_id,
-        default_provider_id: default_provider.id,
+        default_hospital_id: default_hospital.id,
         user_ids: [new_user.id],
       }
     end
@@ -78,8 +78,8 @@ RSpec.describe DaboAdmin::AccountsController do
       end
 
       it 'updates the requested model' do
-        expect(account_instance.reload.attributes.fetch('default_provider_id'))
-          .to eq default_provider.id
+        expect(account_instance.reload.attributes.fetch('default_hospital_id'))
+          .to eq default_hospital.id
       end
 
       it 'assigns the requested model' do

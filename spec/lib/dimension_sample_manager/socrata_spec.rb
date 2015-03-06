@@ -1,7 +1,7 @@
 require 'active_record_no_rails_helper'
 require 'dimension_sample_managers/socrata'
 require 'socrata/datasets/hospital_value_based_purchasing'
-require './app/models/provider'
+require './app/models/hospital'
 require './app/models/dimension_sample/single_measure'
 
 RSpec.describe DimensionSampleManagers::Socrata, :vcr do
@@ -13,11 +13,11 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
   end
 
   let(:data) { subject.data(relevant_providers) }
-  let(:relevant_providers) { Provider.where(socrata_provider_id: provider_ids) }
+  let(:relevant_providers) { Hospital.where(provider_id: provider_ids) }
 
   def create_relevant_providers
-    provider_ids.each do |socrata_provider_id|
-      create(Provider, socrata_provider_id: socrata_provider_id)
+    provider_ids.each do |provider_id|
+      create(Hospital, provider_id: provider_id)
     end
   end
 

@@ -7,23 +7,23 @@ class PublicChartsController < ApplicationController
       params.fetch(:id),
       providers: providers,
     )
-    @provider_compare_presenter =
-      Providers::ProviderComparePresenter.new(default_provider)
+    @hospital_compare_presenter =
+      Hospitals::HospitalComparePresenter.new(default_hospital)
     @custom_feedback_bar = true
   end
 
   private
 
   def providers
-    Provider.limit(5)
+    Hospital.limit(5)
   end
 
-  def default_provider
-    Provider.new(
+  def default_hospital
+    Hospital.new(
       name: 'SAN FRANCISCO GENERAL HOSPITAL',
       zip_code: '94110',
       hospital_type: 'Acute Care Hospitals',
-      socrata_provider_id: '050228',
+      provider_id: '050228',
       state: 'CA',
       city: 'SAN FRANCISCO',
       hospital_system_id: 115,

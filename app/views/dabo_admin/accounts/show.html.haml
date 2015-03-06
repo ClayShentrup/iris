@@ -5,7 +5,7 @@
         %tr
           %th Name
           %th Type
-          %th Default Provider
+          %th Default Hospital
           %th Users
       %tr
         %td
@@ -13,7 +13,7 @@
         %td
           = @account.virtual_system_type
         %td
-          = @account.default_provider_name
+          = @account.default_hospital_name
         %td
           %ul.unstyled
             - @account.users.each do |user|

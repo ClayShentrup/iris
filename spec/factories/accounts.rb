@@ -12,10 +12,10 @@
 
 FactoryGirl.define do
   factory :account do
-    association :virtual_system, factory: :hospital_system_with_provider
+    association :virtual_system, factory: :hospital_system_with_hospital
 
     before(:create) do |account|
-      account.default_provider = account.virtual_system.providers.first
+      account.default_hospital = account.virtual_system.hospitals.first
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'socrata/create_or_update_providers'
 require 'active_record_no_rails_helper'
-require './app/models/provider'
+require './app/models/hospital'
 
 RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
   let(:cassette) do
@@ -25,7 +25,7 @@ RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
     {
       'name' => 'SOUTHEAST ALABAMA MEDICAL CENTER',
       'zip_code' => '36301',
-      'socrata_provider_id' => '010001',
+      'provider_id' => '010001',
       'state' => 'AL',
       'hospital_type' => 'Acute Care Hospitals',
       'city' => 'DOTHAN',
@@ -41,7 +41,7 @@ RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
   end
 
   describe 'with existing provider(s)' do
-    let!(:existing_provider) { create(Provider, socrata_provider_id: '010001') }
+    let!(:existing_provider) { create(Hospital, provider_id: '010001') }
 
     before { call }
 
@@ -58,7 +58,7 @@ RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
       {
         'name' => 'MARSHALL MEDICAL CENTER SOUTH',
         'zip_code' => '35957',
-        'socrata_provider_id' => '010005',
+        'provider_id' => '010005',
         'state' => 'AL',
         'hospital_type' => 'Acute Care Hospitals',
         'city' => 'BOAZ',
@@ -68,7 +68,7 @@ RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
       {
         'name' => 'ELIZA COFFEE MEMORIAL HOSPITAL',
         'zip_code' => '35631',
-        'socrata_provider_id' => '010006',
+        'provider_id' => '010006',
         'state' => 'AL',
         'hospital_type' => 'Acute Care Hospitals',
         'city' => 'FLORENCE',
@@ -76,7 +76,7 @@ RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
     end
 
     it 'creates new providers' do
-      saved_provider_attributes = Provider.all.map do |provider|
+      saved_provider_attributes = Hospital.all.map do |provider|
         relevant_attributes(provider)
       end
 
@@ -89,7 +89,7 @@ RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
     describe 'block yield order' do
       let(:block) do
         lambda do |_|
-          processed_provider_attributes << relevant_attributes(Provider.last)
+          processed_provider_attributes << relevant_attributes(Hospital.last)
         end
       end
       let(:processed_provider_attributes) { [] }

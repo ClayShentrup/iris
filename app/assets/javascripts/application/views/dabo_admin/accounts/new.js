@@ -4,11 +4,11 @@
 Iris.Views['accounts-new'] = Backbone.View.extend({
 
   events: {
-    'change .system_selection': '_loadProviders'
+    'change .system_selection': '_loadHospitals'
   },
 
-  _loadProviders: function() {
-    Iris.Util.loadProviders().done(function() {
+  _loadHospitals: function() {
+    Iris.Util.loadHospitals().done(function() {
       $('.system_selection option:empty').remove();
     });
   }

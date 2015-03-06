@@ -7,20 +7,20 @@ require 'pg_search'
 #  name               :string           not null
 #  zip_code           :string           not null
 #  hospital_type      :string           not null
-#  socrata_provider_id        :string           not null
+#  provider_id        :string           not null
 #  state              :string           not null
 #  city               :string           not null
 #  hospital_system_id :integer
 #
 
 # Represents a hospital entity fetched from Socrata's API.
-class Provider < ActiveRecord::Base
+class Hospital < ActiveRecord::Base
   include PgSearch
   SEARCH_RESULTS_LIMIT = 10
 
   belongs_to :hospital_system
   has_one :account, as: :virtual_system
-  validates :socrata_provider_id, uniqueness: true, presence: true
+  validates :provider_id, uniqueness: true, presence: true
   validates :name, presence: true
   validates :city, presence: true
   validates :state, presence: true
@@ -46,16 +46,15 @@ class Provider < ActiveRecord::Base
   }
 
   def self.create_or_update!(attributes)
-    find_or_initialize_by(
-      socrata_provider_id: attributes.fetch('socrata_provider_id'),
-    ).update_attributes!(attributes)
+    find_or_initialize_by(provider_id: attributes.fetch('provider_id'))
+      .update_attributes!(attributes)
   end
 
   def city_and_state
     "#{city}, #{state}"
   end
 
-  def providers
+  def hospitals
     [self]
   end
 end

@@ -27,11 +27,11 @@ module PublicChartsHelper
     )
   end
 
-  def provider_data_attributes(provider)
+  def hospital_data_attributes(hospital)
     {
-      socrata_provider_id: provider.id,
-      provider_name: provider.name,
-      provider_city_and_state: provider.city_and_state,
+      hospital_id: hospital.id,
+      hospital_name: hospital.name,
+      hospital_city_and_state: hospital.city_and_state,
     }
   end
 end

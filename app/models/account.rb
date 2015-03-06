@@ -16,7 +16,7 @@ require './app/models/user'
 # An entity that represents a client account
 class Account < ActiveRecord::Base
   belongs_to :virtual_system, polymorphic: true
-  belongs_to :default_provider, class_name: 'Provider'
+  belongs_to :default_hospital, class_name: 'Hospital'
   has_many :users
 
   attr_accessor :virtual_system_gid
@@ -24,8 +24,8 @@ class Account < ActiveRecord::Base
   delegate :name,
            to: :virtual_system
   delegate :name,
-           to: :default_provider, prefix: true
+           to: :default_hospital, prefix: true
 
-  validates :default_provider, presence: true
+  validates :default_hospital, presence: true
   validates :virtual_system, presence: true
 end

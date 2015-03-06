@@ -3,7 +3,7 @@
 # Table name: dimension_sample_single_measures
 #
 #  id          :integer          not null, primary key
-#  socrata_provider_id :string           not null
+#  provider_id :string           not null
 #  dataset_id  :string           not null
 #  column_name :string           not null
 #  value       :string           not null
@@ -16,7 +16,7 @@ module DimensionSample
   # Corresponds to a dataset like yq43-i98g, which has one line per provider.
   class SingleMeasure < ActiveRecord::Base
     validates :dataset_id, presence: true
-    validates :socrata_provider_id, presence: true
+    validates :provider_id, presence: true
     validates :column_name, presence: true
     validates :value, presence: true
 
@@ -26,9 +26,9 @@ module DimensionSample
         column_name: options.fetch(:column_name),
       )
         .joins(<<-JOIN_QUERY)
-          LEFT JOIN providers
-          ON dimension_sample_single_measures.socrata_provider_id =
-          providers.socrata_provider_id
+          LEFT JOIN hospitals
+          ON dimension_sample_single_measures.provider_id =
+          hospitals.provider_id
         JOIN_QUERY
         .merge(providers)
         .pluck(:value)
@@ -36,7 +36,7 @@ module DimensionSample
 
     def self.create_or_update!(attributes)
       find_or_initialize_by(
-        attributes.slice(:column_name, :dataset_id, :socrata_provider_id),
+        attributes.slice(:column_name, :dataset_id, :provider_id),
       ).update_attributes!(attributes)
     end
   end

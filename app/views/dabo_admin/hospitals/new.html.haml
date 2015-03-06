@@ -1,19 +1,19 @@
 .row
   %h1 New Hospital System
-  - if @provider.errors.any?
+  - if @hospital.errors.any?
     #error_explanation
       %ul
-        - @provider.errors.full_messages.each do |msg|
+        - @hospital.errors.full_messages.each do |msg|
           %li
             = msg
 
-  = form_for [:dabo_admin, @provider] do |f|
+  = form_for [:dabo_admin, @hospital] do |f|
     .field
       = f.label :name
       = f.text_field :name, class: 'form_control'
     .field
-      = f.label :socrata_provider_id, 'Provider ID'
-      = f.number_field :socrata_provider_id, class: 'form_control'
+      = f.label :provider_id, 'Provider ID'
+      = f.number_field :provider_id, class: 'form_control'
     .field
       = f.label :city
       = f.text_field :city, class: 'form_control'
@@ -35,4 +35,4 @@
       include_blank: true)
     .actions
       = f.submit
-      = link_to 'Back', dabo_admin_providers_path(@provider)
+      = link_to 'Back', dabo_admin_hospitals_path(@hospital)

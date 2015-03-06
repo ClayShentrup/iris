@@ -79,12 +79,12 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
 
   _compareEndpoint: function(hospitalId) {
     // TODO: Get this from a path helper in the Rails template
-    return '/provider_search_results/' + hospitalId;
+    return '/hospital_search_results/' + hospitalId;
   },
 
   _searchEndpoint: function(requestTerm) {
     // TODO: Get this from a path helper in the Rails template
-    return '/provider_search_results/?term=' + encodeURIComponent(requestTerm);
+    return '/hospital_search_results/?term=' + encodeURIComponent(requestTerm);
   },
 
   _preventEnterFromSubmitting: function(event) {

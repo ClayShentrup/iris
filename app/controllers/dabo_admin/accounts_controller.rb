@@ -3,7 +3,7 @@ module DaboAdmin
   class AccountsController < ApplicationController
     def new
       super
-      show_providers_for_selected_system if request.xhr?
+      show_hospitals_for_selected_system if request.xhr?
     end
 
     def create
@@ -16,11 +16,11 @@ module DaboAdmin
 
     def edit
       if request.xhr?
-        show_providers_for_selected_system
+        show_hospitals_for_selected_system
       else
         super
         @account.virtual_system_gid = @account.virtual_system.to_global_id.to_s
-        @provider_collection = @account.virtual_system.providers
+        @hospital_collection = @account.virtual_system.hospitals
       end
     end
 
@@ -41,17 +41,17 @@ module DaboAdmin
       respond_with :dabo_admin, @account
     end
 
-    def show_providers_for_selected_system
-      render partial: 'provider_select',
+    def show_hospitals_for_selected_system
+      render partial: 'hospital_select',
              locals: {
-               selected_default_provider_id: nil,
-               provider_collection: virtual_system.providers,
+               selected_default_hospital_id: nil,
+               hospital_collection: virtual_system.hospitals,
              }
     end
 
     def allowed_params
       params.require(:account)
-        .permit(:virtual_system_gid, :default_provider_id, user_ids: [])
+        .permit(:virtual_system_gid, :default_hospital_id, user_ids: [])
     end
 
     def account_users

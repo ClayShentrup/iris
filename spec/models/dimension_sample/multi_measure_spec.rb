@@ -3,7 +3,7 @@
 # Table name: dimension_sample_multi_measures
 #
 #  id          :integer          not null, primary key
-#  socrata_provider_id :string           not null
+#  provider_id :string           not null
 #  measure_id  :string           not null
 #  column_name :string           not null
 #  value       :string           not null
@@ -22,7 +22,7 @@ RSpec.describe DimensionSample::MultiMeasure do
         .with_options(null: false)
     end
     it do
-      is_expected.to have_db_column(:socrata_provider_id).of_type(:string)
+      is_expected.to have_db_column(:provider_id).of_type(:string)
         .with_options(null: false)
     end
     it do
@@ -41,7 +41,7 @@ RSpec.describe DimensionSample::MultiMeasure do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:dataset_id) }
-    it { is_expected.to validate_presence_of(:socrata_provider_id) }
+    it { is_expected.to validate_presence_of(:provider_id) }
     it { is_expected.to validate_presence_of(:measure_id) }
     it { is_expected.to validate_presence_of(:column_name) }
     it { is_expected.to validate_presence_of(:value) }

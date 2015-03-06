@@ -8,10 +8,10 @@
 
 require 'active_record_no_rails_helper'
 require './app/models/hospital_system'
-require './app/models/provider'
+require './app/models/hospital'
 
 RSpec.describe HospitalSystem do
-  it { is_expected.to have_many(:providers) }
+  it { is_expected.to have_many(:hospitals) }
 
   describe 'columns' do
     specify do

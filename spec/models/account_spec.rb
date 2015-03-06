@@ -15,11 +15,11 @@ require './app/models/account'
 
 RSpec.describe Account, type: :model do
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:default_provider) }
+    it { is_expected.to validate_presence_of(:default_hospital) }
     it { is_expected.to validate_presence_of(:virtual_system) }
   end
 
   it { is_expected.to belong_to :virtual_system }
-  it { is_expected.to belong_to :default_provider }
+  it { is_expected.to belong_to :default_hospital }
   it { is_expected.to have_many(:users) }
 end

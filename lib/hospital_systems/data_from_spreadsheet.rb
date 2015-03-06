@@ -6,7 +6,7 @@ module HospitalSystems
   class DataFromSpreadsheet
     FILEPATH = 'lib/assets/files/hospital_systems.xls'
     HEADERS = {
-      socrata_provider_id: 'Provider Number',
+      provider_id: 'Provider Number',
       system_name: 'System Name',
     }
 
@@ -18,9 +18,7 @@ module HospitalSystems
       data_rows.map do |row|
         {
           system_name: row.fetch(:system_name),
-          socrata_provider_id: normalized_provider_id(
-            row.fetch(:socrata_provider_id),
-          ),
+          provider_id: normalized_provider_id(row.fetch(:provider_id)),
         }
       end
     end
@@ -43,16 +41,12 @@ module HospitalSystems
       row.fetch(:system_name) == 'System Name'
     end
 
-    def normalized_provider_id(socrata_provider_id)
-      provider_id_to_string(socrata_provider_id).rjust(6, '0')
+    def normalized_provider_id(provider_id)
+      provider_id_to_string(provider_id).rjust(6, '0')
     end
 
-    def provider_id_to_string(socrata_provider_id)
-      if socrata_provider_id.is_a?(Numeric)
-        socrata_provider_id.to_i.to_s
-      else
-        socrata_provider_id
-      end
+    def provider_id_to_string(provider_id)
+      provider_id.is_a?(Numeric) ? provider_id.to_i.to_s : provider_id
     end
   end
 end

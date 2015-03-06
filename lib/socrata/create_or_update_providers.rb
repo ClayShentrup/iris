@@ -6,7 +6,7 @@ module Socrata
   module CreateOrUpdateProviders
     DATASET_ID = 'xubh-q36u'
     REQUIRED_COLUMNS = %w[
-      socrata_provider_id
+      provider_id
       hospital_name
       hospital_type
       city
@@ -22,7 +22,7 @@ module Socrata
       providers.each_with_index do |provider_attributes, index|
         provider_attributes['name'] = provider_attributes
                                       .delete('hospital_name')
-        Provider.create_or_update!(provider_attributes)
+        Hospital.create_or_update!(provider_attributes)
         yield index
       end
       providers.length

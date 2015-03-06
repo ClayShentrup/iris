@@ -1,20 +1,20 @@
 require 'spec_helper'
 require 'active_record_no_rails_helper'
-require './app/models/provider'
+require './app/models/hospital'
 require './app/models/hospital_system'
 require 'hospital_systems/importer'
 
 RSpec.describe HospitalSystems::Importer do
-  let!(:provider_in_universal_system) do
-    create(:provider, socrata_provider_id: '200001')
+  let!(:hospital_in_universal_system) do
+    create(:hospital, provider_id: '200001')
   end
 
-  let!(:provider_in_resources_system) do
-    create(:provider, socrata_provider_id: '20002F')
+  let!(:hospital_in_resources_system) do
+    create(:hospital, provider_id: '20002F')
   end
 
-  let!(:provider_without_system) do
-    create(:provider, socrata_provider_id: '200003')
+  let!(:hospital_without_system) do
+    create(:hospital, provider_id: '200003')
   end
 
   let(:universal_system_name) { 'Universal Health Services' }
@@ -36,20 +36,20 @@ RSpec.describe HospitalSystems::Importer do
       expect { import_hospital_systems }.to change(HospitalSystem, :count).by(2)
     end
 
-    it 'associates provider with systems' do
+    it 'associates hospital with systems' do
       import_hospital_systems
 
-      universal_system = provider_in_universal_system.reload.hospital_system
-      resources_system = provider_in_resources_system.reload.hospital_system
+      universal_system = hospital_in_universal_system.reload.hospital_system
+      resources_system = hospital_in_resources_system.reload.hospital_system
 
       expect(universal_system.name).to eq(universal_system_name)
       expect(resources_system.name).to eq(resources_system_name)
     end
 
-    it 'leaves the provider without system if it is not provided' do
+    it 'leaves the hospital without system if it is not provided' do
       import_hospital_systems
 
-      expect(provider_without_system.reload.hospital_system).to be_nil
+      expect(hospital_without_system.reload.hospital_system).to be_nil
     end
   end
 
@@ -62,7 +62,7 @@ RSpec.describe HospitalSystems::Importer do
       create(
         :hospital_system,
         name: 'Health Resources',
-        providers: [provider_in_resources_system],
+        hospitals: [hospital_in_resources_system],
       )
     end
 
@@ -70,7 +70,7 @@ RSpec.describe HospitalSystems::Importer do
       create(
         :hospital_system,
         name: 'Healthcare System',
-        providers: [provider_without_system],
+        hospitals: [hospital_without_system],
       )
     end
 
@@ -80,8 +80,8 @@ RSpec.describe HospitalSystems::Importer do
 
     it 'associates hospital with systems' do
       import_hospital_systems
-      universal_system = provider_in_universal_system.reload.hospital_system
-      resources_system = provider_in_resources_system.reload.hospital_system
+      universal_system = hospital_in_universal_system.reload.hospital_system
+      resources_system = hospital_in_resources_system.reload.hospital_system
 
       expect(universal_system.name).to eq(universal_system_name)
       expect(resources_system.name).to eq(resources_system_name)
@@ -90,13 +90,13 @@ RSpec.describe HospitalSystems::Importer do
     it 'leaves the hospital without system if it is not provided' do
       import_hospital_systems
 
-      expect(provider_without_system.reload.hospital_system).to be_nil
+      expect(hospital_without_system.reload.hospital_system).to be_nil
     end
 
-    it 'removes provider from the system not included in the file' do
+    it 'removes hospitals from the system not included in the file' do
       import_hospital_systems
 
-      expect(healthcare_system.reload.providers).to be_empty
+      expect(healthcare_system.reload.hospitals).to be_empty
     end
   end
 
@@ -109,8 +109,8 @@ RSpec.describe HospitalSystems::Importer do
         nil,
         nil,
         nil,
-        'Provider not found: #200004',
-        'Provider not found: #019048',
+        'Hospital not found: Provider id #200004',
+        'Hospital not found: Provider id #019048',
       ]
     end
   end
