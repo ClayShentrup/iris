@@ -1,6 +1,6 @@
 'use strict';
 
-Iris.Util.loadHospitals = function() {
+Iris.Util.loadProviders = function() {
   return $.ajax({
     url: '/dabo_admin/accounts/new',
     dataType: 'html',
@@ -10,6 +10,6 @@ Iris.Util.loadHospitals = function() {
       }
     }
   }).success(function(response) {
-    $('.default_hospital').html(response);
+    $('.default_provider').html(response);
   });
 };

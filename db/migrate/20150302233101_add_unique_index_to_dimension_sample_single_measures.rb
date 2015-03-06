@@ -3,7 +3,7 @@ class AddUniqueIndexToDimensionSampleSingleMeasures < ActiveRecord::Migration
     add_index(
       :dimension_sample_single_measures,
       [
-        :provider_id,
+        :socrata_provider_id,
         :dataset_id,
         :column_name,
       ],

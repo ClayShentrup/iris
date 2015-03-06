@@ -1,5 +1,5 @@
 .row
-  %h1 Hospital Detail
+  %h1 Provider Detail
 
   - # name, provider id, city and state
   .table_responsive.top_margin_base
@@ -12,17 +12,17 @@
           %th State
           %th Hospital System
       %tr
-        %td=@hospital.name
-        %td=@hospital.provider_id
-        %td=@hospital.city
-        %td=@hospital.state
-        %td=@hospital.hospital_system_name
+        %td=@provider.name
+        %td=@provider.socrata_provider_id
+        %td=@provider.city
+        %td=@provider.state
+        %td=@provider.hospital_system_name
 
   .bottom_margin_base
-    = link_to 'Delete This Hospital', |
-      dabo_admin_hospital_path(@hospital), |
+    = link_to 'Delete This Provider', |
+      dabo_admin_provider_path(@provider), |
       method: :delete, |
       data: { confirm: 'Are you sure?' }, |
       class: 'btn_red top_margin_base'
 
-    = link_to 'Back', dabo_admin_hospitals_path, class: 'vertical_padding_small'
+    = link_to 'Back', dabo_admin_providers_path, class: 'vertical_padding_small'

@@ -1,0 +1,8 @@
+.field.default_provider
+  = label_tag :default_provider
+  = collection_select(:account, |
+    :default_provider_id, |
+    provider_collection, |
+    :id, |
+    :name, |
+    { selected: selected_default_provider_id } )

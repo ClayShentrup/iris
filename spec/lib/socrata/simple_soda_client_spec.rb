@@ -10,7 +10,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
   let(:hospitals_dataset_id) { 'xubh-q36u' }
   let(:required_columns) do
     %w[
-      provider_id
+      socrata_provider_id
       hospital_name
     ]
   end
@@ -25,15 +25,15 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
     expect(results).to eq [
       {
         'hospital_name' => 'SOUTHEAST ALABAMA MEDICAL CENTER',
-        'provider_id' => '010001',
+        'socrata_provider_id' => '010001',
       },
       {
         'hospital_name' => 'MARSHALL MEDICAL CENTER SOUTH',
-        'provider_id' => '010005',
+        'socrata_provider_id' => '010005',
       },
       {
         'hospital_name' => 'MIZELL MEMORIAL HOSPITAL',
-        'provider_id' => '010007',
+        'socrata_provider_id' => '010007',
       },
     ]
   end

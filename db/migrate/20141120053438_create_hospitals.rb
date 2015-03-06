@@ -5,7 +5,7 @@ class CreateHospitals < ActiveRecord::Migration
       t.column :name, :string
       t.column :zip_code, :integer
       t.column :hospital_type, :string
-      t.column :provider_id, :string
+      t.column :socrata_provider_id, :string
       t.column :state, :string
       t.column :city, :string
     end

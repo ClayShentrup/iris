@@ -3,7 +3,7 @@
 # Table name: dimension_sample_single_measures
 #
 #  id          :integer          not null, primary key
-#  provider_id :string           not null
+#  socrata_provider_id :string           not null
 #  dataset_id  :string           not null
 #  column_name :string           not null
 #  value       :string           not null
@@ -13,7 +13,7 @@
 
 require 'active_record_no_rails_helper'
 require './app/models/dimension_sample/single_measure'
-require './app/models/hospital'
+require './app/models/provider'
 
 RSpec.describe DimensionSample::SingleMeasure do
   describe 'columns' do
@@ -22,7 +22,7 @@ RSpec.describe DimensionSample::SingleMeasure do
         .with_options(null: false)
     end
     it do
-      is_expected.to have_db_column(:provider_id).of_type(:string)
+      is_expected.to have_db_column(:socrata_provider_id).of_type(:string)
         .with_options(null: false)
     end
     it do
@@ -37,17 +37,17 @@ RSpec.describe DimensionSample::SingleMeasure do
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:dataset_id) }
-    it { is_expected.to validate_presence_of(:provider_id) }
+    it { is_expected.to validate_presence_of(:socrata_provider_id) }
     it { is_expected.to validate_presence_of(:column_name) }
     it { is_expected.to validate_presence_of(:value) }
   end
 
   describe 'indexes' do
-    it 'hase a unique index on provider_id, column_name, and dataset_id' do
+    it 'has a unique index on socrata_provider_id, column_name & dataset_id' do
       expect do
         2.times do
           create(:dimension_sample_single_measure,
-                 provider_id: '102101',
+                 socrata_provider_id: '102101',
                  dataset_id: '893x-ot20',
                  column_name: 'foo_bar',
           )
@@ -72,37 +72,37 @@ RSpec.describe DimensionSample::SingleMeasure do
     let(:column_name) { 'weighted_outcome_domain_score' }
 
     let!(:relevant_provider_1) do
-      create(Hospital, provider_id: relevant_provider_id_1)
+      create(Provider, socrata_provider_id: relevant_provider_id_1)
     end
     let(:relevant_provider_id_1) { '010001' }
 
     let!(:relevant_provider_2) do
-      create(Hospital, provider_id: relevant_provider_id_2)
+      create(Provider, socrata_provider_id: relevant_provider_id_2)
     end
     let(:relevant_provider_id_2) { '010005' }
 
     let!(:irrelevant_provider) do
-      create(Hospital, provider_id: irrelevant_provider_id)
+      create(Provider, socrata_provider_id: irrelevant_provider_id)
     end
     let(:irrelevant_provider_id) { '011998' }
 
     let!(:relevant_dimension_sample_1) do
       create_dimension_sample(
-        provider_id: relevant_provider_id_1,
+        socrata_provider_id: relevant_provider_id_1,
       )
     end
     let(:relevant_dimension_sample_1_value) { '7.2000000000' }
 
     let!(:relevant_dimension_sample_2) do
       create_dimension_sample(
-        provider_id: relevant_provider_id_2,
+        socrata_provider_id: relevant_provider_id_2,
         value: relevant_dimension_sample_2_value,
       )
     end
     let(:relevant_dimension_sample_2_value) { '12.0000000000' }
 
     let!(:dimension_sample_with_wrong_provider_id) do
-      create_dimension_sample(provider_id: irrelevant_provider_id)
+      create_dimension_sample(socrata_provider_id: irrelevant_provider_id)
     end
     let!(:dimension_sample_with_wrong_dataset_id) do
       create_dimension_sample(dataset_id: 'bad-dataset_id')
@@ -112,8 +112,8 @@ RSpec.describe DimensionSample::SingleMeasure do
     end
 
     let(:providers) do
-      Hospital.where(
-        provider_id: [relevant_provider_id_1, relevant_provider_id_2],
+      Provider.where(
+        socrata_provider_id: [relevant_provider_id_1, relevant_provider_id_2],
       )
     end
 
@@ -145,7 +145,7 @@ RSpec.describe DimensionSample::SingleMeasure do
   describe '.create_or_update' do
     let(:existing_attributes) do
       {
-        provider_id: provider_id,
+        socrata_provider_id: socrata_provider_id,
         dataset_id: dataset_id,
         column_name: column_name,
         value: value,
@@ -157,7 +157,7 @@ RSpec.describe DimensionSample::SingleMeasure do
 
     let(:column_name) { 'weighted_outcome_domain_score' }
     let(:dataset_id) { 'ypbt-wvdk' }
-    let(:provider_id) { '123456' }
+    let(:socrata_provider_id) { '123456' }
     let(:value) { '42.42424242' }
     let!(:existing_dimension_sample) do
       create(
@@ -201,8 +201,8 @@ RSpec.describe DimensionSample::SingleMeasure do
       end
     end
 
-    context 'with a different provider_id' do
-      let(:new_attribute) { { provider_id: '0000002' } }
+    context 'with a different socrata_provider_id' do
+      let(:new_attribute) { { socrata_provider_id: '0000002' } }
 
       it 'makes a new record' do
         expect { create_or_update! }.to change(described_class, :count).by(1)

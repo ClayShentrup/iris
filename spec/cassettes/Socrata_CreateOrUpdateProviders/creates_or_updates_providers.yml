@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=0&$select=provider_id,hospital_name,hospital_type,city,state,zip_code
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=0&$select=socrata_provider_id,hospital_name,hospital_type,city,state,zip_code
     body:
       encoding: UTF-8
       string: 'null'
@@ -38,7 +38,7 @@ http_interactions:
       X-Soda2-Warning:
       - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
       X-Soda2-Fields:
-      - '["hospital_name",":updated_at","zip_code","provider_id","state","hospital_type",":id",":created_at","city"]'
+      - '["hospital_name",":updated_at","zip_code","socrata_provider_id","state","hospital_type",":id",":created_at","city"]'
       X-Soda2-Types:
       - '["text","meta_data","text","text","text","text","meta_data","meta_data","text"]'
       X-Soda2-Legacy-Types:
@@ -53,7 +53,7 @@ http_interactions:
         [ {
           "hospital_name" : "SOUTHEAST ALABAMA MEDICAL CENTER",
           "zip_code" : "36301",
-          "provider_id" : "010001",
+          "socrata_provider_id" : "010001",
           "state" : "AL",
           "hospital_type" : "Acute Care Hospitals",
           "city" : "DOTHAN"
@@ -61,7 +61,7 @@ http_interactions:
         , {
           "hospital_name" : "MARSHALL MEDICAL CENTER SOUTH",
           "zip_code" : "35957",
-          "provider_id" : "010005",
+          "socrata_provider_id" : "010005",
           "state" : "AL",
           "hospital_type" : "Acute Care Hospitals",
           "city" : "BOAZ"
@@ -71,7 +71,7 @@ http_interactions:
   recorded_at: Fri, 27 Feb 2015 19:31:11 GMT
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=2&$select=provider_id,hospital_name,hospital_type,city,state,zip_code
+    uri: https://data.medicare.gov/resource/xubh-q36u.json?$limit=2&$offset=2&$select=socrata_provider_id,hospital_name,hospital_type,city,state,zip_code
     body:
       encoding: UTF-8
       string: 'null'
@@ -107,7 +107,7 @@ http_interactions:
       X-Soda2-Warning:
       - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
       X-Soda2-Fields:
-      - '["hospital_name",":updated_at","zip_code","provider_id","state","hospital_type",":id",":created_at","city"]'
+      - '["hospital_name",":updated_at","zip_code","socrata_provider_id","state","hospital_type",":id",":created_at","city"]'
       X-Soda2-Types:
       - '["text","meta_data","text","text","text","text","meta_data","meta_data","text"]'
       X-Soda2-Legacy-Types:
@@ -122,7 +122,7 @@ http_interactions:
         [ {
           "hospital_name" : "ELIZA COFFEE MEMORIAL HOSPITAL",
           "zip_code" : "35631",
-          "provider_id" : "010006",
+          "socrata_provider_id" : "010006",
           "state" : "AL",
           "hospital_type" : "Acute Care Hospitals",
           "city" : "FLORENCE"
