@@ -50,14 +50,14 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
 
   _selectHospital: function(event) {
     var selectedHospital = $(event.currentTarget);
-    var name = selectedHospital.data('hospital-name');
-    var cityAndState = selectedHospital.data('hospital-city-and-state');
+    var name = selectedHospital.data('provider-name');
+    var cityAndState = selectedHospital.data('provider-city-and-state');
 
     this.$('.provider_name').html(name);
     this.$('.compare_name').html(cityAndState);
 
     this._toggleDropdownHospital();
-    this._refreshCompareDropdown(selectedHospital.data('hospital-id'));
+    this._refreshCompareDropdown(selectedHospital.data('provider-id'));
   },
 
   _selectCompare: function(event) {

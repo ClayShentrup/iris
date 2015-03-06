@@ -7,9 +7,11 @@ describe('PublicChartsView', function() {
   var searchInput;
   var searchEndpoint = '/provider_search_results/?term=';
   var oneProviderFixture =
-    'provider_search_results_controller-index-return-one-provider.html';
+    'provider_search_results_controller-index-generate-fixtures-' +
+    'one-provider.html';
   var twoProvidersFixture =
-    'provider_search_results_controller-index-return-two-providers.html';
+    'provider_search_results_controller-index-generate-fixtures-' +
+    'two-providers.html';
   var compareDropdown;
 
   beforeEach(function() {
@@ -44,41 +46,39 @@ describe('PublicChartsView', function() {
     });
 
     it('displays a list of matching results', function() {
-      stubAjaxRequest(searchEndpoint + 'UCSF', twoProvidersFixture);
+      stubAjaxRequest(searchEndpoint + 'foo', twoProvidersFixture);
 
-      searchAutocomplete(searchInput, 'UCSF');
-      expect(providerDropdown).toContainText('UCSF Mission Bay');
-      expect(providerDropdown).toContainText('UCSF Parnassus');
+      searchAutocomplete(searchInput, 'foo');
+      expect(providerDropdown).toContainText('My Provider 1');
+      expect(providerDropdown).toContainText('My Provider 2');
     });
 
     it('clears out the previous results', function() {
-      stubAjaxRequest(searchEndpoint + 'UCSF', twoProvidersFixture);
+      stubAjaxRequest(searchEndpoint + 'foo', twoProvidersFixture);
 
-      searchAutocomplete(searchInput, 'UCSF');
+      searchAutocomplete(searchInput, 'foo');
       expect(providerDropdown.find('li')).toHaveLength(2);
 
-      stubAjaxRequest(searchEndpoint + 'UCSF%20Mission', oneProviderFixture);
-      searchAutocomplete(searchInput, 'UCSF Mission');
+      stubAjaxRequest(searchEndpoint + 'bar%20baz', oneProviderFixture);
+      searchAutocomplete(searchInput, 'bar baz');
       expect(providerDropdown.find('li')).toHaveLength(1);
-      expect(providerDropdown).toContainText('UCSF Mission Bay');
-      expect(providerDropdown).not.toContainText('UCSF Parnassus');
+      expect(providerDropdown).toContainText('My Provider 1');
+      expect(providerDropdown).not.toContainText('My Provider 2');
     });
   });
 
   describe('selecting a provider', function() {
     beforeEach(function() {
+      var providerIdInFixture = '88';
       var compareEndpoint = '/provider_search_results/';
       var compareFixture =
         'provider_search_results_controller-show-provider-to-compare-' +
         'has-hospital-system.html';
 
-      stubAjaxRequest(searchEndpoint + 'UCSF', oneProviderFixture);
-      searchAutocomplete(searchInput, 'UCSF');
+      stubAjaxRequest(searchEndpoint + 'foo', oneProviderFixture);
+      searchAutocomplete(searchInput, 'foo');
 
-      var providerToSelect = $('#body li:contains(UCSF)').data();
-      var providerId = providerToSelect.providerId;
-
-      stubAjaxRequest(compareEndpoint + providerId, compareFixture);
+      stubAjaxRequest(compareEndpoint + providerIdInFixture, compareFixture);
       providerDropdown.find('li').click();
     });
 
@@ -103,7 +103,7 @@ describe('PublicChartsView', function() {
       var providerName = $('.dropdown_button.provider .provider_name');
       var providerCityAndState = $('.dropdown_button.compare .compare_name');
 
-      expect(providerName).toContainText('SAN FRANCISCO GENERAL HOSPITAL');
+      expect(providerName).toContainText('My Provider 1');
       expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
     });
   });

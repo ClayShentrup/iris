@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe ProviderSearchResultsController do
   describe '#index' do
     login_user
-    let(:ucsf) { 'UCSF' }
+    let(:search_term) { 'UCSF' }
     let(:ucsf_mission_bay) { 'UCSF Mission Bay' }
     let(:ucsf_parnassus) { 'UCSF Parnassus' }
 
@@ -17,26 +17,33 @@ RSpec.describe ProviderSearchResultsController do
       create(:provider, name: 'Other Provider')
     end
 
-    before do
+    it 'returns providers with matching names' do
       get 'index', term: search_term
+
+      expect(response).to be_successful
+      expect(response.body).to have_content(ucsf_mission_bay)
+      expect(response.body).to have_content(ucsf_parnassus)
+      expect(response.body).not_to have_content(non_matching_provider)
     end
 
-    describe 'return two providers' do
-      let(:search_term) { ucsf }
-      specify { expect(response).to be_successful }
-
-      it 'calls index and returns search results' do
-        expect(response.body).to have_content(ucsf_mission_bay)
-        expect(response.body).to have_content(ucsf_parnassus)
-        expect(response.body).not_to have_content(non_matching_provider)
+    context 'generate fixtures' do
+      before do
+        expect(Provider).to receive(:search_results).and_return(providers)
+        get 'index', term: 'foo'
       end
-
-      save_fixture
-    end
-
-    describe 'return one provider' do
-      let(:search_term) { ucsf_mission_bay }
-      save_fixture
+      describe 'two providers' do
+        let(:providers) do
+          [
+            build_stubbed(:provider, id: 99),
+            build_stubbed(:provider, id: 100),
+          ]
+        end
+        save_fixture
+      end
+      describe 'one provider' do
+        let(:providers) { [build_stubbed(:provider, id: 88)] }
+        save_fixture
+      end
     end
   end
 

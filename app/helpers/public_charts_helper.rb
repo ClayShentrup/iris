@@ -29,7 +29,7 @@ module PublicChartsHelper
 
   def provider_data_attributes(provider)
     {
-      socrata_provider_id: provider.id,
+      provider_id: provider.id,
       provider_name: provider.name,
       provider_city_and_state: provider.city_and_state,
     }
