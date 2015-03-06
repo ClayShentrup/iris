@@ -1,7 +1,7 @@
 #select_and_compare.row.inner_content.top_margin_base.two_column.clearfix
   .two_column
-    .dropdown_button.hospital.vertical_padding_base.col6-xs.border_grey
-      %span.text_ellipsis.with_base_icon.line_height_buffer_base.hospital_name
+    .dropdown_button.provider.vertical_padding_base.col6-xs.border_grey
+      %span.text_ellipsis.with_base_icon.line_height_buffer_base.provider_name
         = provider_compare_presenter.provider_name
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle icon_arrow_down'
@@ -12,7 +12,7 @@
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle icon_arrow_down'
         = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
-  .dropdown_items.hospital.border_grey
+  .dropdown_items.provider.border_grey
     .search_box.vertical_padding_base.line_height_buffer_base.border_bottom_grey
       %form
         .has_two_icons

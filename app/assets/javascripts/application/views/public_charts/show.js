@@ -3,9 +3,9 @@
 
 Iris.Views['public_charts-show'] = Backbone.View.extend({
   events: {
-    'click .dropdown_button.hospital': '_toggleDropdownHospital',
+    'click .dropdown_button.provider': '_toggleDropdownHospital',
     'click .dropdown_button.compare': '_toggleDropdownCompare',
-    'click .dropdown_items.hospital li': '_selectHospital',
+    'click .dropdown_items.provider li': '_selectHospital',
     'click .dropdown_items.compare li': '_selectCompare',
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchHospital'
@@ -29,18 +29,18 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   },
 
   _searchResults: function() {
-    return this.$('.dropdown_items.hospital ul');
+    return this.$('.dropdown_items.provider ul');
   },
 
   _toggleDropdownHospital: function() {
     this._selectAndCompare()
     .removeClass('show_compare')
-    .toggleClass('show_hospital');
+    .toggleClass('show_provider');
   },
 
   _toggleDropdownCompare: function() {
     this._selectAndCompare()
-    .removeClass('show_hospital')
+    .removeClass('show_provider')
     .toggleClass('show_compare');
   },
 
@@ -53,7 +53,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     var name = selectedHospital.data('hospital-name');
     var cityAndState = selectedHospital.data('hospital-city-and-state');
 
-    this.$('.hospital_name').html(name);
+    this.$('.provider_name').html(name);
     this.$('.compare_name').html(cityAndState);
 
     this._toggleDropdownHospital();

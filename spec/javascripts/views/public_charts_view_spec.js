@@ -18,8 +18,8 @@ describe('PublicChartsView', function() {
     );
     new Iris.Views['public_charts-show']({el: '#body'});
 
-    searchInput = $('.dropdown_items.hospital .search_box input');
-    providerDropdown = $('.dropdown_items.hospital');
+    searchInput = $('.dropdown_items.provider .search_box input');
+    providerDropdown = $('.dropdown_items.provider');
   });
 
   it('shows compare options for default provider', function() {
@@ -39,7 +39,7 @@ describe('PublicChartsView', function() {
   describe('typing into the search input', function() {
     beforeEach(function() {
       expect(providerDropdown).toBeHidden();
-      $('.dropdown_button.hospital').click();
+      $('.dropdown_button.provider').click();
       expect(providerDropdown).toBeVisible();
     });
 
@@ -75,36 +75,36 @@ describe('PublicChartsView', function() {
       stubAjaxRequest(searchEndpoint + 'UCSF', oneProviderFixture);
       searchAutocomplete(searchInput, 'UCSF');
 
-      var hospitalToSelect = $('#body li:contains(UCSF)').data();
-      var hospitalId = hospitalToSelect.hospitalId;
+      var providerToSelect = $('#body li:contains(UCSF)').data();
+      var providerId = providerToSelect.providerId;
 
-      stubAjaxRequest(compareEndpoint + hospitalId, compareFixture);
+      stubAjaxRequest(compareEndpoint + providerId, compareFixture);
       providerDropdown.find('li').click();
     });
 
     it('refreshes the compare dropdown', function() {
       var compareDropdown = $('.dropdown_items.compare');
-      var hospitalCityAndState = compareDropdown.find('ul li:first');
-      var hospitalState = compareDropdown.find('ul li:nth-child(2)');
-      var hospitalSystem = compareDropdown.find('ul li:nth-child(3)');
-      var hospitalNation = compareDropdown.find('ul li:last');
+      var providerCityAndState = compareDropdown.find('ul li:first');
+      var providerState = compareDropdown.find('ul li:nth-child(2)');
+      var providerSystem = compareDropdown.find('ul li:nth-child(3)');
+      var providerNation = compareDropdown.find('ul li:last');
 
-      expect(hospitalCityAndState).toContainText('SAN FRANCISCO, CA');
-      expect(hospitalCityAndState).toContainText('2 Providers');
-      expect(hospitalState).toContainText('CA');
-      expect(hospitalState).toContainText('3 Providers');
-      expect(hospitalSystem).toContainText('Test System');
-      expect(hospitalSystem).toContainText('2 Providers');
-      expect(hospitalNation).toContainText('Nation-wide');
-      expect(hospitalNation).toContainText('4 Providers');
+      expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
+      expect(providerCityAndState).toContainText('2 Providers');
+      expect(providerState).toContainText('CA');
+      expect(providerState).toContainText('3 Providers');
+      expect(providerSystem).toContainText('Test System');
+      expect(providerSystem).toContainText('2 Providers');
+      expect(providerNation).toContainText('Nation-wide');
+      expect(providerNation).toContainText('4 Providers');
     });
 
     it('updates hospital name and city in dropdown buttons', function() {
-      var hospitalName = $('.dropdown_button.hospital .hospital_name');
-      var hospitalCityAndState = $('.dropdown_button.compare .compare_name');
+      var providerName = $('.dropdown_button.provider .provider_name');
+      var providerCityAndState = $('.dropdown_button.compare .compare_name');
 
-      expect(hospitalName).toContainText('SAN FRANCISCO GENERAL HOSPITAL');
-      expect(hospitalCityAndState).toContainText('SAN FRANCISCO, CA');
+      expect(providerName).toContainText('SAN FRANCISCO GENERAL HOSPITAL');
+      expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
     });
   });
 
@@ -129,21 +129,21 @@ describe('PublicChartsView', function() {
     it ('clears the field and the previous search results', function() {
       stubAjaxRequest(searchEndpoint + 'UCSF', twoProvidersFixture);
       searchAutocomplete(searchInput, 'UCSF');
-      $('.dropdown_button.hospital').click();
+      $('.dropdown_button.provider').click();
 
       $('.search_box .icon_close').click();
 
       expect($('.dropdown_items')).toBeHidden();
-      $('.dropdown_button.hospital').click();
+      $('.dropdown_button.provider').click();
 
       expect(searchInput).toBeEmpty();
       expect(providerDropdown.find('ul')).toBeEmpty();
     });
   });
 
-  describe('hospital dropdown button', function() {
+  describe('provider dropdown button', function() {
     beforeEach(function() {
-      this.dropdownButton = $('.dropdown_button.hospital');
+      this.dropdownButton = $('.dropdown_button.provider');
     });
 
     itBehavesLikeDropdownButton();
