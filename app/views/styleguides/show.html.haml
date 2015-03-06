@@ -3,19 +3,9 @@
   %head
     %title Dabo Health Styleguide
     %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
-    = stylesheet_link_tag    'application', media: 'all',
-      'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
-    - if Rails.application.config.turbolinks_debugging_enabled
-      = javascript_include_tag 'turbolinks_debugging', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
     = csrf_meta_tags
-  %body#body{ class: [controller_name, controller_action_name], |
-         data: { |
-           view_name: controller_action_name, |
-           pixel_path: asset_path('pixel.gif'), |
-           current_user_id: current_user.try(:id) |
-         } |
-       } |
+  %body
     = render 'shared/icon_definitions'
     .styleguide
       .styleguide_nav.border_bottom_grey.inner_padding_base.clearfix.line_height_buffer_base
