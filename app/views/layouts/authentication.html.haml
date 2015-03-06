@@ -3,7 +3,10 @@
   %head
     %title Dabo Health
     %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
-    = stylesheet_link_tag    'application', media: 'all'
+    = stylesheet_link_tag    'application', media: 'all',
+      'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = javascript_include_tag 'turbolinks_debugging', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
     = render 'shared/icon_definitions'
