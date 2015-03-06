@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/ypbt-wvdk.json?$limit=1000&$offset=0&$select=provider_number,weighted_outcome_domain_score
+    uri: https://data.medicare.gov/resource/rrqw-56er.json?$limit=1000&$offset=0&$select=provider_id,score
     body:
       encoding: UTF-8
       string: 'null'
@@ -38,7 +38,7 @@ http_interactions:
       X-Soda2-Warning:
       - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
       X-Soda2-Fields:
-      - '[":updated_at","provider_number",":id","weighted_outcome_domain_score",":created_at"]'
+      - '[":updated_at","provider_id",":id","score",":created_at"]'
       X-Soda2-Types:
       - '["meta_data","text","meta_data","number","meta_data"]'
       X-Soda2-Legacy-Types:
@@ -51,27 +51,27 @@ http_interactions:
       encoding: ASCII-8BIT
       string: |-
         [ {
-          "provider_number" : "010087",
-          "weighted_outcome_domain_score" : "0.000000000000"
+          "provider_id" : "010087",
+          "score" : "0.98"
         }
         , {
-          "provider_number" : "010092",
-          "weighted_outcome_domain_score" : "12.600000000000"
+          "provider_id" : "010092",
+          "score" : "0.72"
         }
         , {
-          "provider_number" : "010103",
-          "weighted_outcome_domain_score" : "7.200000000000"
+          "provider_id" : "010103",
+          "score" : "1.06"
         }
         , {
-          "provider_number" : "010415",
-          "weighted_outcome_domain_score" : "Not Available"
+          "provider_id" : "010415",
+          "score" : "Not Available"
         }
         , {
-          "provider_number" : "010317"
+          "provider_id" : "010317"
         }
         , {
-          "provider_number" : "010418",
-          "weighted_outcome_domain_score" : "Not Available*"
+          "provider_id" : "010418",
+          "score" : "Not Available*"
         }
          ]
     http_version:
