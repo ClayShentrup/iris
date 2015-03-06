@@ -2,17 +2,14 @@
 'use strict';
 
 describe('PublicChartsView', function() {
+  var jQueryAutocompleteDelay = 300;
+  var providerDropdown;
+  var searchInput;
   var searchEndpoint = '/provider_search_results/?term=';
   var oneProviderFixture =
     'provider_search_results_controller-index-return-one-provider.html';
   var twoProvidersFixture =
     'provider_search_results_controller-index-return-two-providers.html';
-
-  var jQueryAutocompleteDelay = 300;
-
-  var providerItems;
-  var providerButton;
-  var searchInput;
   var compareDropdown;
 
   beforeEach(function() {
@@ -22,8 +19,7 @@ describe('PublicChartsView', function() {
     new Iris.Views['public_charts-show']({el: '#body'});
 
     searchInput = $('.dropdown_items.provider .search_box input');
-    providerItems = $('.dropdown_items.provider');
-    providerButton = $('.dropdown_button.provider');
+    providerDropdown = $('.dropdown_items.provider');
   });
 
   it('shows compare options for default provider', function() {
@@ -42,30 +38,30 @@ describe('PublicChartsView', function() {
 
   describe('typing into the search input', function() {
     beforeEach(function() {
-      expect(providerItems).toBeHidden();
-      providerButton.click();
-      expect(providerItems).toBeVisible();
+      expect(providerDropdown).toBeHidden();
+      $('.dropdown_button.provider').click();
+      expect(providerDropdown).toBeVisible();
     });
 
     it('displays a list of matching results', function() {
       stubAjaxRequest(searchEndpoint + 'UCSF', twoProvidersFixture);
 
       searchAutocomplete(searchInput, 'UCSF');
-      expect(providerItems).toContainText('UCSF Mission Bay');
-      expect(providerItems).toContainText('UCSF Parnassus');
+      expect(providerDropdown).toContainText('UCSF Mission Bay');
+      expect(providerDropdown).toContainText('UCSF Parnassus');
     });
 
     it('clears out the previous results', function() {
       stubAjaxRequest(searchEndpoint + 'UCSF', twoProvidersFixture);
 
       searchAutocomplete(searchInput, 'UCSF');
-      expect(providerItems.find('li')).toHaveLength(2);
+      expect(providerDropdown.find('li')).toHaveLength(2);
 
       stubAjaxRequest(searchEndpoint + 'UCSF%20Mission', oneProviderFixture);
       searchAutocomplete(searchInput, 'UCSF Mission');
-      expect(providerItems.find('li')).toHaveLength(1);
-      expect(providerItems).toContainText('UCSF Mission Bay');
-      expect(providerItems).not.toContainText('UCSF Parnassus');
+      expect(providerDropdown.find('li')).toHaveLength(1);
+      expect(providerDropdown).toContainText('UCSF Mission Bay');
+      expect(providerDropdown).not.toContainText('UCSF Parnassus');
     });
   });
 
@@ -76,19 +72,14 @@ describe('PublicChartsView', function() {
         'provider_search_results_controller-show-provider-to-compare-' +
         'has-hospital-system.html';
 
-      providerButton.click();
-
       stubAjaxRequest(searchEndpoint + 'UCSF', oneProviderFixture);
       searchAutocomplete(searchInput, 'UCSF');
 
       var providerToSelect = $('#body li:contains(UCSF)').data();
-      expect(providerToSelect.socrataProviderId).toBeDefined();
-      expect(providerToSelect.providerName).toBeDefined();
-      expect(providerToSelect.providerCityAndState).toBeDefined();
+      var providerId = providerToSelect.providerId;
 
-      var compareUrl = compareEndpoint + providerToSelect.socrataProviderId;
-      stubAjaxRequest(compareUrl, compareFixture);
-      providerItems.find('li').click();
+      stubAjaxRequest(compareEndpoint + providerId, compareFixture);
+      providerDropdown.find('li').click();
     });
 
     it('refreshes the compare dropdown', function() {
@@ -112,7 +103,7 @@ describe('PublicChartsView', function() {
       var providerName = $('.dropdown_button.provider .provider_name');
       var providerCityAndState = $('.dropdown_button.compare .compare_name');
 
-      expect(providerName).toContainText('UCSF Mission Bay');
+      expect(providerName).toContainText('SAN FRANCISCO GENERAL HOSPITAL');
       expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
     });
   });
@@ -138,21 +129,21 @@ describe('PublicChartsView', function() {
     it ('clears the field and the previous search results', function() {
       stubAjaxRequest(searchEndpoint + 'UCSF', twoProvidersFixture);
       searchAutocomplete(searchInput, 'UCSF');
-      providerButton.click();
+      $('.dropdown_button.provider').click();
 
       $('.search_box .icon_close').click();
 
       expect($('.dropdown_items')).toBeHidden();
-      providerButton.click();
+      $('.dropdown_button.provider').click();
 
       expect(searchInput).toBeEmpty();
-      expect(providerItems.find('ul')).toBeEmpty();
+      expect(providerDropdown.find('ul')).toBeEmpty();
     });
   });
 
   describe('provider dropdown button', function() {
     beforeEach(function() {
-      this.dropdownButton = providerButton;
+      this.dropdownButton = $('.dropdown_button.provider');
     });
 
     itBehavesLikeDropdownButton();
