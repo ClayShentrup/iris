@@ -85,9 +85,17 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
           options: { column_name: :total_hac_score },
       )
       domain 'Patient Safety Indicator' do
+        value DimensionSampleManagers::Socrata.new(
+          dataset: :HacReductionProgram,
+          options: { column_name: :domain_1_score },
+        )
         measures :PSI_90
       end
       domain 'Hospital Acquired Infection' do
+        value DimensionSampleManagers::Socrata.new(
+          dataset: :HacReductionProgram,
+          options: { column_name: :domain_2_score },
+        )
         measures :HAI_1_SIR,
                  :HAI_2_SIR
       end

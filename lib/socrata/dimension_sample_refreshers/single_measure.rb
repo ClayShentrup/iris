@@ -1,4 +1,5 @@
 require 'socrata/simple_soda_client'
+require 'active_support/core_ext/string/exclude'
 
 module Socrata
   # .
@@ -35,7 +36,7 @@ module Socrata
       def available_dimension_samples
         dimension_samples.select do |dimension_sample|
           dimension_sample.key?(value_column_name) and
-          dimension_sample.fetch(value_column_name) != 'Not Available'
+          dimension_sample.fetch(value_column_name).exclude?('Not Available')
         end
       end
 

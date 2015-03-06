@@ -151,9 +151,7 @@ MEASURES = {
                  '(Medicare Spending per Beneficiary)',
     value: DimensionSampleManagers::Socrata.new(
       dataset: :HospitalSpendingPerPatient,
-      options: {
-        column_name: :score,
-      },
+      options: { column_name: :score },
     ),
   },
   READM_30_AMI: {

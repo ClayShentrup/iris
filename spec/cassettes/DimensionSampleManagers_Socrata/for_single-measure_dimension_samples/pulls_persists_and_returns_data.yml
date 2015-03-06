@@ -69,6 +69,10 @@ http_interactions:
         , {
           "provider_number" : "010317"
         }
+        , {
+          "provider_number" : "010418",
+          "weighted_outcome_domain_score" : "Not Available*"
+        }
          ]
     http_version:
   recorded_at: Mon, 02 Mar 2015 19:50:01 GMT
