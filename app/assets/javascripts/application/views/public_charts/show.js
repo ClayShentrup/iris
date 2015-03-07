@@ -3,12 +3,12 @@
 
 Iris.Views['public_charts-show'] = Backbone.View.extend({
   events: {
-    'click .dropdown_button.provider': '_toggleDropdownHospital',
+    'click .dropdown_button.provider': '_toggleDropdownProvider',
     'click .dropdown_button.compare': '_toggleDropdownCompare',
-    'click .dropdown_items.provider li': '_selectHospital',
+    'click .dropdown_items.provider li': '_selectProvider',
     'click .dropdown_items.compare li': '_selectCompare',
     'keydown input': '_preventEnterFromSubmitting',
-    'click .search_box .icon_close' : '_closeSearchHospital'
+    'click .search_box .icon_close' : '_closeSearchProvider'
   },
 
   initialize: function() {
@@ -32,7 +32,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     return this.$('.dropdown_items.provider ul');
   },
 
-  _toggleDropdownHospital: function() {
+  _toggleDropdownProvider: function() {
     this._selectAndCompare()
     .removeClass('show_compare')
     .toggleClass('show_provider');
@@ -48,16 +48,16 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     return this.$('#select_and_compare');
   },
 
-  _selectHospital: function(event) {
-    var selectedHospital = $(event.currentTarget);
-    var name = selectedHospital.data('provider-name');
-    var cityAndState = selectedHospital.data('provider-city-and-state');
+  _selectProvider: function(event) {
+    var selectedProvider = $(event.currentTarget);
+    var name = selectedProvider.data('provider-name');
+    var cityAndState = selectedProvider.data('provider-city-and-state');
 
     this.$('.provider_name').html(name);
     this.$('.compare_name').html(cityAndState);
 
-    this._toggleDropdownHospital();
-    this._refreshCompareDropdown(selectedHospital.data('provider-id'));
+    this._toggleDropdownProvider();
+    this._refreshCompareDropdown(selectedProvider.data('provider-id'));
   },
 
   _selectCompare: function(event) {
@@ -69,17 +69,17 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this._toggleDropdownCompare();
   },
 
-  _refreshCompareDropdown: function(hospitalId) {
-    this._compareResults().load(this._compareEndpoint(hospitalId));
+  _refreshCompareDropdown: function(providerId) {
+    this._compareResults().load(this._compareEndpoint(providerId));
   },
 
   _compareResults: function() {
     return this.$('.dropdown_items.compare ul');
   },
 
-  _compareEndpoint: function(hospitalId) {
+  _compareEndpoint: function(providerId) {
     // TODO: Get this from a path helper in the Rails template
-    return '/provider_search_results/' + hospitalId;
+    return '/provider_search_results/' + providerId;
   },
 
   _searchEndpoint: function(requestTerm) {
@@ -94,10 +94,10 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     }
   },
 
-  _closeSearchHospital: function() {
+  _closeSearchProvider: function() {
     this._searchResults().empty();
     this._searchBoxInput().val('');
-    this._toggleDropdownHospital();
+    this._toggleDropdownProvider();
   }
 
 });

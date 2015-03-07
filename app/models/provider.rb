@@ -13,7 +13,7 @@ require 'pg_search'
 #  hospital_system_id :integer
 #
 
-# Represents a hospital entity fetched from Socrata's API.
+# Represents a provider entity fetched from Socrata's API.
 class Provider < ActiveRecord::Base
   include PgSearch
   SEARCH_RESULTS_LIMIT = 10
@@ -35,11 +35,11 @@ class Provider < ActiveRecord::Base
     search_by_name(term).limit(SEARCH_RESULTS_LIMIT)
   end)
 
-  scope(:in_same_city, lambda do |hospital|
-    where(city: hospital.city, state: hospital.state)
+  scope(:in_same_city, lambda do |provider|
+    where(city: provider.city, state: provider.state)
   end)
 
-  scope(:in_same_state, ->(hospital) { where(state: hospital.state) })
+  scope(:in_same_state, ->(provider) { where(state: provider.state) })
 
   pg_search_scope :search_by_name, against: :name, using: {
     tsearch: { prefix: true },

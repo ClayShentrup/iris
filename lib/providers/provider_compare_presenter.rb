@@ -3,7 +3,7 @@ require './app/models/hospital_system'
 
 module Providers
   # Encapsulates the information needed to show the options to compare one
-  # hospital against others in the same city, state, system or across
+  # provider against others in the same city, state, system or across
   # the country
   class ProviderComparePresenter
     attr_reader :provider

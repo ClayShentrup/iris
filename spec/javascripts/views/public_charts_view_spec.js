@@ -99,7 +99,7 @@ describe('PublicChartsView', function() {
       expect(providerNation).toContainText('4 Providers');
     });
 
-    it('updates hospital name and city in dropdown buttons', function() {
+    it('updates provider name and city in dropdown buttons', function() {
       var providerName = $('.dropdown_button.provider .provider_name');
       var providerCityAndState = $('.dropdown_button.compare .compare_name');
 

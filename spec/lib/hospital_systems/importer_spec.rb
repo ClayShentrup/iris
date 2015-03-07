@@ -78,7 +78,7 @@ RSpec.describe HospitalSystems::Importer do
       expect { import_hospital_systems }.not_to change { HospitalSystem.count }
     end
 
-    it 'associates hospital with systems' do
+    it 'associates provider with systems' do
       import_hospital_systems
       universal_system = provider_in_universal_system.reload.hospital_system
       resources_system = provider_in_resources_system.reload.hospital_system
@@ -87,7 +87,7 @@ RSpec.describe HospitalSystems::Importer do
       expect(resources_system.name).to eq(resources_system_name)
     end
 
-    it 'leaves the hospital without system if it is not provided' do
+    it 'leaves the provider without system if it is not provided' do
       import_hospital_systems
 
       expect(provider_without_system.reload.hospital_system).to be_nil
@@ -103,7 +103,7 @@ RSpec.describe HospitalSystems::Importer do
   context 'with block to handle output messages' do
     let(:messages) { [] }
 
-    it 'passes a warning indicating that one hospital was not found' do
+    it 'passes a warning indicating that one provider was not found' do
       described_class.call.each { |message| messages << message }
       expect(messages).to eq [
         nil,
