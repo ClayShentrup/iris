@@ -231,6 +231,8 @@ GEM
     rails-html-sanitizer (1.0.1)
       loofah (~> 2.0)
     rails-perftest (0.0.5)
+    rails-settings-cached (0.4.1)
+      rails (>= 4.0.0)
     rails_12factor (0.0.3)
       rails_serve_static_assets
       rails_stdout_logging
@@ -412,6 +414,7 @@ DEPENDENCIES
   rack-timeout
   rails
   rails-perftest
+  rails-settings-cached
   rails_12factor
   rails_best_practices
   responders

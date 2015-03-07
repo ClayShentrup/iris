@@ -19,6 +19,14 @@ class PublicChartsController < ApplicationController
   end
 
   def default_provider
+    selected_provider || initial_provider
+  end
+
+  def selected_provider
+    Provider.find_by_id(current_user.settings.selected_provider_id)
+  end
+
+  def initial_provider
     Provider.new(
       name: 'SAN FRANCISCO GENERAL HOSPITAL',
       zip_code: '94110',

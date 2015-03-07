@@ -34,6 +34,7 @@ require './app/validators/password_strength_validator'
 
 # An entity to log into the system
 class User < ActiveRecord::Base
+  include RailsSettings::Extend
   # Include default devise modules. Others available are:
   # :lockable, and :omniauthable
   devise :confirmable,
