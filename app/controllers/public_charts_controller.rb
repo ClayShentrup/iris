@@ -8,7 +8,7 @@ class PublicChartsController < ApplicationController
       providers: providers,
     )
     @provider_compare_presenter =
-      Providers::ProviderComparePresenter.new(default_provider)
+      Providers::ProviderComparePresenter.new(selected_provider)
     @custom_feedback_bar = true
   end
 
@@ -18,15 +18,15 @@ class PublicChartsController < ApplicationController
     Provider.limit(5)
   end
 
-  def default_provider
-    selected_provider || initial_provider
-  end
-
   def selected_provider
-    Provider.find_by_id(current_user.settings.selected_provider_id)
+    user_selected_provider || default_provider
   end
 
-  def initial_provider
+  def user_selected_provider
+    Provider.find_by_id(current_user.selected_provider_id)
+  end
+
+  def default_provider
     Provider.new(
       name: 'SAN FRANCISCO GENERAL HOSPITAL',
       zip_code: '94110',

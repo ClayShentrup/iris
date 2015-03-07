@@ -61,6 +61,8 @@ class User < ActiveRecord::Base
             length: { minimum: 8 },
             unless: :updating_without_password?
 
+  delegate :selected_provider_id, to: :settings
+
   private
 
   def updating_without_password?

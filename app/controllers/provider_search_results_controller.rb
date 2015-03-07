@@ -19,7 +19,11 @@ class ProviderSearchResultsController < ApplicationController
   end
 
   def set_selected_provider_id
-    current_user.settings.selected_provider_id = current_provider.id
+    current_user_settings.selected_provider_id = current_provider.id
     current_user.save!
+  end
+
+  def current_user_settings
+    current_user.settings
   end
 end
