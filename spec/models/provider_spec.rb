@@ -2,14 +2,14 @@
 #
 # Table name: providers
 #
-#  id                 :integer          not null, primary key
-#  name               :string           not null
-#  zip_code           :string           not null
-#  hospital_type      :string           not null
-#  socrata_provider_id        :string           not null
-#  state              :string           not null
-#  city               :string           not null
-#  hospital_system_id :integer
+#  id                  :integer          not null, primary key
+#  name                :string           not null
+#  zip_code            :string           not null
+#  hospital_type       :string           not null
+#  socrata_provider_id :string           not null
+#  state               :string           not null
+#  city                :string           not null
+#  hospital_system_id  :integer
 #
 
 require 'active_record_no_rails_helper'

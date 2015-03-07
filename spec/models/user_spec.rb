@@ -24,6 +24,8 @@
 #  unconfirmed_email      :string
 #  is_dabo_admin          :boolean          default("false"), not null
 #  account_id             :integer
+#  password_changed_at    :datetime
+#  unique_session_id      :string(20)
 #
 
 require 'active_record_no_rails_helper'
