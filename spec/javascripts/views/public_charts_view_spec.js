@@ -106,13 +106,6 @@ describe('PublicChartsView', function() {
       expect(providerName).toContainText('My Provider 1');
       expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
     });
-    it('persists until user selects another provider', function() {
-      var providerName = $('.dropdown_button.provider .provider_name');
-      var navigation = $('.measures_nav_btn.forward_btn').first();
-      navigation.click();
-
-      expect(providerName).toContainText('My Provider 1');
-    });
   });
 
   describe('selecting a compare option', function() {
