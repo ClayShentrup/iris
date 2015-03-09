@@ -31,6 +31,7 @@ require 'active_record_no_rails_helper'
 require 'devise'
 require 'devise/orm/active_record'
 require 'devise_security_extension'
+require 'rails-settings-cached'
 require './app/models/user'
 require './app/models/account'
 
@@ -109,4 +110,12 @@ RSpec.describe User do
   end
 
   it { is_expected.to belong_to :account }
+
+  describe '#selected_provider_id' do
+    it do
+      is_expected.to delegate_method(:selected_provider_id)
+        .to(:settings)
+        .as(:selected_provider_id)
+    end
+  end
 end

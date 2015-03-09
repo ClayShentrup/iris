@@ -87,7 +87,7 @@ RSpec.describe ProviderSearchResultsController do
           "#{selected_provider.hospital_system_name} 2 Providers",
         )
         expect(response.body).to have_content(
-          'Nation-wide 4 Providers',
+          'Nationwide 4 Providers',
         )
         expect(response.body).to have_css('li', count: 4)
       end
@@ -110,7 +110,7 @@ RSpec.describe ProviderSearchResultsController do
           "#{selected_provider.state} 3 Providers",
         )
         expect(response.body).to have_content(
-          'Nation-wide 3 Providers',
+          'Nationwide 3 Providers',
         )
         expect(response.body).to have_css('li', count: 3)
       end
