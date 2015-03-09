@@ -17,7 +17,7 @@ RSpec.feature 'Lock account' do
     visit new_user_session_path
     fill_in 'Email', with: user.email
     fill_in 'Password', with: 'wrongpassword'
-    click_button 'Sign in'
+    click_button 'Login'
   end
 
   describe 'when a user incorrectly logs in' do
