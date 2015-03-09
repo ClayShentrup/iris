@@ -34,7 +34,7 @@ describe('PublicChartsView', function() {
     expect(providerCityAndState).toContainText('0 Providers');
     expect(providerState).toContainText('CA');
     expect(providerState).toContainText('0 Providers');
-    expect(providerNation).toContainText('Nation-wide');
+    expect(providerNation).toContainText('Nationwide');
     expect(providerNation).toContainText('0 Providers');
   });
 
@@ -95,7 +95,7 @@ describe('PublicChartsView', function() {
       expect(providerState).toContainText('3 Providers');
       expect(providerSystem).toContainText('Test System');
       expect(providerSystem).toContainText('2 Providers');
-      expect(providerNation).toContainText('Nation-wide');
+      expect(providerNation).toContainText('Nationwide');
       expect(providerNation).toContainText('4 Providers');
     });
 
@@ -120,7 +120,7 @@ describe('PublicChartsView', function() {
       compareName.click();
       compareDropdown.find('li').eq(2).click();
 
-      expect(compareName).toContainText('Nation-wide');
+      expect(compareName).toContainText('Nationwide');
       expect($('.dropdown_items.compare')).toBeHidden();
     });
   });
