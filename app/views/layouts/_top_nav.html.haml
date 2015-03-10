@@ -12,9 +12,5 @@
   .search.search_starting_width.hide_on_mobile.line_height_buffer_base.border_left_grey
     = render partial: 'layouts/search_form'
   .menu_icon.text_center.vertical_padding_small.border_left_grey
-    - if feature? :user_menu_link
-      = link_to user_profiles_menu_path, class: 'top_margin_small bottom_margin_small icon icon_size_base' do
-        = render 'shared/icon', icon: '#icon_user', klass: 'vertical_align_middle'
-    - else
-      %span.top_margin_small.bottom_margin_small.icon.icon_size_base
-        = render 'shared/icon', icon: '#icon_user', klass: 'vertical_align_middle'
+    = link_to user_profiles_menu_path, class: 'top_margin_small bottom_margin_small icon icon_size_base' do
+      = render 'shared/icon', icon: '#icon_user', klass: 'vertical_align_middle'

@@ -24,8 +24,4 @@ class Feature < ActiveRecord::Base
   feature :pristine_example,
           default: false,
           description: 'How our code should look.'
-
-  feature :user_menu_link,
-          default: false,
-          description: 'Menu icon in top nav links to user_profiles_menu'
 end
