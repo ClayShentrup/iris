@@ -25,10 +25,11 @@ RSpec.describe PublicChartsController do
         providers: some_providers,
       )
     end
+    let(:default_provider) { create(:provider) }
 
     def providers_relation(count)
       create_list(Provider, count)
-      Provider.limit(5)
+      Provider.in_same_city(default_provider)
     end
 
     before do

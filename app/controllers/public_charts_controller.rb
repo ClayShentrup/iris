@@ -3,9 +3,11 @@
 # dynamic data, e.g. in the database.
 class PublicChartsController < ApplicationController
   def show
+    persist_selected_provider
+
     @node = PUBLIC_CHARTS_TREE.find_node(
       params.fetch(:id),
-      providers: providers,
+      providers: default_providers_relation,
     )
 
     @provider_compare_presenter =
@@ -15,8 +17,8 @@ class PublicChartsController < ApplicationController
 
   private
 
-  def providers
-    Provider.limit(5)
+  def default_providers_relation
+    Provider.in_same_city(selected_provider)
   end
 
   def selected_provider
@@ -37,5 +39,11 @@ class PublicChartsController < ApplicationController
       city: 'SAN FRANCISCO',
       hospital_system_id: 115,
     )
+  end
+
+  def persist_selected_provider
+    return unless params.fetch(:provider_id, nil)
+    current_user.settings.selected_provider_id = params.fetch(:provider_id, nil)
+    current_user.save!
   end
 end
