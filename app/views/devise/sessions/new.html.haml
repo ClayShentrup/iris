@@ -5,17 +5,7 @@
     - if alert
       #error_explanation
         %p= alert
-    = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-      .field
-        = f.label :email
-        = f.email_field :email, autofocus: true, placeholder: 'name@email.com', class: 'form_control'
-      .field
-        = f.label :password
-        .has_icon_inside.toggle_password.clearfix.line_height_buffer_base
-          = f.password_field :password, autocomplete: "off", class: 'no_margin form_control float_left'
-          %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base
-            = render 'shared/icon', icon:'#icon_eye'
-
-      .actions
-        = f.submit "Sign in"
-        = link_to "Forgot Password?", new_password_path(resource_name)
+    - if @reset_password
+      = render 'reset_password_message'
+    - else
+      = render 'login_form'
