@@ -81,9 +81,6 @@ RSpec.describe DimensionSample::SingleMeasure do
     end
     let(:relevant_provider_id_2) { '010005' }
 
-    let!(:irrelevant_provider) do
-      create(Provider, socrata_provider_id: irrelevant_provider_id)
-    end
     let(:irrelevant_provider_id) { '011998' }
 
     let!(:relevant_dimension_sample_1) do
@@ -111,11 +108,7 @@ RSpec.describe DimensionSample::SingleMeasure do
       create_dimension_sample(column_name: 'bad_column_name')
     end
 
-    let(:providers) do
-      Provider.where(
-        socrata_provider_id: [relevant_provider_id_1, relevant_provider_id_2],
-      )
-    end
+    let(:providers) { Provider.all }
 
     def create_dimension_sample(custom_attributes)
       create(

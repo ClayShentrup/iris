@@ -21,16 +21,16 @@ module DimensionSample
     validates :value, presence: true
 
     def self.data(dataset_id:, options:, providers:)
-      where(
+      matching_samples = where(
         dataset_id: dataset_id,
         column_name: options.fetch(:column_name),
       )
-        .joins(<<-JOIN_QUERY)
-          LEFT JOIN providers
-          ON dimension_sample_single_measures.socrata_provider_id =
-          providers.socrata_provider_id
-        JOIN_QUERY
-        .merge(providers)
+      providers.joins(<<-SQL)
+        LEFT JOIN dimension_sample_single_measures
+        ON dimension_sample_single_measures.socrata_provider_id =
+        providers.socrata_provider_id
+      SQL
+        .merge(matching_samples)
         .pluck(:value)
     end
 
