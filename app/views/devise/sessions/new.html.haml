@@ -1,11 +1,9 @@
 .row
   .login.top_margin_large.centered
     = render 'devise/shared/logo'
-    %h2.bottom_margin_base Sign In
-    - if alert
-      #error_explanation
-        %p= alert
     - if @reset_password
+      %h2.bottom_margin_base Reset Password
       = render 'reset_password_message'
     - else
+      %h2.bottom_margin_base Sign In
       = render 'login_form'

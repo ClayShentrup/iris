@@ -9,6 +9,11 @@
       %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base
         = render 'shared/icon', icon:'#icon_eye'
 
+  - if alert
+    #error_explanation
+      %p= alert
+
   .actions
+    %p= link_to 'Forgot Password?', new_password_path(resource_name)
+    %p= link_to 'Create an account', new_user_registration_path
     = f.submit 'Login'
-    = link_to 'Forgot Password?', new_password_path(resource_name)

@@ -11,7 +11,7 @@ en:
       inactive: "Your account is not activated yet."
       invalid: "Invalid %{authentication_keys} or password. You have one more try before we reset your login."
       locked: "Your account is locked."
-      last_attempt: "Invalid %{authentication_keys} or password. We sent an e-mail with instructions on how to reset your password."
+      last_attempt: "Invalid %{authentication_keys} or password."
       not_found_in_database: "Invalid %{authentication_keys} or password. Please make sure you are using a hospital email."
       timeout: "Your session expired. Please sign in again to continue."
       unauthenticated: "You need to sign in or sign up before continuing."
