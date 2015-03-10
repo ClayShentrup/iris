@@ -1,6 +1,7 @@
 $error_background: #f2dede
 $error_dark: darken($error_background, 10%)
 $error_darker: darken($error_background, 60%)
+$error: saturate(darken(#f2dede, 30), 40)
 
 #error_explanation,
 #error_explanation_no_border
@@ -18,4 +19,4 @@ $error_darker: darken($error_background, 60%)
   @extend .inner_padding_base
 
 #error_explanation_no_border
-  color: saturate(darken(#f2dede, 30), 40)
+  color: $error
