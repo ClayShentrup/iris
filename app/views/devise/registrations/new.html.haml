@@ -10,10 +10,17 @@
       - if @validatable
         %span.text_muted
           (#{@minimum_password_length} characters minimum)
-      = f.password_field :password, autocomplete: "off", class: 'form_control'
+      .has_icon_inside.clearfix.line_height_buffer_base
+        = f.password_field :password, autocomplete: 'off', required: true, class: 'form_control float_left paste_disabled'
+        %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base.toggle_password
+          = render 'shared/icon', icon:'#icon_eye'
     .field
       = f.label :password_confirmation
-      = f.password_field :password_confirmation, autocomplete: "off", class: 'form_control'
+      .has_icon_inside.clearfix.line_height_buffer_base
+        = f.password_field :password_confirmation, autocomplete: 'off', required: true, class: 'form_control float_left paste_disabled'
+        %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base.toggle_password
+          = render 'shared/icon', icon:'#icon_eye'
+
     .actions
       = f.submit "Sign up"
   = render "devise/shared/links"
