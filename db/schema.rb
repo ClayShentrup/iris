@@ -101,16 +101,6 @@ ActiveRecord::Schema.define(version: 20150307002609) do
   add_index "providers", ["hospital_system_id"], name: "index_providers_on_hospital_system_id", using: :btree
   add_index "providers", ["state"], name: "index_providers_on_state", using: :btree
 
-  create_table "sessions", force: :cascade do |t|
-    t.string   "session_id", null: false
-    t.text     "data"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "sessions", ["session_id"], name: "index_sessions_on_session_id", unique: true, using: :btree
-  add_index "sessions", ["updated_at"], name: "index_sessions_on_updated_at", using: :btree
-
   create_table "settings", force: :cascade do |t|
     t.string   "var",                   null: false
     t.text     "value"
