@@ -4,6 +4,10 @@ RSpec.describe Users::SessionsController do
   let(:user) { build_stubbed :user_with_devise_session }
   simulate_routed_request
 
+  save_fixture do
+    get :new
+  end
+
   describe 'POST #create' do
     let(:user) { create :user }
     let(:valid_params) do
