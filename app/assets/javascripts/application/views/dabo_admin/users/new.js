@@ -3,6 +3,6 @@
 
 Iris.Views['users-new'] = Backbone.View.extend({
   initialize: function() {
-    new Iris.Views.passwordField({el: '#body'});
+    new Iris.Views.passwordField({el: '.toggle_password'});
   }
 });

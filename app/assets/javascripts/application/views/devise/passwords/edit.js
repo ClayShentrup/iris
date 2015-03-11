@@ -3,6 +3,8 @@
 
 Iris.Views['passwords-edit'] = Backbone.View.extend({
   initialize: function() {
-    new Iris.Views.passwordField({el: '#body'});
+    $('.toggle_password').each(function(index, element) {
+      new Iris.Views.passwordField({el: element});
+    });
   }
 });

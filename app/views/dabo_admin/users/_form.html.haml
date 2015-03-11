@@ -12,9 +12,9 @@
   - if user.new_record?
     .field
       = f.label :password
-      .has_icon_inside.clearfix.line_height_buffer_base
-        = f.password_field :password, autocomplete: 'off', required: true, class: 'form_control float_left paste_disabled'
-        %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base.toggle_password
+      .has_icon_inside.clearfix.line_height_buffer_base.toggle_password
+        = f.password_field :password, autocomplete: 'off', required: true, class: 'form_control float_left'
+        %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base
           = render 'shared/icon', icon:'#icon_eye'
   .field
     = f.label :is_dabo_admin

@@ -7,13 +7,17 @@ describe('PasswordFieldView', function() {
 
   beforeEach(function() {
     loadFixture('devise-sessions_controller');
-    view = new Iris.Views.passwordField({el: '#body'});
+    view = new Iris.Views.passwordField({el: '.toggle_password'});
     passwordField = $('#user_password');
-    toggleIcon = $('.icon.toggle_password');
+    toggleIcon = $('.toggle_password .icon');
   });
 
-  describe('password mask toggle', function() {
-    it('show eye icon', function() {
+  describe('with text in password input', function() {
+    beforeEach(function() {
+      passwordField.val('password').change();
+    });
+
+    it('shows eye icon', function() {
       expect(toggleIcon).toBeVisible();
     });
 
@@ -23,6 +27,16 @@ describe('PasswordFieldView', function() {
       expect(passwordField).toHaveAttr('type', 'text');
       toggleIcon.click();
       expect(passwordField).toHaveAttr('type', 'password');
+    });
+  });
+
+  describe('without text in password input', function() {
+    beforeEach(function() {
+      passwordField.val('').change();
+    });
+
+    it('eye icon is hidden', function() {
+      expect(toggleIcon).toBeHidden();
     });
   });
 
