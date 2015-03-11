@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe RegistrationsController do
+  let(:user) { build_stubbed :user_with_devise_session }
+  simulate_routed_request
+
+  it_behaves_like 'an ApplicationController without authentication'
+
   describe 'POST #update' do
     let(:user) do
       create :user_with_devise_session,
@@ -8,6 +13,7 @@ RSpec.describe RegistrationsController do
     end
     let(:original_password) { 'catadjectivesquarefur' }
     let(:new_password) { 'statementslavedutyleg' }
+
     simulate_routed_request
     let!(:set_logged_in_state) { sign_in user }
 
