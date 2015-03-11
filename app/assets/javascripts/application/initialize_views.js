@@ -3,7 +3,7 @@
 // jshint nonew: false
 'use strict';
 
-$(document).on('ready page:load', function() {
+Iris.initializeViews = function() {
   new Iris.Views['layouts/application']({el: '#body'});
 
   var viewName = $('body').data('viewName');
@@ -14,4 +14,4 @@ $(document).on('ready page:load', function() {
       el: '#body'
     });
   }
-});
+};

@@ -4,8 +4,6 @@ RSpec.describe RegistrationsController do
   let(:user) { build_stubbed :user_with_devise_session }
   simulate_routed_request
 
-  it_behaves_like 'an ApplicationController without authentication'
-
   describe 'POST #update' do
     let(:user) do
       create :user_with_devise_session,

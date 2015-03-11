@@ -1,8 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe StatusesController do
-  it_behaves_like 'an ApplicationController without authentication'
-
   before { get :show }
 
   specify do

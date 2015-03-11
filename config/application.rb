@@ -89,11 +89,5 @@ module Iris
     }
 
     config.styleguide_enabled = false
-
-    config.to_prepare do
-      Devise::SessionsController.layout 'authentication'
-      Devise::PasswordsController.layout 'authentication'
-      Devise::ConfirmationsController.layout 'authentication'
-    end
   end
 end

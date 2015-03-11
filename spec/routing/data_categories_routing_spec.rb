@@ -1,9 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe PublicChartsController do
+RSpec.describe DataCategoriesController do
   describe 'routing' do
     include_context 'authenticated routing'
     let(:resource_name) { 'metrics' }
-    it_behaves_like 'a show route'
+
+    it_behaves_like 'an index route'
   end
 end

@@ -13,7 +13,6 @@ RSpec.describe DaboAdmin::ProvidersController do
     )
   end
 
-  it_behaves_like 'an ApplicationController'
   it_behaves_like 'an ApplicationController index'
   it_behaves_like 'an ApplicationController new'
   it_behaves_like 'an ApplicationController create'

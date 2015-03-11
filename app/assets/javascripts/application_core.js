@@ -8,9 +8,5 @@
 //= require turbolinks
 //= require underscore
 //= require backbone
-//
-// Load Iris Core first so we have our global variables ready for
-// the files loaded in application tree
-//
 //= require iris_core
 //= require_tree ./application

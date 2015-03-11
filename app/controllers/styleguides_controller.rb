@@ -1,7 +1,5 @@
-# Renders the styleguide view(s)
-class StyleguidesController < ActionController::Base
-  layout false
-
-  def show
-  end
+# The styleguide allows Dabo product/engineering people
+# to view our palette of available styles.
+class StyleguidesController < ApplicationController
+  layout 'base'
 end

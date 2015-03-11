@@ -1,18 +1,20 @@
 # Providers helper methods for PublicChartsController's templates
 module PublicChartsHelper
-  BACK_CONTROLLERS = {
-    true => :charts_root,
-    false => :public_charts,
+  BACK_URL_OPTIONS = {
+    true => {
+      controller: :data_categories,
+      action: :index,
+    },
+    false => {
+      controller: :public_charts,
+      action: :show,
+    },
   }
 
   def back_button_options(node)
     back_is_charts_root = node.type == 'measure_source'
-    controller = BACK_CONTROLLERS.fetch(back_is_charts_root)
-    url_options = {
-      controller: controller,
-      action: :show,
-      only_path: true,
-    }
+    url_options = BACK_URL_OPTIONS.fetch(back_is_charts_root)
+                  .merge(only_path: true)
     url_options[:id] = node.parent_id unless back_is_charts_root
     url_options
   end

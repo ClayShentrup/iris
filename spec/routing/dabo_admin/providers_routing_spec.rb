@@ -1,11 +1,15 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::ProvidersController do
-  it_behaves_like('a DaboAdmin index route')
-  it_behaves_like('a DaboAdmin new route')
-  it_behaves_like('a DaboAdmin show route')
-  it_behaves_like('a DaboAdmin edit route')
-  it_behaves_like('a DaboAdmin create route')
-  it_behaves_like('a DaboAdmin update route')
-  it_behaves_like('a DaboAdmin destroy route')
+  describe 'routing' do
+    include_context 'Dabo admin routing'
+
+    it_behaves_like 'an index route'
+    it_behaves_like 'a new route'
+    it_behaves_like 'a show route'
+    it_behaves_like 'an edit route'
+    it_behaves_like 'a create route'
+    it_behaves_like 'an update route'
+    it_behaves_like 'a destroy route'
+  end
 end

@@ -5,7 +5,6 @@ RSpec.describe DaboAdmin::UsersController do
 
   let(:invalid_attributes) { { is_dabo_admin: nil, password: 'new_password' } }
 
-  it_behaves_like 'an ApplicationController'
   it_behaves_like 'an ApplicationController index'
   it_behaves_like 'an ApplicationController new'
   it_behaves_like 'an ApplicationController create'

@@ -1,34 +1,19 @@
-!!!
-%html
-  %head
-    %title Dabo Health
-    %meta{content: 'width=device-width, initial-scale=1', name: 'viewport'}
-    = stylesheet_link_tag    'application', media: 'all'
-    = javascript_include_tag 'application'
-    - if Rails.application.config.turbolinks_debugging_enabled
-      = javascript_include_tag 'turbolinks_debugging'
-    = csrf_meta_tags
-  %body#body{ class: [controller_name, controller_action_name], |
-         data: { |
-           view_name: controller_action_name, |
-           pixel_path: asset_path('pixel.gif'), |
-           current_user_id: current_user.try(:id) |
-         } |
-       } |
-    = render 'shared/icon_definitions'
-    = render 'layouts/top_nav'
-    - unless @custom_feedback_bar
-      = render 'layouts/feedback_bar'
-    .main_content
-      = yield
+- content_for :application do
+  = render 'layouts/top_nav'
+  - unless @custom_feedback_bar
+    = render 'layouts/feedback_bar'
+  .main_content
+    = yield
 
-    / These links are for engineering. Please do not remove.
-    - if user_signed_in?
-      .inner_padding_base
-        %p.no_margin
-          = "#{current_user.email} logged in at #{last_sign_on} from "
-          = current_user.current_sign_in_ip
-        %p.no_margin= link_to 'Sign out', destroy_user_session_path, method: :delete
+  -# These links are for engineering. Please do not remove.
+  - if user_signed_in?
+    .inner_padding_base
+      %p.no_margin
+        = "#{current_user.email} logged in at #{last_sign_on} from "
+        = current_user.current_sign_in_ip
+      %p.no_margin= link_to 'Sign out', destroy_user_session_path, method: :delete
 
-        -if current_user.is_dabo_admin
-          %p= link_to 'Dabo Admin Panel', user_profiles_admin_path
+      - if current_user.is_dabo_admin
+        %p= link_to 'Dabo Admin Panel', user_profiles_admin_path
+
+= render template: 'layouts/base'

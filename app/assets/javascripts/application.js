@@ -11,7 +11,6 @@
 // Read Sprockets README
 // https://github.com/sstephenson/sprockets#sprockets-directives
 // for details about supported directives.
-//
-
 //= require application_core
-//= require initialize_javascript
+Turbolinks.enableTransitionCache();
+$(document).on('ready page:load', Iris.initializeViews);

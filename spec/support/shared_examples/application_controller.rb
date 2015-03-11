@@ -1,50 +1,3 @@
-RSpec.shared_context 'ApplicationController custom route' do
-  controller do
-    def custom
-    end
-  end
-
-  before do
-    this_controller = controller
-    routes.draw do
-      get 'custom' => "#{this_controller.controller_path}#custom"
-    end
-  end
-end
-
-RSpec.shared_examples 'an ApplicationController without authentication' do
-  include_context 'ApplicationController custom route'
-
-  describe 'rendering views in controller specs' do
-    # This ensures that rspec_rails config.render_views is set to true,
-    # ensuring that our templates correctly render, which further tests
-    # that our Rails controllers are functioning correctly.
-    it 'renders the view' do
-      expect { get :custom }.to raise_error ActionView::MissingTemplate
-    end
-  end
-end
-
-RSpec.shared_examples 'an ApplicationController' do
-  it_behaves_like 'an ApplicationController without authentication'
-
-  describe 'authentication' do
-    include_context 'ApplicationController custom route'
-
-    context 'user is not logged' do
-      logout
-
-      before do
-        get :custom
-      end
-
-      it 'is redirected to login page' do
-        is_expected.to redirect_to(new_user_session_url)
-      end
-    end
-  end
-end
-
 RSpec.shared_examples 'a view with session data' do
   let(:last_sign_on) do
     current_user.current_sign_in_at.strftime('%d-%b-%Y %H:%M %Z').upcase
@@ -110,7 +63,7 @@ end
 
 RSpec.shared_examples 'an ApplicationController create' do
   include_context 'ApplicationController methods'
-  let(:model_attributes) { attributes_for(model_class) }
+  let(:valid_attributes) { attributes_for(model_class) }
   let(:instance_url) do
     public_send("#{model_params_name_namespace}_path", model_class.last)
   end
@@ -120,7 +73,7 @@ RSpec.shared_examples 'an ApplicationController create' do
   end
 
   def post_create
-    post :create, model_param_name => model_attributes
+    post :create, model_param_name => valid_attributes
   end
 
   describe 'with valid params' do

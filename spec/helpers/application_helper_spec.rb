@@ -33,4 +33,16 @@ RSpec.describe ApplicationHelper do
       end
     end
   end
+
+  describe '#last_sign_on' do
+    let(:current_user) do
+      build_stubbed(User, current_sign_in_at: current_sign_in_at)
+    end
+    let(:current_sign_in_at) { '2015-03-10 20:01:11 UTC'.in_time_zone }
+
+    it 'formats the time zone' do
+      allow(helper).to receive(:current_user).and_return(current_user)
+      expect(helper.last_sign_on).to eq '10-MAR-2015 20:01 UTC'
+    end
+  end
 end

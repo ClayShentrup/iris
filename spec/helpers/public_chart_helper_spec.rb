@@ -20,8 +20,8 @@ RSpec.describe PublicChartsHelper do
 
       specify do
         expect(options).to eq(
-          controller: :charts_root,
-          action: :show,
+          controller: :data_categories,
+          action: :index,
           only_path: true,
         )
       end

@@ -3,8 +3,6 @@ require 'rails_helper'
 RSpec.describe PublicChartsController do
   login_user
 
-  it_behaves_like 'an ApplicationController'
-
   describe 'GET show' do
     let(:bundles) do
       %w[

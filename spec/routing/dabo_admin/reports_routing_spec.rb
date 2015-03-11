@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::ReportsController do
-  it_behaves_like('a DaboAdmin index route')
+  describe 'routing' do
+    include_context 'Dabo admin routing'
+
+    it_behaves_like 'an index route'
+  end
 end

@@ -3,9 +3,8 @@ source "https://b8ab84f5:2186dcf8@gems.contribsys.com/"
 
 ruby '2.2.0'
 
-# Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails'
 
+gem 'rails'
 gem 'pg'
 gem 'pg_search'
 gem 'puma'

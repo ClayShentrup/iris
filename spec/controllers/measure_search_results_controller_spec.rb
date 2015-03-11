@@ -17,8 +17,6 @@ RSpec.describe MeasureSearchResultsController do
     allow(AccessibleBundleIds).to receive(:call).and_return(bundle_ids)
   end
 
-  it_behaves_like 'an ApplicationController'
-
   save_fixture do
     get :index, term: 'patient'
   end

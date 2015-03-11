@@ -1,14 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe NewsItemsController do
-  login_user
-
-  save_fixture do
-    get :index
-  end
-
+RSpec.describe DataCategoriesController do
   describe 'GET index' do
-    before { get :index }
+    login_user
+
+    before do
+      get :index
+    end
 
     specify { expect(response).to be_success }
     specify { expect(response).to render_template :index }

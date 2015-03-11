@@ -4,7 +4,19 @@ require 'capybara/rails'
 require 'selenium-webdriver'
 
 Capybara.register_driver :chrome do |app|
-  Capybara::Selenium::Driver.new(app, browser: :chrome)
+  Capybara::Selenium::Driver.new(
+    app,
+    browser: :chrome,
+    service_log_path: Rails.root.join('log', 'chromedriver.out'),
+    desired_capabilities: {
+      # chrome.switches is used to pass arguments to Chrome itself and not the
+      # chromedriver executable
+      'chrome.switches' => %w[
+        --enable-logging
+        --v=1
+      ],
+    },
+  )
 end
 
 Capybara.default_driver = :chrome

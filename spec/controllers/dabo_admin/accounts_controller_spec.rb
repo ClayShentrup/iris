@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::AccountsController do
-  let(:instance_url) { dabo_admin_account_path Account.last }
+  let(:instance_url) { dabo_admin_account_path(Account.last) }
   let(:virtual_system) { create(:hospital_system_with_provider) }
   let(:default_provider) { virtual_system.providers.first }
   let(:invalid_account) do
@@ -13,7 +13,6 @@ RSpec.describe DaboAdmin::AccountsController do
   end
   login_admin
 
-  it_behaves_like 'an ApplicationController'
   it_behaves_like 'an ApplicationController index'
   it_behaves_like 'an ApplicationController new'
   it_behaves_like 'an ApplicationController delete'

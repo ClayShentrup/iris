@@ -14,6 +14,7 @@
   "globals": {
     "Iris": true, // Our JS namespace
     "Backbone": true, // defined by Backbone.js
+    "Turbolinks": true, // defined by turbolinks.js, part of Rails
     "_": true, // defined by Underscore.js
     "getJSONFixture": true, // jasmine-jquery
     "loadFixture": true, // jasmine-jquery

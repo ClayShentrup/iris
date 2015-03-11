@@ -11,7 +11,6 @@ RSpec.describe PristineExamplesController do
   end
 
   let(:invalid_attributes) { attributes_for(PristineExample, name: '') }
-  it_behaves_like 'an ApplicationController'
 
   it_behaves_like 'an ApplicationController index'
   it_behaves_like 'an ApplicationController create'
