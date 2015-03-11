@@ -35,7 +35,7 @@ module Sessions
     end
 
     def time_since_password_changed
-      Time.now - current_user.password_changed_at
+      Time.current - current_user.password_changed_at
     end
 
     def password_expires_soon?

@@ -19,12 +19,12 @@ RSpec.describe Users::SessionsController do
 
     context 'with password about to expire' do
       let(:flash_message) do
-        'Human, you have 4 days before your ' \
+        'Human, you have 3 days before your ' \
         'password expires. Please update to a new one.'
       end
 
       before do
-        user.update_attribute(:password_changed_at, Time.now - 86.days)
+        user.update_attribute(:password_changed_at, Time.current - 86.days)
         post :create, user: valid_params
       end
 
@@ -36,7 +36,7 @@ RSpec.describe Users::SessionsController do
 
     context 'password not about to expire' do
       before do
-        user.update_attribute(:password_changed_at, Time.now)
+        user.update_attribute(:password_changed_at, Time.current)
         post :create, user: valid_params
       end
 

@@ -6,7 +6,7 @@ RSpec.describe Sessions::PasswordExpirationPresenter do
   let(:view_context) { instance_double 'view_context' }
   let(:update_password_path) { '<a href="/users/edit">update to a new one</a>' }
   let(:flash_message) do
-    'Human, you have 4 days before your ' \
+    'Human, you have 3 days before your ' \
     "password expires. Please #{update_password_path}."
   end
 
@@ -16,7 +16,9 @@ RSpec.describe Sessions::PasswordExpirationPresenter do
 
   context 'when a user\'s password is about to expire' do
     it 'should return a message' do
-      current_user.update_attribute(:password_changed_at, Time.now - 86.days)
+      current_user.update_attribute(
+        :password_changed_at, Time.current - 86.days
+      )
       expect(subject).to eq(flash_message)
     end
   end
