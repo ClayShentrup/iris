@@ -22,7 +22,7 @@ class SessionsPresenter
   end
 
   def user_email
-    params.fetch(:user).fetch(:email)
+    params.fetch('user').fetch('email')
   end
 
   private

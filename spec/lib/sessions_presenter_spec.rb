@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe SessionsPresenter do
   subject { described_class.new(params, flash) }
-  let(:flash) { double ActionDispatch::Flash::FlashHash }
+  let(:flash) { instance_double ActionDispatch::Flash::FlashHash }
   let(:flash_message) { 'Invalid email or password' }
 
   def check_reset_password_message(expected_value)
@@ -34,14 +34,14 @@ RSpec.describe SessionsPresenter do
 
   context 'when a user submits an invalid email address' do
     let(:params) do
-      HashWithIndifferentAccess.new(
+      {
         controller: 'users/sessions',
         action: 'create',
-        user: {
-          email: 'donald.draper@scdp.com',
-          password: 'thisismypasswordok!',
+        'user' => {
+          'email' => 'donald.draper@scdp.com',
+          'password' => 'thisismypasswordok!',
         },
-      )
+      }
     end
 
     it 'returns false for reset_password_message? and correct CSS class name' do
@@ -53,14 +53,14 @@ RSpec.describe SessionsPresenter do
   context 'when a user submits the incorrect password for second time' do
     let(:user) { create :user }
     let(:params) do
-      HashWithIndifferentAccess.new(
+      {
         controller: 'users/sessions',
         action: 'create',
-        user: {
-          email: user.email,
-          password: 'thisismypasswordok!',
+        'user' => {
+          'email' => user.email,
+          'password' => 'thisismypasswordok!',
         },
-      )
+      }
     end
 
     before do
