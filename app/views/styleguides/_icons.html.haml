@@ -33,6 +33,18 @@
       = render 'shared/icon', icon: '#icon_search'
     %p.text_small .icon_brand_color_primary
 
+%h2 Toggle Icon
+%p Highlight icon color on hover or when .active is present.
+.row.top_margin_base
+  .col3.border_grey.text_center.inner_padding_small
+    %span.icon.toggle_icon.icon_size_base.block
+      = render 'shared/icon', icon: '#icon_eye'
+    %p.text_small .icon_toggle
+  .col3.border_grey.text_center.inner_padding_small
+    %span.icon.toggle_icon.active.icon_size_base.block
+      = render 'shared/icon', icon: '#icon_eye'
+    %p.text_small .icon_toggle.active
+
 %h2 Icon Names
 .row.top_margin_base
   .col3.border_grey.text_center.inner_padding_small

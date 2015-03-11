@@ -52,6 +52,20 @@
     %span.icon.icon_size_xs.float_right.form_control_icon.icon_close
       = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
 
+%h3 Form with an Icon inside
+%code.preserve_whitespace
+  :preserve
+    %form
+      .has_icon_inside.line_height_buffer_base
+        %input.form_control.float_left{placeholder: 'Search a provider'}
+        %span.icon.icon_size_base.form_control_icon.line_height_base
+          = render 'shared/icon', icon: '#icon_eye'
+%form.top_margin_base
+  .has_icon_inside.line_height_buffer_base
+    %input.form_control.float_left{placeholder: 'Search a provider'}
+    %span.icon.icon_size_base.form_control_icon.line_height_base
+      = render 'shared/icon', icon: '#icon_eye'
+
 %h2 Form without Border
 %code.preserve_whitespace
   :preserve

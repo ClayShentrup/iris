@@ -37,6 +37,17 @@ form
         outline: 0
         box-shadow: none
 
+  .has_icon_inside
+    position: relative
+
+    .form_control
+      padding-right: $input_height_base * 1.25
+
+    .form_control_icon
+      position: absolute
+      right: $padding_base_horizontal
+      top: $padding_base_vertical
+
   .has_icon
     .form_control
       line-height: $line_height_buffer_base
