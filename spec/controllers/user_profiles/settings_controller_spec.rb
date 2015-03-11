@@ -3,5 +3,5 @@ require 'rails_helper'
 RSpec.describe UserProfiles::SettingsController do
   login_user
 
-  it_behaves_like 'an ApplicationController show without a model'
+  it_behaves_like 'an ApplicationController index without a model'
 end

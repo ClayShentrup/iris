@@ -14,7 +14,7 @@ Rails.application.routes.draw do
         resource :admin, only: :show
         resource :info, only: :show
         resource :menu, only: :show
-        resource :settings, only: :show
+        resources :settings, only: :index
       end
       resources :news_items, only: :index
       resources :pristine_examples

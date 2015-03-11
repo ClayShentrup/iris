@@ -169,6 +169,15 @@ RSpec.shared_examples 'an ApplicationController show without a model' do
   specify { expect(response).to render_template :show }
 end
 
+RSpec.shared_examples 'an ApplicationController index without a model' do
+  include_context 'ApplicationController methods'
+
+  before { get :index }
+
+  specify { expect(response).to be_success }
+  specify { expect(response).to render_template :index }
+end
+
 RSpec.shared_examples 'an ApplicationController edit' do
   include_context 'ApplicationController methods'
   include_context 'ApplicationController methods with an existing record'

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     instance_variable_set(
       model_instance_variable_name.pluralize,
       model_class.all,
-    )
+    ) if class_exists?
   end
 
   def new
