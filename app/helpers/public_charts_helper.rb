@@ -22,7 +22,10 @@ module PublicChartsHelper
   def node_link(node)
     link_to(
       node.short_title,
-      "/metrics/#{node.id}",
+      controller: :public_charts,
+      action: :show,
+      id: node.id,
+      only_path: true,
     )
   end
 
