@@ -39,7 +39,8 @@ class User < ActiveRecord::Base
   include RailsSettings::Extend
   # Include default devise modules. Others available are:
   # :lockable, and :omniauthable
-  devise :confirmable,
+  devise :invitable,
+         :confirmable,
          :database_authenticatable,
          :lockable,
          :password_archivable,

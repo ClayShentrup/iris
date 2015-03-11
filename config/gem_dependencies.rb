@@ -35,4 +35,5 @@ require 'airbrake' if Rails.env.production?
 require 'newrelic_rpm'
 require 'devise'
 require 'devise_security_extension'
+require 'devise_invitable'
 require 'rails-settings-cached'
