@@ -1,9 +1,9 @@
 .row
   .login.top_margin_large.centered
     = render 'devise/shared/logo'
-    - if @password_errors.fetch(:reset_password_message)
+    - if @sessions_presenter.reset_password_message?
       %h2.bottom_margin_base Reset Password
-      = render 'reset_password_message'
+      = render 'reset_password_message', user_email: @sessions_presenter.user_email
     - else
       %h2.bottom_margin_base Sign In
-      = render 'login_form', error_class: @password_errors.fetch(:css_class)
+      = render 'login_form', error_class: @sessions_presenter.css_class
