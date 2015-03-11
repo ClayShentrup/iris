@@ -42,10 +42,6 @@ RSpec.describe Users::SessionsController do
     end
   end
 
-  save_fixture do
-    get :new
-  end
-
   describe 'GET #new' do
     context 'with a valid user' do
       let(:user) { create :user_with_devise_session }
