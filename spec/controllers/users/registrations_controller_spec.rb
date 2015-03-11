@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe RegistrationsController do
+RSpec.describe Users::RegistrationsController do
   let(:user) { build_stubbed :user_with_devise_session }
   simulate_routed_request
 

@@ -4,8 +4,10 @@ require_relative '../lib/constraints/is_dabo_admin'
 
 Rails.application.routes.draw do
   shallow do # we should always use shallow routes, internally at least
-    devise_for :users, controllers: { registrations: :registrations }
-
+    devise_for :users, controllers: {
+      registrations: 'users/registrations',
+      sessions: 'users/sessions',
+    }
     resource :status, only: :show
     resource :styleguide, only: :show if APP_CONFIG.styleguide_enabled
 
@@ -27,7 +29,7 @@ Rails.application.routes.draw do
       get :metrics, to: 'data_categories#index'
       get 'metrics/*id', to: 'public_charts#show'
       root 'news_items#index'
-   end
+    end
 
     authenticate :user, Constraints::IsDaboAdmin do
       mount Flip::Engine => '/flip'
