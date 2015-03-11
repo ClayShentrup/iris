@@ -1,13 +1,13 @@
 require 'feature_spec_helper'
 
-RSpec.feature 'Change password' do
+RSpec.feature 'Update password' do
   let(:user) { create :user }
   let(:new_password) { 'composedchosechargeproduce' }
 
   before do
     log_in user
     visit user_profiles_settings_path
-    click_link 'Change password'
+    click_link 'Update Password'
   end
 
   scenario 'user can change password from user profiles' do
