@@ -11,6 +11,8 @@ module Sessions
       message if password_expires_soon?
     end
 
+    private
+
     def message
       "Human, you have #{days_left} #{day_pluralized} before your " \
       "password expires. Please #{update_password_link}."
