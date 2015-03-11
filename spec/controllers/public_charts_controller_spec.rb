@@ -3,10 +3,20 @@ require 'rails_helper'
 RSpec.describe PublicChartsController do
   describe 'GET show' do
     login_user
-
+    let(:bundles) do
+      %w[
+        value-based-purchasing
+        hospital-acquired-conditions
+        readmissions-reduction-program
+        hospital-consumer-assessment-of-healthcare-providers-and-systems
+        surgical-care-improvement-project
+      ]
+    end
     let(:some_providers) { providers_relation(0) }
     let!(:node) do
-      PUBLIC_CHARTS_TREE.find_node(node_id, providers: some_providers)
+      PUBLIC_CHARTS_TREE.find_node(
+        node_id, providers: some_providers, bundles: bundles
+      )
     end
 
     def providers_relation(count)
@@ -18,9 +28,12 @@ RSpec.describe PublicChartsController do
       allow(PUBLIC_CHARTS_TREE).to receive(:find_node).with(
         node_id,
         providers: some_providers,
+        bundles: bundles,
       ).and_return(node)
+
+      allow(AccessibleBundleIds).to receive(:call).and_return(bundles)
+
       get :show, id: node_id
-      expect(response).to be_success
     end
 
     describe 'assigned node' do
@@ -29,6 +42,27 @@ RSpec.describe PublicChartsController do
 
       it 'it sets the node' do
         expect(assigns(:node)).to eq node
+      end
+    end
+
+    describe 'bundle access control by account' do
+      context 'user has access' do
+        let(:node_id) { 'public-data/value-based-purchasing/process-of-care' }
+        specify do
+          get :show, id: node_id
+          expect(response.code).to eq '200'
+        end
+      end
+
+      context 'user does not have access' do
+        let(:bundles) { ['value-based-purchasing'] }
+        let(:node_id) do
+          'public-data/readmissions-reduction-program/heart-failure-readmission'
+        end
+        specify do
+          get :show, id: node_id
+          expect(response.code).to eq '302'
+        end
       end
     end
 

@@ -1,7 +1,11 @@
 # Controller for autocomplete measures search
 class MeasureSearchResultsController < ApplicationController
   def index
-    ms = PUBLIC_CHARTS_TREE.find_node('public-data', providers: provider_subset)
+    ms = PUBLIC_CHARTS_TREE.find_node(
+      'public-data',
+      providers: provider_subset,
+      bundles: AccessibleBundleIds.call(current_user),
+    )
     term = params.fetch(:term)
     results = ms.search(term)
     render partial: 'bundle',

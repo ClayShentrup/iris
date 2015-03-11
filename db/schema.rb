@@ -11,11 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150307002609) do
+ActiveRecord::Schema.define(version: 20150309170836) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
+
+  create_table "account_bundles", force: :cascade do |t|
+    t.integer "account_id"
+    t.string  "bundle_id"
+  end
+
+  add_index "account_bundles", ["account_id"], name: "index_account_bundles_on_account_id", using: :btree
 
   create_table "accounts", force: :cascade do |t|
     t.integer  "default_provider_id", null: false

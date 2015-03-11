@@ -32,6 +32,14 @@ account = Account.create!(
   default_provider: providers.first,
 )
 
+%w[
+  hospital-acquired-conditions
+  readmissions-reduction-program
+  hospital-consumer-assessment-of-healthcare-providers-and-systems
+].each do |bundle|
+  AccountBundle.create!(account_id: account.id, bundle_id: bundle)
+end
+
 User.create!(
   [
     {

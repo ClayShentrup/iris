@@ -64,6 +64,7 @@ class User < ActiveRecord::Base
             unless: :updating_without_password?
 
   delegate :selected_provider_id, to: :settings
+  delegate :bundles, to: :account, prefix: true
 
   private
 

@@ -18,6 +18,7 @@ class Account < ActiveRecord::Base
   belongs_to :virtual_system, polymorphic: true
   belongs_to :default_provider, class_name: 'Provider'
   has_many :users
+  has_many :bundles, class_name: 'AccountBundle'
 
   attr_accessor :virtual_system_gid
 

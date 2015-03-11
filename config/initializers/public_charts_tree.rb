@@ -81,8 +81,8 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
     end
     bundle 'Hospital-Acquired Conditions' do
       value DimensionSampleManagers::Socrata.new(
-          dataset: :HacReductionProgram,
-          options: { column_name: :total_hac_score },
+        dataset: :HacReductionProgram,
+        options: { column_name: :total_hac_score },
       )
       domain 'Patient Safety Indicator' do
         value DimensionSampleManagers::Socrata.new(

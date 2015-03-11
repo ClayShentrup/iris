@@ -53,8 +53,12 @@ RSpec.describe PublicChartsTree do
     }
   end
 
+  def bundles
+    %w[value-based-purchasing]
+  end
+
   def find(node_id)
-    tree.find_node(node_id, providers: providers)
+    tree.find_node(node_id, providers: providers, bundles: bundles)
   end
 
   before do
