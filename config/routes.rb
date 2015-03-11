@@ -19,7 +19,7 @@ Rails.application.routes.draw do
       resources :news_items, only: :index
       resources :pristine_examples
       resources :data_categories, only: :index
-      resources :public_chart, only: :show
+      resources :public_charts, only: :show
       resources :provider_search_results, only: [:index, :show]
       resources :measure_search_results, only: :index
 
