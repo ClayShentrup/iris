@@ -16,7 +16,7 @@ Rails.application.routes.draw do
         resource :menu, only: :show
         resource :settings, only: :show
       end
-      resources :news_items, onyl: :index
+      resources :news_items, only: :index
       resources :pristine_examples
       resources :data_categories, only: :index
       resources :public_chart, only: :show
