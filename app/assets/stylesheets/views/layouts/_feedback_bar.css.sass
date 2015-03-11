@@ -11,13 +11,14 @@
   a
     color: $brand_color_primary_light
 
-body.news_items #feedback_bar
+#body.news_items #feedback_bar
   margin-top: 0
   float: none
 
-body.public_charts, body.charts_root
-  #feedback_bar
-    @extend .col10
-    +media($tablet_portrait_and_desktop)
-      margin-bottom: ($buffer_base * 1)
-      margin-right: 0
+#body
+  &.public_charts, &.data_categories
+    #feedback_bar
+      @extend .col10
+      +media($tablet_portrait_and_desktop)
+        margin-bottom: ($buffer_base * 1)
+        margin-right: 0
