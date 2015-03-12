@@ -30,7 +30,11 @@ if Rails.env.development? || Rails.env.test?
   require 'jasmine-jquery-rails'
 end
 
-require 'dotenv' if Rails.env.development?
+if Rails.env.development?
+  require 'dotenv'
+  require 'rspec-rails'
+end
+
 require 'airbrake' if Rails.env.production?
 require 'newrelic_rpm'
 require 'devise'
