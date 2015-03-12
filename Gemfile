@@ -14,7 +14,6 @@ gem 'flip'
 gem 'newrelic_rpm'
 gem 'devise'
 gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git'
-gem 'devise_invitable'
 gem 'aws-sdk'
 gem 'sidekiq-pro'
 gem 'sinatra' # for Sidekiq admin panel
