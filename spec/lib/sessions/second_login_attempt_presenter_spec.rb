@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe SessionsPresenter do
+RSpec.describe Sessions::SecondLoginAttemptPresenter do
   subject { described_class.new(params, flash) }
   let(:flash) { instance_double ActionDispatch::Flash::FlashHash }
   let(:flash_message) { 'Invalid email or password' }
