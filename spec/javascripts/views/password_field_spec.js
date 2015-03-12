@@ -6,7 +6,7 @@ describe('PasswordFieldView', function() {
   var toggleIcon;
 
   beforeEach(function() {
-    loadFixture('devise-sessions_controller');
+    loadFixture('users-sessions_controller');
     view = new Iris.Views.passwordField({el: '.toggle_password'});
     passwordField = $('#user_password');
     toggleIcon = $('.toggle_password .icon');

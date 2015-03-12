@@ -1,6 +1,6 @@
 - flash.each do |name, message|
-  #feedback_bar.line_height_buffer_base.vertical_padding_small.col12.affix_beneath_top_nav.clearfix
-    %span.float_left.message{ class: name }
-      = message
-    %a.icon.icon_size_xs.icon_close.float_right{ href: '#' }
-      = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
+  #feedback_bar.inner_padding_small.col12.affix_beneath_top_nav.clearfix
+    %span.col9-xs.message{ class: name }
+      = sanitize(message)
+    %a.icon.icon_size_xs.icon_close.col3-xs{ href: '#' }
+      = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle float_right'

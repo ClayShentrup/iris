@@ -1,5 +1,5 @@
 # Controller to handle redirect after changing password
-class RegistrationsController < Devise::RegistrationsController
+class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def after_update_path_for(_resource)
