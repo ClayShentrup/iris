@@ -62,6 +62,7 @@ RSpec.describe SessionsPresenter do
         },
       }
     end
+    let(:email) { open_email(user.email) }
 
     before do
       user.update_attribute(:failed_attempts, 2)
@@ -70,6 +71,12 @@ RSpec.describe SessionsPresenter do
     it 'returns true for reset_password_message? and correct CSS class name' do
       check_reset_password_message(true)
       check_css('field_with_errors')
+    end
+
+    it 'sends an email to reset password' do
+      subject.send_reset_password_email_if_last_attempt
+      expect(email).to deliver_to(user.email)
+      expect(email).to have_subject('Reset Dabo Password - Action Required')
     end
   end
 end

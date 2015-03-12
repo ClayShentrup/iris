@@ -25,6 +25,10 @@ class SessionsPresenter
     params.fetch('user').fetch('email')
   end
 
+  def send_reset_password_email_if_last_attempt
+    current_user.send_reset_password_instructions if reset_password_message?
+  end
+
   private
 
   def valid_user?
