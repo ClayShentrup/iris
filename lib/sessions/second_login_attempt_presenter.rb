@@ -1,14 +1,7 @@
+# Provides methods that determine what styles and partials to render in the
+# Sessions#new view
 module Sessions
-  # Provides methods that determine what styles and partials to render in the
-  # Sessions#new view
-  class SecondLoginAttemptPresenter
-    attr_reader :params, :flash
-
-    def initialize(params, flash)
-      @params = params
-      @flash = flash
-    end
-
+  SecondLoginAttemptPresenter = Struct.new(:params, :flash) do
     def reset_password_message?
       if valid_user?
         current_user.failed_attempts == 2
