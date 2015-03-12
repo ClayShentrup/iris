@@ -29,13 +29,7 @@
 #
 
 require 'active_record_no_rails_helper'
-
-require 'devise'
-require 'devise/orm/active_record'
-require 'devise_security_extension'
-require 'rails-settings-cached'
 require './app/models/user'
-require './app/models/account'
 
 RSpec.describe User do
   subject { build_stubbed(described_class) }
