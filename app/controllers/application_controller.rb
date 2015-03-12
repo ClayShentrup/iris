@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     instance_variable_set(
       model_instance_variable_name.pluralize,
       model_class.all,
-    ) if class_exists?
+    )
   end
 
   def new
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
   end
 
   def show
-    self.model_instance_variable = saved_model if class_exists?
+    self.model_instance_variable = saved_model
   end
 
   def edit
@@ -82,10 +82,6 @@ class ApplicationController < ActionController::Base
 
   def model_class
     @model_class ||= model_name.constantize
-  end
-
-  def class_exists?
-    Kernel.const_defined?(model_name)
   end
 
   def model_name
