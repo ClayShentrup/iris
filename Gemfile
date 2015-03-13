@@ -52,7 +52,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'rspec-core', '~> 3.2.0'
   gem 'shoulda-matchers'
@@ -60,6 +59,11 @@ group :development, :test do
   gem 'jasmine'
   gem 'jasmine-jquery-rails'
   gem 'dotenv'
+  gem 'pry'
+  gem 'pry-byebug'
+  gem 'pry-rails'
+  gem 'pry-coolline'
+  gem 'awesome_print'
 end
 
 group :test do
