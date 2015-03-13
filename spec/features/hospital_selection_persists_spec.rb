@@ -6,15 +6,6 @@ RSpec.feature 'User selected hospital' do
   let!(:another_provider) { create :provider }
   let(:provider_name) { 'Children\'s Hospital' }
   let(:other_provider_name) { another_provider.name }
-  let(:bundle_ids) do
-    %w[
-      value-based-purchasing
-      hospital-acquired-conditions
-      readmissions-reduction-program
-      hospital-consumer-assessment-of-healthcare-providers-and-systems
-      surgical-care-improvement-project
-    ]
-  end
   let(:url) do
     %w[
       /
@@ -55,7 +46,6 @@ RSpec.feature 'User selected hospital' do
   end
 
   before do
-    allow(AccessibleBundleIds).to receive(:call).and_return(bundle_ids)
     log_in user
     visit url
     find(dropdown_button).click

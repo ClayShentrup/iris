@@ -3,9 +3,8 @@ class PublicChartsTree
   # Delegates methods to a PublicChartsTree InternalNode, for use outside of
   # PublicChartsTree. Prevents us from unnecessarily exposing InternalNode
   # methods outside of PublicChartsTree.
-  Node = Struct.new(:internal_node, :providers, :bundles) do
+  Node = Struct.new(:internal_node, :providers) do
     delegate :id,
-             :bundle,
              :search,
              :parent_is_root?,
              :short_title,
@@ -19,8 +18,8 @@ class PublicChartsTree
              :id_components,
              to: :internal_node
 
-    def initialize(internal_node, providers:, bundles:)
-      super(internal_node, providers, bundles)
+    def initialize(internal_node, providers:)
+      super(internal_node, providers)
     end
 
     def breadcrumbs
@@ -28,19 +27,9 @@ class PublicChartsTree
     end
 
     def children
-      results = internal_node.children.map do |child_internal_node|
-        Node.new(child_internal_node, providers: providers, bundles: bundles)
+      internal_node.children.map do |child_internal_node|
+        Node.new(child_internal_node, providers: providers)
       end
-
-      results.select { |node| above_bundle?(node) || allowed?(node) }
-    end
-
-    def above_bundle?(node)
-      node.bundle.nil?
-    end
-
-    def allowed?(node)
-      bundles.include?(node.bundle)
     end
 
     def data
@@ -59,7 +48,7 @@ class PublicChartsTree
     end
 
     def parent
-      Node.new(internal_node.parent, providers: providers, bundles: bundles)
+      Node.new(internal_node.parent, providers: providers)
     end
 
     private :breadcrumb,

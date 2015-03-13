@@ -6,7 +6,6 @@ RSpec.describe PublicChartsHelper do
       instance_double(PublicChartsTree::Node,
                       type: type,
                       parent_id: parent_id,
-                      bundles: ['test'],
       )
     end
     let(:parent_id) { 'parent-id' }

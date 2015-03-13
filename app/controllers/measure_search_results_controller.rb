@@ -4,7 +4,6 @@ class MeasureSearchResultsController < ApplicationController
     ms = PUBLIC_CHARTS_TREE.find_node(
       'public-data',
       providers: provider_subset,
-      bundles: AccessibleBundleIds.call(current_user),
     )
     term = params.fetch(:term)
     results = ms.search(term)

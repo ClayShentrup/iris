@@ -31,20 +31,6 @@ RSpec.feature 'responsive design' do
     ]
   end
 
-  let(:bundle_ids) do
-    %w[
-      value-based-purchasing
-      hospital-acquired-conditions
-      readmissions-reduction-program
-      hospital-consumer-assessment-of-healthcare-providers-and-systems
-      surgical-care-improvement-project
-    ]
-  end
-
-  before do
-    allow(AccessibleBundleIds).to receive(:call).and_return(bundle_ids)
-  end
-
   def check
     selector_groups.each do |selector_group|
       selector_group.each do |selector|

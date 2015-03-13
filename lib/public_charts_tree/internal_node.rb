@@ -11,7 +11,6 @@ class PublicChartsTree
              to: :parent, prefix: true
     delegate :breadcrumb,
              :build_breadcrumb,
-             :bundle,
              :id_components,
              :long_title,
              :parent,
@@ -19,8 +18,6 @@ class PublicChartsTree
              :parent_breadcrumb,
              :value_dimension_manager,
              to: :embedded_node
-
-    BUNDLE_LEVEL_IN_TREE = 1
 
     def children
       @children ||= []
@@ -41,10 +38,6 @@ class PublicChartsTree
 
     def type
       embedded_node.class.name.demodulize.underscore
-    end
-
-    def bundle
-      id_components[BUNDLE_LEVEL_IN_TREE] || nil
     end
 
     private

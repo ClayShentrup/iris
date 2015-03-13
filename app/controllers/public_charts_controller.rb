@@ -6,10 +6,7 @@ class PublicChartsController < ApplicationController
     @node = PUBLIC_CHARTS_TREE.find_node(
       params.fetch(:id),
       providers: providers,
-      bundles: accessible_bundle_ids,
     )
-
-    redirect_to '/' unless accessible_to_user?
 
     @provider_compare_presenter =
       Providers::ProviderComparePresenter.new(selected_provider)
@@ -30,10 +27,6 @@ class PublicChartsController < ApplicationController
     Provider.find_by_id(current_user.selected_provider_id)
   end
 
-  def accessible_bundle_ids
-    AccessibleBundleIds.call(current_user)
-  end
-
   def default_provider
     Provider.new(
       name: 'SAN FRANCISCO GENERAL HOSPITAL',
@@ -44,9 +37,5 @@ class PublicChartsController < ApplicationController
       city: 'SAN FRANCISCO',
       hospital_system_id: 115,
     )
-  end
-
-  def accessible_to_user?
-    accessible_bundle_ids.include?(@node.bundle) || @node.bundle.nil?
   end
 end
