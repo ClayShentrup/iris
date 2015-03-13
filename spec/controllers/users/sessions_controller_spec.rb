@@ -47,9 +47,14 @@ RSpec.describe Users::SessionsController do
   end
 
   describe 'GET #new' do
+    let(:user) { create :user_with_devise_session }
+
+    before do
+      post :create, user: params
+    end
+
     context 'with a valid user' do
-      let(:user) { create :user_with_devise_session }
-      let(:valid_params) do
+      let(:params) do
         {
           email: user.email,
           password: user.password,
@@ -57,7 +62,7 @@ RSpec.describe Users::SessionsController do
       end
 
       before do
-        post :create, user: valid_params
+        post :create, user: params
       end
 
       it 'logs the user in' do
@@ -66,15 +71,11 @@ RSpec.describe Users::SessionsController do
     end
 
     context 'with an invalid user email' do
-      let(:invalid_params) do
+      let(:params) do
         {
           email: 'foo@bar.com',
           password: 'somepassword',
         }
-      end
-
-      before do
-        post :create, user: invalid_params
       end
 
       it 'redirects to sign in page' do
@@ -84,19 +85,34 @@ RSpec.describe Users::SessionsController do
 
     context 'with an invalid password' do
       let(:user) { create :user_with_devise_session }
-      let(:invalid_params) do
+      let(:params) do
         {
           email: user.email,
           password: 'wrongpasswordyo!',
         }
       end
 
-      before do
-        post :create, user: invalid_params
-      end
-
       it 'redirects to sign in page' do
         expect(response).to render_template :new
+      end
+    end
+
+    context 'with two failed login attempts' do
+      let(:user) { create :user_with_devise_session, failed_attempts: 1 }
+      let(:email) { open_email(user.email) }
+      let(:params) do
+        {
+          email: user.email,
+          password: 'wrongpasswordyo!',
+        }
+      end
+
+      it 'should show a locked form and send an email' do
+        expect(response).to render_template(
+          partial: 'devise/sessions/_reset_password_message',
+        )
+        expect(email).to deliver_to(user.email)
+        expect(email).to have_subject('Reset Dabo Password - Action Required')
       end
     end
   end

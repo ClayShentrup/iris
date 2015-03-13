@@ -3,9 +3,9 @@ module Users
   class SessionsController < Devise::SessionsController
     def new
       @sessions_presenter = Sessions::SecondLoginAttemptPresenter.new(
-        params, flash
+        user, flash
       )
-      @sessions_presenter.send_reset_password_email_if_last_attempt
+      send_reset_password_email if @sessions_presenter.reset_password_message?
       super
     end
 
@@ -18,6 +18,14 @@ module Users
 
     def reminder
       Sessions::PasswordExpirationPresenter.call(current_user, view_context)
+    end
+
+    def user
+      params.fetch('user', nil)
+    end
+
+    def send_reset_password_email
+      @sessions_presenter.user_record.send_reset_password_instructions
     end
   end
 end

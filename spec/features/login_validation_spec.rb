@@ -49,7 +49,7 @@ RSpec.feature 'Login validation' do
       check_input_field_on_error_styling
     end
 
-    it 'shows the second failed attempt message' do
+    it 'shows second failed attempt message and sends reset password email' do
       log_in_with_wrong_credentials(user.email, 'wrongpassword')
       log_in_with_wrong_credentials(user.email, 'wrongpassword')
       expect(page).to have_content(second_failed_attempt_message)

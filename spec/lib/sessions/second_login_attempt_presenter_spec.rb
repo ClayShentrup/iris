@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Sessions::SecondLoginAttemptPresenter do
-  subject { described_class.new(params, flash) }
+  subject { described_class.new(user_params, flash) }
   let(:flash) { instance_double ActionDispatch::Flash::FlashHash }
   let(:flash_message) { 'Invalid email or password' }
 
@@ -19,12 +19,7 @@ RSpec.describe Sessions::SecondLoginAttemptPresenter do
 
   context 'when a user visits the sign in page for the first time' do
     let(:flash_message) { '' }
-    let(:params) do
-      {
-        controller: 'users/sessions',
-        action: 'new',
-      }
-    end
+    let(:user_params) { nil }
 
     it 'returns false for reset_password_message? and no CSS class name' do
       check_reset_password_message(false)
@@ -33,14 +28,10 @@ RSpec.describe Sessions::SecondLoginAttemptPresenter do
   end
 
   context 'when a user submits an invalid email address' do
-    let(:params) do
+    let(:user_params) do
       {
-        controller: 'users/sessions',
-        action: 'create',
-        'user' => {
-          'email' => 'donald.draper@scdp.com',
-          'password' => 'thisismypasswordok!',
-        },
+        'email' => 'donald.draper@scdp.com',
+        'password' => 'thisismypasswordok!',
       }
     end
 
@@ -52,17 +43,12 @@ RSpec.describe Sessions::SecondLoginAttemptPresenter do
 
   context 'when a user submits the incorrect password for second time' do
     let(:user) { create :user }
-    let(:params) do
+    let(:user_params) do
       {
-        controller: 'users/sessions',
-        action: 'create',
-        'user' => {
-          'email' => user.email,
-          'password' => 'thisismypasswordok!',
-        },
+        'email' => user.email,
+        'password' => 'thisismypasswordok!',
       }
     end
-    let(:email) { open_email(user.email) }
 
     before do
       user.update_attribute(:failed_attempts, 2)
@@ -71,12 +57,6 @@ RSpec.describe Sessions::SecondLoginAttemptPresenter do
     it 'returns true for reset_password_message? and correct CSS class name' do
       check_reset_password_message(true)
       check_css('field_with_errors')
-    end
-
-    it 'sends an email to reset password' do
-      subject.send_reset_password_email_if_last_attempt
-      expect(email).to deliver_to(user.email)
-      expect(email).to have_subject('Reset Dabo Password - Action Required')
     end
   end
 end
