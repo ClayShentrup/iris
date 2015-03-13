@@ -1,10 +1,11 @@
 require 'socrata/dimension_sample_refreshers/single_measure'
+require 'active_support/inflector/methods'
 # .
 module DimensionSampleManagers
   # Satisfies the DimensionSampleManager interface to retrieve and refresh data.
-  Socrata = Struct.new(:dataset, :options) do
-    def initialize(dataset:, options:)
-      super(dataset, options)
+  Socrata = Struct.new(:dataset_id, :options) do
+    def initialize(dataset_id:, options:)
+      super(dataset_id, options)
     end
 
     def data(providers)
@@ -26,11 +27,7 @@ module DimensionSampleManagers
     private
 
     def provider_id_column_name
-      if dataset_class.const_defined?('PROVIDER_ID_COLUMN_NAME')
-        dataset_class.const_get('PROVIDER_ID_COLUMN_NAME').to_s
-      else
-        'provider_id'
-      end
+      dataset_info.fetch(:provider_id_column_name, 'provider_id').to_s
     end
 
     def dimension_sample_model_class
@@ -49,16 +46,12 @@ module DimensionSampleManagers
       "Socrata::DimensionSampleRefreshers::#{dataset_type}"
     end
 
-    def dataset_id
-      dataset_class.const_get('DATASET_ID')
-    end
-
     def dataset_type
-      dataset_class.const_get('DATASET_TYPE')
+      dataset_info.fetch(:dataset_type).to_s.camelize
     end
 
-    def dataset_class
-      "Socrata::Datasets::#{dataset}".constantize
+    def dataset_info
+      DATASETS.fetch(dataset_id)
     end
   end
 end

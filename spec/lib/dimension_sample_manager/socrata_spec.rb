@@ -1,14 +1,12 @@
 require 'active_record_no_rails_helper'
 require 'dimension_sample_managers/socrata'
-require 'socrata/datasets/hospital_value_based_purchasing'
-require 'socrata/datasets/hospital_spending_per_patient'
 require './app/models/provider'
 require './app/models/dimension_sample/single_measure'
 
 RSpec.describe DimensionSampleManagers::Socrata, :vcr do
   subject do
     DimensionSampleManagers::Socrata.new(
-      dataset: dataset,
+      dataset_id: dataset_id,
       options: options,
     )
   end
@@ -22,10 +20,16 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
     end
   end
 
-  before { create_relevant_providers }
+  before do
+    stub_const(
+      'DATASETS',
+      'rrqw-56er' => { dataset_type: :single_measure },
+    )
+    create_relevant_providers
+  end
 
   context 'for single-measure dimension samples' do
-    let(:dataset) { :HospitalSpendingPerPatient }
+    let(:dataset_id) { 'rrqw-56er' }
     let(:column_name) { :score }
     let(:options) { { column_name: column_name } }
     let(:provider_ids) do
@@ -59,12 +63,6 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
     end
 
     context 'for a dataset with PROVIDER_ID_COLUMN_NAME specified' do
-      before do
-        stub_const(
-          "Socrata::Datasets::#{dataset}::PROVIDER_ID_COLUMN_NAME",
-          :provider_id,
-        )
-      end
       it_behaves_like 'a socrata data sample manager'
     end
 

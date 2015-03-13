@@ -1,6 +1,5 @@
 require 'public_charts_tree'
 require 'dimension_sample_managers/socrata'
-require 'socrata/datasets/hospital_value_based_purchasing'
 
 RSpec.describe PublicChartsTree do
   subject { find(node_id) }

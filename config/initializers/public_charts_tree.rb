@@ -2,19 +2,19 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
   measure_source 'Public Data' do
     bundle 'Hospital-Acquired Conditions' do
       value DimensionSampleManagers::Socrata.new(
-        dataset: :HacReductionProgram,
+        dataset_id: 'yq43-i98g',
         options: { column_name: :total_hac_score },
       )
       domain 'Patient Safety Indicator' do
         value DimensionSampleManagers::Socrata.new(
-          dataset: :HacReductionProgram,
+          dataset_id: 'yq43-i98g',
           options: { column_name: :domain_1_score },
         )
         measures :PSI_90
       end
       domain 'Hospital Acquired Infection' do
         value DimensionSampleManagers::Socrata.new(
-          dataset: :HacReductionProgram,
+          dataset_id: 'yq43-i98g',
           options: { column_name: :domain_2_score },
         )
         measures :HAI_1_SIR,
