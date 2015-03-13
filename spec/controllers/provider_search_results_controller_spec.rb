@@ -50,6 +50,10 @@ RSpec.describe ProviderSearchResultsController do
   describe '#show' do
     login_user
 
+    before do
+      allow(subject).to receive(:current_user).and_return(create(:user))
+    end
+
     let!(:provider_in_same_city) do
       create(
         :provider,

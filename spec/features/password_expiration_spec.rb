@@ -2,7 +2,7 @@ require 'feature_spec_helper'
 
 RSpec.feature 'Password expires' do
   let(:expire_password_after) { 90.days }
-  let!(:user) { Timecop.freeze(now) { create(:user) } }
+  let!(:user) { Timecop.freeze(now) { create(:user_for_controller_specs) } }
   let(:new_password) { 'flameindeedhighwaypiece' }
 
   def renew_password

@@ -10,6 +10,7 @@ module DaboAdmin
         :password,
         :locked_at,
         :failed_attempts,
+        :account_id,
       )
     end
   end

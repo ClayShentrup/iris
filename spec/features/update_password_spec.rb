@@ -1,7 +1,7 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'Update password' do
-  let(:user) { create :user }
+  let(:user) { create :user_for_controller_specs }
   let(:new_password) { 'composedchosechargeproduce' }
 
   before do

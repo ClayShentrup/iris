@@ -52,11 +52,13 @@ class User < ActiveRecord::Base
          :timeoutable,
          :trackable
 
+  attr_accessor :skip_association_validations
   belongs_to :account
 
   # Some validations are enforced through devise config.
   # See initializers/devise.rb for more information.
   validates :email, presence: true
+  validates :account, presence: true, unless: :skip_association_validations
   validates :is_dabo_admin, inclusion: { in: [true, false] }
   validates :password,
             password_strength: true,

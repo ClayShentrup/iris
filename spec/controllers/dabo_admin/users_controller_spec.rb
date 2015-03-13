@@ -14,9 +14,16 @@ RSpec.describe DaboAdmin::UsersController do
 
   describe 'PUT #update' do
     let(:user) { create(:user) }
+    let(:account) { create(:account) }
 
     context 'with valid params' do
-      let(:new_attributes) { { is_dabo_admin: true, password: password } }
+      let(:new_attributes) do
+        {
+          is_dabo_admin: true,
+          password: password,
+          account_id: account.id,
+        }
+      end
 
       before do
         put :update, id: user, user: new_attributes

@@ -35,6 +35,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@factory.com" }
     password 'password123'
     before(:create, &:skip_confirmation!)
+    after(:build, :stub) { |user| user.skip_association_validations = true }
   end
 
   factory :dabo_admin, parent: :user_with_devise_session do
@@ -44,5 +45,9 @@ FactoryGirl.define do
   factory :user_with_devise_session, parent: :user do
     current_sign_in_at Time.now
     current_sign_in_ip IPAddr.new
+  end
+
+  factory :user_for_controller_specs, parent: :user_with_devise_session do
+    association :account
   end
 end

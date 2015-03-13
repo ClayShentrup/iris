@@ -54,6 +54,13 @@ RSpec.describe User do
       subject { build_stubbed(described_class) }
       it { is_expected.to be_valid }
 
+      describe 'associations' do
+        before do
+          subject.skip_association_validations = false
+        end
+        specify { is_expected.to validate_presence_of(:account) }
+      end
+
       specify { is_expected.to validate_presence_of(:email) }
       specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
       specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }

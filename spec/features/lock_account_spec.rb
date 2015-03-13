@@ -1,7 +1,7 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'Lock account' do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user_for_controller_specs) }
   let!(:admin_user) { create(:dabo_admin) }
 
   def log_in_with_wrong_password

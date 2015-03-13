@@ -77,6 +77,10 @@ RSpec.shared_examples 'an ApplicationController create' do
   end
 
   describe 'with valid params' do
+    before do
+      allow(model_class).to receive(:new).and_return(build(model_class))
+    end
+
     it 'creates a new model instance' do
       expect { post_create }.to change(model_class, :count).by(1)
     end

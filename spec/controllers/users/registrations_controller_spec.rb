@@ -1,12 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe Users::RegistrationsController do
-  let(:user) { build_stubbed :user_with_devise_session }
+  let(:user) { build_stubbed :user_for_controller_specs }
   simulate_routed_request
 
   describe 'POST #update' do
     let(:user) do
-      create :user_with_devise_session,
+      create :user_for_controller_specs,
              password: original_password
     end
     let(:original_password) { 'catadjectivesquarefur' }
