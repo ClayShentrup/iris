@@ -12,6 +12,7 @@
 
 require './app/models/hospital_system'
 require './app/models/user'
+require './app/models/authorized_domain'
 
 # An entity that represents a client account
 class Account < ActiveRecord::Base
@@ -19,6 +20,7 @@ class Account < ActiveRecord::Base
   belongs_to :default_provider, class_name: 'Provider'
   has_many :users
   has_many :bundles, class_name: 'AccountBundle'
+  has_many :authorized_domains
 
   attr_accessor :virtual_system_gid
 

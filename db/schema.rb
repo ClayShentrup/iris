@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150309170836) do
+ActiveRecord::Schema.define(version: 20150312220148) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -34,6 +34,15 @@ ActiveRecord::Schema.define(version: 20150309170836) do
 
   add_index "accounts", ["default_provider_id"], name: "index_accounts_on_default_provider_id", using: :btree
   add_index "accounts", ["virtual_system_type", "virtual_system_id"], name: "index_accounts_on_virtual_system_type_and_virtual_system_id", using: :btree
+
+  create_table "authorized_domains", force: :cascade do |t|
+    t.string   "name",       null: false
+    t.integer  "account_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "authorized_domains", ["account_id"], name: "index_authorized_domains_on_account_id", using: :btree
 
   create_table "dimension_sample_multi_measures", force: :cascade do |t|
     t.string   "socrata_provider_id", null: false
