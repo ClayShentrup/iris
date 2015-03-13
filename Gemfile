@@ -19,6 +19,7 @@ gem 'sidekiq-pro'
 gem 'sinatra' # for Sidekiq admin panel
 gem 'jquery-ui-rails'
 gem 'rails-settings-cached'
+gem 'public_suffix'
 
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
