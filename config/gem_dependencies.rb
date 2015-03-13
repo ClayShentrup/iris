@@ -23,6 +23,10 @@ require 'rack-timeout' unless Rails.env.test?
 # Dependency for feature flip
 require 'flip'
 
+require 'devise'
+require 'devise_security_extension'
+require 'rails-settings-cached'
+
 if Rails.env.development? || Rails.env.test?
   require 'jasmine'
   load 'rails/test_unit/testing.rake'
@@ -31,12 +35,17 @@ if Rails.env.development? || Rails.env.test?
 end
 
 if Rails.env.development?
+  if defined?(Rails::Console)
+    require 'awesome_print'
+    require 'pry-byebug'
+    require 'pry-rails'
+    require 'pry-coolline'
+  end
   require 'dotenv'
   require 'rspec-rails'
 end
 
-require 'airbrake' if Rails.env.production?
-require 'newrelic_rpm'
-require 'devise'
-require 'devise_security_extension'
-require 'rails-settings-cached'
+if Rails.env.production?
+  require 'airbrake'
+  require 'newrelic_rpm'
+end
