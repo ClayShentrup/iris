@@ -72,6 +72,7 @@ class User < ActiveRecord::Base
 
   delegate :selected_provider_id, to: :settings
   delegate :purchased_metric_modules, to: :account
+  delegate :selected_context, to: :settings
 
   attr_accessor :skip_association_validations
 

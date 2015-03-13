@@ -8,7 +8,7 @@
         = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
     .dropdown_button.compare.vertical_padding_base.col6-xs.border_grey
       %span.text_ellipsis.with_base_icon.line_height_buffer_base.compare_name
-        = provider_compare_presenter.provider_city_and_state
+        = provider_compare_presenter.context_name
       %span.icon.icon_size_base.float_right.icon_brand_color_primary.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_arrow_large_down', klass: 'vertical_align_middle icon_arrow_down'
         = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
@@ -25,4 +25,4 @@
   .dropdown_items.compare.border_grey
     %h4.no_margin.vertical_padding_xl.border_bottom_grey.line_height_buffer_xl.inner_padding_base Compare to
     %ul.unstyled
-      = render partial: 'provider_search_results/compare', locals: { provider_compare_presenter: provider_compare_presenter }
+      = render 'compare', provider_compare_presenter: provider_compare_presenter

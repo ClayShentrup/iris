@@ -4,14 +4,17 @@
 class PublicChartsController < ApplicationController
   def show
     persist_selected_provider
+    persist_selected_context
 
     @node = PUBLIC_CHARTS_TREE.find_node(
       params.fetch(:id),
       providers: default_providers_relation,
     )
 
-    @provider_compare_presenter =
-      Providers::ProviderComparePresenter.new(selected_provider)
+    @provider_compare_presenter = Providers::ProviderComparePresenter.new(
+      selected_provider,
+      selected_context,
+    )
     @custom_feedback_bar = true
   end
 
@@ -29,6 +32,10 @@ class PublicChartsController < ApplicationController
     Provider.find_by_id(current_user.selected_provider_id)
   end
 
+  def selected_context
+    current_user.selected_context || default_context
+  end
+
   def default_provider
     Provider.new(
       name: 'SAN FRANCISCO GENERAL HOSPITAL',
@@ -41,9 +48,22 @@ class PublicChartsController < ApplicationController
     )
   end
 
+  def default_context
+    'city'
+  end
+
   def persist_selected_provider
     return unless params.fetch(:provider_id, nil)
-    current_user.settings.selected_provider_id = params.fetch(:provider_id, nil)
+    current_user.settings.selected_provider_id = params.fetch(:provider_id)
+    unless params.fetch(:context, nil)
+      current_user.settings.selected_context = 'city'
+    end
+    current_user.save!
+  end
+
+  def persist_selected_context
+    return unless params.fetch(:context, nil)
+    current_user.settings.selected_context = params.fetch(:context)
     current_user.save!
   end
 end
