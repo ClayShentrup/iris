@@ -1,0 +1,15 @@
+.devise_form.centered.border_grey.top_margin_large
+  %h3.text_center.no_margin.border_bottom_grey.inner_padding_base Password Expired
+
+  .inner_padding_large
+    %p It's been 90 days since you last changed your password. Please create a new password that hasn't been used in the past year.
+
+    = form_for(resource, as: resource_name, url: [resource_name, :password_expired], html: { method: :put, class: 'top_margin_base' }) do |f|
+      = devise_error_messages!
+      .field
+        = f.password_field :password, class: 'form_control', placeholder: 'New password'
+      .field
+        = f.password_field :password_confirmation, class: 'form_control', placeholder: 'Confirm password'
+      .top_margin_large
+        = f.submit 'Create'
+
