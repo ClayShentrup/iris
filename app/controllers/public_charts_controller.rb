@@ -8,7 +8,7 @@ class PublicChartsController < ApplicationController
 
     @node = PUBLIC_CHARTS_TREE.find_node(
       params.fetch(:id),
-      providers: default_providers_relation,
+      providers: providers_relation,
     )
 
     @provider_compare_presenter = Providers::ProviderComparePresenter.new(
@@ -20,8 +20,8 @@ class PublicChartsController < ApplicationController
 
   private
 
-  def default_providers_relation
-    Provider.in_same_city(selected_provider)
+  def providers_relation
+    selected_provider.providers_relation(selected_context).limit(10)
   end
 
   def selected_provider

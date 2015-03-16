@@ -39,7 +39,7 @@ RSpec.describe PublicChartsController do
 
     describe 'assigned node' do
       let(:node_id) { 'socrata' }
-      let(:some_providers) { providers_relation(2) }
+      let(:some_providers) { providers_relation(2).limit(10) }
 
       it 'it sets the node' do
         expect(assigns(:node)).to eq node
