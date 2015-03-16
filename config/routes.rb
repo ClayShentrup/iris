@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions',
+      password_expired: 'users/password_expired',
     }
     resource :status, only: :show
     resource :styleguide, only: :show if APP_CONFIG.styleguide_enabled

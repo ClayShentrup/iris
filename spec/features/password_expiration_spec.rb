@@ -3,25 +3,24 @@ require 'feature_spec_helper'
 RSpec.feature 'Password expires' do
   let(:expire_password_after) { 90.days }
   let!(:user) do
-    Timecop.freeze(now) { create(User, :authenticatable, :with_associations) }
+    Timecop.travel(now) { create(User, :authenticatable, :with_associations) }
   end
   let(:new_password) { 'flameindeedhighwaypiece' }
 
   def renew_password
-    fill_in 'Current password', with: user.password
     fill_in 'New password', with: new_password
-    fill_in 'Confirm new password', with: new_password
-    click_button 'Change my password'
+    fill_in 'Confirm password', with: new_password
+    click_button 'Create'
   end
 
   let(:now) { DateTime.parse('2008-11-05') }
 
   def log_in_just_before_expiration
-    Timecop.freeze(now + expire_password_after) { log_in user }
+    Timecop.travel(now + expire_password_after - 10.seconds) { log_in user }
   end
 
   def do_after_expiration(&block)
-    Timecop.freeze(now + expire_password_after + 1.second, &block)
+    Timecop.travel(now + expire_password_after + 1.second, &block)
   end
 
   background do
