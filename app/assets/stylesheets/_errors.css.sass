@@ -1,14 +1,17 @@
-$error: #f2dede
-$error_dark: darken($error, 10%)
-$error_darker: darken($error, 60%)
+#error_explanation,
+#error_explanation_no_border
+  @extend .top_margin_small
+  @extend .bottom_margin_small
+
+  h4
+    margin-top: 0
 
 #error_explanation
-  background-color: #f2dede
+  background-color: $error_background
   border: rem(1) solid $error_dark
   border-radius: $border_radius_base
   color: $error_darker
   @extend .inner_padding_base
-  @extend .bottom_margin_large
 
-  h4
-    margin-top: 0
+#error_explanation_no_border
+  color: $error

@@ -45,4 +45,72 @@ RSpec.describe Users::SessionsController do
       end
     end
   end
+
+  describe 'GET #new' do
+    let(:user) { create :user_with_devise_session }
+
+    before do
+      post :create, user: params
+    end
+
+    context 'with a valid user' do
+      let(:params) do
+        {
+          email: user.email,
+          password: user.password,
+        }
+      end
+
+      before do
+        post :create, user: params
+      end
+
+      it 'logs the user in' do
+        expect(response).to redirect_to(root_path)
+      end
+    end
+
+    context 'with an invalid user email' do
+      let(:params) do
+        {
+          email: 'foo@bar.com',
+          password: 'somepassword',
+        }
+      end
+
+      it 'redirects to sign in page' do
+        expect(response).to render_template :new
+      end
+    end
+
+    context 'with an invalid password' do
+      let(:user) { create :user_with_devise_session }
+      let(:params) do
+        {
+          email: user.email,
+          password: 'wrongpasswordyo!',
+        }
+      end
+
+      it 'redirects to sign in page' do
+        expect(response).to render_template :new
+      end
+    end
+
+    context 'with two failed login attempts' do
+      let(:user) { create :user_with_devise_session, failed_attempts: 1 }
+      let(:params) do
+        {
+          email: user.email,
+          password: 'wrongpasswordyo!',
+        }
+      end
+
+      it 'should show a locked form and send an email' do
+        expect(response).to render_template(
+          partial: 'devise/sessions/_reset_password_message',
+        )
+      end
+    end
+  end
 end

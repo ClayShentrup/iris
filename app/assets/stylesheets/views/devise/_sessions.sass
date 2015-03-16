@@ -1,7 +1,8 @@
-$login_width: rem(260)
+$desktop_login_width: rem(320)
 
 .login
-  width: $login_width
+  +media($desktop)
+    width: $desktop_login_width
 
 #login_logo
   svg
@@ -10,4 +11,4 @@ $login_width: rem(260)
   +media($desktop)
     svg
       height: rem(160)
-      width: $login_width
+      width: $desktop_login_width

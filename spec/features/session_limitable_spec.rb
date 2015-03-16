@@ -17,9 +17,9 @@ RSpec.feature 'Limiting user to one session' do
 
   def log_in_session(session)
     session.visit new_user_session_path
-    session.fill_in('Email', with: user.email)
-    session.fill_in('Password', with: user.password)
-    session.click_button('Sign in')
+    session.fill_in 'Email', with: user.email
+    session.fill_in 'Password', with: user.password
+    session.click_button 'Login'
     expect(session.current_path).to eq root_path
   end
 
