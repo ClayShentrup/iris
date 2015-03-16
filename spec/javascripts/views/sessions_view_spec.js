@@ -23,7 +23,7 @@ describe('SessionsView', function() {
       loginFields.val('test value');
       cancelButton.click();
 
-      expect(loginFields.val()).toBe('');
+      expect(loginFields).toHaveValue('');
     });
   });
 
@@ -31,6 +31,9 @@ describe('SessionsView', function() {
     var view;
     var passwordField;
     var toggleIcon;
+    var setPassword = function(password) {
+      passwordField.val(password).change();
+    };
 
     beforeEach(function() {
       view = new Iris.Views.passwordField({el: '.toggle_password'});
@@ -40,7 +43,7 @@ describe('SessionsView', function() {
 
     describe('with text in password input', function() {
       beforeEach(function() {
-        passwordField.val('password').change();
+        setPassword('password');
       });
 
       it('shows eye icon', function() {
@@ -58,7 +61,7 @@ describe('SessionsView', function() {
 
     describe('without text in password input', function() {
       beforeEach(function() {
-        passwordField.val('').change();
+        setPassword('');
       });
 
       it('eye icon is hidden', function() {
@@ -67,12 +70,12 @@ describe('SessionsView', function() {
     });
 
     it('does not allow to paste text', function() {
-      spyOn(view, '_disablePaste');
-      view.delegateEvents();
-
+      var pasteEvent;
+      passwordField.on('paste', function(event) {
+        pasteEvent = event;
+      });
       passwordField.trigger('paste');
-
-      expect(view._disablePaste).toHaveBeenCalled();
+      expect(pasteEvent.isDefaultPrevented()).toBe(true);
     });
   });
 });

@@ -1,8 +1,8 @@
 = form_for(resource, as: resource_name, url: session_path(resource_name)) do |f|
-  %div{ class: "field #{error_class} email_field" }
+  .field.email_field{failed_login_options}
     = f.label :email
     = f.email_field :email, autofocus: true, placeholder: 'name@email.com', class: 'form_control'
-  %div{ class: "field #{error_class} password_field" }
+  .field.password_field{failed_login_options}
     = f.label :password
     .has_icon_inside.toggle_password.clearfix.line_height_buffer_base
       = f.password_field :password, autocomplete: "off", class: 'no_margin form_control float_left'

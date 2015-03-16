@@ -5,7 +5,6 @@ CodeClimate::TestReporter.start
 require 'pry'
 require 'support/vcr_setup'
 require 'support/timecop'
-require 'email_spec'
 
 RSpec.configure do |config|
   # These two settings work together to allow you to limit a spec run
@@ -74,7 +73,4 @@ RSpec.configure do |config|
   config.add_setting :fixtures_path, default: File.expand_path(
     '../fixtures', __FILE__
   )
-
-  config.include(EmailSpec::Helpers)
-  config.include(EmailSpec::Matchers)
 end

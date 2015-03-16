@@ -99,7 +99,6 @@ RSpec.describe Users::SessionsController do
 
     context 'with two failed login attempts' do
       let(:user) { create :user_with_devise_session, failed_attempts: 1 }
-      let(:email) { open_email(user.email) }
       let(:params) do
         {
           email: user.email,
@@ -111,8 +110,6 @@ RSpec.describe Users::SessionsController do
         expect(response).to render_template(
           partial: 'devise/sessions/_reset_password_message',
         )
-        expect(email).to deliver_to(user.email)
-        expect(email).to have_subject('Reset Dabo Password - Action Required')
       end
     end
   end

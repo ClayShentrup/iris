@@ -1,7 +1,7 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'Login validation' do
-  let!(:user) { create(:user) }
+  let!(:user) { create(:user_for_controller_specs) }
   let!(:admin_user) { create(:dabo_admin) }
   let(:first_failed_attempt_message) do
     'Invalid email or password. ' \
@@ -20,10 +20,10 @@ RSpec.feature 'Login validation' do
   let(:email_field) { '.email_field' }
   let(:password_field) { '.password_field' }
 
-  def log_in_with_wrong_credentials(email, password)
+  def log_in_with_wrong_credentials(email: user.email)
     visit new_user_session_path
     fill_in 'Email', with: email
-    fill_in 'Password', with: password
+    fill_in 'Password', with: 'wrongpassword'
     click_button 'Login'
   end
 
@@ -36,7 +36,7 @@ RSpec.feature 'Login validation' do
 
   describe 'when a invalid user attempts to login' do
     it 'returns an incorrect email or password message' do
-      log_in_with_wrong_credentials('foo@bar.com', 'wrongpassword')
+      log_in_with_wrong_credentials(email: 'foo@bar.com')
       expect(page).to have_content(incorrect_email_password_message)
       check_input_field_on_error_styling
     end
@@ -44,21 +44,21 @@ RSpec.feature 'Login validation' do
 
   describe 'when a valid user incorrectly logs in' do
     it 'shows the first failed attempt message' do
-      log_in_with_wrong_credentials(user.email, 'wrongpassword')
+      log_in_with_wrong_credentials
       expect(page).to have_content(first_failed_attempt_message)
       check_input_field_on_error_styling
     end
 
     it 'shows second failed attempt message and sends reset password email' do
-      log_in_with_wrong_credentials(user.email, 'wrongpassword')
-      log_in_with_wrong_credentials(user.email, 'wrongpassword')
+      log_in_with_wrong_credentials
+      log_in_with_wrong_credentials
       expect(page).to have_content(second_failed_attempt_message)
     end
 
     it 'locks account after 3 failed attempts, and can be unlocked' do
-      log_in_with_wrong_credentials(user.email, 'wrongpassword')
-      log_in_with_wrong_credentials(user.email, 'wrongpassword')
-      log_in_with_wrong_credentials(user.email, 'wrongpassword')
+      log_in_with_wrong_credentials
+      log_in_with_wrong_credentials
+      log_in_with_wrong_credentials
       log_in(user)
       expect(page).to have_content 'Your account is locked.'
       expect(current_path).to eq new_user_session_path
