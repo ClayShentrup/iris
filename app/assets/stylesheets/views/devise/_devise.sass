@@ -12,3 +12,15 @@ $desktop_devise_width: rem(550)
     svg
       height: rem(160)
       width: $desktop_devise_width
+
+#tabs.ui-widget-content
+  +media($tablet_portrait_and_desktop)
+    width: rem(500)
+    margin-top: rem(40)
+
+  +media($mobile)
+    border: none
+
+  margin: auto
+  .ui-widget-header, .ui-state-active, .ui-state-default
+    background: none

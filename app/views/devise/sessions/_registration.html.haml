@@ -7,9 +7,9 @@
       = f.email_field :email, autofocus: true, class: 'form_control'
     .field
       = f.label :password
-      - if @validatable
+      - if validatable
         %span.text_muted
-          (#{@minimum_password_length} characters minimum)
+          (#{minimum_password_length} characters minimum)
       .has_icon_inside.clearfix.line_height_buffer_base.toggle_password
         = f.password_field :password, autocomplete: 'off', required: true, class: 'form_control float_left'
         %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base

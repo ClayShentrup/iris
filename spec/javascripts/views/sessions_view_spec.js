@@ -78,4 +78,31 @@ describe('SessionsView', function() {
       expect(pasteEvent.isDefaultPrevented()).toBe(true);
     });
   });
+
+  describe('tabs', function() {
+    beforeEach(function() {
+      new Iris.Views['sessions-new']({el: '#body'});
+    });
+
+    var expectLoginTab = function() {
+      expect('#login').toBeVisible();
+      expect('#signup').not.toBeVisible();
+    };
+
+    var expectSignupTab = function() {
+      expect('#login').not.toBeVisible();
+      expect('#signup').toBeVisible();
+    };
+
+    it('initially shows the login tab', function() {
+      expectLoginTab();
+    });
+
+    it('displays the selected tab', function() {
+      $('li a[href="#signup"]').click();
+      expectSignupTab();
+      $('li a[href="#login"]').click();
+      expectLoginTab();
+    });
+  });
 });

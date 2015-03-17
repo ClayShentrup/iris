@@ -1,4 +1,5 @@
 .row
+<<<<<<< HEAD
   .devise_form.top_margin_large.centered
     = render 'devise/shared/logo'
     - if @is_last_attempt
@@ -7,3 +8,20 @@
     - else
       %h2.bottom_margin_base Sign In
       = render 'login_form'
+=======
+  #tabs
+    %ul
+      %li= link_to 'Log In', '#login'
+      %li= link_to 'Sign Up', '#signup'
+    #login
+      .login.top_margin_large.centered
+        = render 'devise/shared/logo'
+        - if @is_last_attempt
+          %h2.bottom_margin_base Reset Password
+          = render 'reset_password_message'
+        - else
+          %h2.bottom_margin_base Sign In
+          = render 'login_form'
+    #signup
+      = render 'registration', validatable: @validatable, minimum_password_length: @minimum_password_length
+>>>>>>> [89481486] Update signin page to include sign in and sign up tabs

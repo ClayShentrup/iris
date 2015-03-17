@@ -5,6 +5,7 @@
 //= require jquery_ujs
 //= require jquery-ui/datepicker
 //= require jquery-ui/autocomplete
+//= require jquery-ui/tabs
 //= require turbolinks
 //= require underscore
 //= require backbone
