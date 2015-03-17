@@ -11,13 +11,16 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
     )
   end
 
-  let(:data) { subject.data(relevant_providers) }
   let(:relevant_providers) { Provider.where(socrata_provider_id: provider_ids) }
 
   def create_relevant_providers
     provider_ids.each do |socrata_provider_id|
       create(Provider, socrata_provider_id: socrata_provider_id)
     end
+  end
+
+  def data
+    subject.data(relevant_providers)
   end
 
   before do
@@ -41,33 +44,14 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
         010418
       ]
     end
-    let(:cassette) do
-      %w[
-        DimensionSampleManagers_Socrata
-        for_single-measure_dimension_samples
-        pulls_persists_and_returns_data
-      ].join('/')
-    end
 
-    shared_examples 'a socrata data sample manager' do
-      before do
-        VCR.use_cassette(cassette) { subject.refresh }
-      end
-
-      it 'pulls, persists, and returns data' do
-        expect(data).to eq %w[
+    it 'pulls, persists, and returns data' do
+      expect { subject.refresh }.to change { data }
+        .from([])
+        .to %w[
           0.98
           1.06
         ]
-      end
-    end
-
-    context 'for a dataset with PROVIDER_ID_COLUMN_NAME specified' do
-      it_behaves_like 'a socrata data sample manager'
-    end
-
-    context 'for a dataset without PROVIDER_ID_COLUMN_NAME specified' do
-      it_behaves_like 'a socrata data sample manager'
     end
   end
 end

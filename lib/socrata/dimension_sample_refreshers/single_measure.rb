@@ -7,10 +7,9 @@ module Socrata
     # Fetches Socrata data and creates or updates single-measure dimension
     # samples in our database.
     SingleMeasure = Struct.new(:dataset_id,
-                               :options,
-                               :provider_id_column_name) do
-      def self.call(dataset_id:, options:, provider_id_column_name:)
-        new(dataset_id, options, provider_id_column_name).call
+                               :options) do
+      def self.call(dataset_id:, options:)
+        new(dataset_id, options).call
       end
 
       def call
@@ -27,9 +26,7 @@ module Socrata
           {
             column_name: value_column_name,
             dataset_id: dataset_id,
-            socrata_provider_id: dimension_sample.fetch(
-              provider_id_column_name,
-            ),
+            socrata_provider_id: dimension_sample.fetch('provider_id'),
             value: dimension_sample.delete(value_column_name),
           }
         end
@@ -51,7 +48,7 @@ module Socrata
 
       def required_columns
         [
-          provider_id_column_name,
+          :provider_id,
           value_column_name,
         ]
       end

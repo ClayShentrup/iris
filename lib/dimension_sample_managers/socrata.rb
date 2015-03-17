@@ -20,15 +20,10 @@ module DimensionSampleManagers
       data_refresher_class.call(
         dataset_id: dataset_id,
         options: options,
-        provider_id_column_name: provider_id_column_name,
       )
     end
 
     private
-
-    def provider_id_column_name
-      dataset_info.fetch(:provider_id_column_name, 'provider_id').to_s
-    end
 
     def dimension_sample_model_class
       dimension_sample_model_class_name.constantize
