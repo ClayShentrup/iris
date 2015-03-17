@@ -14,7 +14,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   initialize: function(options) {
     this.options = _.extend({}, this.defaults, options);
     this._initializeMetricsSearch();
-    this._initializeTopNav();
+    this._initializeSticky();
   },
 
   _initializeMetricsSearch: function() {
@@ -58,14 +58,10 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     return this.$('.main_content');
   },
 
-  /*
-   * Sticky Top Nav
-   */
-
-  _initializeTopNav: function() {
+  _initializeSticky: function() {
+    var stickyElement = this._stickyElement();
     _.bindAll(this, '_scrolling');
     this._window().scroll(this._scrolling);
-    this._startingPosition = 0;
   },
 
   _window: function() {
@@ -76,61 +72,71 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     return $('#top_nav');
   },
 
+  _stickyElement: function() {
+    return $('.sticky_element');
+  },
+
+  _topNavHeight: function() {
+    this.topNavHeight = this.topNavHeight || this._topNav().height() + 2;
+    return this.topNavHeight;
+  },
+
+  _stickyElementHeight: function() {
+    return this._stickyElement().height();
+  },
+
+  _elementIsReadyToBeSticky: function() {
+    return this._window().scrollTop() > this._stickyElementHeight();
+  },
+
   _scrollPosition: function() {
-    if (this._window().scrollTop() > 0) {
+    if (this._window().scrollTop() >= 0) {
       return this._window().scrollTop();
     } else {
       return 44;
     }
   },
 
-  _lastPosition: 0,
-
-  _startingPosition: 0,
-
-  _navPos: function() {
+  _topNavPosition: function() {
     return this._topNav().position().top;
   },
 
-  _setTopNavPos: function(pos) {
-    this._topNav().css('top', Iris.Util.convertPixelsToRems(pos) + 'rem');
+  _revealTopNav: function() {
+    this._topNav().addClass('is_sticky');
+    this._stickyElement().css(
+      'top', Iris.Util.convertPixelsToRems(this._topNavHeight()) + 'rem'
+    );
   },
 
-  _topNavHeight: function() {
-    return this._topNav().height();
+  _hideTopNav: function() {
+    this._resetTopNav();
+    this._stickyElement().css('top', 0);
+  },
+
+  _resetTopNav: function() {
+    this._topNav().removeClass('is_sticky');
   },
 
   _scrolling: function() {
     var scrollPosition = this._scrollPosition();
-    var negativeHeight = -this._topNavHeight();
+    if (this._elementIsReadyToBeSticky()) {
+      this._stickyElement().addClass('is_sticky');
+    } else {
+      this._stickyElement().removeClass('is_sticky');
+    }
 
     if (this._topNav().length === 0) {
       return;
     }
 
-    if (this._navPos() < negativeHeight) {
-      // chrome's scroll returning on refresh
-      this._setTopNavPos(negativeHeight);
-    }
-
-    if (scrollPosition > this._lastPosition) {
-      // scrolling down
-      if (this._navPos() >= negativeHeight) {
-        this._setTopNavPos(
-          this._lastPosition - scrollPosition + this._navPos()
-        );
+    if (scrollPosition < this._lastPosition) {
+      if (scrollPosition > this._topNavHeight()) {
+        this._revealTopNav();
       } else {
-        this._setTopNavPos(negativeHeight);
+        this._resetTopNav();
       }
     } else {
-      // scrolling up
-      if (this._navPos() < this._startingPosition) {
-        this._setTopNavPos(
-          this._lastPosition - scrollPosition + this._navPos()
-        );
-      } else {
-        this._setTopNavPos(this._startingPosition);
-      }
+      this._hideTopNav();
     }
     this._lastPosition = scrollPosition;
   },
