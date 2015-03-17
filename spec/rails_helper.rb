@@ -41,4 +41,13 @@ RSpec.configure do |config|
   # We also want controller specs to render the view, as a basic sanity check
   # that everything is set up that's required to correctly render.
   config.render_views
+
+  config.before(:suite) do
+    begin
+      DatabaseCleaner.start
+      FactoryGirl.lint
+    ensure
+      DatabaseCleaner.clean
+    end
+  end
 end

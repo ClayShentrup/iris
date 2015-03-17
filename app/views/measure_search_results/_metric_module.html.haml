@@ -1,9 +1,9 @@
 %li.category.line_height_base.top_margin_small
   %span.float_left.icon.icon_size_base.icon_left
     = render 'shared/icon', icon: '#icon_graph_bar'
-  = highlight(node_link(bundle), term)
+  = highlight(node_link(metric_module), term)
   %ul.measures.unstyled
     = render partial: 'child',
              as: :child,
-             collection: bundle.children,
+             collection: metric_module.children,
              locals: { term: term }

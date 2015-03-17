@@ -11,23 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150312220148) do
+ActiveRecord::Schema.define(version: 20150316201306) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "pg_stat_statements"
 
-  create_table "account_bundles", force: :cascade do |t|
-    t.integer "account_id"
-    t.string  "bundle_id"
-  end
-
-  add_index "account_bundles", ["account_id"], name: "index_account_bundles_on_account_id", using: :btree
-
   create_table "accounts", force: :cascade do |t|
-    t.integer  "default_provider_id", null: false
-    t.integer  "virtual_system_id",   null: false
-    t.string   "virtual_system_type", null: false
+    t.integer  "default_provider_id"
+    t.integer  "virtual_system_id"
+    t.string   "virtual_system_type"
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
   end
@@ -116,6 +109,13 @@ ActiveRecord::Schema.define(version: 20150312220148) do
   add_index "providers", ["city", "state"], name: "index_providers_on_city_and_state", using: :btree
   add_index "providers", ["hospital_system_id"], name: "index_providers_on_hospital_system_id", using: :btree
   add_index "providers", ["state"], name: "index_providers_on_state", using: :btree
+
+  create_table "purchased_metric_modules", force: :cascade do |t|
+    t.integer "account_id"
+    t.string  "metric_module_id"
+  end
+
+  add_index "purchased_metric_modules", ["account_id"], name: "index_purchased_metric_modules_on_account_id", using: :btree
 
   create_table "settings", force: :cascade do |t|
     t.string   "var",                   null: false

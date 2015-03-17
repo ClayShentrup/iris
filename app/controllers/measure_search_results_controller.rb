@@ -7,7 +7,7 @@ class MeasureSearchResultsController < ApplicationController
     )
     term = params.fetch(:term)
     results = ms.search(term)
-    render partial: 'bundle',
+    render partial: 'metric_module',
            collection: results.children,
            locals: { term: term }
   end

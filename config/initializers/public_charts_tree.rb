@@ -1,6 +1,6 @@
 PUBLIC_CHARTS_TREE = PublicChartsTree.new do
   measure_source 'Public Data' do
-    bundle 'Hospital-Acquired Conditions' do
+    metric_module 'Hospital-Acquired Conditions' do
       value DimensionSampleManagers::Socrata.new(
         dataset_id: 'yq43-i98g',
         options: { column_name: :total_hac_score },
@@ -21,14 +21,14 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
                  :HAI_2_SIR
       end
     end
-    bundle 'Readmissions Reduction Program' do
+    metric_module 'Readmissions Reduction Program' do
       measures :READM_30_AMI,
                :READM_30_HF,
                :READM_30_PN,
                :READM_30_COPD,
                :READM_30_HIP_KNEE
     end
-    bundle 'Hospital Consumer Assessment of Healthcare Providers and Systems' do
+    metric_module 'Hospital Consumer Assessment of Healthcare Providers and Systems' do
       category 'Communication' do
         measures :H_COMP_1_A_P,
                  :H_COMP_2_A_P,

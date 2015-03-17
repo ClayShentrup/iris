@@ -1,27 +1,31 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::AccountsController do
-  let(:instance_url) { dabo_admin_account_path(Account.last) }
-  let(:virtual_system) { create(:hospital_system_with_provider) }
-  let(:default_provider) { virtual_system.providers.first }
-  let(:invalid_account) do
-    {
-      virtual_system_gid: '',
-      default_provider_id: '',
-      user_ids: [],
-    }
-  end
   login_admin
 
-  it_behaves_like 'an ApplicationController index'
+  include_context 'an ApplicationController'
+  it_behaves_like 'an ApplicationController index' do
+    let(:model_instances) { create_list(Account, 1, :with_associations) }
+  end
   it_behaves_like 'an ApplicationController new'
-  it_behaves_like 'an ApplicationController delete'
-  it_behaves_like 'an ApplicationController show'
-  it_behaves_like 'an ApplicationController edit'
+  it_behaves_like 'an ApplicationController delete' do
+    let!(:model_instance) { account_instance }
+  end
+  it_behaves_like 'an ApplicationController show' do
+    let!(:model_instance) { account_instance }
+  end
+  it_behaves_like 'an ApplicationController edit' do
+    let!(:model_instance) { account_instance }
+  end
+
+  let(:account_instance) { create(Account, :with_associations) }
+  let(:instance_url) { dabo_admin_account_path(Account.last) }
+  let(:virtual_system) { create(HospitalSystem, :with_associations) }
+  let(:default_provider) { virtual_system.providers.last }
+  let(:users) { create_list(User, 2) }
 
   describe 'create' do
-    let(:users) { create_list(:user, 2) }
-    let(:valid_account) do
+    let(:valid_account_params) do
       {
         virtual_system_gid: virtual_system.to_global_id,
         default_provider_id: default_provider.id,
@@ -35,18 +39,27 @@ RSpec.describe DaboAdmin::AccountsController do
 
     describe 'with valid params' do
       it 'creates a new instance' do
-        expect { post_create(valid_account) }.to change(Account, :count).by(1)
+        expect { post_create(valid_account_params) }
+          .to change(Account, :count).by(1)
       end
 
       it 'redirects to the created record' do
-        post_create(valid_account)
+        post_create(valid_account_params)
         expect(response).to redirect_to instance_url
       end
     end
 
     describe 'with invalid params' do
+      let(:invalid_account_params) do
+        {
+          virtual_system_gid: '',
+          default_provider_id: '',
+          user_ids: [],
+        }
+      end
+
       before do
-        post_create(invalid_account)
+        post_create(invalid_account_params)
       end
 
       it 'assigns a newly created by unsaved model instance' do
@@ -60,8 +73,7 @@ RSpec.describe DaboAdmin::AccountsController do
   end
 
   describe 'update' do
-    let(:account_instance) { create(:account) }
-    let(:new_user) { create(:user) }
+    let(:new_user) { create(User) }
     let(:new_attributes) do
       {
         virtual_system_gid: virtual_system.to_global_id,
@@ -72,8 +84,8 @@ RSpec.describe DaboAdmin::AccountsController do
 
     describe 'with valid params' do
       before do
-        put :update,
-            id: account_instance.id, account: new_attributes
+        put :update, id: account_instance.id,
+                     account: new_attributes
       end
 
       it 'updates the requested model' do

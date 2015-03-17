@@ -50,64 +50,61 @@ RSpec.describe User do
   end
 
   describe 'validations' do
-    context 'no need to access the database' do
-      subject { build_stubbed(described_class) }
-      it { is_expected.to be_valid }
+    it do
+      is_expected.to be_valid
+    end
 
-      describe 'associations' do
-        before do
-          subject.skip_association_validations = false
+    describe 'associations' do
+      before { subject.skip_association_validations = false }
+      it { is_expected.to validate_presence_of(:account) }
+    end
+
+    context 'requires saved model' do
+      subject { create(described_class) }
+      it { is_expected.to validate_uniqueness_of(:email) }
+    end
+
+    it { is_expected.to validate_presence_of(:email) }
+
+    it { is_expected.to allow_value(false).for(:is_dabo_admin) }
+    it { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
+    it { is_expected.to validate_length_of(:password).is_at_least(8) }
+
+    describe 'password must be strong' do
+      subject { build_stubbed(:user, password: password) }
+      let(:password) { 'abcdefghijkl!2' }
+
+      context 'with fewer than 15 chars and fewer than 3 special chars' do
+        specify do
+          expect(subject).not_to be_valid
+          expect(subject.errors[:password].length).to be 1
         end
-        specify { is_expected.to validate_presence_of(:account) }
       end
 
-      specify { is_expected.to validate_presence_of(:email) }
-      specify { is_expected.to allow_value(false).for(:is_dabo_admin) }
-      specify { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
-      specify { is_expected.to validate_length_of(:password).is_at_least(8) }
+      context 'strong because of having at least three special characters' do
+        before { password[0] = '!' }
+        it { is_expected.to be_valid }
+      end
 
-      describe 'password must be strong' do
-        subject do
-          build_stubbed(:user, password: password) { |user| user.valid? }
-        end
-        let(:password) { 'abcdefghijkl!2' }
-
-        context 'with fewer than 15 chars and fewer than 3 special chars' do
-          specify { expect(subject.errors[:password].length).to be 1 }
-        end
-
-        context 'strong because of having at least three special characters' do
-          before { password[0] = '!' }
-          it { is_expected.to be_valid }
-        end
-
-        context 'strong because of having at least 15 characters' do
-          before { password << 'a' }
-          it { is_expected.to be_valid }
-        end
+      context 'strong because of having at least 15 characters' do
+        before { password << 'a' }
+        it { is_expected.to be_valid }
       end
     end
 
-    context 'requires a record to be saved' do
-      describe 'Devise password archivable' do
-        subject { create(described_class, password: used_password) }
+    describe 'Devise password archivable' do
+      subject { create(described_class, password: first_password) }
 
-        let(:used_password) { 'pushvisitbuilttail' }
-        let(:new_password) { 'shineaccordingtreehit' }
+      let(:first_password) { 'pushvisitbuilttail' }
+      let(:second_password) { 'shineaccordingtreehit' }
 
-        def update_password(password)
-          subject.update(password: password)
-        end
-
-        before do
-          update_password(new_password)
-        end
-
-        it 'does not allow an already used password' do
-          expect { update_password(used_password) }
-            .to change { subject.errors[:password].length }
-            .from(0).to(1)
-        end
+      it 'does not allow an already used password' do
+        expect(subject).to be_valid
+        subject.password = second_password
+        expect(subject).to be_valid
+        expect { subject.update_attributes(password: first_password) }
+          .to change { subject.errors[:password].length }
+          .from(0).to(1)
       end
     end
   end
@@ -120,5 +117,10 @@ RSpec.describe User do
         .to(:settings)
         .as(:selected_provider_id)
     end
+  end
+
+  it do
+    is_expected.to delegate_method(:purchased_metric_modules)
+      .to(:account)
   end
 end

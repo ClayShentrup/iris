@@ -52,13 +52,17 @@ class User < ActiveRecord::Base
          :timeoutable,
          :trackable
 
-  attr_accessor :skip_association_validations
   belongs_to :account
+  has_many :purchased_metric_modules
 
   # Some validations are enforced through devise config.
   # See initializers/devise.rb for more information.
-  validates :email, presence: true
+  validates :email,
+            presence: true,
+            uniqueness: true
+
   validates :account, presence: true, unless: :skip_association_validations
+
   validates :is_dabo_admin, inclusion: { in: [true, false] }
   validates :password,
             password_strength: true,
@@ -67,7 +71,9 @@ class User < ActiveRecord::Base
             unless: :updating_without_password?
 
   delegate :selected_provider_id, to: :settings
-  delegate :bundles, to: :account, prefix: true
+  delegate :purchased_metric_modules, to: :account
+
+  attr_accessor :skip_association_validations
 
   private
 

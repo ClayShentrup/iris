@@ -32,22 +32,31 @@ require 'ipaddr'
 
 FactoryGirl.define do
   factory :user do
+    skip_association_validations
+    confirmed
     sequence(:email) { |n| "user#{n}@factory.com" }
     password 'password123'
-    before(:create, &:skip_confirmation!)
-    after(:build, :stub) { |user| user.skip_association_validations = true }
-  end
 
-  factory :dabo_admin, parent: :user_with_devise_session do
-    is_dabo_admin true
-  end
+    trait :dabo_admin do
+      is_dabo_admin true
+      authenticatable
+    end
 
-  factory :user_with_devise_session, parent: :user do
-    current_sign_in_at Time.now
-    current_sign_in_ip IPAddr.new
-  end
+    trait :with_devise_session do
+      current_sign_in_at Time.now
+      current_sign_in_ip IPAddr.new
+    end
 
-  factory :user_for_controller_specs, parent: :user_with_devise_session do
-    association :account
+    trait :authenticatable do
+      with_devise_session
+    end
+
+    trait :confirmed do
+      before(:create, &:skip_confirmation!)
+    end
+
+    trait :with_associations do
+      association :account, :with_associations
+    end
   end
 end

@@ -36,8 +36,11 @@ account = Account.create!(
   hospital-acquired-conditions
   readmissions-reduction-program
   hospital-consumer-assessment-of-healthcare-providers-and-systems
-].each do |bundle|
-  AccountBundle.create!(account_id: account.id, bundle_id: bundle)
+].each do |metric_module_id|
+  PurchasedMetricModule.create!(
+    account_id: account.id,
+    metric_module_id: metric_module_id,
+  )
 end
 
 User.create!(

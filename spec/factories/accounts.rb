@@ -12,10 +12,14 @@
 
 FactoryGirl.define do
   factory :account do
-    association :virtual_system, factory: :hospital_system_with_provider
+    skip_association_validations true
 
-    before(:create) do |account|
-      account.default_provider = account.virtual_system.providers.first
+    trait :with_associations do
+      association :virtual_system,
+                  factory: [:hospital_system, :with_associations]
+      after(:build) do |account|
+        account.default_provider = account.virtual_system.providers.fetch(0)
+      end
     end
   end
 end

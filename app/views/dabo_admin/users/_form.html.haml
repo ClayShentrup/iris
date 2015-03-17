@@ -18,7 +18,7 @@
           = render 'shared/icon', icon:'#icon_eye'
   .field
     = f.label :account
-    = f.collection_select :account_id, Account.all, :id, :name
+    = f.collection_select :account_id, Account.all, :id, :virtual_system_name
   .field
     = f.label :is_dabo_admin
     = f.check_box :is_dabo_admin

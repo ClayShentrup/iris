@@ -1,6 +1,6 @@
 # .
 class PublicChartsTree
   # Delegates to a child node and adds a type.
-  class Bundle < SimpleDelegator
+  class MetricModule < SimpleDelegator
   end
 end

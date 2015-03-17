@@ -22,5 +22,6 @@ RSpec.describe Account, type: :model do
   it { is_expected.to belong_to :virtual_system }
   it { is_expected.to belong_to :default_provider }
   it { is_expected.to have_many(:users) }
+  it { is_expected.to have_many :purchased_metric_modules }
   it { is_expected.to have_many(:authorized_domains) }
 end

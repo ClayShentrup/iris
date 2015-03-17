@@ -2,7 +2,7 @@ require 'active_support/core_ext/module/delegation'
 require_relative 'internal_node'
 require_relative 'child_node'
 require_relative 'measure_source'
-require_relative 'bundle'
+require_relative 'metric_module'
 require_relative 'domain'
 require_relative 'category'
 require_relative 'measure'
@@ -41,8 +41,8 @@ class PublicChartsTree
       create_child_node(*args, definition_block, MeasureSource)
     end
 
-    def bundle(*args, &definition_block)
-      create_child_node(*args, definition_block, Bundle)
+    def metric_module(*args, &definition_block)
+      create_child_node(*args, definition_block, MetricModule)
     end
 
     def domain(*args, &definition_block)

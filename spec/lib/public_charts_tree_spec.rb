@@ -8,7 +8,7 @@ RSpec.describe PublicChartsTree do
   let(:tree) do
     described_class.new do
       measure_source 'Public Data' do
-        bundle 'Value Based Purchasing' do
+        metric_module 'Value Based Purchasing' do
           value VALUE_DIMENSION_SAMPLE_MANAGER
           domain 'Outcome of Care' do
             value VALUE_DIMENSION_SAMPLE_MANAGER
@@ -143,12 +143,12 @@ RSpec.describe PublicChartsTree do
     it_behaves_like 'a child node'
   end
 
-  context 'at a bundle node' do
+  context 'at a metric module node' do
     let(:parent_id) { 'public-data' }
     let(:node_id) { "#{parent_id}/value-based-purchasing" }
     let(:expected_short_title) { 'Value Based Purchasing' }
     let(:expected_parent_id) { 'public-data' }
-    let(:expected_type) { 'bundle' }
+    let(:expected_type) { 'metric_module' }
     let(:expected_child_ids) do
       %w[
         public-data/value-based-purchasing/outcome-of-care
@@ -256,10 +256,12 @@ RSpec.describe PublicChartsTree do
       expect(result.to_h).to eq expected_result
     end
 
-    context 'within the same bundle' do
-      let(:vbp_bundle_node) { find('public-data/value-based-purchasing') }
+    context 'within the same metric module' do
+      let(:vbp_metric_module_node) do
+        find('public-data/value-based-purchasing')
+      end
 
-      context 'match on bundle' do
+      context 'match on metric_module' do
         let(:search_term) { 'VaLuE bAs' }
         let(:expected_result) do
           {
@@ -272,7 +274,7 @@ RSpec.describe PublicChartsTree do
             ],
           }
         end
-        let(:expected_bundle_node) { find(node_id) }
+        let(:expected_metric_module_node) { find(node_id) }
 
         it { returns_expected_results }
       end

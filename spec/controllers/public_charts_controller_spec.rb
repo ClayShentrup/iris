@@ -7,7 +7,7 @@ RSpec.describe PublicChartsController do
     let(:public_charts_tree) do
       PublicChartsTree.new do
         measure_source 'Socrata' do
-          bundle 'Value Based Purchasing' do
+          metric_module 'Value Based Purchasing' do
             domain 'Outcome of Care' do
               measure 'Uno'
               measure 'Dos'

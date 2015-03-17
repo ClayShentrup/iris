@@ -17,18 +17,26 @@ require './app/models/authorized_domain'
 # An entity that represents a client account
 class Account < ActiveRecord::Base
   belongs_to :virtual_system, polymorphic: true
-  belongs_to :default_provider, class_name: 'Provider'
+  belongs_to :default_provider, class_name: :Provider
+
   has_many :users
-  has_many :bundles, class_name: 'AccountBundle'
+  has_many :purchased_metric_modules
   has_many :authorized_domains
 
-  attr_accessor :virtual_system_gid
+  validates :default_provider,
+            presence: true,
+            unless: :skip_association_validations
+  validates :virtual_system,
+            presence: true,
+            unless: :skip_association_validations
 
   delegate :name,
-           to: :virtual_system
+           to: :virtual_system,
+           prefix: true
   delegate :name,
-           to: :default_provider, prefix: true
+           to: :default_provider,
+           prefix: true
 
-  validates :default_provider, presence: true
-  validates :virtual_system, presence: true
+  attr_accessor :virtual_system_gid,
+                :skip_association_validations
 end

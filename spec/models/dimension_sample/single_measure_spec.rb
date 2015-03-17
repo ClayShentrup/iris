@@ -16,6 +16,8 @@ require './app/models/dimension_sample/single_measure'
 require './app/models/provider'
 
 RSpec.describe DimensionSample::SingleMeasure do
+  subject { build_stubbed(:dimension_sample_single_measure) }
+
   describe 'columns' do
     it do
       is_expected.to have_db_column(:dataset_id).of_type(:string)
@@ -36,6 +38,7 @@ RSpec.describe DimensionSample::SingleMeasure do
   end
 
   describe 'validations' do
+    it { is_expected.to be_valid }
     it { is_expected.to validate_presence_of(:dataset_id) }
     it { is_expected.to validate_presence_of(:socrata_provider_id) }
     it { is_expected.to validate_presence_of(:column_name) }

@@ -10,4 +10,4 @@
       - @accounts.each do |account|
         %tr
           %td
-            = link_to account.name, dabo_admin_account_path(account)
+            = link_to account.virtual_system_name, dabo_admin_account_path(account)

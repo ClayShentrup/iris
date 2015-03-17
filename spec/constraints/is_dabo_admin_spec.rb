@@ -2,7 +2,7 @@ require './lib/constraints/is_dabo_admin'
 
 RSpec.describe Constraints::IsDaboAdmin do
   context 'user is Dabo admin' do
-    let(:user) { build_stubbed(:dabo_admin) }
+    let(:user) { build_stubbed(User, :dabo_admin) }
     specify { expect(described_class.call(user)).to be true }
   end
 

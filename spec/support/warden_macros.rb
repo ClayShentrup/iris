@@ -11,7 +11,7 @@ module WardenMacros
   end
 
   def login_admin
-    let(:current_user) { create(:dabo_admin) }
+    let(:current_user) { create(User, :dabo_admin) }
     let!(:set_logged_in_state) { login_as(current_user, scope: :user) }
   end
 end

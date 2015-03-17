@@ -4,8 +4,8 @@ RSpec.feature 'editing an account' do
   include DropdownSpecHelper
   login_admin
 
-  let!(:user) { create(:user) }
-  let!(:account) { create(:account) }
+  let!(:user) { create(User, :authenticatable) }
+  let!(:account) { create(Account, :with_associations) }
   let(:provider) { account.default_provider }
   let(:hospital_system) { account.virtual_system }
 

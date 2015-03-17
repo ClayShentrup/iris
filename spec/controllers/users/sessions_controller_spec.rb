@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Users::SessionsController do
-  let(:user) { build_stubbed :user_with_devise_session }
   simulate_routed_request
 
   save_fixture do
@@ -9,7 +8,7 @@ RSpec.describe Users::SessionsController do
   end
 
   describe 'POST #create' do
-    let(:user) { create :user }
+    let(:user) { create(User) }
     let(:valid_params) do
       {
         email: user.email,
@@ -29,7 +28,6 @@ RSpec.describe Users::SessionsController do
       end
 
       it 'shows a flash message reminder' do
-        expect(flash[:notice]).to be_present
         expect(flash[:notice]).to have_content flash_message
       end
     end

@@ -9,9 +9,9 @@
 FactoryGirl.define do
   factory :hospital_system do
     sequence(:name) { |n| "Hospital System #{n}" }
-  end
 
-  factory :hospital_system_with_provider, parent: :hospital_system do
-    providers { create_list(:provider, 1) }
+    trait :with_associations do
+      providers { create_list(:provider, 1) }
+    end
   end
 end

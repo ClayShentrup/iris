@@ -27,7 +27,7 @@ RSpec.describe PublicChartsHelper do
     end
 
     context 'parent is not root' do
-      let(:type) { 'bundle' }
+      let(:type) { 'metric_module' }
 
       specify do
         expect(options).to eq(
