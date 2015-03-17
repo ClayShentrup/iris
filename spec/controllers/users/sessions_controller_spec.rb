@@ -45,7 +45,7 @@ RSpec.describe Users::SessionsController do
   end
 
   describe 'GET #new' do
-    let(:user) { create :user_with_devise_session }
+    let(:user) { create(User, :authenticatable) }
 
     before do
       post :create, user: params
@@ -82,7 +82,7 @@ RSpec.describe Users::SessionsController do
     end
 
     context 'with an invalid password' do
-      let(:user) { create :user_with_devise_session }
+      let(:user) { create(User, :authenticatable) }
       let(:params) do
         {
           email: user.email,
@@ -96,7 +96,7 @@ RSpec.describe Users::SessionsController do
     end
 
     context 'with two failed login attempts' do
-      let(:user) { create :user_with_devise_session, failed_attempts: 1 }
+      let(:user) { create(User, :authenticatable, failed_attempts: 1) }
       let(:params) do
         {
           email: user.email,

@@ -1,8 +1,8 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'Login validation' do
-  let!(:user) { create(:user_for_controller_specs) }
-  let!(:admin_user) { create(:dabo_admin) }
+  let!(:user) { create(User, :authenticatable, :with_associations) }
+  let!(:admin_user) { create(User, :dabo_admin) }
   let(:first_failed_attempt_message) do
     'Invalid email or password. ' \
     'You have one more try before we reset your login.'
