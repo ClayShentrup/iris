@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: authorized_domains
+#
+#  id         :integer          not null, primary key
+#  name       :string           not null
+#  account_id :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require './app/models/account'
 require 'public_suffix'
 require './app/validators/domain_name_validator'

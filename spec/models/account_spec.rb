@@ -3,9 +3,9 @@
 # Table name: accounts
 #
 #  id                  :integer          not null, primary key
-#  default_provider_id :integer          not null
-#  virtual_system_id   :integer          not null
-#  virtual_system_type :string           not null
+#  default_provider_id :integer
+#  virtual_system_id   :integer
+#  virtual_system_type :string
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
 #
