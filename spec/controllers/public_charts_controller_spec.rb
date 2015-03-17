@@ -1,7 +1,13 @@
 require 'rails_helper'
 
 RSpec.describe PublicChartsController do
-  login_user
+  let(:current_user) do
+    create(User, :authenticatable, :confirmed, account: create(Account))
+  end
+
+  before do
+    sign_in current_user
+  end
 
   describe 'GET show' do
     let(:public_charts_tree) do
@@ -129,6 +135,52 @@ RSpec.describe PublicChartsController do
             measures_nav_container,
             text: 'Socrata',
           )
+        end
+      end
+    end
+
+    context 'with parameters' do
+      let(:provider) { create(Provider) }
+      let(:node_id) { 'socrata' }
+      let(:get_params) { {} }
+
+      before do
+        get :show, { id: node_id }.merge(get_params)
+      end
+
+      context 'with selected provider id' do
+        let(:get_params) { { provider_id: provider.id } }
+
+        it 'persists selected provider' do
+          expect(current_user.selected_provider_id).to eq provider.id.to_s
+        end
+
+        it 'sets context to city' do
+          expect(current_user.selected_context).to eq 'city'
+        end
+      end
+
+      context 'with selected provider id and comparison context' do
+        let(:get_params) { { provider_id: provider.id, context: 'state' } }
+
+        it 'persists selected provider' do
+          expect(current_user.selected_provider_id).to eq provider.id.to_s
+        end
+
+        it 'persists selected context' do
+          expect(current_user.selected_context).to eq 'state'
+        end
+      end
+
+      context 'with comparison context' do
+        let(:get_params) { { context: 'state' } }
+
+        it 'keeps selected provider' do
+          expect(current_user.selected_provider_id).to eq nil
+        end
+
+        it 'persists selected context' do
+          expect(current_user.selected_context).to eq 'state'
         end
       end
     end
