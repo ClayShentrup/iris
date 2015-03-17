@@ -6,10 +6,14 @@
 
     = form_for(resource, as: resource_name, url: [resource_name, :password_expired], html: { method: :put, class: 'top_margin_base' }) do |f|
       = devise_error_messages!
-      .field
+      .field.has_icon_inside.toggle_password
         = f.password_field :password, class: 'form_control', placeholder: 'New password'
-      .field
+        %span.icon.icon_size_base.form_control_icon.line_height_base.toggle_icon
+          = render 'shared/icon', icon: '#icon_eye'
+      .field.has_icon_inside.toggle_password
         = f.password_field :password_confirmation, class: 'form_control', placeholder: 'Confirm password'
+        %span.icon.icon_size_base.form_control_icon.line_height_base.toggle_icon
+          = render 'shared/icon', icon: '#icon_eye'
       .top_margin_large
         = f.submit 'Create'
 
