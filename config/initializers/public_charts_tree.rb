@@ -10,7 +10,7 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
           dataset_id: 'yq43-i98g',
           options: { column_name: :domain_1_score },
         )
-        measures :PSI_90
+        measures :PSI_90_SAFETY
       end
       domain 'Hospital Acquired Infection' do
         value DimensionSampleManagers::Socrata.new(

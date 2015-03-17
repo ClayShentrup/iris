@@ -1,5 +1,5 @@
 MEASURES = {
-  PSI_90: {
+  PSI_90_SAFETY: {
     short_title: 'Patient Safety Composite',
     long_title:  'Complication/Patient safety for selected indicators ' \
                  '(PSI-90 composite)',
