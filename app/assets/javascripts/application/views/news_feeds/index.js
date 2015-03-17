@@ -19,22 +19,21 @@ Iris.Views['news_items-index'] = Backbone.View.extend({
       $('#news_feed_filter .icon.icon_large.float_right')
         .toggleClass('icon_arrow_large_down icon_arrow_large_up');
     });
-    this._initializeStick();
+    this._initializeSticky();
   },
 
   /*
    * Stick class menu
    */
 
-  _initializeStick: function() {
-    var menu = $('.stick');
-    menu.css({
-      'position': 'fixed',
-      'width': '100%',
-      'z-index': '1000',
-    });
-    menu.next(':visible').css('margin-top', menu.outerHeight());
-    this._element = menu;
+  _initializeSticky: function() {
+    var stickyElement = $('.sticky_element');
+    stickyElement.addClass('is_sticky');
+    stickyElement.next(':visible')
+      .css('margin-top',
+           Iris.Util.convertPixelsToRems(stickyElement.outerHeight()) +
+           Iris.Util.convertPixelsToRems(30) + 'rem');
+    this._element = stickyElement;
 
     _.bindAll(this, '_scrolling');
     this._window().scroll(this._scrolling);
@@ -44,7 +43,7 @@ Iris.Views['news_items-index'] = Backbone.View.extend({
 
     if (this._scrollPosition() < this._startingPosition) {
       var value = this._startingPosition - this._scrollPosition();
-      this._setTopNavPos(value)
+      this._setTopNavPos(value);
     } else {
       this._setTopNavPos(0);
     }
@@ -61,7 +60,11 @@ Iris.Views['news_items-index'] = Backbone.View.extend({
   },
 
   _scrollPosition: function() {
-    return this._window().scrollTop();
+    if (this._window().scrollTop() > 0) {
+      return this._window().scrollTop();
+    } else {
+      return;
+    }
   },
 
   _lastPosition: 0,
@@ -73,7 +76,7 @@ Iris.Views['news_items-index'] = Backbone.View.extend({
   },
 
   _setTopNavPos: function(pos) {
-    this._topNav().css('top', Iris.Util.convertRems(pos) + 'rem');
+    this._topNav().css('top', Iris.Util.convertPixelsToRems(pos) + 'rem');
   },
 
   _topNavHeight: function() {
@@ -81,9 +84,7 @@ Iris.Views['news_items-index'] = Backbone.View.extend({
   },
 
   _scrolling: function() {
-    console.log('scrolling!')
     var scrollPosition = this._scrollPosition();
-    // var negativeHeight = -this._topNavHeight();
     var negativeHeight = 0;
 
     if (this._topNav().length === 0) {

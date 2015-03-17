@@ -1,6 +1,6 @@
 'use strict';
 
-Iris.Util.convertRems = function(pixels) {
+Iris.Util.convertPixelsToRems = function(pixels) {
   var computedStyles   = window.getComputedStyle($('html')[0]);
   var computedFontSize = computedStyles.fontSize;
   var baseFontSize     = parseInt(computedFontSize);

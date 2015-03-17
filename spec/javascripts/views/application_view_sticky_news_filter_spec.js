@@ -13,6 +13,8 @@ describe('ApplicationViewStickyNewsFilter', function() {
     loadFixture('news_items_controller');
     newsFilter = $('.stick');
 
+    $('#body').css('position', 'relative');
+
     view = new Iris.Views['layouts/application'](
       {el: '#body', window: $('#body')}
     );
@@ -46,7 +48,7 @@ describe('ApplicationViewStickyNewsFilter', function() {
 
     it('unsticks from the view when scrolled up to the top', function() {
       scrollTo(20);
-      expect(newsFilterPos()).toBe(44-20);
+      expect(newsFilterPos()).toBe(44 - 20);
     });
 
     it('scrolls up with the page', function() {

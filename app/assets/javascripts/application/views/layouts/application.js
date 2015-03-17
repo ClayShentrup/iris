@@ -77,7 +77,11 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   _scrollPosition: function() {
-    return this._window().scrollTop();
+    if (this._window().scrollTop() > 0) {
+      return this._window().scrollTop();
+    } else {
+      return 44;
+    }
   },
 
   _lastPosition: 0,
@@ -89,7 +93,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   _setTopNavPos: function(pos) {
-    this._topNav().css('top', Iris.Util.convertRems(pos) + 'rem');
+    this._topNav().css('top', Iris.Util.convertPixelsToRems(pos) + 'rem');
   },
 
   _topNavHeight: function() {
@@ -111,7 +115,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
     if (scrollPosition > this._lastPosition) {
       // scrolling down
-      if (this._navPos() > negativeHeight) {
+      if (this._navPos() >= negativeHeight) {
         this._setTopNavPos(
           this._lastPosition - scrollPosition + this._navPos()
         );
@@ -130,6 +134,4 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     }
     this._lastPosition = scrollPosition;
   },
-
-
  });
