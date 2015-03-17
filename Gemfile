@@ -3,7 +3,6 @@ source "https://b8ab84f5:2186dcf8@gems.contribsys.com/"
 
 ruby '2.2.0'
 
-
 gem 'rails'
 gem 'pg'
 gem 'pg_search'
@@ -13,7 +12,7 @@ gem 'thin'
 gem 'flip'
 gem 'newrelic_rpm'
 gem 'devise'
-gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git'
+gem 'devise_security_extension'
 gem 'aws-sdk'
 gem 'sidekiq-pro'
 gem 'sinatra' # for Sidekiq admin panel
