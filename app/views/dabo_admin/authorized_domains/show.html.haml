@@ -1,0 +1,15 @@
+%h1 Authorized Domain
+
+.row
+  .table_responsive.top_margin_base.bottom_margin_base
+    %table.table.table_bordered.table_hover
+      %thead
+        %tr
+          %th Name
+      %tr
+        %td
+          = @authorized_domain.name
+
+= link_to 'Edit', edit_dabo_admin_authorized_domain_path(@authorized_domain)
+\|
+= link_to 'Back', dabo_admin_account_authorized_domains_path(@authorized_domain.account)

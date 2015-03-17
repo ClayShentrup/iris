@@ -1,0 +1,7 @@
+%h1 Editing Authorized Domain
+
+= render 'form', authorized_domain: @authorized_domain, account: @account
+
+= link_to 'Show', dabo_admin_authorized_domain_path(@authorized_domain)
+\|
+= link_to 'Back', dabo_admin_account_authorized_domains_path(@authorized_domain.account)

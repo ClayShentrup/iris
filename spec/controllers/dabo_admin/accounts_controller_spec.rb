@@ -62,7 +62,7 @@ RSpec.describe DaboAdmin::AccountsController do
         post_create(invalid_account_params)
       end
 
-      it 'assigns a newly created by unsaved model instance' do
+      it 'assigns a newly created but unsaved model instance' do
         expect(assigns(:account)).to be_a_new Account
       end
 

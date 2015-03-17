@@ -7,6 +7,7 @@
           %th Type
           %th Default Provider
           %th Users
+          %th Authorized Domains
       %tr
         %td
           = @account.virtual_system_name
@@ -19,6 +20,11 @@
             - @account.users.each do |user|
               %li
                 = user.email
+        %td
+          %ul.unstyled
+            - @account.authorized_domains.each do |authorized_domain|
+              %li
+                = authorized_domain.name
 
 
 = link_to 'Edit', edit_dabo_admin_account_path(@account)
@@ -27,3 +33,5 @@
   data: { confirm: 'Are you sure?' }
 \|
 = link_to 'Back', dabo_admin_accounts_path
+\|
+= link_to 'Manage Authorized Domains', dabo_admin_account_authorized_domains_path(@account)

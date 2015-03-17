@@ -3,6 +3,7 @@ require 'sidekiq/web'
 require_relative '../lib/constraints/is_dabo_admin'
 
 Rails.application.routes.draw do
+
   shallow do # we should always use shallow routes, internally at least
     devise_for :users, controllers: {
       registrations: 'users/registrations',
@@ -36,7 +37,9 @@ Rails.application.routes.draw do
       mount Sidekiq::Web => '/sidekiq'
 
       namespace :dabo_admin do
-        resources :accounts
+        resources :accounts do
+          resources :authorized_domains
+        end
         resources :hospital_systems
         resources :providers
         resources :reports, only: :index
