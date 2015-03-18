@@ -103,9 +103,9 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   _revealTopNav: function() {
     this._topNav().addClass('is_sticky');
-    this._stickyElement().css(
-      'top', Iris.Util.convertPixelsToRems(this._topNavHeight()) + 'rem'
-    );
+    this._stickyElement().animate({
+      'top': Iris.Util.convertPixelsToRems(this._topNavHeight()) + 'rem'
+    }, 300);
   },
 
   _hideTopNav: function() {
@@ -132,7 +132,9 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
     if (scrollPosition < this._lastPosition) {
       if (scrollPosition > this._topNavHeight()) {
-        this._revealTopNav();
+        if (!this._topNav().hasClass('is_sticky')) {
+          this._revealTopNav();
+        }
       } else {
         this._resetTopNav();
       }
