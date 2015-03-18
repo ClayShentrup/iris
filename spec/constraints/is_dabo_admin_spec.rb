@@ -1,4 +1,6 @@
+require 'active_record_no_rails_helper'
 require './lib/constraints/is_dabo_admin'
+require './app/models/user'
 
 RSpec.describe Constraints::IsDaboAdmin do
   context 'user is Dabo admin' do
