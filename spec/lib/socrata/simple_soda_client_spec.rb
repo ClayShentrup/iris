@@ -1,8 +1,8 @@
 require 'socrata/simple_soda_client'
 
 RSpec.describe Socrata::SimpleSodaClient, :vcr do
-  subject do
-    described_class.new(
+  def results
+    described_class.call(
       dataset_id: hospitals_dataset_id,
       required_columns: required_columns,
     )
@@ -14,8 +14,6 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
       hospital_name
     ]
   end
-
-  let(:results) { subject.to_a }
 
   before do
     stub_const('Socrata::SimpleSodaClientBase::PAGE_SIZE', 2)
@@ -36,9 +34,5 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
         'provider_id' => '010007',
       },
     ]
-  end
-
-  it 'stores the length' do
-    expect(results.size).to be 3
   end
 end

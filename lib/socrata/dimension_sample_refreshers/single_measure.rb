@@ -40,7 +40,7 @@ module Socrata
       end
 
       def dimension_samples
-        SimpleSodaClient.new(
+        SimpleSodaClient.call(
           dataset_id: dataset_id,
           required_columns: required_columns,
         )

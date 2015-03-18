@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/rrqw-56er.json?$limit=1000&$offset=0&$select=provider_id,score
+    uri: https://data.medicare.gov/resource/rrqw-56er.json?$limit=50000&$offset=0&$select=provider_id,score
     body:
       encoding: UTF-8
       string: 'null'

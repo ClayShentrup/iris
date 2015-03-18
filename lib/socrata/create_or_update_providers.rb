@@ -15,10 +15,10 @@ module Socrata
     ]
 
     def self.call
-      providers = SimpleSodaClient.new(
+      providers = SimpleSodaClient.call(
         dataset_id: DATASET_ID,
         required_columns: REQUIRED_COLUMNS,
-      ).to_a
+      )
       providers.each_with_index do |provider_attributes, index|
         provider_attributes['name'] = provider_attributes
                                       .delete('hospital_name')

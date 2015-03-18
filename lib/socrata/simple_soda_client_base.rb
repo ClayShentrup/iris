@@ -6,34 +6,32 @@ module Socrata
   #   - Hardcodes the domain and page size ("limit")
   #   - Provides pagination functionality
   class SimpleSodaClientBase
-    include Enumerable
-
     DOMAIN = 'data.medicare.gov'
-    PAGE_SIZE = 1000
+    PAGE_SIZE = 50_000
+
+    def self.call(*args)
+      new(*args).call
+    end
 
     def initialize(dataset_id:, required_columns:, extra_query_options:)
       @dataset_id = dataset_id
       @required_columns = required_columns
       @extra_query_options = extra_query_options
-      @length = 0
+      @results = []
     end
 
-    def each(&block)
+    def call
       loop do
-        next_page_of_results.each(&block)
-        @length += page_length
+        @results += next_page_of_results
         break unless possible_next_page?
       end
+      @results
     end
 
     private
 
     def possible_next_page?
-      page_length == PAGE_SIZE
-    end
-
-    def page_length
-      @page.length
+      @page.length == PAGE_SIZE
     end
 
     def next_page_of_results
@@ -48,7 +46,7 @@ module Socrata
       @extra_query_options.merge(
         '$limit' => PAGE_SIZE,
         '$select' => @required_columns.join(','),
-        '$offset' => @length,
+        '$offset' => @results.length,
       )
     end
 
