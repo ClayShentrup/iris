@@ -4,7 +4,7 @@ module Users
   class PasswordExpiredController < Devise::PasswordExpiredController
     def update
       if resource.update_attributes(resource_params)
-        update_password
+        login_user
       else
         clean_up_passwords(resource)
         respond_with(resource, action: :show)
@@ -13,7 +13,7 @@ module Users
 
     private
 
-    def update_password
+    def login_user
       warden.session(scope)['password_expired'] = false
       set_flash_message :notice, :updated
       sign_in scope, resource, bypass: true
