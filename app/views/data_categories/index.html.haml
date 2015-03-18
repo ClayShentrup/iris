@@ -1,8 +1,7 @@
-#measures_nav_container.col2.bottom_buffer_base
-  .measures_nav_btn.forward_btn.line_height_buffer_xl.inner_padding_small.border_grey.clearfix
-    = link_to '/metrics/public-data' do
-      %span.text_ellipsis.with_small_icon Public Data
-      %span.icon.icon_size_small.float_right.icon_brand_color_primary
-        = render 'shared/icon', icon: '#icon_arrow_large_right', klass: 'vertical_align_middle'
+#measures_nav_container.col2.hide_on_mobile.hide_on_tablet_portrait.bottom_buffer_base
+  = render 'data_categories_nav'
+
+#measures_nav_container.col12.hide_on_desktop.is_sticky.bottom_buffer_base
+  = render 'data_categories_nav'
 
 = render 'layouts/feedback_bar'

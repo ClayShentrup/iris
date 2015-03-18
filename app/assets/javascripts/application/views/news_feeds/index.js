@@ -2,14 +2,7 @@
 'use strict';
 
 Iris.Views['news_items-index'] = Backbone.View.extend({
-
-  defaults: {
-    window: $(window)
-  },
-
-  initialize: function(options) {
-    this.options = _.extend({}, this.defaults, options);
-
+  initialize: function() {
     if ($('#news_feed_filter .dropdown').is(':hidden')) {
       $('#news_feed_filter').on('click', function() {
         $('.dropdown').slideToggle(100);
