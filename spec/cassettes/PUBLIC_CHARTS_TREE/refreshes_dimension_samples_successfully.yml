@@ -1,0 +1,249 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=measure_id,provider_id,score&$where=measure_id%20=%20%27PSI_90_SAFETY%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 19 Mar 2015 00:24:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 22 Jan 2015 00:51:49 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","measure_id","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "measure_id" : "PSI_90_SAFETY",
+          "provider_id" : "010001",
+          "score" : "0.74"
+        }
+        , {
+          "measure_id" : "PSI_90_SAFETY",
+          "provider_id" : "010005",
+          "score" : "0.65"
+        }
+         ]
+    http_version:
+  recorded_at: Thu, 19 Mar 2015 00:24:22 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/yq43-i98g.json?$limit=50000&$offset=0&$select=provider_id,domain_1_score
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 19 Mar 2015 00:24:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 18 Dec 2014 20:03:14 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id",":id","domain_1_score",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","meta_data","text","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "domain_1_score" : "3.0000"
+        }
+        , {
+          "provider_id" : "010005",
+          "domain_1_score" : "1.0000"
+        }
+         ]
+    http_version:
+  recorded_at: Thu, 19 Mar 2015 00:24:22 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/yq43-i98g.json?$limit=50000&$offset=0&$select=provider_id,domain_2_score
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 19 Mar 2015 00:24:23 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 18 Dec 2014 20:03:14 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","domain_2_score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "domain_2_score" : "9.0000"
+        }
+        , {
+          "provider_id" : "010005",
+          "domain_2_score" : "2.0000"
+        }
+         ]
+    http_version:
+  recorded_at: Thu, 19 Mar 2015 00:24:23 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/yq43-i98g.json?$limit=50000&$offset=0&$select=provider_id,total_hac_score
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Thu, 19 Mar 2015 00:24:23 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 18 Dec 2014 20:03:14 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","total_hac_score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "total_hac_score" : "6.9000"
+        }
+        , {
+          "provider_id" : "010005",
+          "total_hac_score" : "1.6500"
+        }
+         ]
+    http_version:
+  recorded_at: Thu, 19 Mar 2015 00:24:23 GMT
+recorded_with: VCR 2.9.3

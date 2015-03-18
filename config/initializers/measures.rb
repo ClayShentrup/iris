@@ -3,6 +3,11 @@ MEASURES = {
     short_title: 'Patient Safety Composite',
     long_title:  'Complication/Patient safety for selected indicators ' \
                  '(PSI-90 composite)',
+    value: DimensionSampleManagers::Socrata.new(
+      column_name: :score,
+      dataset_id: '7xux-kdpw',
+      measure_id: 'PSI_90_SAFETY',
+    ),
   },
   HAI_1_SIR: {
     short_title: 'Catheter Associated Urinary Tract Infection',

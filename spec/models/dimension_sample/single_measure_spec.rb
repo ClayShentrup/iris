@@ -68,17 +68,16 @@ RSpec.describe DimensionSample::SingleMeasure do
         value: value,
       }
     end
+    let(:column_name) { 'weighted_outcome_domain_score' }
+    let(:dataset_id) { 'ypbt-wvdk' }
+    let(:socrata_provider_id) { '010001' }
+    let(:value) { '42.42424242' }
 
     describe '.data' do
-      let(:socrata_provider_id) { relevant_provider_id_1 }
-      let(:value) { relevant_dimension_sample_1_value }
-      let(:dataset_id) { 'ypbt-wvdk' }
-      let(:column_name) { 'weighted_outcome_domain_score' }
-
       let!(:relevant_provider_1) do
         create(Provider, socrata_provider_id: relevant_provider_id_1)
       end
-      let(:relevant_provider_id_1) { '010001' }
+      let(:relevant_provider_id_1) { socrata_provider_id }
 
       let!(:relevant_provider_2) do
         create(Provider, socrata_provider_id: relevant_provider_id_2)
@@ -90,7 +89,7 @@ RSpec.describe DimensionSample::SingleMeasure do
       let!(:relevant_dimension_sample_1) do
         create_dimension_sample
       end
-      let(:relevant_dimension_sample_1_value) { '7.2000000000' }
+      let(:relevant_dimension_sample_1_value) { value }
 
       let!(:relevant_dimension_sample_2) do
         create_dimension_sample(
@@ -139,11 +138,6 @@ RSpec.describe DimensionSample::SingleMeasure do
       let(:new_attributes) do
         dimension_sample_attributes.merge(new_attribute)
       end
-
-      let(:column_name) { 'weighted_outcome_domain_score' }
-      let(:dataset_id) { 'ypbt-wvdk' }
-      let(:socrata_provider_id) { '123456' }
-      let(:value) { '42.42424242' }
       let!(:existing_dimension_sample) do
         create(
           :dimension_sample_single_measure,

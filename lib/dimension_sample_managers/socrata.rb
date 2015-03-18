@@ -1,6 +1,6 @@
 require './app/models/provider'
-require './app/models/dimension_sample/single_measure'
 require 'socrata/dimension_sample_refreshers/single_measure'
+require 'socrata/dimension_sample_refreshers/multi_measure'
 
 # .
 module DimensionSampleManagers

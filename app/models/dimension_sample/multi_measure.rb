@@ -23,5 +23,31 @@ module DimensionSample
     validates :measure_id, presence: true
     validates :column_name, presence: true
     validates :value, presence: true
+
+    def self.data(column_name:, dataset_id:, measure_id:, providers:)
+      matching_samples = where(
+        dataset_id: dataset_id,
+        column_name: column_name,
+        measure_id: measure_id,
+      )
+      providers.joins(<<-SQL)
+        LEFT JOIN dimension_sample_multi_measures
+        ON dimension_sample_multi_measures.socrata_provider_id =
+        providers.socrata_provider_id
+      SQL
+        .merge(matching_samples)
+        .pluck(:value)
+    end
+
+    def self.create_or_update!(attributes)
+      find_or_initialize_by(
+        attributes.slice(
+          :column_name,
+          :dataset_id,
+          :socrata_provider_id,
+          :measure_id,
+        ),
+      ).update_attributes!(attributes)
+    end
   end
 end

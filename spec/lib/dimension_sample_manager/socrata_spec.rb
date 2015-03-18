@@ -24,14 +24,12 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
     stub_const(
       'DATASETS',
       'rrqw-56er' => { dataset_type: :single_measure },
+      '7xux-kdpw' => { dataset_type: :multi_measure },
     )
     create_relevant_providers
   end
 
-  context 'for single-measure dimension samples' do
-    let(:dataset_id) { 'rrqw-56er' }
-    let(:column_name) { :score }
-    let(:options) { { column_name: column_name } }
+  context 'data rows have provider_id' do
     let(:provider_ids) do
       %w[
         010087
@@ -41,14 +39,36 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
         010418
       ]
     end
+    let(:column_name) { :score }
 
-    it 'pulls, persists, and returns data' do
-      expect { subject.refresh }.to change { data }
-        .from([])
-        .to %w[
-          0.98
-          1.06
-        ]
+    shared_examples 'a dimension sample manager' do
+      it 'pulls, persists, and returns data' do
+        expect { subject.refresh }.to change { data }
+          .from([])
+          .to %w[
+            0.98
+            1.06
+          ]
+      end
+    end
+
+    context 'for single-measure dimension samples' do
+      let(:dataset_id) { 'rrqw-56er' }
+      let(:options) { { column_name: column_name } }
+
+      it_behaves_like 'a dimension sample manager'
+    end
+
+    context 'for multi-measure dimension samples', :vcr do
+      let(:dataset_id) { '7xux-kdpw' }
+      let(:options) do
+        {
+          column_name: column_name,
+          measure_id: :PSI_90_SAFETY,
+        }
+      end
+
+      it_behaves_like 'a dimension sample manager'
     end
   end
 end
