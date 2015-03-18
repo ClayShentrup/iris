@@ -1,5 +1,3 @@
-require 'soda'
-require 'active_support/core_ext/object/try'
 require_relative './simple_soda_client_base'
 
 module Socrata

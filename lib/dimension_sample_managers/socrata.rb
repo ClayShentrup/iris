@@ -1,29 +1,33 @@
+require './app/models/provider'
+require './app/models/dimension_sample/single_measure'
 require 'socrata/dimension_sample_refreshers/single_measure'
-require 'active_support/inflector/methods'
+
 # .
 module DimensionSampleManagers
   # Satisfies the DimensionSampleManager interface to retrieve and refresh data.
-  Socrata = Struct.new(:dataset_id, :options) do
-    def initialize(dataset_id:, options:)
-      super(dataset_id, options)
+  Socrata = Struct.new(:column_name, :dataset_id, :additional_options) do
+    def initialize(column_name:, dataset_id:, **additional_options)
+      super(column_name, dataset_id, additional_options)
     end
 
     def data(providers)
       dimension_sample_model_class.data(
-        dataset_id: dataset_id,
-        providers: providers,
-        options: options,
+        base_options.merge(providers: providers),
       )
     end
 
     def refresh
-      data_refresher_class.call(
-        dataset_id: dataset_id,
-        options: options,
-      )
+      data_refresher_class.call(base_options)
     end
 
     private
+
+    def base_options
+      additional_options.merge(
+        column_name: column_name.to_s,
+        dataset_id: dataset_id,
+      )
+    end
 
     def dimension_sample_model_class
       dimension_sample_model_class_name.constantize

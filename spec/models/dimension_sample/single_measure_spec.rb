@@ -122,10 +122,8 @@ RSpec.describe DimensionSample::SingleMeasure do
 
     let(:data) do
       described_class.data(
+        column_name: :weighted_outcome_domain_score,
         dataset_id: 'ypbt-wvdk',
-        options: {
-          column_name: 'weighted_outcome_domain_score',
-        },
         providers: providers,
       )
     end

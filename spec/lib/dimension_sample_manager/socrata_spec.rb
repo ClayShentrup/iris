@@ -1,13 +1,10 @@
 require 'active_record_no_rails_helper'
 require 'dimension_sample_managers/socrata'
-require './app/models/provider'
-require './app/models/dimension_sample/single_measure'
 
 RSpec.describe DimensionSampleManagers::Socrata, :vcr do
   subject do
     DimensionSampleManagers::Socrata.new(
-      dataset_id: dataset_id,
-      options: options,
+      options.merge(dataset_id: dataset_id),
     )
   end
 

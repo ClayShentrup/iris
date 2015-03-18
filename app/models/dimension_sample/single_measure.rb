@@ -20,10 +20,10 @@ module DimensionSample
     validates :column_name, presence: true
     validates :value, presence: true
 
-    def self.data(dataset_id:, options:, providers:)
+    def self.data(column_name:, dataset_id:, providers:)
       matching_samples = where(
         dataset_id: dataset_id,
-        column_name: options.fetch(:column_name),
+        column_name: column_name,
       )
       providers.joins(<<-SQL)
         LEFT JOIN dimension_sample_single_measures
