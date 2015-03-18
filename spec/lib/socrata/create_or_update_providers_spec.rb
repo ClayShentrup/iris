@@ -10,7 +10,7 @@ RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
   let(:block) { ->(_) {} }
 
   before do
-    stub_const('Socrata::SimpleSodaClient::PAGE_SIZE', 2)
+    stub_const('Socrata::SimpleSodaClientBase::PAGE_SIZE', 2)
   end
 
   def call_with_vcr(&block)

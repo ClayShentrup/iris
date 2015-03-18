@@ -18,7 +18,7 @@ RSpec.describe Socrata::SimpleSodaClient, :vcr do
   let(:results) { subject.to_a }
 
   before do
-    stub_const('Socrata::SimpleSodaClient::PAGE_SIZE', 2)
+    stub_const('Socrata::SimpleSodaClientBase::PAGE_SIZE', 2)
   end
 
   it 'gets some results' do

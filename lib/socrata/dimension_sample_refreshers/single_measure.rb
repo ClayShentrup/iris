@@ -27,7 +27,7 @@ module Socrata
             column_name: value_column_name,
             dataset_id: dataset_id,
             socrata_provider_id: dimension_sample.fetch('provider_id'),
-            value: dimension_sample.delete(value_column_name),
+            value: dimension_sample.fetch(value_column_name),
           }
         end
       end
