@@ -2,7 +2,6 @@
 'use strict';
 
 describe('ApplicationViewMeasuresSearch', function() {
-
   var measuresFixturePath = 'measure_search_results_controller.html';
   var searchEndpoint = '/measure_search_results?term=';
   var search;
@@ -13,7 +12,7 @@ describe('ApplicationViewMeasuresSearch', function() {
   beforeEach(function() {
     loadFixture('news_items_controller');
     mainContent = $('.main_content');
-    new Iris.Views['layouts/application']({el: '#body'});
+    new Iris.Views['layouts/application']({el: '#body', window: $('#body')});
   });
 
   describe('for desktop', function() {

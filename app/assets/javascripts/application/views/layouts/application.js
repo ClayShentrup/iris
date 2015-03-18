@@ -119,6 +119,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   _scrolling: function() {
     var scrollPosition = this._scrollPosition();
+
     if (this._elementIsReadyToBeSticky()) {
       this._stickyElement().addClass('is_sticky');
     } else {
