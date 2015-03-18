@@ -13,7 +13,6 @@ RSpec.feature 'Update password' do
   scenario 'user can change password from user profiles' do
     fill_in 'Current password', with: user.password
     fill_in 'Password', with: new_password
-    fill_in 'Password confirmation', with: new_password
     click_button 'Update'
     expect(page).to have_content('Your account has been updated successfully.')
   end
