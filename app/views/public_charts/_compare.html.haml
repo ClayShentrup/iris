@@ -1,0 +1,21 @@
+%li.bottom_margin_small
+  %a.no_link{ href: '?context=city' }
+    %p.no_margin.compare_item_name= provider_compare_presenter.provider_city_and_state
+    %p.text_muted
+      = pluralize(provider_compare_presenter.providers_in_city_count, 'Provider')
+%li.bottom_margin_small
+  %a.no_link{ href: '?context=state' }
+    %p.no_margin.compare_item_name= provider_compare_presenter.provider_state
+    %p.text_muted
+      = pluralize(provider_compare_presenter.providers_in_state_count, 'Provider')
+- if provider_compare_presenter.hospital_system?
+  %li.bottom_margin_small
+    %a.no_link{ href: '?context=system' }
+      %p.no_margin.compare_item_name= provider_compare_presenter.hospital_system_name
+      %p.text_muted
+        = pluralize(provider_compare_presenter.providers_in_system_count, 'Provider')
+%li.bottom_margin_small
+  %a.no_link{ href: '?context=nationwide' }
+    %p.no_margin.compare_item_name Nationwide
+    %p.text_muted
+      = pluralize(provider_compare_presenter.providers_count, 'Provider')

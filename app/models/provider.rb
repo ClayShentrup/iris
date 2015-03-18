@@ -45,6 +45,14 @@ class Provider < ActiveRecord::Base
     tsearch: { prefix: true },
   }
 
+  def self.in_same_system(provider)
+    if provider.hospital_system_id
+      where(hospital_system_id: provider.hospital_system_id)
+    else
+      where(id: provider)
+    end
+  end
+
   def self.create_or_update!(attributes)
     find_or_initialize_by(
       socrata_provider_id: attributes.fetch('socrata_provider_id'),
@@ -57,5 +65,18 @@ class Provider < ActiveRecord::Base
 
   def providers
     [self]
+  end
+
+  def providers_relation(context)
+    case context
+    when 'city'
+      Provider.in_same_city(self)
+    when 'state'
+      Provider.in_same_state(self)
+    when 'system'
+      Provider.in_same_system(self)
+    when 'nationwide'
+      Provider.all
+    end
   end
 end

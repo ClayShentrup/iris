@@ -5,7 +5,7 @@ require 'providers/provider_compare_presenter'
 RSpec.describe Providers::ProviderComparePresenter do
   let(:provider) { create(:provider) }
 
-  subject { described_class.new(provider) }
+  subject { described_class.new(provider, 'city') }
 
   before do
     create(:provider, city: provider.city, state: provider.state)

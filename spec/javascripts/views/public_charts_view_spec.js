@@ -31,11 +31,11 @@ describe('PublicChartsView', function() {
     var providerNation = compareDropdown.find('ul li:last');
 
     expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
-    expect(providerCityAndState).toContainText('0 Providers');
+    expect(providerCityAndState).toContainText('1 Provider');
     expect(providerState).toContainText('CA');
-    expect(providerState).toContainText('0 Providers');
+    expect(providerState).toContainText('1 Provider');
     expect(providerNation).toContainText('Nationwide');
-    expect(providerNation).toContainText('0 Providers');
+    expect(providerNation).toContainText('1 Provider');
   });
 
   describe('typing into the search input', function() {
@@ -64,47 +64,6 @@ describe('PublicChartsView', function() {
       expect(providerDropdown.find('li')).toHaveLength(1);
       expect(providerDropdown).toContainText('My Provider 1');
       expect(providerDropdown).not.toContainText('My Provider 2');
-    });
-  });
-
-  describe('selecting a provider', function() {
-    beforeEach(function() {
-      var providerIdInFixture = '88';
-      var compareEndpoint = '/provider_search_results/';
-      var compareFixture =
-        'provider_search_results_controller-show-provider-to-compare-' +
-        'has-hospital-system.html';
-
-      stubAjaxRequest(searchEndpoint + 'foo', oneProviderFixture);
-      searchAutocomplete(searchInput, 'foo');
-
-      stubAjaxRequest(compareEndpoint + providerIdInFixture, compareFixture);
-      providerDropdown.find('li').click();
-    });
-
-    it('refreshes the compare dropdown', function() {
-      var compareDropdown = $('.dropdown_items.compare');
-      var providerCityAndState = compareDropdown.find('ul li:first');
-      var providerState = compareDropdown.find('ul li:nth-child(2)');
-      var providerSystem = compareDropdown.find('ul li:nth-child(3)');
-      var providerNation = compareDropdown.find('ul li:last');
-
-      expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
-      expect(providerCityAndState).toContainText('2 Providers');
-      expect(providerState).toContainText('CA');
-      expect(providerState).toContainText('3 Providers');
-      expect(providerSystem).toContainText('Test System');
-      expect(providerSystem).toContainText('2 Providers');
-      expect(providerNation).toContainText('Nationwide');
-      expect(providerNation).toContainText('4 Providers');
-    });
-
-    it('updates provider name and city in dropdown buttons', function() {
-      var providerName = $('.dropdown_button.provider .provider_name');
-      var providerCityAndState = $('.dropdown_button.compare .compare_name');
-
-      expect(providerName).toContainText('My Provider 1');
-      expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
     });
   });
 

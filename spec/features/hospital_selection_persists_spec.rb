@@ -1,7 +1,7 @@
 require 'feature_spec_helper'
 
 RSpec.feature 'User selected hospital' do
-  let(:user) { create :user }
+  let(:user) { create(User, :authenticatable, :confirmed, :with_associations) }
   let!(:provider) { create :provider, name: provider_name }
   let!(:another_provider) { create :provider }
   let(:provider_name) { 'Children\'s Hospital' }
@@ -22,7 +22,7 @@ RSpec.feature 'User selected hospital' do
       readmissions-reduction-program
     ].join('/')
   end
-  let(:selector) { '.dropdown_items.provider li' }
+  let(:selector) { '.dropdown_items.provider li a' }
   let(:field_id) { 'provider_search' }
   let(:dropdown_button) { '.dropdown_button.provider' }
 
@@ -30,7 +30,7 @@ RSpec.feature 'User selected hospital' do
     fill_in field_id, with: provider_name
     focus_and_type_in_search_field
     expect(page).to have_selector selector
-    page.execute_script %{ $('#{selector}').trigger('mouseenter').click() }
+    find(selector).click
   end
 
   def focus_and_type_in_search_field

@@ -5,7 +5,6 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   events: {
     'click .dropdown_button.provider': '_toggleDropdownProvider',
     'click .dropdown_button.compare': '_toggleDropdownCompare',
-    'click .dropdown_items.provider li': '_selectProvider',
     'click .dropdown_items.compare li': '_selectCompare',
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchProvider'
@@ -48,18 +47,6 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     return this.$('#select_and_compare');
   },
 
-  _selectProvider: function(event) {
-    var selectedProvider = $(event.currentTarget);
-    var name = selectedProvider.data('provider-name');
-    var cityAndState = selectedProvider.data('provider-city-and-state');
-
-    this.$('.provider_name').html(name);
-    this.$('.compare_name').html(cityAndState);
-
-    this._toggleDropdownProvider();
-    this._refreshCompareDropdown(selectedProvider.data('provider-id'));
-  },
-
   _selectCompare: function(event) {
     var selectedCompare = $(event.currentTarget);
     var name = selectedCompare.find('.compare_item_name').html();
@@ -67,19 +54,6 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this.$('.compare_name').html(name);
 
     this._toggleDropdownCompare();
-  },
-
-  _refreshCompareDropdown: function(providerId) {
-    this._compareResults().load(this._compareEndpoint(providerId));
-  },
-
-  _compareResults: function() {
-    return this.$('.dropdown_items.compare ul');
-  },
-
-  _compareEndpoint: function(providerId) {
-    // TODO: Get this from a path helper in the Rails template
-    return '/provider_search_results/' + providerId;
   },
 
   _searchEndpoint: function(requestTerm) {

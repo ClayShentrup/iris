@@ -15,8 +15,9 @@ module Providers
 
     delegate :hospital_system_name, to: :provider
 
-    def initialize(provider)
+    def initialize(provider, context)
       @provider = provider
+      @context = context
     end
 
     def providers_in_city_count
@@ -37,6 +38,19 @@ module Providers
 
     def providers_count
       Provider.count
+    end
+
+    def context_name
+      case @context
+      when 'city'
+        provider_city_and_state
+      when 'state'
+        provider_state
+      when 'system'
+        hospital_system_name
+      when 'nationwide'
+        'Nationwide'
+      end
     end
 
     private

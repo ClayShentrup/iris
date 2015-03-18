@@ -115,4 +115,65 @@ RSpec.describe Provider do
       expect(provider.city_and_state).to eq('SAN FRANCISCO, CA')
     end
   end
+
+  describe 'context scopes' do
+    let!(:system) { create(:hospital_system) }
+    let!(:system1) { create(:hospital_system) }
+    let!(:provider) do
+      create(described_class, city: 'city1', state: 'state1',
+                              hospital_system: system)
+    end
+    let!(:provider1) do
+      create(described_class, city: 'city1', state: 'state1',
+                              hospital_system: system1)
+    end
+    let!(:provider2) do
+      create(described_class, city: 'city1', state: 'state2',
+                              hospital_system: system1)
+    end
+    let!(:provider3) do
+      create(described_class, city: 'city2', state: 'state1',
+                              hospital_system: system1)
+    end
+    let!(:provider4) do
+      create(described_class, city: 'city3', state: 'state3',
+                              hospital_system: system)
+    end
+    let!(:provider_without_system) do
+      create(described_class, city: 'city3', state: 'state3')
+    end
+    let!(:provider_without_system2) do
+      create(described_class, city: 'city3', state: 'state3')
+    end
+
+    describe '.in_same_city' do
+      it 'returns only providers in the same city and state' do
+        expect(Provider.in_same_city(provider))
+          .to match_array([provider, provider1])
+      end
+    end
+
+    describe '.in_same_state' do
+      it 'returns only providers in the same state' do
+        expect(Provider.in_same_state(provider))
+          .to match_array([provider, provider1, provider3])
+      end
+    end
+
+    describe '.in_same_system' do
+      context 'when hospital system is not nil' do
+        it 'returns only providers in the same hospital system' do
+          expect(Provider.in_same_system(provider))
+            .to match_array([provider, provider4])
+        end
+      end
+
+      context 'when hospital system is nil' do
+        it 'returns only self' do
+          expect(Provider.in_same_system(provider_without_system))
+            .to match_array([provider_without_system])
+        end
+      end
+    end
+  end
 end
