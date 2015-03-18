@@ -1,0 +1,13 @@
+= form_for [:dabo_admin, account, authorized_domain] do |f|
+  - if authorized_domain.errors.any?
+    #error_explanation
+      %h2= "#{pluralize(authorized_domain.errors.count, "error")} prohibited this authorized_domain from being saved:"
+      %ul
+        - authorized_domain.errors.full_messages.each do |msg|
+          %li= msg
+
+  .field
+    = f.label :name
+    = f.text_field :name
+  .actions
+    = f.submit 'Save'

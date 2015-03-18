@@ -1,0 +1,23 @@
+%h1 Listing Authorized Domains
+
+%table.table
+  %thead
+    %tr
+      %th Name
+      %th
+      %th
+      %th
+
+  %tbody
+    - @authorized_domains.each do |authorized_domain|
+      %tr
+        %td= authorized_domain.name
+        %td= link_to 'Show', dabo_admin_authorized_domain_path(authorized_domain)
+        %td= link_to 'Edit', edit_dabo_admin_authorized_domain_path(authorized_domain)
+        %td= link_to 'Destroy', dabo_admin_authorized_domain_path(authorized_domain), method: :delete, data: { confirm: 'Are you sure?' }
+
+%br
+
+= link_to 'New Authorized Domain', new_dabo_admin_account_authorized_domain_path(@account)
+\|
+= link_to 'Back', dabo_admin_account_path(@account)
