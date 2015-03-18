@@ -15,6 +15,12 @@
           = render 'shared/icon', icon: '#icon_eye'
       - if resource.errors
         = render partial: 'shared/model_error', collection: resource.errors.full_messages
+
+      %h3 Password Requirements:
+      %p At least 15 characters: “happycateatsalot”
+      %p or
+      %p At least 8 characters WITH 3 uppercase, numeric, or any special character: “#HappyTimes”
+
       .top_margin_large
         = f.submit 'Create'
 
