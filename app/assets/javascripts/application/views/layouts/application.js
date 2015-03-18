@@ -8,6 +8,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   initialize: function() {
     this._initializeMetricsSearch();
+    this._initializeSticky();
   },
 
   _initializeMetricsSearch: function() {
@@ -49,6 +50,37 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   _mainContent: function() {
     return this.$('.main_content');
-  }
+  },
 
-});
+  _initializeSticky: function() {
+    var lastStickyElement = this._stickyElements().last();
+
+    lastStickyElement.next().css(
+      'margin-top',
+      this._convertPixelsToRems(this._stickyElementsTotalHeight())
+    );
+  },
+
+  _stickyElements: function() {
+    return $('.is_sticky:visible');
+  },
+
+  _stickyElementsTotalHeight: function() {
+    if (this._stickyElements().length === 1) {
+      return this._stickyElements().height();
+    }
+
+    var height = 20;
+    var stickyElements = this._stickyElements();
+
+    for (var i = 0; i < stickyElements.length; i++) {
+      height += $(stickyElements[i]).height();
+    }
+
+    return height;
+  },
+
+  _convertPixelsToRems: function(value) {
+    return Iris.Util.convertPixelsToRems(value) + 'rem';
+  },
+ });

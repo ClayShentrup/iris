@@ -12,5 +12,5 @@ Iris.Views['news_items-index'] = Backbone.View.extend({
       $('#news_feed_filter .icon.icon_large.float_right')
         .toggleClass('icon_arrow_large_down icon_arrow_large_up');
     });
-  }
+  },
 });

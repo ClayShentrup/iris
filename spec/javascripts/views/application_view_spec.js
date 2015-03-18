@@ -2,10 +2,9 @@
 'use strict';
 
 describe('ApplicationView', function() {
-
   beforeEach(function() {
     loadFixture('news_items_controller');
-    var view = new Iris.Views['layouts/application']({el: '#body'});
+    new Iris.Views['layouts/application']({el: '#body', window: $('#body')});
   });
 
   describe('clicking on the close icon', function() {
