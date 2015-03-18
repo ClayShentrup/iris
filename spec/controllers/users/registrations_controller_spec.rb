@@ -21,7 +21,6 @@ RSpec.describe Users::RegistrationsController do
         {
           current_password: original_password,
           password: new_password,
-          password_confirmation: new_password,
         }
       end
 
@@ -39,7 +38,6 @@ RSpec.describe Users::RegistrationsController do
         {
           current_password: original_password,
           password: original_password,
-          password_confirmation: new_password,
         }
       end
 

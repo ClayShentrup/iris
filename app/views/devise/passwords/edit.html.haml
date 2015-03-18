@@ -10,14 +10,6 @@
         = f.password_field :password, autofocus: true, autocomplete: 'off', required: true, class: 'form_control float_left'
         %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base
           = render 'shared/icon', icon:'#icon_eye'
-
-    .field
-      = f.label :password_confirmation, "Confirm new password"
-      .has_icon_inside.clearfix.line_height_buffer_base.toggle_password
-        = f.password_field :password_confirmation, autocomplete: 'off', required: true, class: 'form_control float_left'
-        %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base
-          = render 'shared/icon', icon:'#icon_eye'
-
     .actions
       = f.submit "Change my password"
   = render "devise/shared/links"
