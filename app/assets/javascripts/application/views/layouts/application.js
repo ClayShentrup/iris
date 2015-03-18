@@ -97,33 +97,54 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     }
   },
 
+  _convertPixelsToRems: function(value) {
+    return Iris.Util.convertPixelsToRems(value) + 'rem';
+  },
+
   _topNavPosition: function() {
     return this._topNav().position().top;
   },
 
   _revealTopNav: function() {
     this._topNav().addClass('is_sticky');
-    this._stickyElement().animate({
-      'top': Iris.Util.convertPixelsToRems(this._topNavHeight()) + 'rem'
-    }, 300);
+    this._stickyElement().css(
+      'top',
+      this._convertPixelsToRems(this._topNavHeight())
+    );
   },
 
   _hideTopNav: function() {
-    this._resetTopNav();
+    this._topNav().removeClass('is_sticky');
     this._stickyElement().css('top', 0);
   },
 
-  _resetTopNav: function() {
-    this._topNav().removeClass('is_sticky');
+  _stickElement: function() {
+    var stickyElement = this._stickyElement();
+
+    if (stickyElement.is(':visible') && $('.sticky_buffer').length === 0) {
+      stickyElement.next().before('<div class="sticky_buffer"/>');
+      $('.sticky_buffer').css(
+        'height', this._convertPixelsToRems(this._stickyElementHeight())
+      );
+      this._stickyElement().addClass('is_sticky');
+    }
+  },
+
+  _unstickElement: function() {
+    var stickyElement = this._stickyElement();
+    var stickyBuffer = $('.sticky_buffer');
+
+    stickyElement.removeClass('is_sticky');
+    stickyBuffer.remove();
   },
 
   _scrolling: function() {
     var scrollPosition = this._scrollPosition();
 
     if (this._elementIsReadyToBeSticky()) {
-      this._stickyElement().addClass('is_sticky');
+      this._stickElement();
     } else {
-      this._stickyElement().removeClass('is_sticky');
+      this._unstickElement();
     }
 
     if (this._topNav().length === 0) {
@@ -136,7 +157,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
           this._revealTopNav();
         }
       } else {
-        this._resetTopNav();
+        this._hideTopNav();
       }
     } else {
       this._hideTopNav();

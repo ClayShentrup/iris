@@ -31,16 +31,19 @@ describe('ApplicationViewStickyScroll', function() {
   describe('sticky element', function() {
     it('starts below top nav', function() {
       expect(stickyElement).not.toHaveClass('is_sticky');
+      expect($('.sticky_buffer').length).toBe(0);
     });
 
     it('sticks to top of the view when window is scrolled down', function() {
       scrollTo(300);
       expect(stickyElementPos()).toBe(0);
+      expect($('.sticky_buffer').length).toBe(1);
     });
 
     it('does not stick unless its top is at top of the view', function() {
       scrollTo(20);
       expect(stickyElement).not.toHaveClass('is_sticky');
+      expect($('.sticky_buffer').length).toBe(0);
     });
 
     it('sticks to bottom of top nav when window is scrolled up', function() {
