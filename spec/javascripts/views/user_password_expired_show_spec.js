@@ -1,5 +1,4 @@
 /* global itBehavesLikeAPasswordInputField */
-/* global itBehavesLikeAPasswordConfirmationInputField */
 'use strict';
 
 describe('UserPasswordExpiredShow', function() {
@@ -8,5 +7,5 @@ describe('UserPasswordExpiredShow', function() {
   });
 
   itBehavesLikeAPasswordInputField();
-  itBehavesLikeAPasswordConfirmationInputField();
+
 });

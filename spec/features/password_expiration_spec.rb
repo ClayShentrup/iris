@@ -9,7 +9,6 @@ RSpec.feature 'Password expires' do
 
   def renew_password
     fill_in 'New password', with: new_password
-    fill_in 'Confirm password', with: new_password
     click_button 'Create'
   end
 

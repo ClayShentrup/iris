@@ -68,7 +68,6 @@ class User < ActiveRecord::Base
             password_strength: true,
             presence: true,
             length: { minimum: 8 },
-            confirmation: true,
             unless: :updating_without_password?
 
   delegate :selected_provider_id, to: :settings

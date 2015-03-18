@@ -4,10 +4,6 @@ function itBehavesLikeAPasswordInputField() {
   _passwordInputFieldSpecs('#user_password');
 }
 
-function itBehavesLikeAPasswordConfirmationInputField() {
-  _passwordInputFieldSpecs('#user_password_confirmation');
-}
-
 function _passwordInputFieldSpecs(targetPasswordField) {
   var view;
   var passwordField;

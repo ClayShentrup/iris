@@ -9,10 +9,6 @@
         = f.password_field :password, class: 'form_control', placeholder: 'New password'
         %span.icon.icon_size_base.form_control_icon.line_height_base.toggle_icon
           = render 'shared/icon', icon: '#icon_eye'
-      .field.has_icon_inside.toggle_password
-        = f.password_field :password_confirmation, class: 'form_control', placeholder: 'Confirm password'
-        %span.icon.icon_size_base.form_control_icon.line_height_base.toggle_icon
-          = render 'shared/icon', icon: '#icon_eye'
       - if resource.errors
         = render partial: 'shared/model_error', collection: resource.errors.full_messages
 
