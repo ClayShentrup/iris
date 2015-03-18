@@ -2,13 +2,16 @@
 'use strict';
 
 describe('ApplicationViewStickyScroll', function() {
+  var view;
   var stickyElement;
   var stickyElementPos;
   var scrollTo;
 
   beforeEach(function() {
     loadFixture('news_items_controller');
-    new Iris.Views['layouts/application']({el: '#body', window: $('#body')});
+    view = new Iris.Views['layouts/application'](
+      {el: '#body', window: $('#body')}
+    );
 
     $('#body').css({
       'overflow': 'scroll',
@@ -41,10 +44,11 @@ describe('ApplicationViewStickyScroll', function() {
     });
 
     it('sticks to bottom of top nav when window is scrolled up', function() {
+      spyOn(view, '_revealTopNav');
       scrollTo(300);
       scrollTo(200);
+      expect(view._revealTopNav).toHaveBeenCalled();
       expect(stickyElement).toHaveClass('is_sticky');
-      expect('#top_nav').toBeVisible();
     });
   });
 });
