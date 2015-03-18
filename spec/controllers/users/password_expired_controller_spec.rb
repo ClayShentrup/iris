@@ -1,6 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Users::PasswordExpiredController do
+  simulate_routed_request
+
   let!(:user) do
     Timecop.travel(Time.now - 100.days) do
       create(
@@ -10,16 +12,20 @@ RSpec.describe Users::PasswordExpiredController do
       )
     end
   end
-  let!(:password_last_changed_at) { user.reload.password_changed_at }
-  let!(:set_logged_in_state) { sign_in user }
-  simulate_routed_request
 
-  save_fixture do
-    get :show, id: user
+  before do
+    sign_in user
+  end
+
+  describe 'GET #show' do
+    save_fixture do
+      get :show, id: user
+    end
   end
 
   describe 'PUT #update' do
     let(:redirect_url) { '/user_profiles/info' }
+    let!(:password_last_changed_at) { user.reload.password_changed_at }
 
     before do
       allow(controller).to receive(:stored_location_for)
