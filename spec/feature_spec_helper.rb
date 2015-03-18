@@ -7,15 +7,17 @@ Capybara.register_driver :chrome do |app|
   Capybara::Selenium::Driver.new(
     app,
     browser: :chrome,
-    service_log_path: Rails.root.join('log', 'chromedriver.out'),
-    desired_capabilities: {
-      # chrome.switches is used to pass arguments to Chrome itself and not the
-      # chromedriver executable
-      'chrome.switches' => %w[
-        --enable-logging
-        --v=1
-      ],
-    },
+  # Commenting out below code until needed again.  When that time comes,
+  # consider creating a flag to set this on the command line.
+  # chrome.switches is used to pass arguments to Chrome itself and not the
+  # chromedriver executable
+  #   service_log_path: Rails.root.join('log', 'chromedriver.out'),
+  #   desired_capabilities: {
+  #     'chrome.switches' => %w[
+  #       --enable-logging
+  #       --v=1
+  #     ],
+  #   },
   )
 end
 
