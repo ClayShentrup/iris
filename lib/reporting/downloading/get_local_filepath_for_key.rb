@@ -1,3 +1,6 @@
+require 'reporting/downloading'
+require 'reporting/downloading/manager'
+
 module Reporting
   module Downloading
     # Get where to save the logs locally
