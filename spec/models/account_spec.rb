@@ -13,10 +13,19 @@
 require 'active_record_no_rails_helper'
 require './app/models/account'
 
-RSpec.describe Account, type: :model do
+RSpec.describe Account do
+  subject { build_stubbed(described_class) }
+
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:default_provider) }
-    it { is_expected.to validate_presence_of(:virtual_system) }
+    it do
+      is_expected.to be_valid
+    end
+
+    describe 'associations' do
+      before { subject.skip_association_validations = false }
+      it { is_expected.to validate_presence_of(:default_provider) }
+      it { is_expected.to validate_presence_of(:virtual_system) }
+    end
   end
 
   it { is_expected.to belong_to :virtual_system }
