@@ -8,5 +8,6 @@
 #
 
 FactoryGirl.define do
-  factory :purchased_metric_module
+  factory :purchased_metric_module do
+  end
 end
