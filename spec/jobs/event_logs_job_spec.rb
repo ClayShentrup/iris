@@ -1,7 +1,6 @@
-require 'active_job'
 require './app/jobs/event_logs_job'
 
-RSpec.describe EventLogsJob, type: :job do
+RSpec.describe EventLogsJob do
   def work
     Timecop.freeze('2014-09-24 16:30:53 -0700') do
       described_class.perform_now

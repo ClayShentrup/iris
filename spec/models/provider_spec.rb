@@ -14,7 +14,6 @@
 
 require 'active_record_no_rails_helper'
 require './app/models/provider'
-require './app/models/hospital_system'
 
 RSpec.describe Provider do
   describe 'columns' do

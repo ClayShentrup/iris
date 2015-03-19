@@ -13,6 +13,7 @@
 require './app/models/hospital_system'
 require './app/models/user'
 require './app/models/authorized_domain'
+require './app/models/purchased_metric_module'
 
 # An entity that represents a client account
 class Account < ActiveRecord::Base

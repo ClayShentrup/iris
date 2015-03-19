@@ -1,6 +1,5 @@
 require 'socrata/create_or_update_providers'
 require 'active_record_no_rails_helper'
-require './app/models/provider'
 
 RSpec.describe Socrata::CreateOrUpdateProviders, :vcr do
   let(:cassette) do

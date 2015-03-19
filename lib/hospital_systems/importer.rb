@@ -1,3 +1,5 @@
+require './app/models/provider'
+require './app/models/hospital_system'
 require_relative 'data_from_spreadsheet'
 
 # Import Hospital systems and associate providers to them

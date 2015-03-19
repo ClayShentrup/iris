@@ -12,7 +12,7 @@
 require 'active_record_no_rails_helper'
 require './app/models/authorized_domain'
 
-RSpec.describe AuthorizedDomain, type: :model do
+RSpec.describe AuthorizedDomain do
   subject { build_stubbed(described_class) }
   it { is_expected.to belong_to :account }
 

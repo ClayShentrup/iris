@@ -12,6 +12,7 @@
 #  dataset_id          :string           not null
 #
 
+require './app/models/provider'
 require_relative '../dimension_sample'
 
 module DimensionSample

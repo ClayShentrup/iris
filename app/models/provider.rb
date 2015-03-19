@@ -13,6 +13,8 @@ require 'pg_search'
 #  hospital_system_id  :integer
 #
 
+require './app/models/hospital_system'
+
 # Represents a provider entity fetched from Socrata's API.
 class Provider < ActiveRecord::Base
   include PgSearch
@@ -41,17 +43,17 @@ class Provider < ActiveRecord::Base
 
   scope(:in_same_state, ->(provider) { where(state: provider.state) })
 
-  pg_search_scope :search_by_name, against: :name, using: {
-    tsearch: { prefix: true },
-  }
-
-  def self.in_same_system(provider)
+  scope(:in_same_system, lambda do |provider|
     if provider.hospital_system_id
       where(hospital_system_id: provider.hospital_system_id)
     else
       where(id: provider)
     end
-  end
+  end)
+
+  pg_search_scope :search_by_name, against: :name, using: {
+    tsearch: { prefix: true },
+  }
 
   def self.create_or_update!(attributes)
     find_or_initialize_by(
