@@ -12,6 +12,11 @@ MEASURES = {
   HAI_1_SIR: {
     short_title: 'Catheter Associated Urinary Tract Infection',
     long_title:  'Central Line-Associated Bloodstream Infection (CLABSI)',
+    value: DimensionSampleManagers::Socrata.new(
+      column_name: :score,
+      dataset_id: '77hc-ibv8',
+      measure_id: 'HAI_1_SIR',
+    ),
   },
   HAI_2_SIR: {
     short_title: 'Central Line Associated Bloodstream Infection',
