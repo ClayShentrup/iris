@@ -11,7 +11,9 @@
 #  updated_at          :datetime         not null
 #
 
+require './app/models/provider'
 require_relative '../dimension_sample'
+
 module DimensionSample
   # Corresponds to a dataset like yq43-i98g, which has one line per provider.
   class SingleMeasure < ActiveRecord::Base

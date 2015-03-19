@@ -5,6 +5,8 @@
 #  id   :integer          not null, primary key
 #  name :string           not null
 #
+require './app/models/provider'
+require './app/models/account'
 
 # Represents a system entity
 class HospitalSystem < ActiveRecord::Base

@@ -12,8 +12,6 @@
 #  hospital_system_id  :integer
 #
 
-require './app/models/provider'
-
 FactoryGirl.define do
   factory :provider do
     sequence(:socrata_provider_id) { |n| n.to_s.rjust(6, '0') }

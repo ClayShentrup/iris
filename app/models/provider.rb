@@ -13,6 +13,8 @@ require 'pg_search'
 #  hospital_system_id  :integer
 #
 
+require './app/models/hospital_system'
+
 # Represents a provider entity fetched from Socrata's API.
 class Provider < ActiveRecord::Base
   include PgSearch

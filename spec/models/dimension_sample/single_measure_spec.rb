@@ -13,7 +13,6 @@
 
 require 'active_record_no_rails_helper'
 require './app/models/dimension_sample/single_measure'
-require './app/models/provider'
 
 RSpec.describe DimensionSample::SingleMeasure do
   subject { build_stubbed(:dimension_sample_single_measure) }

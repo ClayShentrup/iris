@@ -1,7 +1,4 @@
-require 'spec_helper'
 require 'active_record_no_rails_helper'
-require './app/models/provider'
-require './app/models/hospital_system'
 require 'hospital_systems/importer'
 
 RSpec.describe HospitalSystems::Importer do

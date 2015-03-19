@@ -1,3 +1,4 @@
+require './app/models/provider'
 require_relative './simple_soda_client'
 
 module Socrata
