@@ -52,3 +52,6 @@ module DimensionSample
     end
   end
 end
+
+# Convenient alias for engineers on the command line
+DSMM = DimensionSample::MultiMeasure
