@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: dimension_sample_single_measures
+# Table name: dimension_sample_provider_aggregates
 #
 #  id                  :integer          not null, primary key
 #  socrata_provider_id :string           not null
@@ -16,7 +16,7 @@ require_relative '../dimension_sample'
 
 module DimensionSample
   # Corresponds to a dataset like yq43-i98g, which has one line per provider.
-  class SingleMeasure < ActiveRecord::Base
+  class ProviderAggregate < ActiveRecord::Base
     validates :dataset_id, presence: true
     validates :socrata_provider_id, presence: true
     validates :column_name, presence: true
@@ -28,8 +28,8 @@ module DimensionSample
         column_name: column_name,
       )
       providers.joins(<<-SQL)
-        LEFT JOIN dimension_sample_single_measures
-        ON dimension_sample_single_measures.socrata_provider_id =
+        LEFT JOIN dimension_sample_provider_aggregates
+        ON dimension_sample_provider_aggregates.socrata_provider_id =
         providers.socrata_provider_id
       SQL
         .merge(matching_samples)
@@ -45,4 +45,4 @@ module DimensionSample
 end
 
 # Convenient alias for engineers on the command line
-DSSM = DimensionSample::SingleMeasure
+DSPA = DimensionSample::ProviderAggregate

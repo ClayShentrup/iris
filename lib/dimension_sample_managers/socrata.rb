@@ -1,5 +1,5 @@
 require './app/models/provider'
-require 'socrata/dimension_sample_refreshers/single_measure'
+require 'socrata/dimension_sample_refreshers/provider_aggregate'
 require 'socrata/dimension_sample_refreshers/measure'
 
 # .

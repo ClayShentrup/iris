@@ -1,20 +1,20 @@
 require 'socrata/simple_soda_client'
 require 'active_support/core_ext/string/exclude'
-require './app/models/dimension_sample/single_measure'
+require './app/models/dimension_sample/provider_aggregate'
 
 module Socrata
   # .
   module DimensionSampleRefreshers
     # Fetches Socrata data and creates or updates single-measure dimension
     # samples in our database.
-    SingleMeasure = Struct.new(:column_name, :dataset_id) do
+    ProviderAggregate = Struct.new(:column_name, :dataset_id) do
       def self.call(column_name:, dataset_id:)
         new(column_name, dataset_id).call
       end
 
       def call
         processed_dimension_samples.each do |dimension_sample_attributes|
-          DimensionSample::SingleMeasure
+          DimensionSample::ProviderAggregate
           .create_or_update!(dimension_sample_attributes)
         end
       end

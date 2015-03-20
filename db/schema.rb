@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320213704) do
+ActiveRecord::Schema.define(version: 20150320223953) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 20150320213704) do
     t.string   "dataset_id",          null: false
   end
 
-  create_table "dimension_sample_single_measures", force: :cascade do |t|
+  create_table "dimension_sample_provider_aggregates", force: :cascade do |t|
     t.string   "socrata_provider_id", null: false
     t.string   "dataset_id",          null: false
     t.string   "column_name",         null: false
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(version: 20150320213704) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "dimension_sample_single_measures", ["socrata_provider_id", "dataset_id", "column_name"], name: "index_dimension_sample_single_measures_unique", unique: true, using: :btree
+  add_index "dimension_sample_provider_aggregates", ["socrata_provider_id", "dataset_id", "column_name"], name: "index_dimension_sample_single_measures_unique", unique: true, using: :btree
 
   create_table "features", force: :cascade do |t|
     t.string   "key",                        null: false

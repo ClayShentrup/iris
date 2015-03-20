@@ -23,7 +23,7 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
   before do
     stub_const(
       'DATASETS',
-      'rrqw-56er' => { dataset_type: :single_measure },
+      'rrqw-56er' => { dataset_type: :provider_aggregate },
       '7xux-kdpw' => { dataset_type: :measure },
     )
     create_relevant_providers

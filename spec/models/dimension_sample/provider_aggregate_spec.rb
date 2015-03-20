@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: dimension_sample_single_measures
+# Table name: dimension_sample_provider_aggregates
 #
 #  id                  :integer          not null, primary key
 #  socrata_provider_id :string           not null
@@ -12,10 +12,10 @@
 #
 
 require 'active_record_no_rails_helper'
-require './app/models/dimension_sample/single_measure'
+require './app/models/dimension_sample/provider_aggregate'
 
-RSpec.describe DimensionSample::SingleMeasure do
-  subject { build_stubbed(:dimension_sample_single_measure) }
+RSpec.describe DimensionSample::ProviderAggregate do
+  subject { build_stubbed(:dimension_sample_provider_aggregate) }
 
   describe 'columns' do
     it do
@@ -48,7 +48,7 @@ RSpec.describe DimensionSample::SingleMeasure do
     it 'has a unique index on socrata_provider_id, column_name & dataset_id' do
       expect do
         2.times do
-          create(:dimension_sample_single_measure,
+          create(:dimension_sample_provider_aggregate,
                  socrata_provider_id: '102101',
                  dataset_id: '893x-ot20',
                  column_name: 'foo_bar',
@@ -112,7 +112,7 @@ RSpec.describe DimensionSample::SingleMeasure do
 
       def create_dimension_sample(**custom_attributes)
         create(
-          :dimension_sample_single_measure,
+          :dimension_sample_provider_aggregate,
           dimension_sample_attributes.merge(custom_attributes),
         )
       end
@@ -139,7 +139,7 @@ RSpec.describe DimensionSample::SingleMeasure do
       end
       let!(:existing_dimension_sample) do
         create(
-          :dimension_sample_single_measure,
+          :dimension_sample_provider_aggregate,
           dimension_sample_attributes,
         )
       end
