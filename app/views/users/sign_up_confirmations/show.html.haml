@@ -1,7 +1,7 @@
 - content_for :join_box do
-  %h2 Sign up
-  %p Thank you for joining, Human.
-  %p A confirmation has been sent to your email, please view it to access Dabo.
-  = link_to 'Sign up using a different email', new_user_registration_path
+  .centered.inner_padding_base.border_grey
+    %p Thank you for joining, Human.
+    %p A confirmation has been sent to your email, please view it to access Dabo.
+    = link_to 'Sign up using a different email', new_user_registration_path
 
-= render 'devise/registrations/join_box'
+= render 'devise/shared/join_box'

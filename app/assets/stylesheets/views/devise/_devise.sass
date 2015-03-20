@@ -1,26 +1,14 @@
-$desktop_devise_width: rem(550)
+$desktop_devise_width: rem(500)
 
 .devise_form
   +media($desktop)
-    width: $desktop_devise_width
-
-#login_logo
-  svg
-    height: rem(100)
-    width: rem(160)
-  +media($desktop)
-    svg
-      height: rem(160)
-      width: $desktop_devise_width
-
-.container
-  +media($tablet_portrait_and_desktop)
-    width: rem(500)
     margin-top: rem(40)
+    width: $desktop_devise_width
 
   +media($mobile)
     border: none
 
-  margin: auto
-  .ui-widget-header, .ui-state-active, .ui-state-default
-    background: none
+body.sessions-new .join_tab,
+body.registrations-new .login_tab
+  @extend .border_bottom_grey
+  +omega

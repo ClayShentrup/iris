@@ -1,12 +1,9 @@
 - content_for :join_box do
-  #login
-    .login.top_margin_large.centered
-      = render 'devise/shared/logo'
-      - if @is_last_attempt
-        %h2.bottom_margin_base Reset Password
-        = render 'reset_password_message'
-      - else
-        %h2.bottom_margin_base Sign In
-        = render 'login_form'
+  #login.border_right_grey.border_left_grey.inner_padding_base.border_bottom_grey
+    - if @is_last_attempt
+      %h2.no_margin.horizontal_padding_base Reset Password
+      = render 'reset_password_message'
+    - else
+      = render 'login_form'
 
-= render 'devise/registrations/join_box'
+= render 'devise/shared/join_box'
