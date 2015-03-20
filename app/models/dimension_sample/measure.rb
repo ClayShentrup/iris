@@ -18,7 +18,7 @@ require_relative '../dimension_sample'
 module DimensionSample
   # Corresponds to a dataset like 7xux-kdpw, which has multiple rows per
   # provider.
-  class MultiMeasure < ActiveRecord::Base
+  class Measure < ActiveRecord::Base
     validates :dataset_id, presence: true
     validates :socrata_provider_id, presence: true
     validates :measure_id, presence: true
@@ -32,8 +32,8 @@ module DimensionSample
         measure_id: measure_id,
       )
       providers.joins(<<-SQL)
-        LEFT JOIN dimension_sample_multi_measures
-        ON dimension_sample_multi_measures.socrata_provider_id =
+        LEFT JOIN dimension_sample_measures
+        ON dimension_sample_measures.socrata_provider_id =
         providers.socrata_provider_id
       SQL
         .merge(matching_samples)
@@ -54,4 +54,4 @@ module DimensionSample
 end
 
 # Convenient alias for engineers on the command line
-DSMM = DimensionSample::MultiMeasure
+DSM = DimensionSample::Measure

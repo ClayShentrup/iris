@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: dimension_sample_multi_measures
+# Table name: dimension_sample_measures
 #
 #  id                  :integer          not null, primary key
 #  socrata_provider_id :string           not null
@@ -13,9 +13,9 @@
 #
 
 require 'active_record_no_rails_helper'
-require './app/models/dimension_sample/multi_measure'
+require './app/models/dimension_sample/measure'
 
-RSpec.describe DimensionSample::MultiMeasure do
+RSpec.describe DimensionSample::Measure do
   describe 'columns' do
     it do
       is_expected.to have_db_column(:dataset_id).of_type(:string)
@@ -107,7 +107,7 @@ RSpec.describe DimensionSample::MultiMeasure do
 
       def create_dimension_sample(**custom_attributes)
         create(
-          :dimension_sample_multi_measure,
+          :dimension_sample_measure,
           dimension_sample_attributes.merge(custom_attributes),
         )
       end
@@ -136,7 +136,7 @@ RSpec.describe DimensionSample::MultiMeasure do
 
       let!(:existing_dimension_sample) do
         create(
-          :dimension_sample_multi_measure,
+          :dimension_sample_measure,
           dimension_sample_attributes,
         )
       end

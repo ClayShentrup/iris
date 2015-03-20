@@ -24,7 +24,7 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
     stub_const(
       'DATASETS',
       'rrqw-56er' => { dataset_type: :single_measure },
-      '7xux-kdpw' => { dataset_type: :multi_measure },
+      '7xux-kdpw' => { dataset_type: :measure },
     )
     create_relevant_providers
   end
@@ -59,7 +59,7 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
       it_behaves_like 'a dimension sample manager'
     end
 
-    context 'for multi-measure dimension samples', :vcr do
+    context 'for measure dimension samples', :vcr do
       let(:dataset_id) { '7xux-kdpw' }
       let(:options) do
         {

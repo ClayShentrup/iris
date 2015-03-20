@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318231641) do
+ActiveRecord::Schema.define(version: 20150320213704) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -49,7 +49,7 @@ ActiveRecord::Schema.define(version: 20150318231641) do
 
   add_index "conversations", ["node_component_id", "provider_id", "user_id"], name: "index_conversations", using: :btree
 
-  create_table "dimension_sample_multi_measures", force: :cascade do |t|
+  create_table "dimension_sample_measures", force: :cascade do |t|
     t.string   "socrata_provider_id", null: false
     t.string   "measure_id",          null: false
     t.string   "column_name",         null: false

@@ -1,20 +1,20 @@
 require 'socrata/simple_soda_client_for_measures'
 require 'active_support/core_ext/string/exclude'
-require './app/models/dimension_sample/multi_measure'
+require './app/models/dimension_sample/measure'
 
 module Socrata
   # .
   module DimensionSampleRefreshers
     # Fetches Socrata data and creates or updates single-measure dimension
     # samples in our database.
-    MultiMeasure = Struct.new(:column_name, :dataset_id, :measure_id) do
+    Measure = Struct.new(:column_name, :dataset_id, :measure_id) do
       def self.call(column_name:, dataset_id:, measure_id:)
         new(column_name, dataset_id, measure_id).call
       end
 
       def call
         processed_dimension_samples.each do |dimension_sample_attributes|
-          DimensionSample::MultiMeasure
+          DimensionSample::Measure
           .create_or_update!(dimension_sample_attributes)
         end
       end
