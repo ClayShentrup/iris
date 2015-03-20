@@ -61,7 +61,7 @@ User.create!(
   user.skip_confirmation!
 end
 
-DimensionSample::SingleMeasure.create!(
+DimensionSample::ProviderAggregate.create!(
   [
     {
       dataset_id: 'ypbt-wvdk',
