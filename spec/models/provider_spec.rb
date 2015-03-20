@@ -43,6 +43,11 @@ RSpec.describe Provider do
     end
   end
 
+  describe 'associations' do
+    specify { is_expected.to belong_to :hospital_system }
+    specify { is_expected.to have_many :accounts }
+  end
+
   describe 'validations' do
     context 'no need to access the database' do
       subject { build_stubbed(described_class) }
