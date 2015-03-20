@@ -39,15 +39,15 @@ ActiveRecord::Schema.define(version: 20150323223028) do
 
   create_table "conversations", force: :cascade do |t|
     t.integer  "provider_id"
-    t.integer  "user_id"
-    t.string   "node_component_id", null: false
+    t.integer  "author_id"
+    t.string   "node_id_component", null: false
     t.string   "title",             null: false
     t.text     "description",       null: false
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
 
-  add_index "conversations", ["node_component_id", "provider_id", "user_id"], name: "index_conversations", using: :btree
+  add_index "conversations", ["node_id_component", "provider_id", "author_id"], name: "index_conversations", using: :btree
 
   create_table "dimension_sample_measures", force: :cascade do |t|
     t.string   "socrata_provider_id", null: false

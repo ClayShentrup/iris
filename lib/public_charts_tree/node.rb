@@ -14,6 +14,7 @@ class PublicChartsTree
              :parent_title,
              :type,
              :value_dimension_manager,
+             :id_component,
              :id_components,
              to: :internal_node
 

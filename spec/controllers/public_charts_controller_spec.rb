@@ -43,6 +43,36 @@ RSpec.describe PublicChartsController do
       get :show, id: node_id
     end
 
+    describe 'generate a fixture' do
+      let(:node_id_component) { 'uno' }
+      let(:node_id) do
+        "socrata/value-based-purchasing/outcome-of-care/#{node_id_component}"
+      end
+
+      context 'without conversations' do
+        save_fixture do
+          get :show, id: node_id
+          expect(response).to be_success
+        end
+      end
+
+      context 'with conversations' do
+        let!(:conversation) do
+          create(
+            Conversation,
+            node_id_component: node_id_component,
+            author: current_user,
+            provider: current_user.selected_provider,
+          )
+        end
+
+        save_fixture do
+          get :show, id: node_id
+          expect(response).to be_success
+        end
+      end
+    end
+
     describe 'assigned node' do
       let(:node_id) { 'socrata' }
       let(:some_providers) { providers_relation(2).limit(10) }
@@ -50,12 +80,6 @@ RSpec.describe PublicChartsController do
       it 'it sets the node' do
         expect(assigns(:node)).to eq node
       end
-    end
-
-    context 'Socrata' do
-      let(:node_id) { 'socrata' }
-      save_fixture
-      specify { expect(response).to be_success }
     end
 
     describe 'metrics navigation' do

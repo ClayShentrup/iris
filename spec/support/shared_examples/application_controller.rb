@@ -26,6 +26,21 @@ RSpec.shared_context 'an ApplicationController' do |trait|
     shared_context 'ApplicationController methods with an existing record' do
       let!(:model_instance) { create(model_class, trait) }
     end
+
+    shared_context 'ApplicationController create methods' do
+      let(:valid_attributes) { attributes_for(model_class) }
+      let(:instance_url) do
+        public_send("#{model_params_name_namespace}_path", model_class.last)
+      end
+
+      let(:model_name) do
+        described_class.name.demodulize.gsub(/Controller$/, '').singularize
+      end
+
+      def post_create
+        post :create, model_param_name => valid_attributes
+      end
+    end
   end
 
   shared_examples 'an ApplicationController index' do
@@ -50,19 +65,13 @@ RSpec.shared_context 'an ApplicationController' do |trait|
   end
 
   shared_examples 'an ApplicationController create' do
+    it_behaves_like 'an ApplicationController create with valid params'
+    it_behaves_like 'an ApplicationController create with invalid params'
+  end
+
+  shared_examples 'an ApplicationController create with valid params' do
     include_context 'ApplicationController methods'
-    let(:valid_attributes) { attributes_for(model_class) }
-    let(:instance_url) do
-      public_send("#{model_params_name_namespace}_path", model_class.last)
-    end
-
-    let(:model_name) do
-      described_class.name.demodulize.gsub(/Controller$/, '').singularize
-    end
-
-    def post_create
-      post :create, model_param_name => valid_attributes
-    end
+    include_context 'ApplicationController create methods'
 
     describe 'with valid params' do
       before do
@@ -85,6 +94,11 @@ RSpec.shared_context 'an ApplicationController' do |trait|
         expect(flash[:notice]).to be_present
       end
     end
+  end
+
+  shared_examples 'an ApplicationController create with invalid params' do
+    include_context 'ApplicationController methods'
+    include_context 'ApplicationController create methods'
 
     describe 'with invalid params' do
       before do

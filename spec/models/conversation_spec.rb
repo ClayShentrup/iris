@@ -4,8 +4,8 @@
 #
 #  id                :integer          not null, primary key
 #  provider_id       :integer
-#  user_id           :integer
-#  node_component_id :string           not null
+#  author_id         :integer
+#  node_id_component :string           not null
 #  title             :string           not null
 #  description       :text             not null
 #  created_at        :datetime         not null
@@ -36,23 +36,92 @@ RSpec.describe Conversation do
 
     describe 'associations' do
       before { subject.skip_association_validations = false }
-      it { is_expected.to validate_presence_of(:user) }
+      it { is_expected.to validate_presence_of(:author) }
       it { is_expected.to validate_presence_of(:provider) }
     end
 
-    it { is_expected.to validate_presence_of(:node_component_id) }
+    it { is_expected.to validate_presence_of(:node_id_component) }
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
   end
 
   describe 'delegations' do
     it do
-      is_expected.to delegate_method(:user_account)
-        .to(:user)
+      is_expected.to delegate_method(:author_account)
+        .to(:author)
         .as(:account)
     end
   end
 
-  it { is_expected.to belong_to :user }
+  it { is_expected.to belong_to(:author).class_name('User') }
   it { is_expected.to belong_to :provider }
+
+  describe 'data methods' do
+    let(:relevant_provider) { build_stubbed Provider }
+    let(:other_provider) { build_stubbed Provider }
+    let(:relevant_account) { create Account }
+    let(:other_account) { create Account }
+
+    let(:relevant_account_author) do
+      create(User, account: relevant_account)
+    end
+    let(:relevant_account_current_user) do
+      create(User, account: relevant_account)
+    end
+    let(:viewer_for_different_account) do
+      create(User, account: other_account)
+    end
+
+    let(:relevant_node_id_component) { 'patient-safety-composite' }
+    let(:other_node_id_component) { 'infarction' }
+
+    let(:valid_attributes) do
+      {
+        provider: relevant_provider,
+        author: relevant_account_author,
+        node_id_component: relevant_node_id_component,
+      }
+    end
+
+    def create_conversation(attributes)
+      create(Conversation, valid_attributes.merge(attributes))
+    end
+
+    let!(:relevant_conversation_1) do
+      create_conversation(created_at: 5.days.ago)
+    end
+    let!(:relevant_conversation_2) do
+      create_conversation(
+        author: relevant_account_current_user,
+        created_at: 2.days.ago,
+      )
+    end
+
+    let!(:conversation_for_different_provider) do
+      create_conversation(provider: other_provider)
+    end
+
+    let!(:conversation_for_different_account) do
+      create_conversation(author: viewer_for_different_account)
+    end
+
+    let!(:conversation_for_different_node) do
+      create_conversation(node_id_component: other_node_id_component)
+    end
+
+    def data
+      described_class.for_chart(
+        relevant_provider.id,
+        relevant_node_id_component,
+        relevant_account_current_user,
+      )
+    end
+
+    it 'returns the correct conversations' do
+      expect(data).to eq [
+        relevant_conversation_2,
+        relevant_conversation_1,
+      ]
+    end
+  end
 end

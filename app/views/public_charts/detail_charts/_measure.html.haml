@@ -20,11 +20,7 @@
           = render 'shared/icon', icon: '#icon_chart_trend'
         %span.text.hide_on_mobile.vertical_align_middle Improve
   .card_container.inner_content.row.top_margin_large
-    .new_conversation.inner_padding_base.border_grey Start a conversation...
-    .card.top_margin_base.border_grey
-      .card_title.inner_padding_base.line_height_base.border_bottom_grey
-        %span.text Conversation title
-        %span.icon.icon_size_base.float_right.vertical_align_middle
-          = render 'shared/icon', icon: '#icon_conversation'
-      .card_body.inner_padding_base Conversation
-      .card_action.inner_padding_base.border_top_grey Write a comment...
+    = render 'conversations/form', conversation: conversations_presenter.new_conversation, node_id_component: node.id_component
+
+  #conversations
+    = render partial: 'conversations/conversation', collection: conversations_presenter.chart_conversations

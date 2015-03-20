@@ -16,7 +16,8 @@ describe('PublicChartsView', function() {
 
   beforeEach(function() {
     loadFixture(
-      'public_charts_controller-get-show-socrata'
+      'public_charts_controller-get-show-generate-a-fixture' +
+      '-without-conversations'
     );
     new Iris.Views['public_charts-show']({el: '#body'});
 
@@ -52,8 +53,10 @@ describe('PublicChartsView', function() {
       stubAjaxRequest(searchEndpoint + 'foo', twoProvidersFixture);
 
       searchAutocomplete(searchInput, 'foo');
-      expect(providerDropdown).toContainText('My Provider 1');
-      expect(providerDropdown).toContainText('My Provider 2');
+      expect(providerDropdown.find('a').eq(0))
+        .toHaveAttr('href', '?provider_id=99');
+      expect(providerDropdown.find('a').eq(1))
+        .toHaveAttr('href', '?provider_id=100');
     });
 
     it('clears out the previous results', function() {
@@ -65,8 +68,8 @@ describe('PublicChartsView', function() {
       stubAjaxRequest(searchEndpoint + 'bar%20baz', oneProviderFixture);
       searchAutocomplete(searchInput, 'bar baz');
       expect(providerDropdown.find('li')).toHaveLength(1);
-      expect(providerDropdown).toContainText('My Provider 1');
-      expect(providerDropdown).not.toContainText('My Provider 2');
+      expect(providerDropdown.find('a').eq(0))
+        .toHaveAttr('href', '?provider_id=88');
     });
   });
 
@@ -117,6 +120,47 @@ describe('PublicChartsView', function() {
     });
 
     itBehavesLikeDropdownButton();
+  });
+
+  describe('submitting a new conversation', function() {
+    describe('with invalid inputs', function() {
+      it('displays an error', function() {
+        var fixtureForInvalidCreateResponse =
+          'conversations_controller-post-create-with-' +
+          'invalid-params-generate-a-fixture.html';
+
+        $('#conversation_title').val('Something');
+        $('#conversation_description').val('');
+
+        stubAjaxRequest(
+          '/conversations',
+          fixtureForInvalidCreateResponse,
+          433
+        );
+
+        $('#new_conversation').submit();
+        expect($('#error_explanation_no_border')).toExist();
+      });
+    });
+    describe('with valid inputs', function() {
+      it('displays the new conversation on the page', function() {
+        var fixtureForValidCreateResponse =
+          'public_charts_controller-get-show-generate-a-fixture' +
+          '-with-conversations.html';
+
+        $('#conversation_title').val('Here is a title');
+        $('#conversation_description').val('Here is a description');
+
+        stubAjaxRequest(
+          '/conversations',
+          fixtureForValidCreateResponse
+        );
+
+        spyOn(Turbolinks, 'visit');
+        $('#new_conversation').submit();
+        expect(Turbolinks.visit.calls.any()).toEqual(true);
+      });
+    });
   });
 
   function itBehavesLikeDropdownButton() {

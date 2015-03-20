@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :data_categories, only: :index
       resources :provider_search_results, only: [:index, :show]
       resources :measure_search_results, only: :index
+      resources :conversations, only: [:new, :show, :create]
 
       # product-friendly aliases
       get :news, to: 'news_items#index'

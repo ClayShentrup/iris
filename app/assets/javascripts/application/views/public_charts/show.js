@@ -7,7 +7,9 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'click .dropdown_button.compare': '_toggleDropdownCompare',
     'click .dropdown_items.compare li': '_selectCompare',
     'keydown input': '_preventEnterFromSubmitting',
-    'click .search_box .icon_close' : '_closeSearchProvider'
+    'click .search_box .icon_close' : '_closeSearchProvider',
+    'ajax:success #new_conversation': '_reloadPage',
+    'ajax:error #new_conversation': '_insertErrorConversationForm'
   },
 
   initialize: function() {
@@ -72,6 +74,25 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this._searchResults().empty();
     this._searchBoxInput().val('');
     this._toggleDropdownProvider();
-  }
+  },
 
+  _reloadPage: function(_e, data, _status, _xhr) {
+    Turbolinks.visit('/metrics/' + this._currentNodeId());
+  },
+
+  _currentNodeId: function() {
+    return this._nodeContainer().data('current-node-id');
+  },
+
+  _nodeContainer: function() {
+    return this.$('#node_container');
+  },
+
+  _insertErrorConversationForm: function(_e, data, _status, _xhr) {
+    this._newConversationForm().html(data.responseText);
+  },
+
+  _newConversationForm: function() {
+    return $('#new_conversation');
+  },
 });
