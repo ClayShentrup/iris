@@ -8,12 +8,12 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
-
 require 'active_record_no_rails_helper'
 require './app/models/authorized_domain'
 
 RSpec.describe AuthorizedDomain do
   subject { build_stubbed(described_class) }
+
   it { is_expected.to belong_to :account }
 
   describe 'columns' do
@@ -28,7 +28,11 @@ RSpec.describe AuthorizedDomain do
     it { is_expected.to be_valid }
 
     specify { is_expected.to validate_presence_of(:name) }
-    specify { is_expected.to validate_presence_of(:account) }
+
+    context 'blank domain name' do
+      subject { build_stubbed(described_class, name: '') }
+      it { is_expected.not_to be_valid }
+    end
 
     context 'invalid domain name' do
       invalid_names = ['googlecom', '$$$.com', '@.@', 'dabo!.edu']
@@ -44,6 +48,16 @@ RSpec.describe AuthorizedDomain do
         subject { build_stubbed(described_class, name: valid_name) }
         it { is_expected.to be_valid }
       end
+    end
+
+    context 'no need to access the database' do
+      subject { build_stubbed(described_class, :with_associations) }
+      it { is_expected.to be_valid }
+
+      before { subject.skip_association_validations = false }
+
+      specify { is_expected.to validate_presence_of(:name) }
+      specify { is_expected.to validate_presence_of(:account) }
     end
   end
 end
