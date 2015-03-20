@@ -34,7 +34,9 @@ RemoveUnusedMethodsInControllersCheck:
     'ApplicationController#after_sign_out_path_for',
     '*#=$',
     '*#model_params',
-    'RegistrationsController#after_update_path_for'
+    'RegistrationsController#after_update_path_for',
+    'RegistrationsController#build_resource',
+    'RegistrationsController#after_inactive_sign_up_path_for'
   ]
 RemoveUnusedMethodsInHelpersCheck: { except_methods: [] }
 RemoveUnusedMethodsInModelsCheck:

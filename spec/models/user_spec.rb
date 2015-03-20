@@ -67,7 +67,6 @@ RSpec.describe User do
     end
 
     it { is_expected.to validate_presence_of(:email) }
-
     it { is_expected.to allow_value(false).for(:is_dabo_admin) }
     it { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
     it { is_expected.to validate_length_of(:password).is_at_least(8) }
