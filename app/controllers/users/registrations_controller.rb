@@ -1,6 +1,8 @@
 module Users
   # Controller to handle redirect after changing password
   class RegistrationsController < Devise::RegistrationsController
+    before_action :configure_permitted_parameters
+
     INVALID_DOMAIN_ERROR = 'address is not associated with a ' \
                            'registered account.'
 
@@ -14,6 +16,12 @@ module Users
     end
 
     private
+
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.for(:sign_up) do |u|
+        u.permit(:first_name, :last_name, :email, :password)
+      end
+    end
 
     def build_resource(user_params)
       super.tap do |user|

@@ -46,11 +46,15 @@ end
 User.create!(
   [
     {
+      first_name: 'Adminfirst',
+      last_name: 'Adminlast',
       email: 'admin@dabohealth.com',
       password: 'timeandcolorisblue',
       is_dabo_admin: true,
     },
     {
+      first_name: 'Plebefirst',
+      last_name: 'Plebelast',
       email: 'plebe@dabohealth.com',
       password: 'timeandcolorisblue',
       is_dabo_admin: false,

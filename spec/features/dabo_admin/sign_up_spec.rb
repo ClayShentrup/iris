@@ -8,6 +8,8 @@ RSpec.feature 'Sign up with or without an account' do
 
   def attempt_sign_up
     visit new_user_registration_path
+    fill_in 'Given Name', with: 'Givenname'
+    fill_in 'Surname', with: 'Surname'
     fill_in 'Hospital Email', with: email_address
     fill_in 'Password', with: valid_password
     click_button 'Join'
@@ -32,7 +34,7 @@ RSpec.feature 'Sign up with or without an account' do
       attempt_sign_up
     end
     it 'creates the user and shows thank you message' do
-      expect(page).to have_content('Thank you for joining,')
+      expect(page).to have_content('Thank you for joining')
       expect(User.last.email).to eq email_address
     end
   end

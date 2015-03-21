@@ -16,12 +16,8 @@ require './app/validators/domain_name_validator'
 class AuthorizedDomain < ActiveRecord::Base
   belongs_to :account
 
-  validates :name,
-            presence: true,
-            domain_name: true
-  validates :account,
-            presence: true,
-            unless: :skip_association_validations
+  validates :name, presence: true, domain_name: true
+  validates :account, presence: true, unless: :skip_association_validations
 
   attr_accessor :skip_association_validations
 end

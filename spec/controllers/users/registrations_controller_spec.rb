@@ -8,7 +8,14 @@ RSpec.describe Users::RegistrationsController do
       create(AuthorizedDomain, :with_associations, name: domain_name)
     end
     let(:domain_name) { 'mayo.edu' }
-    let(:user_attributes) { attributes_for(User, email: user_email) }
+    let(:user_attributes) do
+      attributes_for(
+        User,
+        first_name: 'Firstname',
+        last_name: 'Lastname',
+        email: user_email,
+      )
+    end
 
     before { post :create, user: user_attributes }
 

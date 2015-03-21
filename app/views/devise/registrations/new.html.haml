@@ -1,8 +1,13 @@
 - content_for :join_box do
   #join.border_right_grey.border_left_grey.inner_padding_base.border_bottom_grey
     = form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: 'top_margin_base' }) do |f|
+      .name_fields
+        .field.col6-xs
+          = f.text_field :first_name, autofocus: true, placeholder: 'Given Name', class: 'form_control'
+        .field.col6-xs
+          = f.text_field :last_name, autofocus: true, placeholder: 'Surname', class: 'form_control'
       .field
-        = f.email_field :email, autofocus: true, placeholder: 'Hospital Email', class: 'form_control'
+        = f.email_field :email, placeholder: 'Hospital Email', class: 'form_control'
       .field
         .has_icon_inside.clearfix.line_height_buffer_base.toggle_password
           = f.password_field :password, autocomplete: 'off', placeholder: 'Password', required: true, class: 'form_control float_left'
