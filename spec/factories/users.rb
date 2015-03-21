@@ -39,8 +39,8 @@ FactoryGirl.define do
     skip_association_validations
     confirmed
     sequence(:email) { |n| "user#{n}@factory.com" }
-    first_name 'Firstname'
-    last_name 'Lastname'
+    sequence(:first_name) { |n| "Firstname#{n}" }
+    sequence(:last_name) { |n| "Lastname#{n}" }
     password 'password123'
 
     trait :dabo_admin do

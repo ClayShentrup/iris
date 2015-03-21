@@ -52,9 +52,10 @@ RSpec.describe AuthorizedDomain do
 
     context 'no need to access the database' do
       subject { build_stubbed(described_class, :with_associations) }
-      it { is_expected.to be_valid }
 
       before { subject.skip_association_validations = false }
+
+      it { is_expected.to be_valid }
 
       specify { is_expected.to validate_presence_of(:name) }
       specify { is_expected.to validate_presence_of(:account) }
