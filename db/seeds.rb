@@ -43,6 +43,11 @@ account = Account.create!(
   )
 end
 
+AuthorizedDomain.create!(
+    account_id: account.id,
+    name: 'dabohealth.com',
+)
+
 User.create!(
   [
     {
