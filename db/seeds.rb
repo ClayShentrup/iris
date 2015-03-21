@@ -51,15 +51,15 @@ AuthorizedDomain.create!(
 User.create!(
   [
     {
-      first_name: 'Adminfirst',
-      last_name: 'Adminlast',
+      first_name: 'Admin',
+      last_name: 'Thompson',
       email: 'admin@dabohealth.com',
       password: 'timeandcolorisblue',
       is_dabo_admin: true,
     },
     {
-      first_name: 'Plebefirst',
-      last_name: 'Plebelast',
+      first_name: 'Plebe',
+      last_name: 'Rodriguez',
       email: 'plebe@dabohealth.com',
       password: 'timeandcolorisblue',
       is_dabo_admin: false,
