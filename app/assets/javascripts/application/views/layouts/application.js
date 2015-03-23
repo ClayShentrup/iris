@@ -58,7 +58,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     lastStickyElement.after('<div class="spacer"/>');
     $('.spacer').css(
       'height',
-      this._convertPixelsToRems(this._stickyElementsTotalHeight())
+      Iris.Util.convertPixelsToRems(this._stickyElementsTotalHeight())
     );
   },
 
@@ -75,9 +75,5 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     }
 
     return height;
-  },
-
-  _convertPixelsToRems: function(value) {
-    return Iris.Util.convertPixelsToRems(value) + 'rem';
   },
  });
