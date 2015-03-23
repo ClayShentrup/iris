@@ -3,7 +3,7 @@
 
 Iris.Views['layouts/application'] = Backbone.View.extend({
   events: {
-    'click #feedback_bar .icon' : 'dismissFlashMessage'
+    'click .feedback_bar .icon' : 'dismissFlashMessage'
   },
 
   initialize: function() {
@@ -23,7 +23,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   dismissFlashMessage: function() {
-    $('#feedback_bar').hide();
+    $('.feedback_bar').hide();
   },
 
   lightenBackground: function() {
