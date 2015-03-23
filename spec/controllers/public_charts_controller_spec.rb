@@ -146,38 +146,19 @@ RSpec.describe PublicChartsController do
 
       before do
         get :show, { id: node_id }.merge(get_params)
+        current_user.reload
       end
 
       context 'with selected provider id' do
         let(:get_params) { { provider_id: provider.id } }
 
         it 'persists selected provider' do
-          expect(current_user.selected_provider_id).to eq provider.id.to_s
-        end
-
-        it 'sets context to city' do
-          expect(current_user.selected_context).to eq 'city'
-        end
-      end
-
-      context 'with selected provider id and comparison context' do
-        let(:get_params) { { provider_id: provider.id, context: 'state' } }
-
-        it 'persists selected provider' do
-          expect(current_user.selected_provider_id).to eq provider.id.to_s
-        end
-
-        it 'persists selected context' do
-          expect(current_user.selected_context).to eq 'state'
+          expect(current_user.selected_provider).to eq provider
         end
       end
 
       context 'with comparison context' do
         let(:get_params) { { context: 'state' } }
-
-        it 'keeps selected provider' do
-          expect(current_user.selected_provider_id).to eq nil
-        end
 
         it 'persists selected context' do
           expect(current_user.selected_context).to eq 'state'

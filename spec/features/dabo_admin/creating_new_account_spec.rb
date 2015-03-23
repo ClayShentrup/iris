@@ -5,8 +5,8 @@ RSpec.feature 'creating an account' do
   login_admin
 
   let!(:user) { create(:user) }
-  let!(:provider_without_system) { create(:provider) }
-  let!(:provider_with_system) { create(:provider_with_system) }
+  let!(:provider_without_system) { create(Provider) }
+  let!(:provider_with_system) { create(Provider, :with_associations) }
 
   let(:hospital_system_name) { provider_with_system.hospital_system_name }
 

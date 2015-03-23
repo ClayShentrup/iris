@@ -2,14 +2,14 @@
 #
 # Table name: conversations
 #
-#  id          :integer          not null, primary key
-#  provider_id :integer
-#  user_id     :integer
-#  node_id     :string
-#  title       :string
-#  description :text
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id                :integer          not null, primary key
+#  provider_id       :integer
+#  user_id           :integer
+#  node_component_id :string           not null
+#  title             :string           not null
+#  description       :text             not null
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
 #
 
 FactoryGirl.define do

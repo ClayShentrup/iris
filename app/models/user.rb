@@ -26,6 +26,8 @@
 #  account_id             :integer
 #  password_changed_at    :datetime
 #  unique_session_id      :string(20)
+#  selected_provider_id   :integer
+#  selected_context       :string
 #
 
 require 'devise'
@@ -37,7 +39,7 @@ require './app/models/account'
 
 # An entity to log into the system
 class User < ActiveRecord::Base
-  include RailsSettings::Extend
+  DEFAULT_CONTEXT = 'city'
   # Include default devise modules. Others available are:
   # :lockable, and :omniauthable
   devise :confirmable,
@@ -55,6 +57,8 @@ class User < ActiveRecord::Base
   belongs_to :account
   has_many :purchased_metric_modules
 
+  belongs_to :selected_provider, class_name: 'Provider'
+
   # Some validations are enforced through devise config.
   # See initializers/devise.rb for more information.
   validates :email,
@@ -70,12 +74,18 @@ class User < ActiveRecord::Base
             length: { minimum: 8 },
             unless: :updating_without_password?
 
-  delegate :selected_provider_id, to: :settings
   delegate :default_provider, to: :account
   delegate :purchased_metric_modules, to: :account
-  delegate :selected_context, to: :settings
 
   attr_accessor :skip_association_validations
+
+  def selected_provider
+    super || default_provider
+  end
+
+  def selected_context
+    super || DEFAULT_CONTEXT
+  end
 
   private
 

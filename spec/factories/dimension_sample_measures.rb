@@ -1,6 +1,6 @@
 # == Schema Information
 #
-# Table name: dimension_sample_multi_measures
+# Table name: dimension_sample_measures
 #
 #  id                  :integer          not null, primary key
 #  socrata_provider_id :string           not null

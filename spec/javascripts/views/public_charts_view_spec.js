@@ -32,13 +32,13 @@ describe('PublicChartsView', function() {
     var providerNation = compareDropdown.find('ul li:last');
 
     expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
-    expect(providerCityAndState).toContainText('2 Provider');
+    expect(providerCityAndState).toContainText('3 Provider');
     expect(providerState).toContainText('CA');
-    expect(providerState).toContainText('2 Provider');
-    expect(providerSystem).toContainText('Hospital System 1');
+    expect(providerState).toContainText('3 Provider');
+    expect(providerSystem).toContainText('Hospital System 2');
     expect(providerSystem).toContainText('1 Provider');
     expect(providerNation).toContainText('Nationwide');
-    expect(providerNation).toContainText('2 Provider');
+    expect(providerNation).toContainText('3 Provider');
   });
 
   describe('typing into the search input', function() {

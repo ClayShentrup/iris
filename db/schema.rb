@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150320223953) do
+ActiveRecord::Schema.define(version: 20150323183543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -129,17 +129,6 @@ ActiveRecord::Schema.define(version: 20150320223953) do
 
   add_index "purchased_metric_modules", ["account_id"], name: "index_purchased_metric_modules_on_account_id", using: :btree
 
-  create_table "settings", force: :cascade do |t|
-    t.string   "var",                   null: false
-    t.text     "value"
-    t.integer  "thing_id"
-    t.string   "thing_type", limit: 30
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  add_index "settings", ["thing_type", "thing_id", "var"], name: "index_settings_on_thing_type_and_thing_id_and_var", unique: true, using: :btree
-
   create_table "users", force: :cascade do |t|
     t.string   "email",                                             null: false
     t.datetime "created_at",                                        null: false
@@ -164,11 +153,14 @@ ActiveRecord::Schema.define(version: 20150320223953) do
     t.integer  "account_id"
     t.datetime "password_changed_at"
     t.string   "unique_session_id",      limit: 20
+    t.integer  "selected_provider_id"
+    t.string   "selected_context"
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
+  add_index "users", ["selected_provider_id"], name: "index_users_on_selected_provider_id", using: :btree
 
 end

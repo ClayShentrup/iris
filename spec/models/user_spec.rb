@@ -26,6 +26,8 @@
 #  account_id             :integer
 #  password_changed_at    :datetime
 #  unique_session_id      :string(20)
+#  selected_provider_id   :integer
+#  selected_context       :string
 #
 
 require 'active_record_no_rails_helper'
@@ -110,19 +112,56 @@ RSpec.describe User do
   end
 
   it { is_expected.to belong_to :account }
+  it { is_expected.to belong_to(:selected_provider).class_name('Provider') }
 
   describe 'delegations' do
-    specify do
-      is_expected.to delegate_method(:selected_provider_id)
-        .to(:settings)
-        .as(:selected_provider_id)
-    end
     specify do
       is_expected.to delegate_method(:purchased_metric_modules)
         .to(:account)
     end
     specify do
       is_expected.to delegate_method(:default_provider).to(:account)
+    end
+  end
+
+  describe '#selected_provider' do
+    context 'a selected_provider has been set' do
+      let(:user) { build_stubbed(User, selected_provider: selected_provider) }
+      let(:selected_provider) { build_stubbed(:provider) }
+
+      it 'gives the selected provider' do
+        expect(user.selected_provider).to eq(selected_provider)
+      end
+    end
+
+    context 'a selected_provider has not been set' do
+      let(:account) { build_stubbed(Account, :with_associations) }
+      let(:user) { build_stubbed(User, account: account) }
+      let(:default_provider) { user.default_provider }
+
+      it 'gives the default provider for the account' do
+        expect(user.selected_provider).to eq(default_provider)
+      end
+    end
+  end
+
+  describe '#selected_context' do
+    context 'a selected_context has been set' do
+      let(:user) { build_stubbed(User, selected_context: selected_context) }
+      let(:selected_context) { 'system' }
+
+      it 'gives the selected context' do
+        expect(user.selected_context).to eq(selected_context)
+      end
+    end
+
+    context 'a selected_context has not been set' do
+      let(:user) { build_stubbed(User) }
+      let(:default_context) { 'city' }
+
+      it 'gives the default provider for the account' do
+        expect(user.selected_context).to eq(default_context)
+      end
     end
   end
 end

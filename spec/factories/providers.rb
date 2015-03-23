@@ -22,7 +22,7 @@ FactoryGirl.define do
     hospital_type 'Childrens'
   end
 
-  factory :provider_with_system, parent: :provider do
+  trait :with_associations do
     association :hospital_system
   end
 end

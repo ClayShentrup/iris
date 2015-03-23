@@ -12,8 +12,8 @@ class PublicChartsController < ApplicationController
     )
 
     @provider_compare_presenter = Providers::ProviderComparePresenter.new(
-      selected_provider,
-      selected_context,
+      current_user.selected_provider,
+      current_user.selected_context,
     )
     @custom_feedback_bar = true
   end
@@ -21,37 +21,23 @@ class PublicChartsController < ApplicationController
   private
 
   def providers_relation
-    selected_provider.providers_relation(selected_context).limit(10)
-  end
-
-  def selected_provider
-    user_selected_provider || current_user.default_provider
-  end
-
-  def user_selected_provider
-    Provider.find_by_id(current_user.selected_provider_id)
-  end
-
-  def selected_context
-    current_user.selected_context || default_context
-  end
-
-  def default_context
-    'city'
+    current_user.selected_provider
+      .providers_relation(current_user.selected_context).limit(10)
   end
 
   def persist_selected_provider
     return unless params.fetch(:provider_id, nil)
-    current_user.settings.selected_provider_id = params.fetch(:provider_id)
-    unless params.fetch(:context, nil)
-      current_user.settings.selected_context = 'city'
-    end
-    current_user.save!
+    current_user.update_attribute(
+      :selected_provider_id,
+      params.fetch(:provider_id),
+    )
   end
 
   def persist_selected_context
     return unless params.fetch(:context, nil)
-    current_user.settings.selected_context = params.fetch(:context)
-    current_user.save!
+    current_user.update_attribute(
+      :selected_context,
+      params.fetch(:context),
+    )
   end
 end

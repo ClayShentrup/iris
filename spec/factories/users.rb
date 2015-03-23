@@ -26,6 +26,8 @@
 #  account_id             :integer
 #  password_changed_at    :datetime
 #  unique_session_id      :string(20)
+#  selected_provider_id   :integer
+#  selected_context       :string
 #
 
 require 'ipaddr'
@@ -57,6 +59,7 @@ FactoryGirl.define do
 
     trait :with_associations do
       association :account, :with_associations
+      association :selected_provider, :with_associations, factory: :provider
     end
   end
 end
