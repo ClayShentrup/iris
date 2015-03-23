@@ -12,7 +12,7 @@
 
 FactoryGirl.define do
   factory :account do
-    skip_association_validations true
+    skip_association_validations
 
     trait :with_associations do
       association :virtual_system,

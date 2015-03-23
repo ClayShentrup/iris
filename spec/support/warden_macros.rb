@@ -6,7 +6,7 @@ module WardenMacros
   end
 
   def login_user
-    let(:current_user) { create(:user) }
+    let(:current_user) { create(:user, :with_associations) }
     let!(:set_logged_in_state) { login_as(current_user, scope: :user) }
   end
 

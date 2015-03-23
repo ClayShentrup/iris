@@ -25,7 +25,7 @@ class PublicChartsController < ApplicationController
   end
 
   def selected_provider
-    user_selected_provider || default_provider
+    user_selected_provider || current_user.default_provider
   end
 
   def user_selected_provider
@@ -34,18 +34,6 @@ class PublicChartsController < ApplicationController
 
   def selected_context
     current_user.selected_context || default_context
-  end
-
-  def default_provider
-    Provider.new(
-      name: 'SAN FRANCISCO GENERAL HOSPITAL',
-      zip_code: '94110',
-      hospital_type: 'Acute Care Hospitals',
-      socrata_provider_id: '050228',
-      state: 'CA',
-      city: 'SAN FRANCISCO',
-      hospital_system_id: 115,
-    )
   end
 
   def default_context

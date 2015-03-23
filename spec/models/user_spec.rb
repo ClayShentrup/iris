@@ -111,16 +111,18 @@ RSpec.describe User do
 
   it { is_expected.to belong_to :account }
 
-  describe '#selected_provider_id' do
-    it do
+  describe 'delegations' do
+    specify do
       is_expected.to delegate_method(:selected_provider_id)
         .to(:settings)
         .as(:selected_provider_id)
     end
-  end
-
-  it do
-    is_expected.to delegate_method(:purchased_metric_modules)
-      .to(:account)
+    specify do
+      is_expected.to delegate_method(:purchased_metric_modules)
+        .to(:account)
+    end
+    specify do
+      is_expected.to delegate_method(:default_provider).to(:account)
+    end
   end
 end

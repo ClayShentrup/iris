@@ -28,14 +28,17 @@ describe('PublicChartsView', function() {
     var compareDropdown = $('.dropdown_items.compare');
     var providerCityAndState = compareDropdown.find('ul li:first');
     var providerState = compareDropdown.find('ul li:nth-child(2)');
+    var providerSystem = compareDropdown.find('ul li:nth-child(3)');
     var providerNation = compareDropdown.find('ul li:last');
 
     expect(providerCityAndState).toContainText('SAN FRANCISCO, CA');
-    expect(providerCityAndState).toContainText('1 Provider');
+    expect(providerCityAndState).toContainText('2 Provider');
     expect(providerState).toContainText('CA');
-    expect(providerState).toContainText('1 Provider');
+    expect(providerState).toContainText('2 Provider');
+    expect(providerSystem).toContainText('Hospital System 1');
+    expect(providerSystem).toContainText('1 Provider');
     expect(providerNation).toContainText('Nationwide');
-    expect(providerNation).toContainText('1 Provider');
+    expect(providerNation).toContainText('2 Provider');
   });
 
   describe('typing into the search input', function() {
@@ -77,7 +80,7 @@ describe('PublicChartsView', function() {
       expect(compareName).toContainText('SAN FRANCISCO, CA');
 
       compareName.click();
-      compareDropdown.find('li').eq(2).click();
+      compareDropdown.find('li').eq(3).click();
 
       expect(compareName).toContainText('Nationwide');
       expect($('.dropdown_items.compare')).toBeHidden();

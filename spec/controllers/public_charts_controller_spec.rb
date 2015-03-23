@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe PublicChartsController do
   let(:current_user) do
-    create(User, :authenticatable, :confirmed, account: create(Account))
+    create(User, :authenticatable, :confirmed, :with_associations)
   end
 
   before do

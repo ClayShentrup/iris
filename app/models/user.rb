@@ -71,6 +71,7 @@ class User < ActiveRecord::Base
             unless: :updating_without_password?
 
   delegate :selected_provider_id, to: :settings
+  delegate :default_provider, to: :account
   delegate :purchased_metric_modules, to: :account
   delegate :selected_context, to: :settings
 
