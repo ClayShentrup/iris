@@ -115,6 +115,7 @@ RSpec.describe PublicChartsTree do
       let(:expected_data) do
         {
           bars: values.map { |value| { value: value } },
+          title: subject.title,
         }
       end
 

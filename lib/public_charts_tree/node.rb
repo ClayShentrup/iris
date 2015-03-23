@@ -34,6 +34,7 @@ class PublicChartsTree
     def data
       {
         bars: bars(providers),
+        title: title,
       }
     end
 
