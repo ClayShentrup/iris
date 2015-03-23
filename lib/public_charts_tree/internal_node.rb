@@ -12,7 +12,6 @@ class PublicChartsTree
     delegate :breadcrumb,
              :build_breadcrumb,
              :id_components,
-             :long_title,
              :parent,
              :short_title,
              :parent_breadcrumb,

@@ -8,7 +8,6 @@ class PublicChartsTree
              :search,
              :parent_is_root?,
              :short_title,
-             :long_title,
              :parent_id,
              :breadcrumb,
              :parent_breadcrumb,

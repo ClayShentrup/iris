@@ -35,14 +35,12 @@ RSpec.describe PublicChartsTree do
   let(:mort_30_ami) do
     OpenStruct.new(
       short_title: 'Acute Myocardial Infarction Mortality',
-      long_title: 'Acute Myocardial Infarction 30-day Mortality Rate',
       value: value_dimension_sample_manager,
     )
   end
   let(:mort_30_hf) do
     OpenStruct.new(
       short_title: 'Heart Failure Mortality',
-      long_title: 'Heart Failure 30-day Mortality Rate',
       value: value_dimension_sample_manager,
     )
   end
@@ -215,9 +213,6 @@ RSpec.describe PublicChartsTree do
     let(:expected_child_ids) { [] }
 
     shared_examples 'a mortality measure node' do
-      specify do
-        expect(subject.long_title).to eq measure.long_title
-      end
       specify { expect(subject.parent_short_title).to eq 'Mortality' }
     end
 

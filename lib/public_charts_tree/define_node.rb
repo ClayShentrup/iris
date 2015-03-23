@@ -29,10 +29,6 @@ class PublicChartsTree
       @internal_node ||= InternalNode.new(embedded_node)
     end
 
-    def long_title(long_title)
-      embedded_node.long_title = long_title
-    end
-
     def value(value_dimension_manager)
       embedded_node.value_dimension_manager = value_dimension_manager
     end
@@ -61,7 +57,6 @@ class PublicChartsTree
       measures.each do |measure_id|
         measure = MEASURES.fetch(measure_id)
         measure(measure.fetch(:short_title)) do
-          long_title measure.fetch(:long_title)
           value measure.fetch(:value, nil)
         end
       end

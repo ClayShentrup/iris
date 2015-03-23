@@ -4,8 +4,6 @@ class PublicChartsTree
   ChildNode = Struct.new(:parent, :short_title) do
     attr_accessor :value_dimension_manager
 
-    attr_accessor :long_title
-
     delegate :breadcrumb,
              to: :parent,
              prefix: true
