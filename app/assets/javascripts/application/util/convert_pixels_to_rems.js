@@ -5,5 +5,5 @@ Iris.Util.convertPixelsToRems = function(pixels) {
   var computedFontSize = computedStyles.fontSize;
   var baseFontSize     = parseInt(computedFontSize);
 
-  return parseInt(pixels) / baseFontSize;
+  return parseInt(pixels) / baseFontSize + 'rem';
 };

@@ -1,5 +1,5 @@
 - flash.each do |name, message|
-  #feedback_bar.inner_padding_small.col12.clearfix
+  .feedback_bar.inner_padding_small.col12.clearfix.affix_beneath_top_nav
     %span.col9-xs.message{ class: name }
       = sanitize(message)
     %a.icon.icon_size_xs.icon_close.col3-xs{ href: '#' }

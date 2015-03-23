@@ -1,4 +1,4 @@
-#feedback_bar
+.feedback_bar
   background-color: $grey_darker
   color: $white
   position: relative
@@ -11,13 +11,13 @@
   a
     color: $brand_color_primary_light
 
-#body.news_items #feedback_bar
+#body.news_items .feedback_bar
   margin-top: 0
   float: none
 
 #body
   &.public_charts, &.data_categories
-    #feedback_bar
+    .feedback_bar
       @extend .col10
       +media($tablet_portrait_and_desktop)
         margin-bottom: ($buffer_base * 1)

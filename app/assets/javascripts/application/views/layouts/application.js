@@ -3,7 +3,7 @@
 
 Iris.Views['layouts/application'] = Backbone.View.extend({
   events: {
-    'click #feedback_bar .icon' : 'dismissFlashMessage'
+    'click .feedback_bar .icon' : 'dismissFlashMessage'
   },
 
   initialize: function() {
@@ -23,7 +23,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   dismissFlashMessage: function() {
-    $('#feedback_bar').hide();
+    $('.feedback_bar').hide();
   },
 
   lightenBackground: function() {
@@ -55,9 +55,10 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   _initializeSticky: function() {
     var lastStickyElement = this._stickyElements().last();
 
-    lastStickyElement.next().css(
-      'margin-top',
-      this._convertPixelsToRems(this._stickyElementsTotalHeight())
+    lastStickyElement.after('<div class="spacer"/>');
+    $('.spacer').css(
+      'height',
+      Iris.Util.convertPixelsToRems(this._stickyElementsTotalHeight())
     );
   },
 
@@ -66,10 +67,6 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   _stickyElementsTotalHeight: function() {
-    if (this._stickyElements().length === 1) {
-      return this._stickyElements().height();
-    }
-
     var height = 20;
     var stickyElements = this._stickyElements();
 
@@ -78,9 +75,5 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     }
 
     return height;
-  },
-
-  _convertPixelsToRems: function(value) {
-    return Iris.Util.convertPixelsToRems(value) + 'rem';
   },
  });
