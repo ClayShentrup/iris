@@ -3,7 +3,7 @@
     { class: 'back_btn' }) do
     %span.icon.icon_size_small.float_left.icon_brand_color_primary
       = render 'shared/icon', icon: '#icon_arrow_large_left', klass: 'vertical_align_middle'
-    %span.parent_node_text.hide_on_mobile.text_ellipsis.with_small_icon= node.parent_short_title
+    %span.parent_node_text.hide_on_mobile.text_ellipsis.with_small_icon= node.parent_title
   - unless grandparent
     %span.current_node_text.centered.text_center.hide_on_desktop.text_ellipsis
-      = node.short_title
+      = node.title

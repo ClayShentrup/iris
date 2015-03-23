@@ -21,7 +21,7 @@ module PublicChartsHelper
 
   def node_link(node)
     link_to(
-      node.short_title,
+      node.title,
       controller: :public_charts,
       action: :show,
       id: node.id,

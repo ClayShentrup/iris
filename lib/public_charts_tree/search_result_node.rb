@@ -2,7 +2,7 @@
 class PublicChartsTree
   SearchResultNode = Struct.new(:node) do
     delegate :id,
-             :short_title,
+             :title,
              to: :node
 
     def children
@@ -11,7 +11,7 @@ class PublicChartsTree
 
     def to_h
       {
-        short_title: short_title,
+        title: title,
         children: children.map(&:to_h),
       }
     end

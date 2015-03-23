@@ -56,16 +56,16 @@ class PublicChartsTree
     def measures(*measures)
       measures.each do |measure_id|
         measure = MEASURES.fetch(measure_id)
-        measure(measure.fetch(:short_title)) do
+        measure(measure.fetch(:title)) do
           value measure.fetch(:value, nil)
         end
       end
     end
 
-    def create_child_node(short_title, definition_block, child_node_class)
+    def create_child_node(title, definition_block, child_node_class)
       generic_child_node = ChildNode.new(
         parent: internal_node,
-        short_title: short_title,
+        title: title,
       )
       child_node = child_node_class.new(generic_child_node)
       internal_node.children << self.class.call(

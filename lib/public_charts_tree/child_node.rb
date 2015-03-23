@@ -1,19 +1,19 @@
 # .
 class PublicChartsTree
   # A ChildNode instance represents any node below the root.
-  ChildNode = Struct.new(:parent, :short_title) do
+  ChildNode = Struct.new(:parent, :title) do
     attr_accessor :value_dimension_manager
 
     delegate :breadcrumb,
              to: :parent,
              prefix: true
 
-    def initialize(parent:, short_title:)
-      super(parent, short_title)
+    def initialize(parent:, title:)
+      super(parent, title)
     end
 
     def breadcrumb
-      [short_title]
+      [title]
     end
 
     def id_components
@@ -23,7 +23,7 @@ class PublicChartsTree
     private
 
     def id_component
-      [short_title.parameterize]
+      [title.parameterize]
     end
   end
 end

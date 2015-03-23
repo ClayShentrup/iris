@@ -7,13 +7,13 @@ class PublicChartsTree
   # or RootNode .
   InternalNode = Struct.new(:embedded_node) do
     delegate :id,
-             :short_title,
+             :title,
              to: :parent, prefix: true
     delegate :breadcrumb,
              :build_breadcrumb,
              :id_components,
              :parent,
-             :short_title,
+             :title,
              :parent_breadcrumb,
              :value_dimension_manager,
              to: :embedded_node

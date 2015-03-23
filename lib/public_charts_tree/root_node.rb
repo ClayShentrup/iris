@@ -10,7 +10,7 @@ class PublicChartsTree
         []
       end
 
-      def short_title
+      def title
         'Metrics'
       end
 

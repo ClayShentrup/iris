@@ -34,13 +34,13 @@ RSpec.describe PublicChartsTree do
   end
   let(:mort_30_ami) do
     OpenStruct.new(
-      short_title: 'Acute Myocardial Infarction Mortality',
+      title: 'Acute Myocardial Infarction Mortality',
       value: value_dimension_sample_manager,
     )
   end
   let(:mort_30_hf) do
     OpenStruct.new(
-      short_title: 'Heart Failure Mortality',
+      title: 'Heart Failure Mortality',
       value: value_dimension_sample_manager,
     )
   end
@@ -82,8 +82,8 @@ RSpec.describe PublicChartsTree do
 
   let(:expected_breadcrumbs) do
     [
-      subject.parent_short_title,
-      subject.short_title,
+      subject.parent_title,
+      subject.title,
     ]
   end
 
@@ -96,7 +96,7 @@ RSpec.describe PublicChartsTree do
     end
 
     specify { expect(subject.breadcrumbs).to eq expected_breadcrumbs }
-    specify { expect(subject.short_title).to eq expected_short_title }
+    specify { expect(subject.title).to eq expected_title }
     specify { expect(subject.parent_id).to eq expected_parent_id }
     specify { expect(subject.type).to eq expected_type }
   end
@@ -131,11 +131,11 @@ RSpec.describe PublicChartsTree do
 
   context 'at a measure source node' do
     let(:node_id) { 'public-data' }
-    let(:expected_short_title) { 'Public Data' }
+    let(:expected_title) { 'Public Data' }
     let(:expected_parent_id) { '' }
     let(:expected_type) { 'measure_source' }
     let(:expected_child_ids) { ['public-data/value-based-purchasing'] }
-    let(:expected_breadcrumbs) { [subject.short_title] }
+    let(:expected_breadcrumbs) { [subject.title] }
     let(:private_data) { tree.find('private-data') }
 
     it_behaves_like 'a child node'
@@ -144,7 +144,7 @@ RSpec.describe PublicChartsTree do
   context 'at a metric module node' do
     let(:parent_id) { 'public-data' }
     let(:node_id) { "#{parent_id}/value-based-purchasing" }
-    let(:expected_short_title) { 'Value Based Purchasing' }
+    let(:expected_title) { 'Value Based Purchasing' }
     let(:expected_parent_id) { 'public-data' }
     let(:expected_type) { 'metric_module' }
     let(:expected_child_ids) do
@@ -155,13 +155,13 @@ RSpec.describe PublicChartsTree do
 
     it_behaves_like 'a chart node'
 
-    specify { expect(subject.parent_short_title).to eq 'Public Data' }
+    specify { expect(subject.parent_title).to eq 'Public Data' }
   end
 
   context 'at a domain node' do
     let(:expected_parent_id) { 'public-data/value-based-purchasing' }
     let(:node_id) { "#{expected_parent_id}/outcome-of-care" }
-    let(:expected_short_title) { 'Outcome of Care' }
+    let(:expected_title) { 'Outcome of Care' }
     let(:expected_type) { 'domain' }
     let(:expected_child_ids) do
       ['public-data/value-based-purchasing/outcome-of-care/mortality']
@@ -170,7 +170,7 @@ RSpec.describe PublicChartsTree do
     it_behaves_like 'a chart node'
 
     specify do
-      expect(subject.parent_short_title).to eq 'Value Based Purchasing'
+      expect(subject.parent_title).to eq 'Value Based Purchasing'
     end
   end
 
@@ -179,7 +179,7 @@ RSpec.describe PublicChartsTree do
       'public-data/value-based-purchasing/outcome-of-care'
     end
     let(:node_id) { "#{expected_parent_id}/mortality" }
-    let(:expected_short_title) { 'Mortality' }
+    let(:expected_title) { 'Mortality' }
     let(:expected_type) { 'category' }
     let(:mort_30_ami_id) do
       "#{expected_parent_id}/mortality/acute-myocardial-infarction-mortality"
@@ -196,7 +196,7 @@ RSpec.describe PublicChartsTree do
 
     it_behaves_like 'a child node'
 
-    specify { expect(subject.parent_short_title).to eq 'Outcome of Care' }
+    specify { expect(subject.parent_title).to eq 'Outcome of Care' }
   end
 
   context 'at a measure node' do
@@ -208,12 +208,12 @@ RSpec.describe PublicChartsTree do
         mortality
       ].join('/')
     end
-    let(:expected_short_title) { measure.short_title }
+    let(:expected_title) { measure.title }
     let(:expected_type) { 'measure' }
     let(:expected_child_ids) { [] }
 
     shared_examples 'a mortality measure node' do
-      specify { expect(subject.parent_short_title).to eq 'Mortality' }
+      specify { expect(subject.parent_title).to eq 'Mortality' }
     end
 
     describe 'MORT_30_AMI' do
@@ -260,10 +260,10 @@ RSpec.describe PublicChartsTree do
         let(:search_term) { 'VaLuE bAs' }
         let(:expected_result) do
           {
-            short_title: 'Public Data',
+            title: 'Public Data',
             children: [
               {
-                short_title: 'Value Based Purchasing',
+                title: 'Value Based Purchasing',
                 children: [],
               },
             ],
@@ -281,13 +281,13 @@ RSpec.describe PublicChartsTree do
         let(:search_term) { 'Outcome' }
         let(:expected_result) do
           {
-            short_title: 'Public Data',
+            title: 'Public Data',
             children: [
               {
-                short_title: 'Value Based Purchasing',
+                title: 'Value Based Purchasing',
                 children: [
                   {
-                    short_title: 'Outcome of Care',
+                    title: 'Outcome of Care',
                     children: [],
                   },
                 ],
