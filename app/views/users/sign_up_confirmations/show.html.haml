@@ -1,0 +1,7 @@
+- content_for :join_box do
+  .centered.inner_padding_base.border_left_grey.border_right_grey.border_bottom_grey
+    %p Thank you for joining.
+    %p A confirmation has been sent to your email, please view it to access Dabo.
+    = link_to 'Sign up using a different email', new_user_registration_path
+
+= render 'devise/shared/join_box'

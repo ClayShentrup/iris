@@ -28,6 +28,8 @@
 #  unique_session_id      :string(20)
 #  selected_provider_id   :integer
 #  selected_context       :string
+#  first_name             :string           default(""), not null
+#  last_name              :string           default(""), not null
 #
 
 require 'active_record_no_rails_helper'
@@ -49,6 +51,12 @@ RSpec.describe User do
       is_expected.to have_db_column(:unique_session_id).of_type(:string)
         .with_options(limit: 20)
     end
+    it do
+      is_expected.to have_db_column(:first_name).of_type(:string)
+        .with_options(null: false)
+      is_expected.to have_db_column(:last_name).of_type(:string)
+        .with_options(null: false)
+    end
   end
 
   describe 'validations' do
@@ -67,10 +75,11 @@ RSpec.describe User do
     end
 
     it { is_expected.to validate_presence_of(:email) }
-
     it { is_expected.to allow_value(false).for(:is_dabo_admin) }
     it { is_expected.not_to allow_value(nil).for(:is_dabo_admin) }
     it { is_expected.to validate_length_of(:password).is_at_least(8) }
+    it { is_expected.to validate_presence_of(:first_name) }
+    it { is_expected.to validate_presence_of(:last_name) }
 
     describe 'password must be strong' do
       subject { build_stubbed(:user, password: password) }

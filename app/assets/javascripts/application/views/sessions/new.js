@@ -3,7 +3,7 @@
 
 Iris.Views['sessions-new'] = Backbone.View.extend({
   events: {
-    'click .cancel_btn': '_clearLoginForm'
+    'click .cancel_btn': '_clearLoginForm',
   },
 
   initialize: function() {
@@ -16,5 +16,6 @@ Iris.Views['sessions-new'] = Backbone.View.extend({
 
   _input: function() {
     return this.$('input.form_control');
-  }
+  },
+
 });

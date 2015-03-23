@@ -11,7 +11,12 @@
 
 FactoryGirl.define do
   factory :authorized_domain do
+    skip_association_validations
+
     sequence(:name) { |n| "mydomain#{n}.com" }
-    association :account
+
+    trait :with_associations do
+      association :account, :with_associations
+    end
   end
 end

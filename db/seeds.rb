@@ -43,14 +43,23 @@ account = Account.create!(
   )
 end
 
+AuthorizedDomain.create!(
+    account_id: account.id,
+    name: 'dabohealth.com',
+)
+
 User.create!(
   [
     {
+      first_name: 'Admin',
+      last_name: 'Thompson',
       email: 'admin@dabohealth.com',
       password: 'timeandcolorisblue',
       is_dabo_admin: true,
     },
     {
+      first_name: 'Plebe',
+      last_name: 'Rodriguez',
       email: 'plebe@dabohealth.com',
       password: 'timeandcolorisblue',
       is_dabo_admin: false,

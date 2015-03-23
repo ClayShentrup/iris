@@ -28,6 +28,8 @@
 #  unique_session_id      :string(20)
 #  selected_provider_id   :integer
 #  selected_context       :string
+#  first_name             :string           default(""), not null
+#  last_name              :string           default(""), not null
 #
 
 require 'devise'
@@ -61,13 +63,11 @@ class User < ActiveRecord::Base
 
   # Some validations are enforced through devise config.
   # See initializers/devise.rb for more information.
-  validates :email,
-            presence: true,
-            uniqueness: true
-
+  validates :email, presence: true, uniqueness: true
   validates :account, presence: true, unless: :skip_association_validations
-
   validates :is_dabo_admin, inclusion: { in: [true, false] }
+  validates :first_name, presence: true
+  validates :last_name, presence: true
   validates :password,
             password_strength: true,
             presence: true,
