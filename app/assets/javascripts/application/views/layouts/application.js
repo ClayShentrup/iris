@@ -55,8 +55,9 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   _initializeSticky: function() {
     var lastStickyElement = this._stickyElements().last();
 
-    lastStickyElement.next().css(
-      'margin-top',
+    lastStickyElement.after('<div class="spacer"/>');
+    $('.spacer').css(
+      'height',
       this._convertPixelsToRems(this._stickyElementsTotalHeight())
     );
   },
@@ -66,10 +67,6 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   _stickyElementsTotalHeight: function() {
-    if (this._stickyElements().length === 1) {
-      return this._stickyElements().height();
-    }
-
     var height = 20;
     var stickyElements = this._stickyElements();
 

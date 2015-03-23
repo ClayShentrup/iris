@@ -1,10 +1,10 @@
-#measures_nav_container.col2.hide_on_mobile.hide_on_tablet_portrait.bottom_margin_base
+#measures_nav_container.col2.hide_on_mobile.hide_on_tablet_portrait.bottom_margin_base.affix_beneath_top_nav
   = render 'public_charts/measures_nav', node: @node
 #measures_nav_container.col12.hide_on_desktop.is_sticky.bottom_margin_base
   = render 'public_charts/measures_nav', node: @node
 
 = render 'layouts/feedback_bar'
-.main_content.col10.measures.vertical_padding_large
+.main_content.col10.measures.vertical_padding_large.affix_beneath_top_nav
   %h2.breadcrumbs.hide_on_mobile.hide_on_tablet_portrait.inner_content
     = render partial: 'public_charts/breadcrumbs/breadcrumb', collection: @node.breadcrumbs,
       spacer_template: 'public_charts/breadcrumbs/breadcrumbs_spacer'
