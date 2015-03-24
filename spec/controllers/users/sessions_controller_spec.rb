@@ -18,7 +18,7 @@ RSpec.describe Users::SessionsController do
 
     context 'with password about to expire' do
       let(:flash_message) do
-        "#{user.first_name}, you have 3 days before your " \
+        'Human, you have 3 days before your ' \
         'password expires. Please update to a new one.'
       end
 

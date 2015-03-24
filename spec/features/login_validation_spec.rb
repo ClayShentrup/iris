@@ -22,7 +22,7 @@ RSpec.feature 'Login validation' do
 
   def log_in_with_wrong_credentials(email: user.email)
     visit new_user_session_path
-    fill_in 'Hospital Email', with: email
+    fill_in 'Email', with: email
     fill_in 'Password', with: 'wrongpassword'
     click_button 'Login'
   end

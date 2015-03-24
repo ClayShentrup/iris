@@ -10,14 +10,15 @@
 #
 
 require './app/models/account'
+require 'public_suffix'
 require './app/validators/domain_name_validator'
 
 # Authorized domains for a given account.
 class AuthorizedDomain < ActiveRecord::Base
   belongs_to :account
-
-  validates :name, presence: true, domain_name: true
-  validates :account, presence: true, unless: :skip_association_validations
-
-  attr_accessor :skip_association_validations
+  validates :name,
+            presence: true,
+            domain_name: true
+  validates :name, presence: true
+  validates :account, presence: true
 end

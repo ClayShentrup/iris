@@ -6,7 +6,7 @@ RSpec.describe Sessions::PasswordExpirationPresenter do
   let(:view_context) { instance_double 'view_context' }
   let(:update_password_path) { '<a href="/users/edit">update to a new one</a>' }
   let(:flash_message) do
-    "#{current_user.first_name}, you have 3 days before your " \
+    'Human, you have 3 days before your ' \
     "password expires. Please #{update_password_path}."
   end
 

@@ -3,15 +3,13 @@ require 'sidekiq/web'
 require_relative '../lib/constraints/is_dabo_admin'
 
 Rails.application.routes.draw do
+
   shallow do # we should always use shallow routes, internally at least
     devise_for :users, controllers: {
       registrations: 'users/registrations',
       sessions: 'users/sessions',
       password_expired: 'users/password_expired',
     }
-    namespace :users do
-      resource :sign_up_confirmation, only: :show
-    end
     resource :status, only: :show
     resource :styleguide, only: :show if APP_CONFIG.styleguide_enabled
 

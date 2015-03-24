@@ -28,8 +28,6 @@
 #  unique_session_id      :string(20)
 #  selected_provider_id   :integer
 #  selected_context       :string
-#  first_name             :string           not null
-#  last_name              :string           not null
 #
 
 require 'ipaddr'
@@ -39,8 +37,6 @@ FactoryGirl.define do
     skip_association_validations
     confirmed
     sequence(:email) { |n| "user#{n}@factory.com" }
-    sequence(:first_name) { |n| "Firstname#{n}" }
-    sequence(:last_name) { |n| "Lastname#{n}" }
     password 'password123'
 
     trait :dabo_admin do

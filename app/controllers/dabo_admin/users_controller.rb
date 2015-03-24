@@ -5,8 +5,6 @@ module DaboAdmin
 
     def model_params
       params.require(:user).permit(
-        :first_name,
-        :last_name,
         :email,
         :is_dabo_admin,
         :password,

@@ -1,4 +1,4 @@
-RSpec.shared_context 'an ApplicationController' do |trait|
+RSpec.shared_context 'an ApplicationController' do
   shared_context 'ApplicationController methods' do
     let(:model_class) { model_name.constantize }
     let(:namespace) { "#{described_class.name.deconstantize.underscore}" }
@@ -24,7 +24,7 @@ RSpec.shared_context 'an ApplicationController' do |trait|
     end
 
     shared_context 'ApplicationController methods with an existing record' do
-      let!(:model_instance) { create(model_class, trait) }
+      let!(:model_instance) { create(model_class) }
     end
   end
 
@@ -143,9 +143,7 @@ RSpec.shared_context 'an ApplicationController' do |trait|
     include_context 'ApplicationController methods'
     include_context 'ApplicationController methods with an existing record'
 
-    before do
-      get :show, id: model_instance
-    end
+    before { get :show, id: model_instance }
 
     specify { expect(response).to be_success }
 

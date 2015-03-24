@@ -15,7 +15,7 @@ RSpec.feature 'Lock account' do
 
   def log_in_with_wrong_password
     visit new_user_session_path
-    fill_in 'Hospital Email', with: user.email
+    fill_in 'Email', with: user.email
     fill_in 'Password', with: 'wrongpassword'
     click_button 'Login'
   end

@@ -1,15 +1,14 @@
-$desktop_devise_width: rem(500)
+$desktop_devise_width: rem(550)
 
 .devise_form
   +media($desktop)
-    margin-top: rem(40)
     width: $desktop_devise_width
 
-  +media($mobile)
-    border: none
-
-body.sessions-new .join_tab,
-body.sign_up_confirmations-show .login_tab,
-body.registrations-new .login_tab
-  @extend .border_bottom_grey
-  +omega
+#login_logo
+  svg
+    height: rem(100)
+    width: rem(160)
+  +media($desktop)
+    svg
+      height: rem(160)
+      width: $desktop_devise_width
