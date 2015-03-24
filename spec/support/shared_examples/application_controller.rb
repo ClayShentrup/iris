@@ -244,5 +244,4 @@ RSpec.shared_context 'an ApplicationController' do |trait|
       end
     end
   end
-
 end
