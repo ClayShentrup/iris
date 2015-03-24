@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=measure_id,provider_id,score&$where=measure_id%20=%20%27PSI_90_SAFETY%27
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27PSI_90_SAFETY%27
     body:
       encoding: UTF-8
       string: 'null'

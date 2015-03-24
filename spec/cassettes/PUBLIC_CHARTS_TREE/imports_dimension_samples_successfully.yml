@@ -1,0 +1,1345 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27PSI_90_SAFETY%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 22 Jan 2015 00:51:49 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "0.74"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "0.65"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:13 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/yq43-i98g.json?$limit=50000&$offset=0&$select=provider_id,domain_1_score
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Tue, 24 Mar 2015 14:29:01 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id",":id","domain_1_score",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","meta_data","text","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "domain_1_score" : "3.0000"
+        }
+        , {
+          "provider_id" : "010005",
+          "domain_1_score" : "1.0000"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:13 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/77hc-ibv8.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27HAI_1_SIR%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:13 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:48 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "1.633"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "0.000"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:14 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/77hc-ibv8.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27HAI_2_SIR%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:14 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:48 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "2.666"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "0.285"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:14 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/yq43-i98g.json?$limit=50000&$offset=0&$select=provider_id,domain_2_score
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:15 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Tue, 24 Mar 2015 14:29:01 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","domain_2_score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "domain_2_score" : "9.0000"
+        }
+        , {
+          "provider_id" : "010005",
+          "domain_2_score" : "2.0000"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:15 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/yq43-i98g.json?$limit=50000&$offset=0&$select=provider_id,total_hac_score
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Tue, 24 Mar 2015 14:29:01 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","total_hac_score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "total_hac_score" : "6.9000"
+        }
+        , {
+          "provider_id" : "010005",
+          "total_hac_score" : "1.6500"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:16 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27READM_30_AMI%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:16 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 22 Jan 2015 00:51:49 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "18.0"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "17.1"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:17 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27READM_30_HF%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 21 Jan 2015 16:51:49 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "20.6"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "20.3"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:17 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27READM_30_PN%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:17 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 21 Jan 2015 16:51:49 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "17.9"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "17.3"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:18 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27READM_30_COPD%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:18 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 22 Jan 2015 00:51:49 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "23.1"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "19.6"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:18 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/7xux-kdpw.json?$limit=50000&$offset=0&$select=provider_id,score&$where=measure_id%20=%20%27READM_30_HIP_KNEE%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:18 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Thu, 22 Jan 2015 00:51:49 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '[":updated_at","provider_id","score",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["meta_data","text","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "provider_id" : "010001",
+          "score" : "5.3"
+        }
+        , {
+          "provider_id" : "010005",
+          "score" : "6.2"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:18 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_1_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:19 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 23:14:43 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "76",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "83",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:19 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_2_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:19 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:43 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "83",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "89",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:19 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_3_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:20 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:43 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "59",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "71",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:20 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_4_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:20 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:43 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "68",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "76",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:21 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_5_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:21 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 23:14:43 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "62",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "69",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:21 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_6_Y_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:43 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "85",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "87",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:22 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_7_SA%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:22 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 23:14:43 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "50",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "57",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:22 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_CLEAN_HSP_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:24 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 23:14:43 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "70",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "69",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:24 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_QUIET_HSP_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:24 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:43 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "68",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "70",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:24 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_HSP_RATING_9_10%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:25 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 23:14:43 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '2'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "72",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "76",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:25 GMT
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_RECMND_DY%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token: []
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 24 Mar 2015 18:24:25 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 15:14:43 PST
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '0'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "77",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "74",
+          "provider_id" : "010005"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 24 Mar 2015 18:24:25 GMT
+recorded_with: VCR 2.9.3

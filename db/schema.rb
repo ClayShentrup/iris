@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150323183543) do
+ActiveRecord::Schema.define(version: 20150323223028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,11 +52,9 @@ ActiveRecord::Schema.define(version: 20150323183543) do
   create_table "dimension_sample_measures", force: :cascade do |t|
     t.string   "socrata_provider_id", null: false
     t.string   "measure_id",          null: false
-    t.string   "column_name",         null: false
     t.string   "value",               null: false
     t.datetime "created_at",          null: false
     t.datetime "updated_at",          null: false
-    t.string   "dataset_id",          null: false
   end
 
   create_table "dimension_sample_provider_aggregates", force: :cascade do |t|

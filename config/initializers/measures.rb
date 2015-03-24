@@ -1,19 +1,9 @@
 MEASURES = {
   PSI_90_SAFETY: {
     title: 'Patient Safety Composite',
-    value: DimensionSampleManagers::Socrata.new(
-      column_name: :score,
-      dataset_id: '7xux-kdpw',
-      measure_id: 'PSI_90_SAFETY',
-    ),
   },
   HAI_1_SIR: {
     title: 'Catheter Associated Urinary Tract Infection',
-    value: DimensionSampleManagers::Socrata.new(
-      column_name: :score,
-      dataset_id: '77hc-ibv8',
-      measure_id: 'HAI_1_SIR',
-    ),
   },
   HAI_2_SIR: {
     title: 'Central Line Associated Bloodstream Infection',

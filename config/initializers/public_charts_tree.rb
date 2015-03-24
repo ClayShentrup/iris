@@ -1,20 +1,23 @@
 PUBLIC_CHARTS_TREE = PublicChartsTree.new do
   measure_source 'Public Data' do
     metric_module 'Hospital-Acquired Conditions' do
-      value DimensionSampleManagers::Socrata.new(
-        column_name: :total_hac_score,
-        dataset_id: 'yq43-i98g',
-      )
+      value Socrata::DimensionSampleManagers::GraphDataPoints::
+        ProviderAggregate.new(
+          value_column_name: :total_hac_score,
+          dataset_id: 'yq43-i98g',
+        )
       domain 'Patient Safety Indicator' do
-        value DimensionSampleManagers::Socrata.new(
-          column_name: :domain_1_score,
+        value Socrata::DimensionSampleManagers::GraphDataPoints::
+        ProviderAggregate.new(
+          value_column_name: :domain_1_score,
           dataset_id: 'yq43-i98g',
         )
         measures :PSI_90_SAFETY
       end
       domain 'Hospital Acquired Infection' do
-        value DimensionSampleManagers::Socrata.new(
-          column_name: :domain_2_score,
+        value Socrata::DimensionSampleManagers::GraphDataPoints::
+        ProviderAggregate.new(
+          value_column_name: :domain_2_score,
           dataset_id: 'yq43-i98g',
         )
         measures :HAI_1_SIR,
@@ -28,7 +31,8 @@ PUBLIC_CHARTS_TREE = PublicChartsTree.new do
                :READM_30_COPD,
                :READM_30_HIP_KNEE
     end
-    metric_module 'Hospital Consumer Assessment of Healthcare Providers and Systems' do
+    metric_module 'Hospital Consumer Assessment of Healthcare Providers and ' \
+      'Systems' do
       category 'Communication' do
         measures :H_COMP_1_A_P,
                  :H_COMP_2_A_P,

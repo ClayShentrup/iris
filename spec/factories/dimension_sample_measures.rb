@@ -15,8 +15,6 @@
 FactoryGirl.define do
   factory :dimension_sample_measure,
           class: 'DimensionSample::Measure' do
-    column_name 'denominator'
-    dataset_id '7xux-kdpw'
     measure_id 'MORT_30_AMI'
     socrata_provider_id '010001'
     value '350'

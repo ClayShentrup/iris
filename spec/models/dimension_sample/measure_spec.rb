@@ -18,19 +18,11 @@ require './app/models/dimension_sample/measure'
 RSpec.describe DimensionSample::Measure do
   describe 'columns' do
     it do
-      is_expected.to have_db_column(:dataset_id).of_type(:string)
-        .with_options(null: false)
-    end
-    it do
       is_expected.to have_db_column(:socrata_provider_id).of_type(:string)
         .with_options(null: false)
     end
     it do
       is_expected.to have_db_column(:measure_id).of_type(:string)
-        .with_options(null: false)
-    end
-    it do
-      is_expected.to have_db_column(:column_name).of_type(:string)
         .with_options(null: false)
     end
     it do
@@ -40,26 +32,20 @@ RSpec.describe DimensionSample::Measure do
   end
 
   describe 'validations' do
-    it { is_expected.to validate_presence_of(:dataset_id) }
     it { is_expected.to validate_presence_of(:socrata_provider_id) }
     it { is_expected.to validate_presence_of(:measure_id) }
-    it { is_expected.to validate_presence_of(:column_name) }
     it { is_expected.to validate_presence_of(:value) }
   end
 
   describe 'data methods' do
     let(:dimension_sample_attributes) do
       {
-        column_name: column_name,
-        dataset_id: dataset_id,
         measure_id: measure_id,
         socrata_provider_id: socrata_provider_id,
         value: value,
       }
     end
 
-    let(:column_name) { 'score' }
-    let(:dataset_id) { '7xux-kdpw' }
     let(:socrata_provider_id) { '010001' }
     let(:value) { '42.42424242' }
     let(:measure_id) { 'PSI_90_SAFETY' }
@@ -93,12 +79,6 @@ RSpec.describe DimensionSample::Measure do
       let!(:dimension_sample_with_wrong_provider_id) do
         create_dimension_sample(socrata_provider_id: irrelevant_provider_id)
       end
-      let!(:dimension_sample_with_wrong_dataset_id) do
-        create_dimension_sample(dataset_id: 'bad-dataset_id')
-      end
-      let!(:dimension_sample_with_wrong_column_name) do
-        create_dimension_sample(column_name: 'bad_column_name')
-      end
       let!(:dimension_sample_with_wrong_measure_id) do
         create_dimension_sample(measure_id: 'HAI_1_SIR')
       end
@@ -114,8 +94,6 @@ RSpec.describe DimensionSample::Measure do
 
       let(:data) do
         described_class.data(
-          column_name: column_name,
-          dataset_id: dataset_id,
           measure_id: measure_id,
           providers: providers,
         )
@@ -164,17 +142,8 @@ RSpec.describe DimensionSample::Measure do
         end
       end
 
-      context 'with a different column_name' do
-        let(:new_attribute) { { column_name: 'new_outcome_domain_score_name' } }
-
-        it 'makes a new record' do
-          expect { create_or_update! }.to change(described_class, :count).by(1)
-          expect(most_recent_attributes).to include new_attributes
-        end
-      end
-
-      context 'with a different dataset_id' do
-        let(:new_attribute) { { dataset_id: 'blah-blah' } }
+      context 'with a different measure_id' do
+        let(:new_attribute) { { measure_id: 'HAI_1_SIR' } }
 
         it 'makes a new record' do
           expect { create_or_update! }.to change(described_class, :count).by(1)

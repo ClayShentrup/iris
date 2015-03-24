@@ -43,9 +43,9 @@ class PublicChartsTree
       value_dimension_manager.data(providers).map do |value, provider_name|
         {
           value: value,
-          tooltip: [
+          tooltip: {
             provider_name: provider_name,
-          ],
+          },
         }
       end
     end

@@ -22,8 +22,8 @@ class PublicChartsTree
     raise PublicChartNotFoundError
   end
 
-  def refresh
-    dimension_sample_managers.each(&:refresh)
+  def import_all
+    dimension_sample_managers.each(&:import)
   end
 
   private

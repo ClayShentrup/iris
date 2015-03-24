@@ -19,20 +19,14 @@ module DimensionSample
   # Corresponds to a dataset like 7xux-kdpw, which has multiple rows per
   # provider.
   class Measure < ActiveRecord::Base
-    validates :dataset_id, presence: true
     validates :socrata_provider_id, presence: true
     validates :measure_id, presence: true
-    validates :column_name, presence: true
     validates :value, presence: true
 
-    def self.data(column_name:, dataset_id:, measure_id:, providers:)
-      matching_samples = where(
-        dataset_id: dataset_id,
-        column_name: column_name,
-        measure_id: measure_id,
-      )
+    def self.data(measure_id:, providers:)
+      matching_samples = where(measure_id: measure_id)
       providers.joins(<<-SQL)
-        LEFT JOIN dimension_sample_measures
+        LEFT OUTER JOIN dimension_sample_measures
         ON dimension_sample_measures.socrata_provider_id =
         providers.socrata_provider_id
       SQL
@@ -42,9 +36,7 @@ module DimensionSample
 
     def self.create_or_update!(attributes)
       find_or_initialize_by(
-        attributes.slice(
-          :column_name,
-          :dataset_id,
+        attributes.with_indifferent_access.slice(
           :socrata_provider_id,
           :measure_id,
         ),

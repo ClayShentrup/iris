@@ -5,10 +5,12 @@ module Socrata
   #   - Hardcodes the domain and page size ("limit")
   #   - Provides pagination functionality
   class SimpleSodaClientForMeasures
-    def self.call(measure_id:, **options)
+    def self.call(measure_id_column_name:, measure_id:, **options)
       SimpleSodaClientBase.call(
         options.merge(
-          extra_query_options: { '$where' => "measure_id = '#{measure_id}'" },
+          extra_query_options: {
+            '$where' => "#{measure_id_column_name} = '#{measure_id}'",
+          },
         ),
       )
     end

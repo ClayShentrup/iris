@@ -1,5 +1,5 @@
 require 'public_charts_tree'
-require 'dimension_sample_managers/socrata'
+require 'socrata/dimension_sample_managers/graph_data_points/provider_aggregate'
 
 RSpec.describe PublicChartsTree do
   subject { find(node_id) }
@@ -24,7 +24,8 @@ RSpec.describe PublicChartsTree do
     end
   end
   let(:value_dimension_sample_manager) do
-    instance_double(DimensionSampleManagers::Socrata)
+    instance_double(Socrata::DimensionSampleManagers::GraphDataPoints::
+      ProviderAggregate)
   end
   let(:measures) do
     {
@@ -49,6 +50,12 @@ RSpec.describe PublicChartsTree do
       bars: [],
     }
   end
+  let(:mort_30_ami_dsm) do
+    instance_double(Socrata::DimensionSampleManagers::GraphDataPoints::Measure)
+  end
+  let(:mort_30_hf_dsm) do
+    instance_double(Socrata::DimensionSampleManagers::GraphDataPoints::Measure)
+  end
 
   def find(node_id)
     tree.find_node(node_id, providers: providers)
@@ -57,13 +64,21 @@ RSpec.describe PublicChartsTree do
   before do
     stub_const('MEASURES', measures)
     stub_const('VALUE_DIMENSION_SAMPLE_MANAGER', value_dimension_sample_manager)
+    allow(Socrata::DimensionSampleManagers::GraphDataPoints::Measure)
+      .to receive(:new).with(measure_id: :MORT_30_AMI)
+      .and_return(mort_30_ami_dsm)
+    allow(Socrata::DimensionSampleManagers::GraphDataPoints::Measure)
+      .to receive(:new).with(measure_id: :MORT_30_HF)
+      .and_return(mort_30_hf_dsm)
   end
 
-  describe '#refresh' do
-    it 'refreshes all dimension sample managers' do
-      expect(value_dimension_sample_manager).to receive(:refresh)
-        .exactly(4).times
-      tree.refresh
+  describe '#import' do
+    it 'imports all dimension sample managers' do
+      expect(value_dimension_sample_manager).to receive(:import)
+        .exactly(2).times
+      expect(mort_30_ami_dsm).to receive(:import)
+      expect(mort_30_hf_dsm).to receive(:import)
+      tree.import_all
     end
   end
 
@@ -126,9 +141,9 @@ RSpec.describe PublicChartsTree do
           bars: values_and_provider_names.map do |value, provider_name|
             {
               value: value,
-              tooltip: [
+              tooltip: {
                 provider_name: provider_name,
-              ],
+              },
             }
           end,
           title: subject.title,
@@ -234,6 +249,7 @@ RSpec.describe PublicChartsTree do
     end
 
     describe 'MORT_30_AMI' do
+      let(:value_dimension_sample_manager) { mort_30_ami_dsm }
       let(:measure) { mort_30_ami }
       let(:node_id) do
         "#{expected_parent_id}/acute-myocardial-infarction-mortality"
@@ -243,6 +259,7 @@ RSpec.describe PublicChartsTree do
     end
 
     describe 'MORT_30_HF' do
+      let(:value_dimension_sample_manager) { mort_30_hf_dsm }
       let(:measure) { mort_30_hf }
       let(:node_id) { "#{expected_parent_id}/heart-failure-mortality" }
       it_behaves_like 'a mortality measure node'

@@ -1,9 +1,10 @@
 require 'socrata/simple_soda_client'
 
-RSpec.describe Socrata::SimpleSodaClient, :vcr do
+RSpec.describe Socrata::SimpleSodaClientBase, :vcr do
   def results
     described_class.call(
       dataset_id: hospitals_dataset_id,
+      extra_query_options: {},
       required_columns: required_columns,
     )
   end

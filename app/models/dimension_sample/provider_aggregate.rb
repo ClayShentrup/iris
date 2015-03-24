@@ -38,7 +38,11 @@ module DimensionSample
 
     def self.create_or_update!(attributes)
       find_or_initialize_by(
-        attributes.slice(:column_name, :dataset_id, :socrata_provider_id),
+        attributes.with_indifferent_access.slice(
+          :column_name,
+          :dataset_id,
+          :socrata_provider_id,
+        ),
       ).update_attributes!(attributes)
     end
   end
