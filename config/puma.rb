@@ -15,7 +15,7 @@ end
 # allows your application to spin down resources when not under load. This
 # feature is not needed on Heroku as your application can consume all of the
 # resources on a given dyno. We recommend setting min to equal max.
-threads_count = Integer(ENV.fetch('MAX_THREADS', 5))
+threads_count = Integer(ENV.fetch('MAX_THREADS', 4))
 threads(threads_count, threads_count)
 
 preload_app!
