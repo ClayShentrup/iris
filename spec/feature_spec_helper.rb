@@ -31,4 +31,8 @@ end
 RSpec.configure do |config|
   config.include BrowserSizeHelpers, type: :feature
   config.include AuthenticationHelpers, type: :feature
+
+  config.before(:example, type: :feature) do
+    resize_to(:desktop)
+  end
 end

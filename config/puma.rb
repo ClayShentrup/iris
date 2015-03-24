@@ -2,10 +2,10 @@
 # the-puma-web-server
 workers Integer(ENV.fetch('WEB_CONCURRENCY', 2))
 
-if ENV['RACK_ENV'] == 'development'
+if ENV.fetch('RACK_ENV', nil) == 'development'
   # bind to socket for nginx - http://iris.dev
-  if ENV.fetch('BOXEN_SOCKET_DIR', nil)
-    bind "unix:#{ENV.fetch('BOXEN_SOCKET_DIR', nil)}/iris"
+  if ENV.key?('BOXEN_SOCKET_DIR')
+    bind "unix:#{ENV.fetch('BOXEN_SOCKET_DIR')}/iris"
   end
 end
 

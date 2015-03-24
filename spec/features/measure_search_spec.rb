@@ -52,16 +52,11 @@ RSpec.feature 'measure search bar' do
     visit '/'
   end
 
-  after(:all) do
-    resize_to(:desktop)
-  end
-
   feature 'on mobile' do
     given(:width) { :mobile }
 
     scenario 'changes background opacity and nav button visibility' do
-      expect(page).to have_css '.hide_on_desktop'
-      expect(page).to have_css '.hide_on_tablet_portrait'
+      expect(page).not_to have_css '.hide_on_mobile'
       check
     end
   end
@@ -70,7 +65,7 @@ RSpec.feature 'measure search bar' do
     given(:width) { :tablet_portrait }
 
     scenario 'changes background opacity and nav button visibility' do
-      expect(page).to have_css '.hide_on_mobile'
+      expect(page).not_to have_css '.hide_on_tablet_portrait'
       check
     end
   end
@@ -79,7 +74,7 @@ RSpec.feature 'measure search bar' do
     given(:width) { :desktop }
 
     scenario 'changes background opacity and nav button visibility' do
-      expect(page).to have_css '.hide_on_mobile'
+      expect(page).not_to have_css '.hide_on_desktop'
       check
     end
   end

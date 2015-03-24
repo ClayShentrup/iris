@@ -53,10 +53,6 @@ RSpec.feature 'responsive design' do
     resize_to(width)
   end
 
-  after(:all) do
-    resize_to(:desktop)
-  end
-
   feature 'on tablet portrait' do
     given(:width) { :tablet_portrait }
     given(:selector_groups) do

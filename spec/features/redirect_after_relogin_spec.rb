@@ -6,6 +6,7 @@ RSpec.feature 'Clicking a link after session expires' do
     within_window(open_new_window) do
       visit root_path
       log_out
+      page.driver.browser.close
     end
     click_link 'Metrics'
     log_in_user
