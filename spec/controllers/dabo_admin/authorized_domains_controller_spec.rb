@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe DaboAdmin::AuthorizedDomainsController  do
+  let!(:model_instance) { create(AuthorizedDomain, :with_associations) }
   let(:invalid_attributes) { attributes_for(AuthorizedDomain, name: '') }
   let(:instance_url) do
     dabo_admin_authorized_domain_path(AuthorizedDomain.last)
@@ -8,14 +9,14 @@ RSpec.describe DaboAdmin::AuthorizedDomainsController  do
   let(:account) { create(Account) }
   login_admin
 
-  include_context 'an ApplicationController'
+  include_context 'an ApplicationController', :with_associations
   it_behaves_like 'an ApplicationController show'
   it_behaves_like 'an ApplicationController edit'
   it_behaves_like 'an ApplicationController update'
 
   describe '#index' do
     context 'account with no authorized domains' do
-      let(:account) { create(:account) }
+      let(:account) { create(Account) }
       before do
         get :index, account_id: account.id
       end
@@ -29,7 +30,7 @@ RSpec.describe DaboAdmin::AuthorizedDomainsController  do
     end
 
     context 'account with authorized domains' do
-      let(:account) { create(:account) }
+      let(:account) { create(Account) }
       let!(:authorized_domains) do
         create_list(:authorized_domain, 2, account: account)
       end
@@ -75,6 +76,7 @@ RSpec.describe DaboAdmin::AuthorizedDomainsController  do
       end
     end
   end
+
   describe '#new' do
     before { get :new, account_id: account.id }
 
@@ -82,7 +84,7 @@ RSpec.describe DaboAdmin::AuthorizedDomainsController  do
   end
 
   describe '#delete' do
-    let!(:authorized_domain) { create(AuthorizedDomain) }
+    let!(:authorized_domain) { create(AuthorizedDomain, :with_associations) }
     let(:index_url) do
       dabo_admin_account_authorized_domains_path(authorized_domain.account)
     end

@@ -153,6 +153,8 @@ ActiveRecord::Schema.define(version: 20150323223028) do
     t.string   "unique_session_id",      limit: 20
     t.integer  "selected_provider_id"
     t.string   "selected_context"
+    t.string   "first_name",                                        null: false
+    t.string   "last_name",                                         null: false
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree

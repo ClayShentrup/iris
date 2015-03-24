@@ -14,8 +14,8 @@ module Sessions
     private
 
     def message
-      "Human, you have #{days_left} #{day_pluralized} before your " \
-      "password expires. Please #{update_password_link}."
+      "#{current_user.first_name}, you have #{days_left} #{day_pluralized} " \
+      "before your password expires. Please #{update_password_link}."
     end
 
     def time_left

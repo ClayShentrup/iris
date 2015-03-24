@@ -1,3 +1,5 @@
+require 'public_suffix'
+
 # Ensure domain names added by an adminstrator are valid
 # Checks for a valid suffix, as determined by the public_suffix gem:
 # https://github.com/weppos/publicsuffix-ruby
