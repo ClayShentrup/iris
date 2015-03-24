@@ -7,7 +7,8 @@
         = f.email_field :email, autofocus: true, class: 'form_control', placeholder: 'Hospital Email'
       - if resource.errors
         = render partial: 'shared/model_error', collection: resource.errors.full_messages
-      .actions
+      .actions.horizontal_padding_base
         = f.submit "Reset Password"
+        = link_to 'Cancel', new_user_session_path, class: 'btn_grey'
 
 = render 'devise/shared/join_box'
