@@ -14,7 +14,7 @@ RSpec.feature 'Clicking a link after session expires' do
     logout
 
     click_link 'Hospital-Acquired Conditions'
-    expect(page).to have_text('Sign In')
+    expect(page).to have_text('Login')
     log_in user
     expect(current_path).to eq url
   end
