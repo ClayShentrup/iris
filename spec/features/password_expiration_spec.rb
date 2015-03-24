@@ -22,10 +22,6 @@ RSpec.feature 'Password expires' do
     Timecop.travel(now + expire_password_after + 1.second, &block)
   end
 
-  background do
-    resize_to(:desktop)
-  end
-
   scenario 'user is forced to change his/her password' do
     log_in_just_before_expiration
     expect(current_path).to eq root_path

@@ -52,6 +52,10 @@ RSpec.feature 'measure search bar' do
     visit '/'
   end
 
+  after(:all) do
+    resize_to(:desktop)
+  end
+
   feature 'on mobile' do
     given(:width) { :mobile }
 
