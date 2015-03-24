@@ -12,7 +12,11 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
 
   def create_relevant_providers
     provider_ids.each do |socrata_provider_id|
-      create(Provider, socrata_provider_id: socrata_provider_id)
+      create(
+        Provider,
+        socrata_provider_id: socrata_provider_id,
+        name: "Hospital#{socrata_provider_id}",
+      )
     end
   end
 
@@ -45,9 +49,9 @@ RSpec.describe DimensionSampleManagers::Socrata, :vcr do
       it 'pulls, persists, and returns data' do
         expect { subject.refresh }.to change { data }
           .from([])
-          .to %w[
-            0.98
-            1.06
+          .to [
+            ['0.98', 'Hospital010087'],
+            ['1.06', 'Hospital010103'],
           ]
       end
     end

@@ -33,7 +33,7 @@ module DimensionSample
         providers.socrata_provider_id
       SQL
         .merge(matching_samples)
-        .pluck(:value)
+        .pluck(:value, :name)
     end
 
     def self.create_or_update!(attributes)

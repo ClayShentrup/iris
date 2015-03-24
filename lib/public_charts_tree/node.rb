@@ -40,9 +40,12 @@ class PublicChartsTree
 
     def bars(providers)
       return [] unless value_dimension_manager.present? # temporary until done
-      value_dimension_manager.data(providers).map do |value|
+      value_dimension_manager.data(providers).map do |value, provider_name|
         {
           value: value,
+          tooltip: [
+            provider_name: provider_name,
+          ],
         }
       end
     end

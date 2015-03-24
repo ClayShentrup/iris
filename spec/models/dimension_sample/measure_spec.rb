@@ -123,8 +123,14 @@ RSpec.describe DimensionSample::Measure do
 
       it 'gets the data' do
         expect(data).to eq [
-          relevant_dimension_sample_1_value,
-          relevant_dimension_sample_2_value,
+          [
+            relevant_dimension_sample_1_value,
+            relevant_provider_1.name,
+          ],
+          [
+            relevant_dimension_sample_2_value,
+            relevant_provider_2.name,
+          ],
         ]
       end
     end

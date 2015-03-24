@@ -105,23 +105,39 @@ RSpec.describe PublicChartsTree do
     it_behaves_like 'a child node'
 
     describe '#data' do
-      let(:values) do
+      let(:values_and_provider_names) do
         [
-          '17.888',
-          '13.1250000000',
-          '9.75',
+          [
+            '17.888',
+            'Hospital 1',
+          ],
+          [
+            '13.1250000000',
+            'Hospital 2',
+          ],
+          [
+            '9.75',
+            'Hospital 3',
+          ],
         ]
       end
       let(:expected_data) do
         {
-          bars: values.map { |value| { value: value } },
+          bars: values_and_provider_names.map do |value, provider_name|
+            {
+              value: value,
+              tooltip: [
+                provider_name: provider_name,
+              ],
+            }
+          end,
           title: subject.title,
         }
       end
 
       before do
         allow(value_dimension_sample_manager).to receive(:data).with(providers)
-          .and_return(values)
+          .and_return(values_and_provider_names)
       end
 
       it 'returns data for the specified providers' do
