@@ -123,14 +123,24 @@ describe('PublicChartsView', function() {
   });
 
   describe('submitting a new conversation', function() {
+    var conversationTitle;
+    var conversationDescription;
+
+    beforeEach(function() {
+      conversationTitle = $('#conversation_title');
+      conversationDescription = $('#conversation_description');
+      expect(conversationTitle).toHaveValue('');
+      expect(conversationDescription).toBeHidden();
+    });
+
     describe('with invalid inputs', function() {
       it('displays an error', function() {
         var fixtureForInvalidCreateResponse =
           'conversations_controller-post-create-with-' +
           'invalid-params-generate-a-fixture.html';
 
-        $('#conversation_title').val('Something');
-        $('#conversation_description').val('');
+        conversationTitle.val('Something');
+        conversationDescription.val('');
 
         stubAjaxRequest(
           '/conversations',
@@ -142,14 +152,15 @@ describe('PublicChartsView', function() {
         expect($('#error_explanation_no_border')).toExist();
       });
     });
+
     describe('with valid inputs', function() {
       it('displays the new conversation on the page', function() {
         var fixtureForValidCreateResponse =
           'public_charts_controller-get-show-generate-a-fixture' +
           '-with-conversations.html';
 
-        $('#conversation_title').val('Here is a title');
-        $('#conversation_description').val('Here is a description');
+        conversationTitle.val('Here is a title');
+        conversationDescription.val('Here is a description');
 
         stubAjaxRequest(
           '/conversations',
@@ -159,6 +170,19 @@ describe('PublicChartsView', function() {
         spyOn(Turbolinks, 'visit');
         $('#new_conversation').submit();
         expect(Turbolinks.visit.calls.any()).toEqual(true);
+      });
+    });
+
+    describe('cancelling a new conversation', function() {
+      it('it closes the form', function() {
+        conversationTitle.click();
+        conversationTitle.val('A new conversation');
+        expect(conversationTitle).toHaveValue('A new conversation');
+        expect(conversationDescription).toBeVisible();
+
+        $('.conversation_cancel').click();
+        expect(conversationTitle).toHaveValue('');
+        expect(conversationDescription).toBeHidden();
       });
     });
   });

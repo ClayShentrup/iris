@@ -10,8 +10,8 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'click .search_box .icon_close' : '_closeSearchProvider',
     'ajax:success #new_conversation': '_reloadPage',
     'ajax:error #new_conversation': '_insertErrorConversationForm',
-    'focus form' : '_showConversationForm',
-    'focusout form' : '_hideConversationForm'
+    'click #conversation_title' : '_showConversationForm',
+    'click .conversation_cancel' : '_hideConversationForm'
   },
 
   initialize: function() {
@@ -29,6 +29,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
 
   _hideConversationForm: function(event) {
     this.$('#form_description').hide();
+    this.$('#conversation_title').val('');
   },
 
   _searchBoxInput: function() {
