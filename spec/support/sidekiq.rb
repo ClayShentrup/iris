@@ -6,7 +6,6 @@ RSpec.configure do |config|
   config.before(:example) do |example|
     Sidekiq::Worker.clear_all
 
-    next unless example.respond_to?(:metadata)
     if example.metadata[:sidekiq] == :fake
       Sidekiq::Testing.fake!
     elsif example.metadata[:sidekiq] == :inline
