@@ -88,7 +88,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this._toggleDropdownProvider();
   },
 
-  _reloadPage: function(_e, data, _status, _xhr) {
+  _reloadPage: function() {
     Turbolinks.visit('/metrics/' + this._currentNodeId());
   },
 
