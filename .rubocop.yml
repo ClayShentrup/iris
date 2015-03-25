@@ -1,5 +1,5 @@
 require:
- - ./lib/rubocop/cop/todo_offense.rb
+ - ~/src/iris/lib/rubocop/cop/todo_offense.rb
 
 AllCops:
   Include:
