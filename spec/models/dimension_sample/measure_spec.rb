@@ -5,11 +5,9 @@
 #  id                  :integer          not null, primary key
 #  socrata_provider_id :string           not null
 #  measure_id          :string           not null
-#  column_name         :string           not null
 #  value               :string           not null
 #  created_at          :datetime         not null
 #  updated_at          :datetime         not null
-#  dataset_id          :string           not null
 #
 
 require 'active_record_no_rails_helper'

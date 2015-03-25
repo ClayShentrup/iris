@@ -28,8 +28,8 @@
 #  unique_session_id      :string(20)
 #  selected_provider_id   :integer
 #  selected_context       :string
-#  first_name             :string           default(""), not null
-#  last_name              :string           default(""), not null
+#  first_name             :string           not null
+#  last_name              :string           not null
 #
 
 require 'active_record_no_rails_helper'

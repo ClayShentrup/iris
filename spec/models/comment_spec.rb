@@ -1,0 +1,42 @@
+# == Schema Information
+#
+# Table name: comments
+#
+#  id              :integer          not null, primary key
+#  content         :text             not null
+#  author_id       :integer          not null
+#  conversation_id :integer          not null
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
+
+require 'active_record_no_rails_helper'
+require './app/models/comment'
+
+RSpec.describe Comment do
+  subject { build_stubbed(described_class) }
+
+  describe 'columns' do
+    it do
+      is_expected.to have_db_column(:content).of_type(:text)
+        .with_options(null: false)
+    end
+  end
+
+  describe 'validations' do
+    it do
+      is_expected.to be_valid
+    end
+
+    describe 'associations' do
+      before { subject.skip_association_validations = false }
+      it { is_expected.to validate_presence_of(:author) }
+      it { is_expected.to validate_presence_of(:conversation) }
+    end
+
+    it { is_expected.to validate_presence_of(:content) }
+  end
+
+  it { is_expected.to belong_to(:author).class_name('User') }
+  it { is_expected.to belong_to :conversation }
+end
