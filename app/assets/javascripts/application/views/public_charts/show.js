@@ -9,7 +9,9 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchProvider',
     'ajax:success #new_conversation': '_reloadPage',
-    'ajax:error #new_conversation': '_insertErrorConversationForm'
+    'ajax:error #new_conversation': '_insertErrorConversationForm',
+    'focus form' : '_showConversationForm',
+    'focusout form' : '_hideConversationForm'
   },
 
   initialize: function() {
@@ -18,6 +20,15 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this._searchBoxInput().autocomplete({
       source: this._autocompleteSource
     });
+
+  },
+
+  _showConversationForm: function(event) {
+    this.$('#form_description').show();
+  },
+
+  _hideConversationForm: function(event) {
+    this.$('#form_description').hide();
   },
 
   _searchBoxInput: function() {
@@ -90,6 +101,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
 
   _insertErrorConversationForm: function(_e, data, _status, _xhr) {
     this._newConversationForm().html(data.responseText);
+    $('#form_description').show();
   },
 
   _newConversationForm: function() {

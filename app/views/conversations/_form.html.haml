@@ -1,15 +1,14 @@
 = form_for conversation, remote: true, method: :post do |f|
   .field
-    = f.label :title
-    = f.text_field :title, class: 'form_control'
-  .field
-    = f.label :description
-    = f.text_field :description, class: 'form_control'
-  .field
-    = f.hidden_field :node_id_component, value: node_id_component
-  - if conversation.errors
-    = render partial: 'shared/model_error', collection: conversation.errors.full_messages
+    = f.text_field :title, class: 'form_control', placeholder: 'Start A Conversation'
+  #form_description.hidden
+    .field
+      = f.text_area :description, class: 'form_control', placeholder: 'Description'
+    .field
+      = f.hidden_field :node_id_component, value: node_id_component
+    - if conversation.errors
+      = render partial: 'shared/model_error', collection: conversation.errors.full_messages
 
-  .actions
-    = f.submit
+    .actions
+      = f.submit
 
