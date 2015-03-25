@@ -21,6 +21,14 @@ RSpec.feature 'Lock account' do
   end
 
   describe 'when a user incorrectly logs in' do
+    describe 'when a user clicks on Forgot Password link' do
+      it 'the Forgot Password form will have the user\'s email prefilled' do
+        log_in_with_wrong_password
+        click_link 'Forgot password'
+        expect(page).to have_selector("input[value='#{user.email}']")
+      end
+    end
+
     it 'shows the first failed attempt message' do
       log_in_with_wrong_password
       expect(page).to have_content(first_failed_attempt_message)

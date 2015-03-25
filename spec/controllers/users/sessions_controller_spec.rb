@@ -42,6 +42,16 @@ RSpec.describe Users::SessionsController do
         expect(flash[:notice]).to_not be_present
       end
     end
+
+    context 'when a user attempts to log in' do
+      before do
+        post :create, user: { email: user.email }
+      end
+
+      it 'stores user email in session cookie' do
+        expect(session[:session_email]).to be user.email
+      end
+    end
   end
 
   describe 'GET #new' do
