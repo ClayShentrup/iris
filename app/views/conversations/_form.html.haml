@@ -1,0 +1,16 @@
+= form_for conversation, remote: true, method: :post do |f|
+  .field
+    = f.text_field :title, class: 'form_control', placeholder: 'Start A Conversation'
+  #form_description.hidden
+    .field
+      = f.text_area :description, class: 'form_control', placeholder: 'Description'
+    .field
+      = f.hidden_field :node_id_component, value: node_id_component
+    - if conversation.errors
+      = render partial: 'shared/model_error', collection: conversation.errors.full_messages
+
+    .actions
+      = f.submit
+      .btn_grey.cancel_btn.conversation_cancel Cancel
+
+

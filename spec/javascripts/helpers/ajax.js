@@ -1,13 +1,15 @@
 'use strict';
 
-function stubAjaxRequest(requestURL, fixturePath) {
+function stubAjaxRequest(requestURL, fixturePath, status) {
+  status = typeof status === 'undefined' ? 200 : status;
   var data = withoutMockAjax(function() {
     return readFixtures(fixturePath);
   });
   jasmine.Ajax.stubRequest(requestURL)
   .andReturn({
-    status: 200,
-    responseText: data
+    status: status,
+    responseText: data,
+    contentType: 'application/html'
   });
 }
 

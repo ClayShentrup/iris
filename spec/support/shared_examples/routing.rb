@@ -20,7 +20,7 @@ RSpec.shared_context 'routing' do
   include_context 'a plural resource'
 
   shared_examples 'a routable route' do
-    specify { expect(route_options).to route_to *expected_route_options }
+    specify { expect(route_options).to route_to(*expected_route_options) }
   end
 
   shared_examples 'an unroutable route' do

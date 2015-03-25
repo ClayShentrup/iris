@@ -5,7 +5,7 @@ module DeviseMacros
   end
 
   def login_user
-    let(:current_user) { create(User, :authenticatable) }
+    let(:current_user) { create(User, :authenticatable, :with_associations) }
     simulate_routed_request
     let!(:set_logged_in_state) { sign_in current_user }
   end

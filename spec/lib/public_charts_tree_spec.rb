@@ -114,6 +114,7 @@ RSpec.describe PublicChartsTree do
     specify { expect(subject.title).to eq expected_title }
     specify { expect(subject.parent_id).to eq expected_parent_id }
     specify { expect(subject.type).to eq expected_type }
+    specify { expect(subject.id_component).to eq expected_id_component }
   end
 
   shared_examples 'a chart node' do
@@ -169,13 +170,15 @@ RSpec.describe PublicChartsTree do
     let(:expected_child_ids) { ['public-data/value-based-purchasing'] }
     let(:expected_breadcrumbs) { [subject.title] }
     let(:private_data) { tree.find('private-data') }
+    let(:expected_id_component) { 'public-data' }
 
     it_behaves_like 'a child node'
   end
 
   context 'at a metric module node' do
     let(:parent_id) { 'public-data' }
-    let(:node_id) { "#{parent_id}/value-based-purchasing" }
+    let(:expected_id_component) { 'value-based-purchasing' }
+    let(:node_id) { "#{parent_id}/#{expected_id_component}" }
     let(:expected_title) { 'Value Based Purchasing' }
     let(:expected_parent_id) { 'public-data' }
     let(:expected_type) { 'metric_module' }
@@ -192,7 +195,8 @@ RSpec.describe PublicChartsTree do
 
   context 'at a domain node' do
     let(:expected_parent_id) { 'public-data/value-based-purchasing' }
-    let(:node_id) { "#{expected_parent_id}/outcome-of-care" }
+    let(:expected_id_component) { 'outcome-of-care' }
+    let(:node_id) { "#{expected_parent_id}/#{expected_id_component}" }
     let(:expected_title) { 'Outcome of Care' }
     let(:expected_type) { 'domain' }
     let(:expected_child_ids) do
@@ -210,7 +214,8 @@ RSpec.describe PublicChartsTree do
     let(:expected_parent_id) do
       'public-data/value-based-purchasing/outcome-of-care'
     end
-    let(:node_id) { "#{expected_parent_id}/mortality" }
+    let(:expected_id_component) { 'mortality' }
+    let(:node_id) { "#{expected_parent_id}/#{expected_id_component}" }
     let(:expected_title) { 'Mortality' }
     let(:expected_type) { 'category' }
     let(:mort_30_ami_id) do
@@ -251,8 +256,9 @@ RSpec.describe PublicChartsTree do
     describe 'MORT_30_AMI' do
       let(:value_dimension_sample_manager) { mort_30_ami_dsm }
       let(:measure) { mort_30_ami }
+      let(:expected_id_component) { 'acute-myocardial-infarction-mortality' }
       let(:node_id) do
-        "#{expected_parent_id}/acute-myocardial-infarction-mortality"
+        "#{expected_parent_id}/#{expected_id_component}"
       end
       it_behaves_like 'a mortality measure node'
       it_behaves_like 'a chart node'
@@ -261,7 +267,8 @@ RSpec.describe PublicChartsTree do
     describe 'MORT_30_HF' do
       let(:value_dimension_sample_manager) { mort_30_hf_dsm }
       let(:measure) { mort_30_hf }
-      let(:node_id) { "#{expected_parent_id}/heart-failure-mortality" }
+      let(:expected_id_component) { 'heart-failure-mortality' }
+      let(:node_id) { "#{expected_parent_id}/#{expected_id_component}" }
       it_behaves_like 'a mortality measure node'
       it_behaves_like 'a child node'
     end

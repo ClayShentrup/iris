@@ -17,13 +17,11 @@ class PublicChartsTree
     end
 
     def id_components
-      parent.id_components + id_component
+      parent.id_components + [id_component]
     end
 
-    private
-
     def id_component
-      [title.parameterize]
+      title.parameterize
     end
   end
 end

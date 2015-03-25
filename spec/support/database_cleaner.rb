@@ -2,17 +2,6 @@ require 'database_cleaner'
 
 RSpec.configure do |config|
   config.before(:suite) do
-    # TODO: remove this when DB cleaner fixes this issue
-    # github.com/DatabaseCleaner/database_cleaner/issues/317
-
-    # Database Cleaner 1.4.0 has a bug that blows away schema_migrations.
-    # This hack prevents that. There is a spec that will fail when the bug is
-    # fixed, instructing removing this stuff.
-    # DatabaseCleaner.clean_with(:truncation,
-    #   { except: %w[public.schema_migrations] }
-    # )
-
-    # In case we did an unclean shutdown on a previous run.
     DatabaseCleaner.clean_with(:truncation,
                                except: %w[public.schema_migrations],
     )

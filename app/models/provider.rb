@@ -21,7 +21,8 @@ class Provider < ActiveRecord::Base
   SEARCH_RESULTS_LIMIT = 10
 
   belongs_to :hospital_system
-  has_one :account, as: :virtual_system
+  has_many :accounts, as: :virtual_system
+
   validates :socrata_provider_id, uniqueness: true, presence: true
   validates :name, presence: true
   validates :city, presence: true
