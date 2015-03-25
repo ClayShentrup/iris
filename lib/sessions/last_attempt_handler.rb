@@ -5,11 +5,11 @@ require './app/models/user'
 module Sessions
   LastAttemptHandler = Struct.new(:user_email) do
     def last_attempt?
-      if defined?(@last_attempt)
+      if @last_attempt
         @last_attempt
       else
-        @last_attempt = failed_login_attempt? and user_exists? and
-        user.send(:last_attempt?)
+        @last_attempt = (failed_login_attempt? and user_exists? and
+        user.send(:last_attempt?))
       end
     end
 
