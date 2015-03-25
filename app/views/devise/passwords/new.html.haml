@@ -8,7 +8,7 @@
       - if resource.errors
         = render partial: 'shared/model_error', collection: resource.errors.full_messages
       .actions.horizontal_padding_base
-        = f.submit "Reset Password"
+        = f.submit 'Reset'
         = link_to 'Cancel', new_user_session_path, class: 'btn_grey'
 
 = render 'devise/shared/join_box'
