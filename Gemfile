@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 source "https://b8ab84f5:2186dcf8@gems.contribsys.com/"
 
-ruby '2.2.0'
+ruby '2.2.1'
 
 gem 'rails'
 gem 'pg'
