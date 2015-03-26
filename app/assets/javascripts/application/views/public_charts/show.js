@@ -9,6 +9,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchProvider',
     'ajax:success #new_conversation': '_reloadPage',
+    'ajax:complete #new_conversation, #new_comment': '_onComplete',
     'ajax:error #new_conversation': '_insertErrorConversationForm',
     'ajax:success #new_comment': '_reloadPage',
     'ajax:error #new_comment': '_insertErrorCommentForm',
@@ -24,7 +25,10 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this._searchBoxInput().autocomplete({
       source: this._autocompleteSource
     });
+  },
 
+  _onComplete: function(event) {
+    $(event.currentTarget).find('input:submit').prop('disabled', true);
   },
 
   _showConversationForm: function(event) {

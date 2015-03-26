@@ -10,7 +10,7 @@
         %span.icon.icon_size_base.form_control_icon.line_height_base.toggle_icon
           = render 'shared/icon', icon: '#icon_eye'
       - if resource.errors
-        = render partial: 'shared/model_error', collection: resource.errors.full_messages
+        = render 'shared/model_errors', model: resource
 
       %h3 Password Requirements:
       %p At least 15 characters: “happycateatsalot”

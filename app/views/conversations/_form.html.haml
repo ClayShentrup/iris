@@ -7,7 +7,7 @@
     .field
       = f.hidden_field :node_id_component, value: node_id_component
     - if conversation.errors
-      = render partial: 'shared/model_error', collection: conversation.errors.full_messages
+      = render 'shared/model_errors', model: conversation
 
     .actions
       = f.submit

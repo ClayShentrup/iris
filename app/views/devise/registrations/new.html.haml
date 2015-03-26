@@ -14,7 +14,7 @@
           %span.icon.toggle_icon.icon_size_base.form_control_icon.line_height_base
             = render 'shared/icon', icon:'#icon_eye'
       - if resource.errors
-        = render partial: 'shared/model_error', collection: resource.errors.full_messages
+        = render 'shared/model_errors', model: resource
       .actions
         = f.submit "Join"
 

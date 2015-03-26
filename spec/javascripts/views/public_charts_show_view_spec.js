@@ -123,12 +123,21 @@ describe('PublicChartsView', function() {
   });
 
   describe('submitting a new conversation', function() {
+    function submitForm() {
+      newConversation.find('input:submit').click();
+    }
+
+    var newConversation;
     var conversationTitle;
     var conversationDescription;
 
     beforeEach(function() {
+      newConversation = $('form#new_conversation');
       conversationTitle = $('#conversation_title');
       conversationDescription = $('#conversation_description');
+    });
+
+    it('begins in a default state', function() {
       expect(conversationTitle).toHaveValue('');
       expect(conversationDescription).toBeHidden();
     });
@@ -139,30 +148,30 @@ describe('PublicChartsView', function() {
           'conversations_controller-post-create-with-' +
           'invalid-params-generate-a-fixture.html';
 
-        conversationTitle.val('Something');
-        conversationDescription.val('');
-
         stubAjaxRequestWithStatus(
           '/conversations',
           fixtureForInvalidCreateResponse,
           433
         );
 
-        $('#new_conversation').submit();
-        expect($('#error_explanation_no_border')).toExist();
+        submitForm();
+        expect($('.error_explanation_no_border')).toExist();
       });
     });
 
     describe('with valid inputs', function() {
-      it('refreshes the page', function() {
-        conversationTitle.val('Here is a title');
-        conversationDescription.val('Here is a description');
-
-        stubAjaxRequestNoFixture('/conversations');
-
+      beforeEach(function() {
         spyOn(Turbolinks, 'visit');
-        $('#new_conversation').submit();
-        expect(Turbolinks.visit.calls.any()).toEqual(true);
+        stubAjaxRequestNoFixture('/conversations');
+        submitForm();
+      });
+
+      it('refreshes the page', function() {
+        expect(Turbolinks.visit).toHaveBeenCalled();
+      });
+
+      it('prevents double submit while waiting for page to reload', function() {
+        expect(newConversation.find('input:submit')).toBeDisabled();
       });
     });
 
@@ -181,10 +190,13 @@ describe('PublicChartsView', function() {
   });
 
   describe('submitting a new comment', function() {
+    var newComment;
+
     beforeEach(function() {
       expect($('#new_comment_container')).toBeHidden();
       $('.new_comment_link a').first().click();
       expect($('#new_comment_container')).toBeVisible();
+      newComment = $('#new_comment');
     });
 
     describe('with invalid inputs', function() {
@@ -202,21 +214,28 @@ describe('PublicChartsView', function() {
         );
 
         $('#new_comment .actions input').click();
-        expect($('#error_explanation_no_border')).toExist();
+        expect($('.error_explanation_no_border')).toExist();
       });
     });
 
     var clickAndExpectPageRefresh = function(button) {
       spyOn(Turbolinks, 'visit');
       button.click();
-      expect(Turbolinks.visit.calls.any()).toEqual(true);
+      expect(Turbolinks.visit).toHaveBeenCalled();
     };
 
     describe('with valid inputs', function() {
-      it('refreshes the page', function() {
-        $('#comment_content').val('Here is a comment');
+      beforeEach(function() {
         stubAjaxRequestNoFixture('/comments');
+      });
+
+      it('refreshes the page', function() {
         clickAndExpectPageRefresh($('#new_comment .actions input'));
+      });
+
+      it('prevents double submit while waiting for page to reload', function() {
+        newComment.find('input:submit').click();
+        expect(newComment.find('input:submit')).toBeDisabled();
       });
     });
 
