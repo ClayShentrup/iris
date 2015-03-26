@@ -21,7 +21,7 @@ FactoryGirl.define do
 
     trait :with_associations do
       association :provider
-      association :user
+      association :author
     end
   end
 end

@@ -23,6 +23,8 @@ class Conversation < ActiveRecord::Base
   belongs_to :author, class_name: 'User'
   has_many :agreements, as: :item, dependent: :destroy
 
+  has_many :comments
+
   validates :title, presence: true
   validates :description, presence: true
   validates :node_id_component, presence: true

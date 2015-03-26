@@ -10,8 +10,12 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'click .search_box .icon_close' : '_closeSearchProvider',
     'ajax:success #new_conversation': '_reloadPage',
     'ajax:error #new_conversation': '_insertErrorConversationForm',
+    'ajax:success #new_comment': '_reloadPage',
+    'ajax:error #new_comment': '_insertErrorCommentForm',
     'click #conversation_title' : '_showConversationForm',
-    'click .conversation_cancel' : '_hideConversationForm'
+    'click .conversation_cancel' : '_hideConversationForm',
+    'click .new_comment_link a' : '_handleCommentForm',
+    'click .comment_cancel': '_reloadPage',
   },
 
   initialize: function() {
@@ -105,7 +109,44 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     $('#form_description').show();
   },
 
-  _newConversationForm: function() {
-    return $('#new_conversation');
+  _insertErrorCommentForm: function(_e, data, _status, _xhr) {
+    var form = $(data.responseText).find('form');
+    this._newCommentContainer().html(form);
   },
+
+  _newConversationForm: function() {
+    return this.$('#new_conversation');
+  },
+
+  _newCommentForm: function() {
+    return this.$('#new_comment');
+  },
+
+  _newCommentContainer: function() {
+    return this.$('#new_comment_container');
+  },
+
+  _handleCommentForm: function(event) {
+    event.preventDefault();
+    var conversationId = $(event.target).data('conversation-id');
+    this._setCommentFormConversationId(conversationId);
+    this._newCommentContainer().show();
+    this._hideNewConversationForm();
+    this._hideOtherConversations(conversationId);
+  },
+
+  _setCommentFormConversationId: function(conversationId) {
+    this._newCommentForm()
+      .find('#comment_conversation_id').val(conversationId);
+  },
+
+  _hideNewConversationForm: function() {
+    this._newConversationForm().hide();
+  },
+
+  _hideOtherConversations: function(conversationId) {
+    var otherConversationsSelector =
+      '.conversation_container[data-conversation-id!="' + conversationId + '"]';
+    this.$(otherConversationsSelector).hide();
+  }
 });

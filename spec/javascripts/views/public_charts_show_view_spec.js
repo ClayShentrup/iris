@@ -16,8 +16,8 @@ describe('PublicChartsView', function() {
 
   beforeEach(function() {
     loadFixture(
-      'public_charts_controller-get-show-generate-a-fixture' +
-      '-without-conversations'
+      'public_charts_controller-get-show-generate-a-fixture-' +
+      'with-conversations'
     );
     new Iris.Views['public_charts-show']({el: '#body'});
 
@@ -154,18 +154,11 @@ describe('PublicChartsView', function() {
     });
 
     describe('with valid inputs', function() {
-      it('displays the new conversation on the page', function() {
-        var fixtureForValidCreateResponse =
-          'public_charts_controller-get-show-generate-a-fixture' +
-          '-with-conversations.html';
-
+      it('refreshes the page', function() {
         conversationTitle.val('Here is a title');
         conversationDescription.val('Here is a description');
 
-        stubAjaxRequest(
-          '/conversations',
-          fixtureForValidCreateResponse
-        );
+        stubAjaxRequest('/conversations');
 
         spyOn(Turbolinks, 'visit');
         $('#new_conversation').submit();
@@ -185,6 +178,54 @@ describe('PublicChartsView', function() {
         expect(conversationDescription).toBeHidden();
       });
     });
+  });
+
+  describe('submitting a new comment', function() {
+    beforeEach(function() {
+      expect($('#new_comment_container')).toBeHidden();
+      $('.new_comment_link a').first().click();
+      expect($('#new_comment_container')).toBeVisible();
+    });
+
+    describe('with invalid inputs', function() {
+      it('displays the errors on the form', function() {
+        $('#comment_content').val('');
+
+        var fixtureForInvalidCommentResponse =
+          'comments_controller-post-create-with-invalid-params-' +
+          'generate-a-fixture.html';
+
+        stubAjaxRequest(
+          '/comments',
+          fixtureForInvalidCommentResponse,
+          433
+        );
+
+        $('#new_comment .actions input').click();
+        expect($('#error_explanation_no_border')).toExist();
+      });
+    });
+
+    var clickAndExpectPageRefresh = function(button) {
+      spyOn(Turbolinks, 'visit');
+      button.click();
+      expect(Turbolinks.visit.calls.any()).toEqual(true);
+    };
+
+    describe('with valid inputs', function() {
+      it('refreshes the page', function() {
+        $('#comment_content').val('Here is a comment');
+        stubAjaxRequest('/comments');
+        clickAndExpectPageRefresh($('#new_comment .actions input'));
+      });
+    });
+
+    describe('cancelling a new conversation', function() {
+      it('it closes the form', function() {
+        clickAndExpectPageRefresh($('.comment_cancel'));
+      });
+    });
+
   });
 
   function itBehavesLikeDropdownButton() {

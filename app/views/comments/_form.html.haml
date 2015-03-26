@@ -1,0 +1,10 @@
+#new_comment_container.left_margin_base.hidden
+  = form_for comment, remote: true, method: :post do |f|
+    .field
+      = f.hidden_field :conversation_id, value: comment.conversation_id
+      = f.text_area :content, class: 'form_control', placeholder: 'Comment'
+    - if comment.errors
+      = render partial: 'shared/model_error', collection: comment.errors.full_messages
+    .actions
+      = f.submit
+      .btn_grey.cancel_btn.comment_cancel Cancel

@@ -3,14 +3,22 @@ require 'conversations/conversation_presenter'
 
 RSpec.describe Conversations::ConversationPresenter do
   let(:conversation) { instance_double('Conversation') }
+  let(:comment) { instance_double('Comment') }
 
   before do
     allow(Conversation).to receive(:new).and_return(conversation)
+    allow(Comment).to receive(:new).and_return(comment)
   end
 
   describe '#new_conversation' do
     it 'returns a new instance of Conversation' do
       expect(described_class.new.new_conversation).to be(conversation)
+    end
+  end
+
+  describe '#new_comment' do
+    it 'returns a new instance of Comment' do
+      expect(described_class.new.new_comment).to be(comment)
     end
   end
 
