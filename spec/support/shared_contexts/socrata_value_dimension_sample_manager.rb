@@ -1,6 +1,7 @@
 require './app/models/provider'
 
 RSpec.shared_context 'socrata value dimension sample manager' do
+  include ActiveJob::TestHelper
   subject { described_class.new(options) }
 
   let(:relevant_providers) { Provider.where(socrata_provider_id: provider_ids) }
@@ -39,9 +40,15 @@ RSpec.shared_context 'socrata value dimension sample manager' do
   end
   let(:value_column_name) { :score }
 
+  def import_work
+    perform_enqueued_jobs do
+      subject.import
+    end
+  end
+
   shared_examples 'a dimension sample manager' do
     it 'pulls, persists, and returns data' do
-      expect { subject.import }.to change { data }
+      expect { import_work }.to change { data }
         .from([])
         .to [
           ['0.98', 'Hospital010087'],

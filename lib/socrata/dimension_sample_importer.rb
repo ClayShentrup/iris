@@ -5,16 +5,16 @@ require_relative 'rename_attributes'
 module Socrata
   # Imports Socrata dimension samples
   DimensionSampleImporter = Struct.new(:dimension_samples, :model_attributes,
-                                       :model_class, :rename_hash,
+                                       :model_class_string, :rename_hash,
                                        :value_column_name) do
-    def self.call(dimension_samples:, model_attributes:, model_class:,
+    def self.call(dimension_samples:, model_attributes:, model_class_string:,
                   rename_hash:, value_column_name:)
       new(
         dimension_samples,
         model_attributes,
-        model_class,
+        model_class_string,
         rename_hash,
-        value_column_name.to_s,
+        value_column_name,
       ).call
     end
 
@@ -46,6 +46,10 @@ module Socrata
           rename_hash: extended_rename_hash,
         )
       end
+    end
+
+    def model_class
+      model_class_string.constantize
     end
 
     def extended_rename_hash

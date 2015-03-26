@@ -1,4 +1,5 @@
-require 'active_record_no_rails_helper'
+require 'rails_helper'
+# require 'active_record_no_rails_helper'
 require 'support/shared_contexts/socrata_value_dimension_sample_manager'
 require 'socrata/dimension_sample_managers/graph_data_points/measure'
 
