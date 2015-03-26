@@ -5,7 +5,7 @@ require './app/models/comment'
 module Conversations
   # Setup new conversation form as well as load existing conversations for a
   # chart.
-  ConversationPresenter = Struct.new(:user, :node_id_component) do
+  ConversationPresenter = Struct.new(:user, :node) do
     def new_conversation
       Conversation.new
     end
@@ -17,7 +17,7 @@ module Conversations
     def chart_conversations
       Conversation.for_chart(
         user.selected_provider,
-        node_id_component,
+        node.id_component,
         user,
       )
     end

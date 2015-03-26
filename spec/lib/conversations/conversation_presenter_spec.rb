@@ -3,12 +3,7 @@ require 'conversations/conversation_presenter'
 
 RSpec.describe Conversations::ConversationPresenter do
   let(:conversation) { instance_double('Conversation') }
-  let(:comment) { build_stubbed(Comment, author: user) }
-  let(:subject) do
-    described_class.new(user, node_id_component)
-  end
-  let(:user) { build_stubbed(User, :with_associations) }
-  let(:node_id_component) { 'patient-safety-composite' }
+  let(:comment) { instance_double('Comment') }
 
   before do
     allow(Conversation).to receive(:new).and_return(conversation)
@@ -27,17 +22,18 @@ RSpec.describe Conversations::ConversationPresenter do
     end
   end
 
-  describe '#author_name' do
-    let(:author_name) { "#{user.first_name} #{user.last_name}" }
-    it 'returns the author\'s full name' do
-      expect(subject.author_name(comment)).to eq(author_name)
-    end
-  end
-
   describe '#chart_conversations' do
+    let(:subject) do
+      described_class.new(user, node)
+    end
+    let(:user) { build_stubbed(User, :with_associations) }
+    let(:node) { double('Node') }
     let(:conversations) { ['Comment 1', 'Comment 2'] }
 
     before do
+      allow(described_class).to receive(:new)
+        .with(user, node).and_return(subject)
+      allow(node).to receive(:id_component)
       allow(Conversation).to receive(:for_chart).and_return(conversations)
     end
 
