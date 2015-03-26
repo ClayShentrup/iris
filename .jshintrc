@@ -20,6 +20,8 @@
     "loadFixture": true, // jasmine-jquery
     "readFixtures": true, // jasmine-jquery
     "stubAjaxRequest": true,
+    "stubAjaxRequestWithStatus": true,
+    "stubAjaxRequestNoFixture": true,
     "searchAutocomplete": true,
     "withoutMockAjax": true
 

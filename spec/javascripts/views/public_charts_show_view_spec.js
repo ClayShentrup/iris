@@ -142,7 +142,7 @@ describe('PublicChartsView', function() {
         conversationTitle.val('Something');
         conversationDescription.val('');
 
-        stubAjaxRequest(
+        stubAjaxRequestWithStatus(
           '/conversations',
           fixtureForInvalidCreateResponse,
           433
@@ -158,7 +158,7 @@ describe('PublicChartsView', function() {
         conversationTitle.val('Here is a title');
         conversationDescription.val('Here is a description');
 
-        stubAjaxRequest('/conversations');
+        stubAjaxRequestNoFixture('/conversations');
 
         spyOn(Turbolinks, 'visit');
         $('#new_conversation').submit();
@@ -195,7 +195,7 @@ describe('PublicChartsView', function() {
           'comments_controller-post-create-with-invalid-params-' +
           'generate-a-fixture.html';
 
-        stubAjaxRequest(
+        stubAjaxRequestWithStatus(
           '/comments',
           fixtureForInvalidCommentResponse,
           433
@@ -215,7 +215,7 @@ describe('PublicChartsView', function() {
     describe('with valid inputs', function() {
       it('refreshes the page', function() {
         $('#comment_content').val('Here is a comment');
-        stubAjaxRequest('/comments');
+        stubAjaxRequestNoFixture('/comments');
         clickAndExpectPageRefresh($('#new_comment .actions input'));
       });
     });

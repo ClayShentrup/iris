@@ -1,15 +1,6 @@
 'use strict';
 
-function stubAjaxRequest(requestURL, fixturePath, status) {
-  var data = '';
-  status = typeof status === 'undefined' ? 200 : status;
-
-  if (typeof fixturePath !== 'undefined') {
-    data = withoutMockAjax(function() {
-      return readFixtures(fixturePath);
-    });
-  }
-
+function stubAjaxRequestWithData(requestURL, data, status) {
   jasmine.Ajax.stubRequest(requestURL)
   .andReturn({
     status: status,
@@ -17,6 +8,31 @@ function stubAjaxRequest(requestURL, fixturePath, status) {
     contentType: 'application/html'
   });
 }
+
+function stubSuccessfulAjaxRequestWithData(requestURL, data) {
+  stubAjaxRequestWithData(requestURL, data, 200);
+}
+
+function dataForFixturePath(fixturePath) {
+  return withoutMockAjax(function() {
+    return readFixtures(fixturePath);
+  });
+}
+
+function stubAjaxRequestNoFixture(requestURL) {
+  stubSuccessfulAjaxRequestWithData(requestURL, '');
+}
+
+function stubAjaxRequestWithStatus(requestURL, fixturePath, status) {
+  stubAjaxRequestWithData(requestURL, dataForFixturePath(fixturePath), status);
+}
+
+var stubAjaxRequest = function(requestURL, fixturePath) {
+  stubSuccessfulAjaxRequestWithData(
+    requestURL,
+    dataForFixturePath(fixturePath)
+  );
+};
 
 /*
 jQuery's AJAX handler normally fires the callback in a setTimeout
