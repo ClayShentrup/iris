@@ -31,6 +31,7 @@ RSpec.feature 'User selected hospital' do
     focus_and_type_in_search_field
     expect(page).to have_selector selector
     find(selector).click
+    check_for_content
   end
 
   def focus_and_type_in_search_field
