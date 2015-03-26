@@ -2,9 +2,7 @@ require 'database_cleaner'
 
 RSpec.configure do |config|
   config.before(:suite) do
-    DatabaseCleaner.clean_with(:truncation,
-                               except: %w[public.schema_migrations],
-    )
+    DatabaseCleaner.clean_with(:truncation)
   end
 
   config.before(:each) do
@@ -12,8 +10,7 @@ RSpec.configure do |config|
   end
 
   config.before(:each, type: :feature) do
-    DatabaseCleaner.strategy = :truncation,
-                               { except: %w[public.schema_migrations] }
+    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each) do
