@@ -19,7 +19,7 @@ class PublicChartsController < ApplicationController
 
     @conversation_presenter = Conversations::ConversationPresenter.new(
       current_user,
-      @node,
+      @node.id_component,
     )
   end
 

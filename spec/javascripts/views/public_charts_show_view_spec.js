@@ -198,7 +198,7 @@ describe('PublicChartsView', function() {
         stubAjaxRequestWithStatus(
           '/comments',
           fixtureForInvalidCommentResponse,
-          433
+          422
         );
 
         $('#new_comment .actions input').click();
