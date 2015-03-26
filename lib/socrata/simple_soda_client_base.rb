@@ -51,7 +51,11 @@ module Socrata
     end
 
     def client
-      @client ||= ::SODA::Client.new(domain: DOMAIN)
+      @client ||= ::
+        SODA::Client.new(
+          domain: DOMAIN,
+          app_token: ENV.fetch('SOCRATA_APP_TOKEN', ''),
+        )
     end
   end
 end
