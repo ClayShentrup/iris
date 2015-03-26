@@ -39,4 +39,6 @@ RSpec.describe Comment do
 
   it { is_expected.to belong_to(:author).class_name('User') }
   it { is_expected.to belong_to :conversation }
+
+  it { is_expected.to have_many :agreements }
 end

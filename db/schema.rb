@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150325170407) do
+ActiveRecord::Schema.define(version: 20150326000648) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,6 +27,18 @@ ActiveRecord::Schema.define(version: 20150325170407) do
 
   add_index "accounts", ["default_provider_id"], name: "index_accounts_on_default_provider_id", using: :btree
   add_index "accounts", ["virtual_system_type", "virtual_system_id"], name: "index_accounts_on_virtual_system_type_and_virtual_system_id", using: :btree
+
+  create_table "agreements", force: :cascade do |t|
+    t.integer  "item_id"
+    t.string   "item_type"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "agreements", ["item_id"], name: "index_agreements_on_item_id", using: :btree
+  add_index "agreements", ["item_type"], name: "index_agreements_on_item_type", using: :btree
+  add_index "agreements", ["user_id"], name: "index_agreements_on_user_id", using: :btree
 
   create_table "authorized_domains", force: :cascade do |t|
     t.string   "name",       null: false
@@ -162,10 +174,10 @@ ActiveRecord::Schema.define(version: 20150325170407) do
     t.integer  "account_id"
     t.datetime "password_changed_at"
     t.string   "unique_session_id",      limit: 20
-    t.integer  "selected_provider_id"
-    t.string   "selected_context"
     t.string   "first_name",                                        null: false
     t.string   "last_name",                                         null: false
+    t.integer  "selected_provider_id"
+    t.string   "selected_context"
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree

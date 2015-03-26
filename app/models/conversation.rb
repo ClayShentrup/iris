@@ -14,12 +14,14 @@
 
 require './app/models/provider'
 require './app/models/user'
+require './app/models/agreement'
 
 # An entity that represents the beginning of a conversation for a given provider
 # and node_id
 class Conversation < ActiveRecord::Base
   belongs_to :provider
   belongs_to :author, class_name: 'User'
+  has_many :agreements, as: :item, dependent: :destroy
 
   validates :title, presence: true
   validates :description, presence: true

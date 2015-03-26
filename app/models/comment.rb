@@ -12,11 +12,13 @@
 
 require './app/models/conversation'
 require './app/models/user'
+require './app/models/agreement'
 
 # A user comment associated with a conversation
 class Comment < ActiveRecord::Base
   belongs_to :conversation
   belongs_to :author, class_name: 'User'
+  has_many :agreements, as: :item, dependent: :destroy
 
   validates :content, presence: true
 

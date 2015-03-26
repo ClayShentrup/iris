@@ -56,6 +56,8 @@ RSpec.describe Conversation do
   it { is_expected.to belong_to(:author).class_name('User') }
   it { is_expected.to belong_to :provider }
 
+  it { is_expected.to have_many :agreements }
+
   describe 'data methods' do
     let(:relevant_provider) { build_stubbed Provider }
     let(:other_provider) { build_stubbed Provider }
