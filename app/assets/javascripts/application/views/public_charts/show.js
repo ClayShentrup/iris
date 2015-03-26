@@ -105,13 +105,12 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   },
 
   _insertErrorConversationForm: function(_e, data, _status, _xhr) {
-    this._newConversationForm().html(data.responseText);
+    this._newConversationForm().replaceWith(data.responseText);
     $('#form_description').show();
   },
 
   _insertErrorCommentForm: function(_e, data, _status, _xhr) {
-    var form = $(data.responseText).find('form');
-    this._newCommentContainer().html(form);
+    this._newCommentContainer().replaceWith(data.responseText);
   },
 
   _newConversationForm: function() {
