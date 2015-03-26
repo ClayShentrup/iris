@@ -1,4 +1,5 @@
 require './app/models/conversation'
+require './app/models/comment'
 
 # .
 module Conversations
@@ -9,12 +10,21 @@ module Conversations
       Conversation.new
     end
 
+    def new_comment
+      Comment.new
+    end
+
     def chart_conversations
       Conversation.for_chart(
         user.selected_provider,
         node.id_component,
         user,
       )
+    end
+
+    def author_name(subject)
+      author = subject.author
+      "#{author.first_name} #{author.last_name}"
     end
   end
 end

@@ -43,33 +43,25 @@ RSpec.describe PublicChartsController do
       get :show, id: node_id
     end
 
-    describe 'generate a fixture' do
+    describe 'generate a fixture with conversations' do
       let(:node_id_component) { 'uno' }
       let(:node_id) do
         "socrata/value-based-purchasing/outcome-of-care/#{node_id_component}"
       end
 
-      context 'without conversations' do
-        save_fixture do
-          get :show, id: node_id
-          expect(response).to be_success
-        end
+      let!(:conversation) do
+        create(
+          Conversation,
+          :with_associations,
+          node_id_component: node_id_component,
+          author: current_user,
+          provider: current_user.selected_provider,
+        )
       end
 
-      context 'with conversations' do
-        let!(:conversation) do
-          create(
-            Conversation,
-            node_id_component: node_id_component,
-            author: current_user,
-            provider: current_user.selected_provider,
-          )
-        end
-
-        save_fixture do
-          get :show, id: node_id
-          expect(response).to be_success
-        end
+      save_fixture do
+        get :show, id: node_id
+        expect(response).to be_success
       end
     end
 

@@ -17,7 +17,7 @@ class PublicChartsController < ApplicationController
     )
     @custom_feedback_bar = true
 
-    @conversations_presenter = Conversations::ConversationPresenter.new(
+    @conversation_presenter = Conversations::ConversationPresenter.new(
       current_user,
       @node,
     )

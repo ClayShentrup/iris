@@ -9,5 +9,5 @@
     = render partial: 'public_charts/breadcrumbs/breadcrumb', collection: @node.breadcrumbs,
       spacer_template: 'public_charts/breadcrumbs/breadcrumbs_spacer'
   = render 'public_charts/select_and_compare', provider_compare_presenter: @provider_compare_presenter
-  = render "public_charts/detail_charts/#{@node.type}", node: @node, conversations_presenter: @conversations_presenter
+  = render "public_charts/detail_charts/#{@node.type}", node: @node, conversation_presenter: @conversation_presenter
   = render 'public_charts/children', node: @node
