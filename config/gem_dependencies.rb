@@ -19,7 +19,7 @@ require 'backbone-rails'
 require 'jquery-ui-rails'
 
 # Dependencies for Puma
-require 'rack-timeout' unless Rails.env.test?
+require 'rack-timeout'
 # Dependency for feature flip
 require 'flip'
 
