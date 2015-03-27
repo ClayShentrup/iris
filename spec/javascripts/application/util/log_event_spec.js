@@ -1,7 +1,7 @@
 'use strict';
 
 describe('Iris.Util.logEvent', function() {
-  it('encode the data correctly', function() {
+  it('encodes the data correctly', function() {
     var properties = {
       currentUserId: 1,
       route: '/dabo_admin/reports',

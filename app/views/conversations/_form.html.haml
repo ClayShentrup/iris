@@ -10,7 +10,7 @@
       = render 'shared/model_errors', model: conversation
 
     .actions
-      = f.submit
+      = f.submit data: { disable_with: 'Submitting...' }
       .btn_grey.cancel_btn.conversation_cancel Cancel
 
 
