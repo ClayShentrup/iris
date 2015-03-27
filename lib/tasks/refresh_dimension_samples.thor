@@ -1,11 +1,12 @@
 require 'thor/rails'
-# Imports or updates existing dimension samples using Socrata.
+
+# Alias for import_dimension_samples
 class RefreshDimensionSamples < Thor
   include Thor::Rails
-  default_task :import
+  default_task :refresh
 
-  desc 'import', 'import or update existing dimension samples using Socrata'
-  def import
-    PUBLIC_CHARTS_TREE.import_all
+  desc 'refresh', 'Alias for import_dimension_samples'
+  def refresh
+    invoke :import_dimension_samples
   end
 end
