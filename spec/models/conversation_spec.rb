@@ -68,7 +68,11 @@ RSpec.describe Conversation do
       create(User, account: relevant_account)
     end
     let(:relevant_account_current_user) do
-      create(User, account: relevant_account)
+      create(
+        User,
+        account: relevant_account,
+        selected_provider: relevant_provider,
+      )
     end
     let(:viewer_for_different_account) do
       create(User, account: other_account)
@@ -113,7 +117,6 @@ RSpec.describe Conversation do
 
     def data
       described_class.for_chart(
-        relevant_provider.id,
         relevant_node_id_component,
         relevant_account_current_user,
       )

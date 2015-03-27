@@ -36,10 +36,10 @@ class Conversation < ActiveRecord::Base
 
   attr_accessor :skip_association_validations
 
-  scope :for_chart, (lambda do |provider_id, node_id_component, current_user|
+  scope :for_chart, (lambda do |node_id_component, current_user|
     joins('JOIN users ON conversations.author_id = users.id')
       .where(
-        provider_id: provider_id,
+        provider_id: current_user.selected_provider,
         node_id_component: node_id_component,
       )
       .merge(current_user.account.users)
