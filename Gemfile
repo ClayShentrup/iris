@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
-source "https://b8ab84f5:2186dcf8@gems.contribsys.com/"
+source 'https://b8ab84f5:2186dcf8@gems.contribsys.com/' do
+  gem 'sidekiq-pro'
+end
 
 ruby '2.2.1'
 
@@ -14,7 +16,6 @@ gem 'newrelic_rpm'
 gem 'devise'
 gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git', ref: 'd77c0fba780a5da46efb79056869ecbd626f7647'
 gem 'aws-sdk'
-gem 'sidekiq-pro'
 gem 'sinatra' # for Sidekiq admin panel
 gem 'jquery-ui-rails'
 gem 'rails-settings-cached'

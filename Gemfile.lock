@@ -442,7 +442,7 @@ DEPENDENCIES
   sdoc
   selenium-webdriver
   shoulda-matchers
-  sidekiq-pro
+  sidekiq-pro!
   sinatra
   soda-ruby
   thin
