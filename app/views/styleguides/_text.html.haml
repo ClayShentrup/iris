@@ -25,14 +25,14 @@
   .col6
     %h4.no_margin
       %code %ul
-    %ul.no_margin
+    %ul.no_margin.horizontal_padding_small
       %li Item 1
       %li Item 2
       %li Item 3
   .col6
     %h4.no_margin
       %code %ol
-    %ol
+    %ol.no_margin.horizontal_padding_small
       %li Item 1
       %li Item 2
       %li Item 3
@@ -42,32 +42,36 @@
   .col6
     %h4.no_margin
       %code %ul.unstyled
-    %ul.unstyled
+    %ul.unstyled.horizontal_padding_small
       %li Item 1
       %li Item 2
       %li Item 3
   .col6
     %h4.no_margin
       %code %ol.unstyled
-    %ol.unstyled
+    %ol.unstyled.horizontal_padding_small
       %li Item 1
       %li Item 2
       %li Item 3
 
 %h2 Text Treatments
-%code
-  %p.text_center .text_center
-%p.text_center The quick brown fox jumped over the lazy dog
-%code
-  %p.text_right .text_right
-%p.text_right The quick brown fox jumped over the lazy dog
-%code
-  %p .text_ellipsis
-%p.text_ellipsis Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-%code
-  %p .text_hide
-%code
-  %p.text_muted.top_margin_base .text_muted
-%p.text_muted The quick brown fox jumped over the lazy dog
+.text_center
+  %code .text_center
+  %p.text_center.top_margin_small The quick brown fox jumped over the lazy dog
+
+.text_right
+  %code .text_right
+  %p.text_right.top_margin_small The quick brown fox jumped over the lazy dog
+
+%code .text_ellipsis
+%p.text_ellipsis.top_margin_small
+  Keffiyeh Schlitz cold-pressed, tofu selvage occupy yr kale chips vegan. Food truck taxidermy post-ironic irony trust fund. Fingerstache skateboard quinoa, typewriter retro synth iPhone scenester. Helvetica deep v readymade you probably haven't heard of them sustainable Brooklyn. Tumblr deep v try-hard vinyl. Four loko street art sriracha 90's raw denim, fingerstache slow-carb drinking vinegar single-origin coffee Pitchfork distillery Vice PBR&B. Flannel YOLO post-ironic, fixie you probably haven't heard of them Wes Anderson tilde salvia XOXO cornhole mlkshk flexitarian.
+
+.horizontal_padding_base
+  %code .text_hide
+
+.horizontal_padding_base
+  %code .text_muted
+  %p.text_muted.top_margin_small  The quick brown fox jumped over the lazy dog
 
 %hr.top_margin_large.bottom_margin_large
