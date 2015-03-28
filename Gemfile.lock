@@ -428,7 +428,7 @@ DEPENDENCIES
   rails_best_practices
   responders
   roo
-  rspec-core (~> 3.2.0)
+  rspec-core
   rspec-rails
   rubocop
   ruby-prof
