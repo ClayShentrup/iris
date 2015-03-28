@@ -7,7 +7,10 @@ describe('ApplicationViewStickyElements', function() {
   var scrollTo;
 
   beforeEach(function() {
-    loadFixture('news_items_controller');
+    loadFixture(
+      'public_charts_controller-get-show-generate-a-' +
+      'fixture-with-conversations'
+    );
     new Iris.Views['layouts/application']({el: '#body', window: $('#body')});
 
     $('#body').css({

@@ -10,7 +10,10 @@ describe('ApplicationViewMeasuresSearch', function() {
   var mainContent;
 
   beforeEach(function() {
-    loadFixture('news_items_controller');
+    loadFixture(
+      'public_charts_controller-get-show-generate-a-' +
+      'fixture-with-conversations'
+    );
     mainContent = $('.main_content');
     new Iris.Views['layouts/application']({el: '#body', window: $('#body')});
   });
