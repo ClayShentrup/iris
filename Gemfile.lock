@@ -63,7 +63,7 @@ GEM
       sass (~> 3.4)
       thor
     builder (3.2.2)
-    byebug (4.0.3)
+    byebug (4.0.4)
       columnize (= 0.9.0)
     cane (2.6.2)
       parallel
