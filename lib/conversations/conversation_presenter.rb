@@ -10,10 +10,6 @@ module Conversations
       Conversation.new
     end
 
-    def new_comment
-      Comment.new
-    end
-
     def chart_conversations
       Conversation.for_chart(
         node_id_component,

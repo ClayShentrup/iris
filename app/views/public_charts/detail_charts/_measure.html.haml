@@ -19,11 +19,8 @@
         %span.icon.icon_size_base.icon_left.vertical_align_middle
           = render 'shared/icon', icon: '#icon_chart_trend'
         %span.text.hide_on_mobile.vertical_align_middle Improve
-  .card_container.inner_content.row.top_margin_large
-    = render 'conversations/form', conversation: conversation_presenter.new_conversation, node_id_component: node.id_component
 
   #conversations
-    = render partial: 'conversations/conversation', locals: { conversation_presenter: conversation_presenter }, collection: conversation_presenter.chart_conversations
-
-  = render 'comments/form', comment: conversation_presenter.new_comment
-
+    .card_container.inner_content.row.top_margin_large
+      = render 'conversations/form', conversation_presenter: conversation_presenter, conversation: conversation_presenter.new_conversation
+    = render partial: 'conversations/conversation_for_index', locals: { conversation_presenter: conversation_presenter }, collection: conversation_presenter.chart_conversations

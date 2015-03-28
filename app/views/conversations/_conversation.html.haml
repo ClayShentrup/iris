@@ -1,4 +1,4 @@
-.conversation_container{data: { conversation_id: conversation.id }}
+.conversation
   .card_container.top_margin_base.border_grey
     .card_title.inner_padding_base.line_height_base.border_bottom_grey
       %span.text= conversation.title
@@ -6,9 +6,5 @@
         = render 'shared/icon', icon: '#icon_conversation'
     .card_body.inner_padding_base
       = conversation.description
-  .comments_container
-    = render partial: 'comments/comment', collection: conversation.comments, locals: { conversation_presenter: conversation_presenter}
-    .new_comment_link.bottom_margin_small.left_margin_base.top_margin_base
-      %span.icon.icon_size_xs.icon-left.vertical_align_middle
-        = render 'shared/icon', icon: '#icon_comment'
-      %a.vertical_align_middle{href: '#', data: {conversation_id: conversation.id}} Write A Comment
+  = render partial: 'comments/comment', collection: conversation.comments, locals: { conversation_presenter: conversation_presenter }
+  = yield :new_comment_box

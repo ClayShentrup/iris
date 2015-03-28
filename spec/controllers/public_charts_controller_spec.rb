@@ -53,6 +53,7 @@ RSpec.describe PublicChartsController do
         create(
           Conversation,
           :with_associations,
+          id: 99,
           node_id_component: node_id_component,
           author: current_user,
           provider: current_user.selected_provider,

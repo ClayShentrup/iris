@@ -4,10 +4,18 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(allowed_params.merge(author: current_user))
-
-    flash_success_message('created') if @comment.save
-    respond_with @comment,
-                 status: :unprocessable_entity if @comment.errors
+    if @comment.save
+      flash_success_message('created')
+      redirect_to conversations_path(
+        node_id_component: @comment.conversation_node_id_component,
+      )
+    else
+      @conversation_presenter = Conversations::ConversationPresenter.new(
+        current_user,
+        @comment.conversation_node_id_component,
+      )
+      render :new, status: :unprocessable_entity
+    end
   end
 
   private

@@ -26,4 +26,6 @@ class Comment < ActiveRecord::Base
   validates :conversation, presence: true, unless: :skip_association_validations
 
   attr_accessor :skip_association_validations
+
+  delegate :node_id_component, to: :conversation, prefix: true
 end

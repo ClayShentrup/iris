@@ -1,0 +1,7 @@
+- content_for :new_comment_box, flush: true do
+  .bottom_margin_small.left_margin_base.top_margin_base
+    %span.icon.icon_size_xs.icon-left.vertical_align_middle
+      = render 'shared/icon', icon: '#icon_comment'
+    = link_to 'Write A Comment', conversation_path(conversation_for_index), remote: true, class: 'vertical_align_middle new_comment_link'
+
+= render 'conversations/conversation', conversation: conversation_for_index, conversation_presenter: conversation_presenter

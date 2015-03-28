@@ -1,4 +1,4 @@
-#new_comment_container.left_margin_base.hidden
+.left_margin_base
   = form_for comment, remote: true, method: :post do |f|
     .field
       = f.hidden_field :conversation_id, value: comment.conversation_id
@@ -7,4 +7,4 @@
       = render 'shared/model_errors', model: comment
     .actions
       = f.submit data: { disable_with: 'Submitting...' }
-      .btn_grey.cancel_btn.comment_cancel Cancel
+      = link_to 'Cancel', conversations_path(node_id_component: conversation_presenter.node_id_component), remote: true, class: 'btn_grey cancel_btn'

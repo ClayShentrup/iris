@@ -41,4 +41,12 @@ RSpec.describe Comment do
   it { is_expected.to belong_to :conversation }
 
   it { is_expected.to have_many :agreements }
+
+  describe 'delegations' do
+    specify do
+      is_expected.to delegate_method(:conversation_node_id_component)
+        .to(:conversation)
+        .as(:node_id_component)
+    end
+  end
 end

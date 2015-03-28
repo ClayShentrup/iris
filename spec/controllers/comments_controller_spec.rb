@@ -7,18 +7,53 @@ RSpec.describe CommentsController do
   it_behaves_like 'an ApplicationController show'
 
   describe 'POST #create' do
-    it_behaves_like 'an ApplicationController create with valid params'
+    let(:a_node_id_component) { 'a-node-id-component' }
+    let(:conversation) do
+      create(Conversation, node_id_component: a_node_id_component)
+    end
+    let(:assign) { assigns(:comment) }
 
-    describe 'with invalid params' do
-      let(:invalid_attributes) do
-        attributes_for(Comment, content: '')
+    def post_create(attributes)
+      post :create, comment: attributes
+    end
+
+    context 'with valid params' do
+      let(:index_url) do
+        "/conversations?node_id_component=#{a_node_id_component}"
       end
+      let(:valid_attributes) do
+        attributes_for(Comment, conversation_id: conversation.id)
+      end
+
+      it 'creates a new model instance' do
+        expect { post_create(valid_attributes) }
+          .to change(Comment, :count).by(1)
+      end
+
+      it 'assigns a newly created model instance' do
+        post_create(valid_attributes)
+        expect(assign).to be_a Comment
+        expect(assign).to be_persisted
+      end
+
+      it 'redirects to the Conversations index page' do
+        post_create(valid_attributes)
+        expect(response).to redirect_to index_url
+        expect(flash[:notice]).to be_present
+      end
+    end
+
+    context 'with invalid params' do
+      let(:invalid_attributes) do
+        attributes_for(Comment, conversation_id: conversation.id, content: '')
+      end
+
       before do
-        post :create, comment: invalid_attributes
+        post_create(invalid_attributes)
       end
 
       it 'assigns a newly created but unsaved model instance' do
-        expect(assigns[:comment]).to be_a_new Comment
+        expect(assign).to be_a_new Comment
       end
 
       it 're-renders the "new" template' do
@@ -26,11 +61,14 @@ RSpec.describe CommentsController do
       end
 
       it 'sets the status to "unprocessable_entity(422)"' do
+        post_create(invalid_attributes)
         expect(response.status).to eq(422)
       end
 
-      describe 'generate a fixture' do
-        save_fixture
+      describe 'generates a fixture with invalid params' do
+        save_fixture do
+          xhr :post, :create, comment: invalid_attributes
+        end
       end
     end
   end
