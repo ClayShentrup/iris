@@ -14,7 +14,7 @@ gem 'thin'
 gem 'flip'
 gem 'newrelic_rpm'
 gem 'devise'
-gem 'devise_security_extension', git: 'https://github.com/phatworx/devise_security_extension.git', ref: 'd77c0fba780a5da46efb79056869ecbd626f7647'
+gem 'devise_security_extension'
 gem 'aws-sdk'
 gem 'sinatra' # for Sidekiq admin panel
 gem 'jquery-ui-rails'
