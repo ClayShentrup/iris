@@ -6,5 +6,5 @@
     - if comment.errors
       = render 'shared/model_errors', model: comment
     .actions
-      = f.submit
+      = f.submit data: { disable_with: 'Submitting...' }
       .btn_grey.cancel_btn.comment_cancel Cancel

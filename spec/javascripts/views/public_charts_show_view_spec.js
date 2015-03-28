@@ -124,17 +124,19 @@ describe('PublicChartsView', function() {
 
   describe('submitting a new conversation', function() {
     function submitForm() {
-      newConversation.find('input:submit').click();
+      submitButton.click();
     }
 
     var newConversation;
     var conversationTitle;
     var conversationDescription;
+    var submitButton;
 
     beforeEach(function() {
       newConversation = $('form#new_conversation');
       conversationTitle = $('#conversation_title');
       conversationDescription = $('#conversation_description');
+      submitButton = newConversation.find('input:submit');
     });
 
     it('begins in a default state', function() {
@@ -161,27 +163,35 @@ describe('PublicChartsView', function() {
 
     describe('with valid inputs', function() {
       beforeEach(function() {
-        spyOn(Turbolinks, 'visit');
         stubAjaxRequestNoFixture('/conversations');
-        submitForm();
       });
 
       it('refreshes the page', function() {
-        expect(Turbolinks.visit).toHaveBeenCalled();
+        submitForm();
+        expect(Turbolinks.visit).toHaveBeenCalledWith(location.toString());
       });
 
       it('prevents double submit while waiting for page to reload', function() {
-        expect(newConversation.find('input:submit')).toBeDisabled();
+        var formDisabled;
+        var formHidden;
+        newConversation.on('ajax:complete', function() {
+          // Ensuring this was done by the time ajax:complete was fired ensures
+          // no possible gap during which user could resubmit.
+          formDisabled = submitButton.prop('disabled');
+          formHidden = newConversation.is(':hidden');
+        });
+        submitForm();
+        expect(formDisabled).toBe(true);
+        expect(formHidden).toBe(true);
       });
     });
 
     describe('cancelling a new conversation', function() {
       it('it closes the form', function() {
         conversationTitle.click();
-        conversationTitle.val('A new conversation');
-        expect(conversationTitle).toHaveValue('A new conversation');
         expect(conversationDescription).toBeVisible();
 
+        conversationTitle.val('A new conversation');
         $('.conversation_cancel').click();
         expect(conversationTitle).toHaveValue('');
         expect(conversationDescription).toBeHidden();
@@ -219,7 +229,6 @@ describe('PublicChartsView', function() {
     });
 
     var clickAndExpectPageRefresh = function(button) {
-      spyOn(Turbolinks, 'visit');
       button.click();
       expect(Turbolinks.visit).toHaveBeenCalled();
     };
@@ -234,8 +243,18 @@ describe('PublicChartsView', function() {
       });
 
       it('prevents double submit while waiting for page to reload', function() {
+        var formDisabled;
+        var formHidden;
+        var submitButton = newComment.find('input:submit');
+        newComment.on('ajax:complete', function() {
+          // Ensuring this was done by the time ajax:complete was fired ensures
+          // no possible gap during which user could resubmit.
+          formDisabled = submitButton.prop('disabled');
+          formHidden = newComment.is(':hidden');
+        });
         newComment.find('input:submit').click();
-        expect(newComment.find('input:submit')).toBeDisabled();
+        expect(formDisabled).toBe(true);
+        expect(formHidden).toBe(true);
       });
     });
 

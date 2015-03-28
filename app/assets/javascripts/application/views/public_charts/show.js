@@ -8,10 +8,12 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'click .dropdown_items.compare li': '_selectCompare',
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchProvider',
-    'ajax:success #new_conversation': '_reloadPage',
-    'ajax:complete #new_conversation, #new_comment': '_onComplete',
+    'ajax:before #new_conversation, #new_comment': 'checkDisabled',
+    'ajax:beforeSend #new_conversation, #new_comment': 'checkDisabled',
+    'ajax:send #new_conversation, #new_comment': 'checkDisabled',
+    'ajax:success #new_conversation, #new_comment, .foobar': 'checkDisabled',
+    'ajax:success #new_conversation, #new_comment': '_handleSuccessfulSubmit',
     'ajax:error #new_conversation': '_insertErrorConversationForm',
-    'ajax:success #new_comment': '_reloadPage',
     'ajax:error #new_comment': '_insertErrorCommentForm',
     'click #conversation_title' : '_showConversationForm',
     'click .conversation_cancel' : '_hideConversationForm',
@@ -27,8 +29,11 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     });
   },
 
-  _onComplete: function(event) {
-    $(event.currentTarget).find('input:submit').prop('disabled', true);
+  checkDisabled: function(event) {
+    console.log(
+      event.type,
+      $(event.currentTarget).find('input:submit').prop('disabled')
+    );
   },
 
   _showConversationForm: function(event) {
@@ -94,6 +99,11 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this._searchResults().empty();
     this._searchBoxInput().val('');
     this._toggleDropdownProvider();
+  },
+
+  _handleSuccessfulSubmit: function(event) {
+    $(event.currentTarget).hide();
+    this._reloadPage();
   },
 
   _reloadPage: function() {
