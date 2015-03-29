@@ -338,7 +338,7 @@ GEM
       hashie
     spreadsheet (1.0.3)
       ruby-ole (>= 1.0)
-    sprockets (2.11.0)
+    sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
       rack (~> 1.0)
