@@ -1,4 +1,4 @@
---order rand
 --color
+--order rand
+--profile
 --require spec_helper
---order random
