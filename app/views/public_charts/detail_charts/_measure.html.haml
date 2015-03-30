@@ -2,7 +2,7 @@
   .chart
     = render 'public_charts/detail_charts/default_chart', node: node
   .actions_container.border_bottom_grey
-    .actions.inner_content.horizontal_padding_small.clearfix
+    .actions.horizontal_padding_small.clearfix
       .action.col3-xs.text_center
         %span.icon.icon_size_base.icon_left.vertical_align_middle
           = render 'shared/icon', icon: '#icon_conversation'
@@ -21,6 +21,6 @@
         %span.text.hide_on_mobile.vertical_align_middle Improve
 
   #conversations
-    .card_container.inner_content.row.top_margin_large
+    .card_container.row.top_margin_large
       = render 'conversations/form', conversation_presenter: conversation_presenter, conversation: conversation_presenter.new_conversation
     = render partial: 'conversations/conversation_for_index', locals: { conversation_presenter: conversation_presenter }, collection: conversation_presenter.chart_conversations
