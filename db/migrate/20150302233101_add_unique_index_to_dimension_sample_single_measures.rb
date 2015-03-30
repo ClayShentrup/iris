@@ -8,6 +8,7 @@ class AddUniqueIndexToDimensionSampleSingleMeasures < ActiveRecord::Migration
         :column_name,
       ],
       unique: true,
-      name: 'index_dimension_sample_single_measures_unique')
+      name: 'index_dimension_sample_single_measures_unique',
+    )
   end
 end

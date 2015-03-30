@@ -29,6 +29,12 @@ RSpec.describe DimensionSample::Measure do
     end
   end
 
+  describe 'indexes' do
+    it do
+      is_expected.to have_db_index([:socrata_provider_id, :measure_id]).unique
+    end
+  end
+
   describe 'validations' do
     it { is_expected.to validate_presence_of(:socrata_provider_id) }
     it { is_expected.to validate_presence_of(:measure_id) }
