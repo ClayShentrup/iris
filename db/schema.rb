@@ -80,7 +80,7 @@ ActiveRecord::Schema.define(version: 20150330031321) do
     t.datetime "updated_at",          null: false
   end
 
-  add_index "dimension_sample_measures", ["socrata_provider_id", "measure_id"], name: "index_dimension_sample_measures_unique", unique: true, using: :btree
+  add_index "dimension_sample_measures", ["socrata_provider_id", "measure_id"], name: "index_dimension_sample_measures_on_provider_id_and_measure_id", unique: true, using: :btree
 
   create_table "dimension_sample_provider_aggregates", force: :cascade do |t|
     t.string   "socrata_provider_id", null: false
@@ -177,10 +177,10 @@ ActiveRecord::Schema.define(version: 20150330031321) do
     t.integer  "account_id"
     t.datetime "password_changed_at"
     t.string   "unique_session_id",      limit: 20
-    t.integer  "selected_provider_id"
-    t.string   "selected_context"
     t.string   "first_name",                                        null: false
     t.string   "last_name",                                         null: false
+    t.integer  "selected_provider_id"
+    t.string   "selected_context"
   end
 
   add_index "users", ["account_id"], name: "index_users_on_account_id", using: :btree
