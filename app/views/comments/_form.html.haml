@@ -7,4 +7,4 @@
       = render 'shared/model_errors', model: comment
     .actions
       = f.submit data: { disable_with: 'Submitting...' }
-      = link_to 'Cancel', conversations_path(node_id_component: conversation_presenter.node_id_component), remote: true, class: 'btn_grey cancel_btn'
+      = link_to 'Cancel', conversations_path(measure_id: conversation_presenter.measure_id), remote: true, class: 'btn_grey cancel_btn'

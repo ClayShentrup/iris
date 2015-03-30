@@ -6,13 +6,13 @@ RSpec.describe ConversationsController do
   include_context 'an ApplicationController'
   it_behaves_like 'an ApplicationController show'
 
-  let(:a_node_id_component) { 'some-measure-id' }
+  let(:a_measure_id) { 'some-measure-id' }
 
   describe 'GET #index' do
     let!(:conversation) do
       create(
         Conversation,
-        node_id_component: a_node_id_component,
+        measure_id: a_measure_id,
         author: current_user,
         provider: current_user.selected_provider,
       )
@@ -26,7 +26,7 @@ RSpec.describe ConversationsController do
     end
 
     before do
-      xhr :get, :index, node_id_component: a_node_id_component
+      xhr :get, :index, measure_id: a_measure_id
     end
 
     specify { expect(response).to be_successful }
@@ -55,16 +55,16 @@ RSpec.describe ConversationsController do
         Conversation,
         title: '',
         description: '',
-        node_id_component: '',
+        measure_id: '',
       )
     end
 
     let(:valid_attributes) do
-      attributes_for(Conversation, node_id_component: a_node_id_component)
+      attributes_for(Conversation, measure_id: a_measure_id)
     end
 
     let(:index_url) do
-      "/conversations?node_id_component=#{a_node_id_component}"
+      "/conversations?measure_id=#{a_measure_id}"
     end
 
     it_behaves_like 'an ajax create'

@@ -2,14 +2,14 @@
 #
 # Table name: conversations
 #
-#  id                :integer          not null, primary key
-#  provider_id       :integer
-#  author_id         :integer
-#  node_id_component :string           not null
-#  title             :string           not null
-#  description       :text             not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id          :integer          not null, primary key
+#  provider_id :integer
+#  author_id   :integer
+#  measure_id  :string           not null
+#  title       :string           not null
+#  description :text             not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 require './app/models/provider'
@@ -27,7 +27,7 @@ class Conversation < ActiveRecord::Base
 
   validates :title, presence: true
   validates :description, presence: true
-  validates :node_id_component, presence: true
+  validates :measure_id, presence: true
 
   validates :author, presence: true, unless: :skip_association_validations
   validates :provider, presence: true, unless: :skip_association_validations
@@ -36,11 +36,11 @@ class Conversation < ActiveRecord::Base
 
   attr_accessor :skip_association_validations
 
-  scope :for_chart, (lambda do |node_id_component, current_user|
+  scope :for_chart, (lambda do |measure_id, current_user|
     joins('JOIN users ON conversations.author_id = users.id')
       .where(
         provider_id: current_user.selected_provider,
-        node_id_component: node_id_component,
+        measure_id: measure_id,
       )
       .merge(current_user.account.users)
       .order(created_at: :desc)

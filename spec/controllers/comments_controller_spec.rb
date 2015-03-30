@@ -7,9 +7,9 @@ RSpec.describe CommentsController do
   it_behaves_like 'an ApplicationController show'
 
   describe 'POST #create' do
-    let(:a_node_id_component) { 'a-node-id-component' }
+    let(:a_measure_id) { 'a-node-id-component' }
     let(:conversation) do
-      create(Conversation, node_id_component: a_node_id_component)
+      create(Conversation, measure_id: a_measure_id)
     end
     let(:assign) { assigns(:comment) }
 
@@ -19,7 +19,7 @@ RSpec.describe CommentsController do
 
     context 'with valid params' do
       let(:index_url) do
-        "/conversations?node_id_component=#{a_node_id_component}"
+        "/conversations?measure_id=#{a_measure_id}"
       end
       let(:valid_attributes) do
         attributes_for(Comment, conversation_id: conversation.id)

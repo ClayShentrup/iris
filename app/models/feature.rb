@@ -4,7 +4,7 @@
 #
 #  id         :integer          not null, primary key
 #  key        :string           not null
-#  enabled    :boolean          default("false"), not null
+#  enabled    :boolean          default(FALSE), not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

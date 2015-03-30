@@ -44,9 +44,9 @@ RSpec.describe Comment do
 
   describe 'delegations' do
     specify do
-      is_expected.to delegate_method(:conversation_node_id_component)
+      is_expected.to delegate_method(:conversation_measure_id)
         .to(:conversation)
-        .as(:node_id_component)
+        .as(:measure_id)
     end
   end
 end

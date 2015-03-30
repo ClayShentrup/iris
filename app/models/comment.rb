@@ -27,5 +27,5 @@ class Comment < ActiveRecord::Base
 
   attr_accessor :skip_association_validations
 
-  delegate :node_id_component, to: :conversation, prefix: true
+  delegate :measure_id, to: :conversation, prefix: true
 end

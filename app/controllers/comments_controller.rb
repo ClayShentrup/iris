@@ -7,12 +7,12 @@ class CommentsController < ApplicationController
     if @comment.save
       flash_success_message('created')
       redirect_to conversations_path(
-        node_id_component: @comment.conversation_node_id_component,
+        measure_id: @comment.conversation_measure_id,
       )
     else
       @conversation_presenter = Conversations::ConversationPresenter.new(
         current_user,
-        @comment.conversation_node_id_component,
+        @comment.conversation_measure_id,
       )
       render :new, status: :unprocessable_entity
     end

@@ -153,7 +153,7 @@ describe('PublicChartsView', function() {
 
         conversationTitle.val('A new conversation');
         stubAjaxRequest(
-          '/conversations?node_id_component=uno',
+          '/conversations?measure_id=uno',
           'conversations_controller-get-index.html'
         );
 

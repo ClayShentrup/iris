@@ -2,14 +2,14 @@
 #
 # Table name: conversations
 #
-#  id                :integer          not null, primary key
-#  provider_id       :integer
-#  author_id         :integer
-#  node_id_component :string           not null
-#  title             :string           not null
-#  description       :text             not null
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id          :integer          not null, primary key
+#  provider_id :integer
+#  author_id   :integer
+#  measure_id  :string           not null
+#  title       :string           not null
+#  description :text             not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 require 'active_record_no_rails_helper'
@@ -40,7 +40,7 @@ RSpec.describe Conversation do
       it { is_expected.to validate_presence_of(:provider) }
     end
 
-    it { is_expected.to validate_presence_of(:node_id_component) }
+    it { is_expected.to validate_presence_of(:measure_id) }
     it { is_expected.to validate_presence_of(:title) }
     it { is_expected.to validate_presence_of(:description) }
   end
@@ -78,14 +78,14 @@ RSpec.describe Conversation do
       create(User, account: other_account)
     end
 
-    let(:relevant_node_id_component) { 'patient-safety-composite' }
-    let(:other_node_id_component) { 'infarction' }
+    let(:relevant_measure_id) { 'patient-safety-composite' }
+    let(:other_measure_id) { 'infarction' }
 
     let(:valid_attributes) do
       {
         provider: relevant_provider,
         author: relevant_account_author,
-        node_id_component: relevant_node_id_component,
+        measure_id: relevant_measure_id,
       }
     end
 
@@ -112,12 +112,12 @@ RSpec.describe Conversation do
     end
 
     let!(:conversation_for_different_node) do
-      create_conversation(node_id_component: other_node_id_component)
+      create_conversation(measure_id: other_measure_id)
     end
 
     def data
       described_class.for_chart(
-        relevant_node_id_component,
+        relevant_measure_id,
         relevant_account_current_user,
       )
     end

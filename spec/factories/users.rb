@@ -10,26 +10,26 @@
 #  reset_password_token   :string
 #  reset_password_sent_at :datetime
 #  remember_created_at    :datetime
-#  sign_in_count          :integer          default("0"), not null
+#  sign_in_count          :integer          default(0), not null
 #  current_sign_in_at     :datetime
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :inet
 #  last_sign_in_ip        :inet
-#  failed_attempts        :integer          default("0"), not null
+#  failed_attempts        :integer          default(0), not null
 #  unlock_token           :string
 #  locked_at              :datetime
 #  confirmation_token     :string
 #  confirmed_at           :datetime
 #  confirmation_sent_at   :datetime
 #  unconfirmed_email      :string
-#  is_dabo_admin          :boolean          default("false"), not null
+#  is_dabo_admin          :boolean          default(FALSE), not null
 #  account_id             :integer
 #  password_changed_at    :datetime
 #  unique_session_id      :string(20)
-#  selected_provider_id   :integer
-#  selected_context       :string
 #  first_name             :string           not null
 #  last_name              :string           not null
+#  selected_provider_id   :integer
+#  selected_context       :string
 #
 
 require 'ipaddr'

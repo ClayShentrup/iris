@@ -5,7 +5,7 @@ class ConversationsController < ApplicationController
   def index
     @conversation_presenter = Conversations::ConversationPresenter.new(
       current_user,
-      params.fetch(:node_id_component),
+      params.fetch(:measure_id),
     )
   end
 
@@ -15,12 +15,12 @@ class ConversationsController < ApplicationController
     if @conversation.save
       flash_success_message('created')
       redirect_to conversations_path(
-        node_id_component: @conversation.node_id_component,
+        measure_id: @conversation.measure_id,
       )
     else
       @conversation_presenter = Conversations::ConversationPresenter.new(
         current_user,
-        @conversation.node_id_component,
+        @conversation.measure_id,
       )
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +30,7 @@ class ConversationsController < ApplicationController
     super
     @conversation_presenter = Conversations::ConversationPresenter.new(
       current_user,
-      @conversation.node_id_component,
+      @conversation.measure_id,
     )
 
     @new_comment = Comment.new(conversation: @conversation)
@@ -47,7 +47,7 @@ class ConversationsController < ApplicationController
 
   def allowed_params
     params.require(:conversation).permit(
-      :title, :description, :node_id_component
+      :title, :description, :measure_id
     )
   end
 end
