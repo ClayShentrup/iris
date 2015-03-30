@@ -16,8 +16,8 @@ describe('PublicChartsView', function() {
 
   beforeEach(function() {
     loadFixture(
-      'public_charts_controller-get-show-generate-a-fixture-' +
-      'with-conversations'
+      'public_charts_controller-get-show-generate-a-' +
+      'fixture-with-conversations'
     );
     new Iris.Views['public_charts-show']({el: '#body'});
 

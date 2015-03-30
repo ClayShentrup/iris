@@ -22,7 +22,6 @@ Rails.application.routes.draw do
         resource :menu, only: :show
         resources :settings, only: :index
       end
-      resources :news_items, only: :index
       resources :pristine_examples
       resources :data_categories, only: :index
       resources :provider_search_results, only: [:index, :show]
@@ -31,10 +30,9 @@ Rails.application.routes.draw do
       resources :comments, only: [:show, :create]
 
       # product-friendly aliases
-      get :news, to: 'news_items#index'
       get :metrics, to: 'data_categories#index'
       get 'metrics/*id', to: 'public_charts#show'
-      root 'news_items#index'
+      root 'data_categories#index'
     end
 
     authenticate :user, Constraints::IsDaboAdmin do
