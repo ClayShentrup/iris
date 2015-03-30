@@ -78,9 +78,13 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     return this.$('.dropdown_items.provider ul');
   },
 
+  _providerSearchForm: function() {
+    return $('#provider_search_form');
+  },
+
   _searchEndpoint: function(requestTerm) {
-    // TODO: Get this from a path helper in the Rails template
-    return '/provider_search_results/?term=' + encodeURIComponent(requestTerm);
+    return this._providerSearchForm().data('url') +
+      '/?term=' + encodeURIComponent(requestTerm);
   },
 
   _replaceConversationsContainer: function(event, data) {

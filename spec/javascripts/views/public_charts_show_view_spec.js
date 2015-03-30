@@ -50,6 +50,7 @@ describe('PublicChartsView', function() {
     });
 
     it('displays a list of matching results', function() {
+      expect($('#provider_search_form')).toHaveData('url');
       stubAjaxRequest(searchEndpoint + 'foo', twoProvidersFixture);
 
       searchAutocomplete(searchInput, 'foo');
