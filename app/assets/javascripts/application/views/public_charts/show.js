@@ -8,7 +8,8 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'click .dropdown_items.compare li': '_selectCompare',
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchProvider',
-    'ajax:success #new_conversation, #new_comment': '_handleSuccessfulSubmit',
+    'ajax:success #new_conversation, #new_comment':
+      '_replaceConversationsContainer',
     'ajax:success .cancel_btn': '_replaceConversationsContainer',
     'click #conversation_title' : '_showConversationForm',
     'ajax:success #new_conversation': '_replaceConversationsContainer',
@@ -88,11 +89,6 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
 
   _conversationsContainer: function() {
     return $('#conversations');
-  },
-
-  _handleSuccessfulSubmit: function(event, data) {
-    $(event.currentTarget).hide();
-    this._replaceConversationsContainer(event, data);
   },
 
   _showConversationForm: function(event) {
