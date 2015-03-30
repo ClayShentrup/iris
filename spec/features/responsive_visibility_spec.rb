@@ -19,17 +19,9 @@ RSpec.feature 'responsive design' do
     ]
   end
 
-  let(:elements_visible_on_desktop) do
-    [
-      '#measures_nav_container .back_btn_container .parent_node_text',
-    ]
-  end
+  let(:elements_visible_on_desktop) { ['#left_nav'] }
 
-  let(:elements_visible_on_tablet) do
-    [
-      '#measures_nav_container .back_btn_container .current_node_text',
-    ]
-  end
+  let(:elements_visible_on_tablet) { ['.menu_icon'] }
 
   def check
     selector_groups.each do |selector_group|

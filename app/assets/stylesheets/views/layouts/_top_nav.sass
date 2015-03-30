@@ -12,51 +12,34 @@ $results_margin_offset: -($results_margin_inner)
   #body.registrations-edit &
     @extend .hidden
 
-  a
-    @extend .block
-    &.hide_on_mobile
-      @extend .hide_on_mobile
-    &.hide_on_tablet_portrait
-      @extend .hide_on_tablet_portrait
-    &.hide_on_desktop
-      @extend .hide_on_desktop
+  .breadcrumbs
+    +flex-grow(3)
 
-  .metrics,
+    &.hidden
+      @extend .hidden
+
+  .menu_icon,
   .search
     +flex-grow(1)
 
-  .metrics a
-    width: 100%
-    +media($tablet_portrait_and_desktop)
-      max-width: rem(200)
-
-  .menu_icon,
-  .search_starting_width
-    max-width: $line_height_buffer_base
-    width: $line_height_buffer_base
-
-  .logo,
-    +media($mobile)
-      width: $line_height_buffer_base
+  .menu_icon
+    cursor: pointer
+    width: rem(44)
 
   .search
+    min-width: rem(44)
+
     input
+      display: none
       height: $line_height_buffer_base
 
     .search_results_container
       position: relative
 
     ul.results
-      margin-left: $results_margin_offset
       position: absolute
-      width: 135%
       z-index: 900
-      @extend .inner_padding_small
-      +media($tablet_portrait_and_desktop)
-        width: 100%
-
-      ul.measures
-        margin-left: $buffer_large
+      @extend .horizontal_padding_small
 
       > li.category
         > a
@@ -73,12 +56,3 @@ $results_margin_offset: -($results_margin_inner)
   position: absolute
   width: 100%
   +calc(margin-top, "-#{$buffer_base}")
-
-svg
-  #top_nav .logo &
-    width: $icon_size_xs
-    +media($tablet_portrait_and_desktop)
-      width: rem(70)
-
-  #top_nav .menu_icon &
-    width: $icon_size_small

@@ -23,23 +23,23 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   lightenBackground: function() {
-    this._setContentOpacity(0.5);
+    this._setInnerContentOpacity(0.5);
   },
 
   showBackground: function() {
-    this._setContentOpacity(1);
+    this._setInnerContentOpacity(1);
   },
 
   hideBackground: function() {
-    this._setContentOpacity(0);
+    this._setInnerContentOpacity(0);
   },
 
-  _setContentOpacity: function(opacity) {
-    this._mainContent().css('opacity', opacity);
+  _setInnerContentOpacity: function(opacity) {
+    this._innerContent().css('opacity', opacity);
   },
 
-  _mainContent: function() {
-    return this.$('.main_content');
+  _innerContent: function() {
+    return this.$('.inner_content');
   },
 
   _initializeSticky: function() {

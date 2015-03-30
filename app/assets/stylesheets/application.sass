@@ -9,10 +9,6 @@
   font-family: $helvetica
   font-size: $font_size_base
 
-.main_content,
-.inner_content
-  +outer-container
-
 .main_content
   #body.public_charts &,
   #body.data_categories &,
@@ -52,11 +48,6 @@
 .is_sticky
   background-color: $white
   position: fixed
-  width: 100%
+  top: 0
+  width: inherit
   z-index: 100
-
-  &#top_nav
-    top: 0
-
-  &#measures_nav_container
-    top: rem(45)
