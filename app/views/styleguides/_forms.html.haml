@@ -1,5 +1,5 @@
 %h1#forms.section_title Forms
-%code.preserve_whitespace
+%pre.preserve_whitespace.line_height_base
   :preserve
     %form{action: '/search', method: 'get'}
       %label Form label
@@ -21,7 +21,7 @@
 
 %h2 Forms with icons
 %h3 Form with One Icon
-%code.preserve_whitespace
+%pre.preserve_whitespace.line_height_base
   :preserve
     %form{action: '/search', method: 'get'}
       .has_icon.clearfix.line_height_buffer_base
@@ -35,7 +35,7 @@
       = render 'shared/icon', icon: '#icon_search'
 
 %h3 Form with Two Icons
-%code.preserve_whitespace
+%pre.preserve_whitespace.line_height_base
   :preserve
     %form
       .has_two_icons.line_height_buffer_base
@@ -53,7 +53,7 @@
       = render 'shared/icon', icon: '#icon_close', klass: 'vertical_align_middle'
 
 %h3 Form with an Icon inside
-%code.preserve_whitespace
+%pre.preserve_whitespace.line_height_base
   :preserve
     %form
       .has_icon_inside.line_height_buffer_base
@@ -67,7 +67,7 @@
       = render 'shared/icon', icon: '#icon_eye'
 
 %h2 Form without Border
-%code.preserve_whitespace
+%pre.preserve_whitespace.line_height_base
   :preserve
     %form
       .has_two_icons.line_height_buffer_base

@@ -1,12 +1,21 @@
 %h1#buttons.section_title Buttons
-%div
-  = link_to 'Button Blue', root_url, class: 'btn_blue bottom_margin_large'
-  %code .btn_blue
-%div
-  = link_to 'Button Red', root_url, class: 'btn_red bottom_margin_large'
-  %code .btn_red
-%div
-  = link_to 'Small Button', root_url, class: 'btn_blue btn_small'
-  %code .btn_small .btn_blue
+.row
+  .col3.text_center
+    = link_to 'Button Blue', '/styleguide#buttons', class: 'btn_blue bottom_margin_small'
+    %p
+      %code .btn_blue
+  .col3.text_center
+    = link_to 'Button Red', '/styleguide#buttons', class: 'btn_red bottom_margin_small'
+    %p
+      %code .btn_red
+  .col3.text_center
+    = link_to 'Button Grey', '/styleguide#buttons', class: 'btn_grey bottom_margin_small'
+    %p
+      %code .btn_grey
+  .col3.text_center
+    = link_to 'Small Button', '/styleguide#buttons', class: 'btn_blue btn_small bottom_margin_small'
+    %p
+      %code .btn_small .btn_blue
+
 
 %hr.top_margin_large.bottom_margin_large
