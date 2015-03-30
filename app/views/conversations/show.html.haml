@@ -1,1 +1,5 @@
-<!-- This page has been intentionally left blank -->
+- content_for :new_comment_box, flush: true do
+  = render 'comments/form', comment: @new_comment, conversation_presenter: @conversation_presenter
+
+= render 'conversation', conversation: @conversation, conversation_presenter: @conversation_presenter
+.comments_container

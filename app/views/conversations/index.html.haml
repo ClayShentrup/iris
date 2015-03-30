@@ -1,0 +1,3 @@
+.card_container.inner_content.row.top_margin_large
+  = render 'conversations/form', conversation: @conversation_presenter.new_conversation, conversation_presenter: @conversation_presenter
+= render partial: 'conversation_for_index', collection: @conversation_presenter.chart_conversations, locals: { conversation_presenter: @conversation_presenter }

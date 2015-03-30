@@ -50,6 +50,7 @@ describe('PublicChartsView', function() {
     });
 
     it('displays a list of matching results', function() {
+      expect($('#provider_search_form')).toHaveData('url');
       stubAjaxRequest(searchEndpoint + 'foo', twoProvidersFixture);
 
       searchAutocomplete(searchInput, 'foo');
@@ -127,12 +128,14 @@ describe('PublicChartsView', function() {
       submitButton.click();
     }
 
+    var conversationsContainer;
     var newConversation;
     var conversationTitle;
     var conversationDescription;
     var submitButton;
 
     beforeEach(function() {
+      conversationsContainer = $('#conversations');
       newConversation = $('form#new_conversation');
       conversationTitle = $('#conversation_title');
       conversationDescription = $('#conversation_description');
@@ -144,16 +147,34 @@ describe('PublicChartsView', function() {
       expect(conversationDescription).toBeHidden();
     });
 
+    describe('cancelling a new conversation', function() {
+      it('returns a new conversation form', function() {
+        conversationTitle.click();
+        expect(conversationDescription).toBeVisible();
+
+        conversationTitle.val('A new conversation');
+        stubAjaxRequest(
+          '/conversations?measure_id=uno',
+          'conversations_controller-get-index.html'
+        );
+
+        $('.cancel_btn').click();
+
+        expect($('#conversation_title')).toHaveValue('');
+        expect($('#conversation_description')).toBeHidden();
+      });
+    });
+
     describe('with invalid inputs', function() {
       it('displays an error', function() {
         var fixtureForInvalidCreateResponse =
-          'conversations_controller-post-create-with-' +
-          'invalid-params-generate-a-fixture.html';
+          'conversations_controller-post-create-generates' +
+          '-a-fixture-with-invalid-params.html';
 
         stubAjaxRequestWithStatus(
           '/conversations',
           fixtureForInvalidCreateResponse,
-          433
+          422
         );
 
         submitForm();
@@ -163,59 +184,65 @@ describe('PublicChartsView', function() {
 
     describe('with valid inputs', function() {
       beforeEach(function() {
-        stubAjaxRequestNoFixture('/conversations');
+        var fixtureForvalidCreateResponse =
+          'conversations_controller-get-index.html';
+
+        stubAjaxRequest(
+          '/conversations',
+          fixtureForvalidCreateResponse
+        );
       });
 
-      it('refreshes the page', function() {
+      it('renders the list of conversations', function() {
+        var conversation = conversationsContainer.find('.conversation');
         submitForm();
-        expect(Turbolinks.visit).toHaveBeenCalledWith(location.toString());
+
+        expect(conversation.length).toEqual(1);
+        expect(conversation).toContainText('Conversation Title 1');
+        expect(conversation).toContainText('My Description');
       });
 
-      it('prevents double submit while waiting for page to reload', function() {
+      it('prevents double submit while waiting for ajax response ' +
+        'to complete', function() {
         var formDisabled;
         var formHidden;
-        newConversation.on('ajax:complete', function() {
-          // Ensuring this was done by the time ajax:complete was fired ensures
-          // no possible gap during which user could resubmit.
-          formDisabled = submitButton.prop('disabled');
-          formHidden = newConversation.is(':hidden');
-        });
+
         submitForm();
+
+        formDisabled = submitButton.prop('disabled');
+        formHidden = newConversation.is(':hidden');
+
         expect(formDisabled).toBe(true);
         expect(formHidden).toBe(true);
-      });
-    });
-
-    describe('cancelling a new conversation', function() {
-      it('it closes the form', function() {
-        conversationTitle.click();
-        expect(conversationDescription).toBeVisible();
-
-        conversationTitle.val('A new conversation');
-        $('.conversation_cancel').click();
-        expect(conversationTitle).toHaveValue('');
-        expect(conversationDescription).toBeHidden();
       });
     });
   });
 
   describe('submitting a new comment', function() {
+    var fixtureForConversationShow;
     var newComment;
+    var submitButton;
 
     beforeEach(function() {
-      expect($('#new_comment_container')).toBeHidden();
-      $('.new_comment_link a').first().click();
-      expect($('#new_comment_container')).toBeVisible();
+      fixtureForConversationShow =
+        'conversations_controller-get-show-generate-a-fixture.html';
+
+      stubAjaxRequest(
+        '/conversations/99',
+        fixtureForConversationShow
+      );
+
+      $('.new_comment_link').first().click();
+      expect($('#new_comment')).toBeVisible();
       newComment = $('#new_comment');
+      submitButton = newComment.find('input:submit');
     });
 
     describe('with invalid inputs', function() {
       it('displays the errors on the form', function() {
-        $('#comment_content').val('');
-
         var fixtureForInvalidCommentResponse =
           'comments_controller-post-create-with-invalid-params-' +
-          'generate-a-fixture.html';
+          'generates-a-fixture-with-invalid-params.html';
 
         stubAjaxRequestWithStatus(
           '/comments',
@@ -223,47 +250,60 @@ describe('PublicChartsView', function() {
           422
         );
 
-        $('#new_comment .actions input').click();
+        submitButton.click();
         expect($('.error_explanation_no_border')).toExist();
       });
     });
 
-    var clickAndExpectPageRefresh = function(button) {
-      button.click();
-      expect(Turbolinks.visit).toHaveBeenCalled();
-    };
-
     describe('with valid inputs', function() {
-      beforeEach(function() {
-        stubAjaxRequestNoFixture('/comments');
+      it('displays list of conversations with the new comment', function() {
+        var fixtureForvalidCreateResponse =
+          'conversations_controller-get-index.html';
+
+        $('#comment_content').val('Comment 1');
+
+        stubAjaxRequest(
+          '/comments',
+          fixtureForvalidCreateResponse
+        );
+
+        submitButton.click();
+        expect($('.conversation')).toBeInDOM();
+        expect($('.conversation')).toContainText('Comment 1');
       });
 
-      it('refreshes the page', function() {
-        clickAndExpectPageRefresh($('#new_comment .actions input'));
-      });
-
-      it('prevents double submit while waiting for page to reload', function() {
+      it('prevents double submit while waiting for ajax response ' +
+        'to complete', function() {
         var formDisabled;
         var formHidden;
-        var submitButton = newComment.find('input:submit');
-        newComment.on('ajax:complete', function() {
-          // Ensuring this was done by the time ajax:complete was fired ensures
-          // no possible gap during which user could resubmit.
-          formDisabled = submitButton.prop('disabled');
-          formHidden = newComment.is(':hidden');
-        });
-        newComment.find('input:submit').click();
+
+        stubAjaxRequestNoFixture('/comments');
+
+        submitButton.click();
+
+        formDisabled = submitButton.prop('disabled');
+        formHidden = newComment.is(':hidden');
+
         expect(formDisabled).toBe(true);
         expect(formHidden).toBe(true);
       });
     });
 
     describe('cancelling a new conversation', function() {
-      it('it closes the form', function() {
-        clickAndExpectPageRefresh($('.comment_cancel'));
+      it('displays the list of conversations', function() {
+        var newCommentCancelButton = $('#new_comment .cancel_btn');
+        var fixtureForvalidCreateResponse =
+          'conversations_controller-get-index.html';
+
+        stubAjaxRequest(
+          '/conversations?node_id_component=patient-safety-composite',
+          fixtureForvalidCreateResponse
+        );
+
+        newCommentCancelButton.click();
+        expect($('.conversation')).toBeInDOM();
       });
     });
-
   });
 
   function itBehavesLikeDropdownButton() {

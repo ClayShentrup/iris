@@ -44,16 +44,17 @@ RSpec.describe PublicChartsController do
     end
 
     describe 'generate a fixture with conversations' do
-      let(:node_id_component) { 'uno' }
+      let(:measure_id) { 'uno' }
       let(:node_id) do
-        "socrata/value-based-purchasing/outcome-of-care/#{node_id_component}"
+        "socrata/value-based-purchasing/outcome-of-care/#{measure_id}"
       end
 
       let!(:conversation) do
         create(
           Conversation,
           :with_associations,
-          node_id_component: node_id_component,
+          id: 99,
+          measure_id: measure_id,
           author: current_user,
           provider: current_user.selected_provider,
         )

@@ -1,10 +1,9 @@
-#new_comment_container.left_margin_base.hidden
-  = form_for comment, remote: true, method: :post do |f|
-    .field
-      = f.hidden_field :conversation_id, value: comment.conversation_id
-      = f.text_area :content, class: 'form_control', placeholder: 'Comment'
-    - if comment.errors
-      = render 'shared/model_errors', model: comment
-    .actions
-      = f.submit data: { disable_with: 'Submitting...' }
-      .btn_grey.cancel_btn.comment_cancel Cancel
+= form_for comment, remote: true, method: :post do |f|
+  .field
+    = f.hidden_field :conversation_id, value: comment.conversation_id
+    = f.text_area :content, class: 'form_control', placeholder: 'Comment'
+  - if comment.errors
+    = render 'shared/model_errors', model: comment
+  .actions
+    = f.submit data: { disable_with: 'Submitting...' }
+    = link_to 'Cancel', conversations_path(measure_id: conversation_presenter.measure_id), remote: true, class: 'btn_grey cancel_btn'

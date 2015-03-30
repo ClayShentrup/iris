@@ -5,12 +5,12 @@
     .field
       = f.text_area :description, class: 'form_control', placeholder: 'Description'
     .field
-      = f.hidden_field :node_id_component, value: node_id_component
+      = f.hidden_field :measure_id, value: conversation_presenter.measure_id
     - if conversation.errors
       = render 'shared/model_errors', model: conversation
 
     .actions
       = f.submit data: { disable_with: 'Submitting...' }
-      .btn_grey.cancel_btn.conversation_cancel Cancel
+      = link_to 'Cancel', conversations_path(measure_id: conversation_presenter.measure_id), remote: true, class: 'btn_grey cancel_btn'
 
 

@@ -14,7 +14,7 @@
         = render 'shared/icon', icon: '#icon_arrow_large_up', klass: 'vertical_align_middle icon_arrow_up'
   .dropdown_items.provider.border_grey
     .search_box.vertical_padding_base.line_height_buffer_base.border_bottom_grey
-      %form
+      %form#provider_search_form{data: {url: provider_search_results_path}}
         .has_two_icons
           %span.icon.icon_size_xs.icon_brand_color_primary.float_left.form_control_icon
             = render 'shared/icon', icon: '#icon_search', klass: 'vertical_align_middle'

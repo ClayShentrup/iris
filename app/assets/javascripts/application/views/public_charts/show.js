@@ -8,13 +8,15 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     'click .dropdown_items.compare li': '_selectCompare',
     'keydown input': '_preventEnterFromSubmitting',
     'click .search_box .icon_close' : '_closeSearchProvider',
-    'ajax:success #new_conversation, #new_comment': '_handleSuccessfulSubmit',
-    'ajax:error #new_conversation': '_insertErrorConversationForm',
-    'ajax:error #new_comment': '_insertErrorCommentForm',
+    'ajax:success #new_conversation, #new_comment':
+      '_replaceConversationsContainer',
+    'ajax:success .cancel_btn': '_replaceConversationsContainer',
     'click #conversation_title' : '_showConversationForm',
-    'click .conversation_cancel' : '_hideConversationForm',
-    'click .new_comment_link a' : '_handleCommentForm',
-    'click .comment_cancel': '_reloadPage',
+    'ajax:success #new_conversation': '_replaceConversationsContainer',
+    'ajax:error #new_conversation': '_insertErrorConversationForm',
+    'ajax:success #new_comment': '_replaceConversationsContainer',
+    'ajax:error #new_comment': '_insertErrorCommentForm',
+    'ajax:success .new_comment_link': '_replaceConversationsContainer',
   },
 
   initialize: function() {
@@ -25,26 +27,11 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     });
   },
 
-  _showConversationForm: function(event) {
-    this.$('#form_description').show();
-  },
-
-  _hideConversationForm: function(event) {
-    this.$('#form_description').hide();
-    this.$('#conversation_title').val('');
-  },
-
-  _searchBoxInput: function() {
-    return this.$('.search_box input');
-  },
-
-  _autocompleteSource: function(request, response) {
-    this._searchResults().load(this._searchEndpoint(request.term));
-    response([]);
-  },
-
-  _searchResults: function() {
-    return this.$('.dropdown_items.provider ul');
+  _preventEnterFromSubmitting: function(event) {
+    if (event.keyCode === 13) {
+      event.preventDefault();
+      return false;
+    }
   },
 
   _toggleDropdownProvider: function() {
@@ -72,31 +59,44 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
     this._toggleDropdownCompare();
   },
 
-  _searchEndpoint: function(requestTerm) {
-    // TODO: Get this from a path helper in the Rails template
-    return '/provider_search_results/?term=' + encodeURIComponent(requestTerm);
-  },
-
-  _preventEnterFromSubmitting: function(event) {
-    if (event.keyCode === 13) {
-      event.preventDefault();
-      return false;
-    }
-  },
-
   _closeSearchProvider: function() {
     this._searchResults().empty();
     this._searchBoxInput().val('');
     this._toggleDropdownProvider();
   },
 
-  _handleSuccessfulSubmit: function(event) {
-    $(event.currentTarget).hide();
-    this._reloadPage();
+  _searchBoxInput: function() {
+    return this.$('.search_box input');
   },
 
-  _reloadPage: function() {
-    Turbolinks.visit(location.toString());
+  _autocompleteSource: function(request, response) {
+    this._searchResults().load(this._searchEndpoint(request.term));
+    response([]);
+  },
+
+  _searchResults: function() {
+    return this.$('.dropdown_items.provider ul');
+  },
+
+  _providerSearchForm: function() {
+    return $('#provider_search_form');
+  },
+
+  _searchEndpoint: function(requestTerm) {
+    return this._providerSearchForm().data('url') +
+      '/?term=' + encodeURIComponent(requestTerm);
+  },
+
+  _replaceConversationsContainer: function(event, data) {
+    this._conversationsContainer().html(data);
+  },
+
+  _conversationsContainer: function() {
+    return $('#conversations');
+  },
+
+  _showConversationForm: function(event) {
+    this.$('#form_description').show();
   },
 
   _insertErrorConversationForm: function(_e, data, _status, _xhr) {
@@ -105,7 +105,7 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   },
 
   _insertErrorCommentForm: function(_e, data, _status, _xhr) {
-    this._newCommentContainer().replaceWith(data.responseText);
+    this._newCommentForm().replaceWith(data.responseText);
   },
 
   _newConversationForm: function() {
@@ -115,32 +115,4 @@ Iris.Views['public_charts-show'] = Backbone.View.extend({
   _newCommentForm: function() {
     return this.$('#new_comment');
   },
-
-  _newCommentContainer: function() {
-    return this.$('#new_comment_container');
-  },
-
-  _handleCommentForm: function(event) {
-    event.preventDefault();
-    var conversationId = $(event.target).data('conversation-id');
-    this._setCommentFormConversationId(conversationId);
-    this._newCommentContainer().show();
-    this._hideNewConversationForm();
-    this._hideOtherConversations(conversationId);
-  },
-
-  _setCommentFormConversationId: function(conversationId) {
-    this._newCommentForm()
-      .find('#comment_conversation_id').val(conversationId);
-  },
-
-  _hideNewConversationForm: function() {
-    this._newConversationForm().hide();
-  },
-
-  _hideOtherConversations: function(conversationId) {
-    var otherConversationsSelector =
-      '.conversation_container[data-conversation-id!="' + conversationId + '"]';
-    this.$(otherConversationsSelector).hide();
-  }
 });
