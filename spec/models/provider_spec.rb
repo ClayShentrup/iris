@@ -43,6 +43,10 @@ RSpec.describe Provider do
     end
   end
 
+  describe 'indexes' do
+    it { is_expected.to have_db_index(:socrata_provider_id).unique }
+  end
+
   describe 'associations' do
     specify { is_expected.to belong_to :hospital_system }
     specify { is_expected.to have_many :accounts }

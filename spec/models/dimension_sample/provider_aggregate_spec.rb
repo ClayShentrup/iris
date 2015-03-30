@@ -45,16 +45,10 @@ RSpec.describe DimensionSample::ProviderAggregate do
   end
 
   describe 'indexes' do
-    it 'has a unique index on socrata_provider_id, column_name & dataset_id' do
-      expect do
-        2.times do
-          create(:dimension_sample_provider_aggregate,
-                 socrata_provider_id: '102101',
-                 dataset_id: '893x-ot20',
-                 column_name: 'foo_bar',
-          )
-        end
-      end.to raise_error(ActiveRecord::RecordNotUnique)
+    it 'has a unique index on socrata_provider_id, dataset_id, & column_name' do
+      is_expected
+        .to have_db_index([:socrata_provider_id, :dataset_id, :column_name])
+        .unique
     end
   end
 
