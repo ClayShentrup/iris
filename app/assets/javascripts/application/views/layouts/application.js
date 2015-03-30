@@ -14,11 +14,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   _initializeMetricsSearch: function() {
     new Iris.Views['layouts/search_form']({
       applicationView: this,
-      el: this.$('#top_nav .search.hide_on_mobile')
-    });
-    new Iris.Views['layouts/search_form']({
-      applicationView: this,
-      el: this.$('#top_nav .search.hide_on_desktop')
+      el: this.$('#top_nav')
     });
   },
 
@@ -36,12 +32,6 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   hideBackground: function() {
     this._setContentOpacity(0);
-  },
-
-  toggleNavButtonsAndResizeSearchBar: function(show) {
-    this.$('.nav_btns').toggleClass('hidden', !show);
-    this.$('.top_nav_spacer').toggleClass('hidden', !show);
-    this.$('.search').toggleClass('search_starting_width', show);
   },
 
   _setContentOpacity: function(opacity) {

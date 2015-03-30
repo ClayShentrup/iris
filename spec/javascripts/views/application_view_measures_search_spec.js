@@ -20,7 +20,7 @@ describe('ApplicationViewMeasuresSearch', function() {
 
   describe('for desktop', function() {
     beforeEach(function() {
-      search = $('.search.hide_on_mobile');
+      search = $('.search');
       searchResults = search.find('ul.results');
       searchInput = search.find('input');
     });
