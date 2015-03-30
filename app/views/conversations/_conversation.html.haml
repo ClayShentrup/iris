@@ -7,4 +7,5 @@
     .card_body.inner_padding_base
       = conversation.description
   = render partial: 'comments/comment', collection: conversation.comments, locals: { conversation_presenter: conversation_presenter }
-  = yield :new_comment_box
+  .left_margin_base
+    = yield :new_comment_box
