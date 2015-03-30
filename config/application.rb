@@ -40,6 +40,9 @@ module Iris
       require 'haml-rails'
       g.template_engine :haml
 
+      # used by sass-rails; this prevents a non-thread-safe WARN when running
+      # specs if assets aren't compiled
+      require 'coffee_script'
       require 'sass-rails'
       config.sass.preferred_syntax = :sass
 
