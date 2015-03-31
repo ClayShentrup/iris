@@ -57,7 +57,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
   },
 
   _stickyElementsTotalHeight: function() {
-    var height = 20;
+    var height = 30;
     var stickyElements = this._stickyElements();
 
     for (var i = 0; i < stickyElements.length; i++) {
