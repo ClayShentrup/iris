@@ -11,7 +11,6 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   initialize: function() {
     this._initializeMetricsSearch();
-    this._initializeSticky();
   },
 
   _initializeMetricsSearch: function() {
@@ -43,31 +42,6 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   _innerContent: function() {
     return this.$('.inner_content');
-  },
-
-  _initializeSticky: function() {
-    var lastStickyElement = this._stickyElements().last();
-
-    lastStickyElement.after('<div class="spacer"/>');
-    $('.spacer').css(
-      'height',
-      Iris.Util.convertPixelsToRems(this._stickyElementsTotalHeight())
-    );
-  },
-
-  _stickyElements: function() {
-    return $('.is_sticky:visible');
-  },
-
-  _stickyElementsTotalHeight: function() {
-    var height = 30;
-    var stickyElements = this._stickyElements();
-
-    for (var i = 0; i < stickyElements.length; i++) {
-      height += $(stickyElements[i]).height();
-    }
-
-    return height;
   },
 
   _toggleLeftNav: function() {

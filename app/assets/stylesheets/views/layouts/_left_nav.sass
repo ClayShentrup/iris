@@ -1,6 +1,12 @@
 .row_offcanvas_left
   left: 0
 
+.sidebar_offcanvas
+  background: lighten($grey_lighter, 0.5%)
+
+#left_nav
+  background: $white
+
 +media($desktop)
   .sidebar_offcanvas_spacer,
   .inner_content_offcanvas,
@@ -17,7 +23,6 @@
 
 +media($mobile_and_tablet_portrait)
   .sidebar_offcanvas
-    background: $white
     left: -90%
     height: 0
     width: 0

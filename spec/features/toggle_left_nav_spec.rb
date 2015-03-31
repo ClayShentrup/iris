@@ -22,11 +22,19 @@ RSpec.feature 'Toggling left navigation' do
     end
   end
 
-  feature 'reavling the left navigation on tablet portrait' do
+  feature 'revealing the left navigation on tablet portrait' do
     let(:width) { :tablet_portrait }
 
     scenario do
       check
+    end
+  end
+
+  feature 'viewing the left navigation on desktop' do
+    let(:width) { :desktop }
+
+    scenario do
+      expect(page).to have_css('.sidebar_offcanvas', visible: true)
     end
   end
 end
