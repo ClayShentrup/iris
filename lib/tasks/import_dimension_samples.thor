@@ -6,6 +6,6 @@ class ImportDimensionSamples < Thor
 
   desc 'import', 'import or update existing dimension samples using Socrata'
   def import
-    PUBLIC_CHARTS_TREE.import_all
+    ImportDimensionSamplesJob.perform_later
   end
 end
