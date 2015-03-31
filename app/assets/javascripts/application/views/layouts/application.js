@@ -6,6 +6,7 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
     'click .feedback_bar .icon' : 'dismissFlashMessage',
     'click #top_nav .menu_icon' : '_toggleLeftNav',
     'click .sidebar_offcanvas'  : '_toggleLeftNav',
+    'click .inner_content_offcanvas.concealed' : '_toggleLeftNav',
   },
 
   initialize: function() {
@@ -71,9 +72,14 @@ Iris.Views['layouts/application'] = Backbone.View.extend({
 
   _toggleLeftNav: function() {
     this._sidebarOffcanvas().toggleClass('expanded');
+    this._innerContentOffcanvas().toggleClass('concealed');
   },
 
   _sidebarOffcanvas: function() {
     return $('.sidebar_offcanvas');
   },
+
+  _innerContentOffcanvas: function() {
+    return $('.inner_content_offcanvas');
+  }
  });

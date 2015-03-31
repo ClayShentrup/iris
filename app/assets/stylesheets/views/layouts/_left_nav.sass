@@ -19,29 +19,22 @@
   .sidebar_offcanvas
     background: $white
     left: -90%
+    height: 0
     width: 0
     +transition(left .25s ease-out)
 
-    &.expanded,
-    &:after
+    &.expanded
+      box-shadow: rem(26) rem(0) rem(0) rem(6) rgba(0, 0, 0, 0.6)
       position: absolute
       top: 0
-      z-index: 1000
-
-    &.expanded
       left: 0
+      height: auto
       width: 90%
       overflow: visible
+      z-index: 1000
 
-      &:after
-        background: #000
-        content: ' '
-        cursor: pointer
-        height: 100%
-        left: 100%
-        opacity: 0.75
-        width: 12%
-
-      & ~ .inner_content_offcanvas
-        height: 100vh
-        overflow: hidden
+  .inner_content_offcanvas
+    &.concealed
+      cursor: pointer
+      height: 100vh
+      overflow: hidden
