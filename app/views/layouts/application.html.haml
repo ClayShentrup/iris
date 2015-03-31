@@ -1,8 +1,8 @@
 - content_for :application do
-  .row.row_offcanvas.row_offcanvas_left
+  .row.row_offcanvas_left
     .col3.sidebar_offcanvas
       = render 'layouts/left_nav'
-    .col9
+    .col9.border_left_grey
       = render 'layouts/top_nav'
       .inner_content
         = yield

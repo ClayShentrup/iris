@@ -1,5 +1,5 @@
-%li.current_node.horizontal_padding_small
-  = node.title
+%li.current_node.measures_nav_btn
+  %span.current_node_text= node.title
   %ul.unstyled
     = render 'public_charts/measures_nav/child_nodes',
       node: node,

@@ -1,11 +1,13 @@
-$nested_margin: rem(16)
+$nested_margin: $icon_size_small + $buffer_small + $padding_base_vertical
 
 #measures_nav_container
-  .measures_nav_btn
-    position: relative
-
-    a
-      display: block
-
   li
     margin-left: $nested_margin
+
+.measures_nav_btn
+  position: relative
+
+  a,
+  .current_node_text
+    display: block
+    @extend .horizontal_padding_small

@@ -2,9 +2,9 @@
   .dabo_icon.line_height_buffer_base
     = link_to root_path, class: 'icon icon_size_small icon_brand_color_primary' do
       = render 'shared/icon', icon: '#icon_dabo-d-logo', klass: 'vertical_align_middle'
-  .measures_nav_btn
+  .left_nav_btn
     = link_to '/metrics/public-data' do
-      %span.text_ellipsis.with_small_icon.line_height_buffer_base Public Data
       %span.icon.icon_size_small.icon_brand_color_primary.float_left.line_height_buffer_base
         = render 'shared/icon', icon: '#icon_graph_bar', klass: 'vertical_align_middle'
+      %span.line_height_buffer_base.vertical_padding_small Public Data
   = yield :left_nav
