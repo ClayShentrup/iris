@@ -1,9 +1,9 @@
-- unless current_node.type == 'measure'
-  = render partial: 'public_charts/node_nav',
-           as: :node,
-           object: node,
-           locals: { current_node: current_node }
-= render partial: 'public_charts/node_nav',
-         as: :node,
-         collection: node.children,
-         locals: { current_node: current_node }
+%li.parent.horizontal_padding_small
+  = link_to(node.parent_title, back_button_options(node))
+  %ul.unstyled
+    %li.current_node.horizontal_padding_small
+      = node.title
+      %ul.unstyled
+        = render 'public_charts/measures_nav/child_nodes',
+          node: node,
+          current_node: node

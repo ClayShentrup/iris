@@ -103,18 +103,11 @@ RSpec.describe PublicChartsController do
 
         it 'does not show right arrow or link for current node' do
           is_expected.to have_css(
-            '.measures_nav_current_node',
+            '.current_node',
             text: 'Dos',
           )
-          is_expected.not_to have_css '.measures_nav_current_node a'
-          is_expected.not_to have_css '.measures_nav_current_node svg'
-        end
-
-        it 'shows sibling measure with link and no arrow' do
-          forward_btn = '.measures_nav_btn.forward_btn'
-          is_expected.to have_css(forward_btn, text: 'Uno')
-          is_expected.to have_css "#{forward_btn} a"
-          is_expected.not_to have_css "#{forward_btn} svg"
+          is_expected.not_to have_css '.current_node a'
+          is_expected.not_to have_css '.current_node svg'
         end
       end
 

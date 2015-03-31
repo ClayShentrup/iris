@@ -1,3 +1,6 @@
-= render 'public_charts/measures_nav/non_measure',
-  node: node,
-  current_node: current_node
+%li.current_node.horizontal_padding_small
+  = node.title
+  %ul.unstyled
+    = render 'public_charts/measures_nav/child_nodes',
+      node: node,
+      current_node: node

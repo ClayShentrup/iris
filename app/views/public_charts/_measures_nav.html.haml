@@ -1,5 +1,3 @@
 #measures_nav_container
-  - if node.type == 'measure'
-    = render 'parent_back_nav', node: node.parent, grandparent: true
-  = render 'parent_back_nav', node: node, grandparent: false
-  = render 'public_charts/measures_nav/node', node: node, current_node: node
+  %ul.unstyled
+    = render "public_charts/measures_nav/#{node.type}", node: node

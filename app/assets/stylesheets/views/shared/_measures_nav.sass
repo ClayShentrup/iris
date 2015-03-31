@@ -1,26 +1,11 @@
+$nested_margin: rem(16)
+
 #measures_nav_container
-  &.col2
-    +media($desktop)
-      +span-columns(2 of 12, block-collapse)
-      +omega
+  .measures_nav_btn
+    position: relative
 
-.measures_nav_btn
-  height: rem(45)
-  position: relative
+    a
+      display: block
 
-.back_btn_container
-  +media($desktop)
-    margin-bottom: 0
-
-  .back_btn
-    position: absolute
-    +media($tablet_portrait)
-      width: 25%
-    +media($desktop)
-      width: 95%
-
-.forward_btn,
-.current_node_text,
-.back_btn,
-.measures_nav_btn a
-  display: block
+  li
+    margin-left: $nested_margin
