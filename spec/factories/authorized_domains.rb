@@ -11,7 +11,7 @@
 
 FactoryGirl.define do
   factory :authorized_domain do
-    skip_association_validations
+    skip_association_presence_validations
 
     sequence(:name) { |n| "mydomain#{n}.com" }
 

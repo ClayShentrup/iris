@@ -36,7 +36,7 @@ require 'ipaddr'
 
 FactoryGirl.define do
   factory :user do
-    skip_association_validations
+    skip_association_presence_validations
     confirmed
     sequence(:email) { |n| "user#{n}@factory.com" }
     sequence(:first_name) { |n| "Firstname#{n}" }

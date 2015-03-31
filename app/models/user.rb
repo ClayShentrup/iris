@@ -64,7 +64,8 @@ class User < ActiveRecord::Base
   # Some validations are enforced through devise config.
   # See initializers/devise.rb for more information.
   validates :email, presence: true, uniqueness: true
-  validates :account, presence: true, unless: :skip_association_validations
+  validates :account, presence: true,
+                      unless: :skip_association_presence_validations
   validates :is_dabo_admin, inclusion: { in: [true, false] }
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -77,7 +78,7 @@ class User < ActiveRecord::Base
   delegate :default_provider, to: :account
   delegate :purchased_metric_modules, to: :account
 
-  attr_accessor :skip_association_validations
+  attr_accessor :skip_association_presence_validations
 
   def selected_provider
     super || default_provider

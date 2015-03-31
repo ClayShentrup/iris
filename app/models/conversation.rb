@@ -29,12 +29,14 @@ class Conversation < ActiveRecord::Base
   validates :description, presence: true
   validates :measure_id, presence: true
 
-  validates :author, presence: true, unless: :skip_association_validations
-  validates :provider, presence: true, unless: :skip_association_validations
+  validates :author, presence: true,
+                     unless: :skip_association_presence_validations
+  validates :provider, presence: true,
+                       unless: :skip_association_presence_validations
 
   delegate :account, to: :author, prefix: true
 
-  attr_accessor :skip_association_validations
+  attr_accessor :skip_association_presence_validations
 
   scope :for_chart, (lambda do |measure_id, current_user|
     joins('JOIN users ON conversations.author_id = users.id')

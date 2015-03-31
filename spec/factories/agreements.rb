@@ -12,14 +12,11 @@
 
 FactoryGirl.define do
   factory :agreement do
-    :user
-    :item
-
-    skip_association_validations
+    skip_association_presence_validations
 
     trait :with_associations do
       association :user
-      association :item
+      association :item, factory: :comment
     end
   end
 end

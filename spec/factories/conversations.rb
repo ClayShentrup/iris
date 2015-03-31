@@ -14,7 +14,7 @@
 
 FactoryGirl.define do
   factory :conversation do
-    skip_association_validations
+    skip_association_presence_validations
     sequence(:title) { |n| "Conversation Title #{n}" }
     description 'My Description'
     measure_id 'patient-safety-composite'

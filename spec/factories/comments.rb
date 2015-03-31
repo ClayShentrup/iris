@@ -13,7 +13,7 @@
 FactoryGirl.define do
   factory :comment do
     sequence(:content) { |n| "Comment #{n}" }
-    skip_association_validations
+    skip_association_presence_validations
 
     trait :with_associations do
       association :author

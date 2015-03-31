@@ -26,10 +26,10 @@ class Account < ActiveRecord::Base
 
   validates :default_provider,
             presence: true,
-            unless: :skip_association_validations
+            unless: :skip_association_presence_validations
   validates :virtual_system,
             presence: true,
-            unless: :skip_association_validations
+            unless: :skip_association_presence_validations
 
   delegate :name,
            to: :virtual_system,
@@ -39,5 +39,5 @@ class Account < ActiveRecord::Base
            prefix: true
 
   attr_accessor :virtual_system_gid,
-                :skip_association_validations
+                :skip_association_presence_validations
 end

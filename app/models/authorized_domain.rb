@@ -17,7 +17,8 @@ class AuthorizedDomain < ActiveRecord::Base
   belongs_to :account
 
   validates :name, presence: true, domain_name: true
-  validates :account, presence: true, unless: :skip_association_validations
+  validates :account, presence: true,
+                      unless: :skip_association_presence_validations
 
-  attr_accessor :skip_association_validations
+  attr_accessor :skip_association_presence_validations
 end

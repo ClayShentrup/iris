@@ -22,10 +22,13 @@ class Comment < ActiveRecord::Base
 
   validates :content, presence: true
 
-  validates :author, presence: true, unless: :skip_association_validations
-  validates :conversation, presence: true, unless: :skip_association_validations
+  validates :author, presence: true,
+                     unless: :skip_association_presence_validations
 
-  attr_accessor :skip_association_validations
+  validates :conversation, presence: true,
+                           unless: :skip_association_presence_validations
+
+  attr_accessor :skip_association_presence_validations
 
   delegate :measure_id, to: :conversation, prefix: true
 end

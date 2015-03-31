@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150330052609) do
+ActiveRecord::Schema.define(version: 20150331172027) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,8 +36,8 @@ ActiveRecord::Schema.define(version: 20150330052609) do
     t.datetime "updated_at", null: false
   end
 
-  add_index "agreements", ["item_id"], name: "index_agreements_on_item_id", using: :btree
-  add_index "agreements", ["item_type"], name: "index_agreements_on_item_type", using: :btree
+  add_index "agreements", ["item_id", "item_type", "user_id"], name: "index_agreements_on_item_id_and_item_type_and_user_id", unique: true, using: :btree
+  add_index "agreements", ["item_id", "item_type"], name: "index_agreements_on_item_id_and_item_type", using: :btree
   add_index "agreements", ["user_id"], name: "index_agreements_on_user_id", using: :btree
 
   create_table "authorized_domains", force: :cascade do |t|

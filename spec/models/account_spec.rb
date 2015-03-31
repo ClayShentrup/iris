@@ -22,7 +22,7 @@ RSpec.describe Account do
     end
 
     describe 'associations' do
-      before { subject.skip_association_validations = false }
+      before { subject.skip_association_presence_validations = false }
       it { is_expected.to validate_presence_of(:default_provider) }
       it { is_expected.to validate_presence_of(:virtual_system) }
     end

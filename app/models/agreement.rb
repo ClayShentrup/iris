@@ -19,8 +19,12 @@ class Agreement < ActiveRecord::Base
   belongs_to :item, polymorphic: true
   belongs_to :user
 
-  validates :user, presence: true, unless: :skip_association_validations
-  validates :item, presence: true, unless: :skip_association_validations
+  validates :user, presence: true,
+                   unless: :skip_association_presence_validations
+  validates :user, uniqueness: { scope: [:item_type, :item_id] }
 
-  attr_accessor :skip_association_validations
+  validates :item, presence: true,
+                   unless: :skip_association_presence_validations
+
+  attr_accessor :skip_association_presence_validations
 end
