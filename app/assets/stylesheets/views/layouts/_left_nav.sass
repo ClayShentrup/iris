@@ -15,7 +15,7 @@
     +span-columns(3 of 12, block-collapse)
     position: fixed
 
-+media($mobile)
++media($mobile_and_tablet_portrait)
   .sidebar_offcanvas
     background: $white
     left: -90%
@@ -24,11 +24,12 @@
     +transition(left .25s ease-out)
 
     &.expanded
-      box-shadow: rem(26) rem(0) rem(0) rem(6) rgba(0, 0, 0, 0.6)
+      box-shadow: rem(200) rem(0) rem(0) rem(6) rgba(0, 0, 0, 0.6)
       position: absolute
       top: 0
       left: 0
       height: auto
+      min-height: 100vh
       width: 90%
       overflow: visible
       z-index: 1000
