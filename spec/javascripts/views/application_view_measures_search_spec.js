@@ -7,20 +7,20 @@ describe('ApplicationViewMeasuresSearch', function() {
   var search;
   var searchInput;
   var searchResults;
-  var mainContent;
+  var innerContent;
 
   beforeEach(function() {
     loadFixture(
       'public_charts_controller-get-show-generate-a-' +
       'fixture-with-conversations'
     );
-    mainContent = $('.main_content');
+    innerContent = $('.inner_content');
     new Iris.Views['layouts/application']({el: '#body', window: $('#body')});
   });
 
   describe('for desktop', function() {
     beforeEach(function() {
-      search = $('.search.hide_on_mobile');
+      search = $('.search');
       searchResults = search.find('ul.results');
       searchInput = search.find('input');
     });
@@ -31,7 +31,7 @@ describe('ApplicationViewMeasuresSearch', function() {
       expect(searchResults).toContainElement(
         $('li.line_height_base.link')
       );
-      expect($('.main_content')).toHaveCss({opacity: '0'});
+      expect(innerContent).toHaveCss({opacity: '0'});
     });
   });
 });

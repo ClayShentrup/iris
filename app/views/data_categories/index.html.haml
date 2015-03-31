@@ -1,7 +1,5 @@
-#measures_nav_container.col2.hide_on_mobile.hide_on_tablet_portrait.bottom_buffer_base.affix_beneath_top_nav
-  = render 'data_categories_nav'
-
-#measures_nav_container.col12.hide_on_desktop.is_sticky.bottom_buffer_base
-  = render 'data_categories_nav'
-
 = render 'layouts/feedback_bar'
+
+= content_for :breadcrumbs do
+  Metrics
+

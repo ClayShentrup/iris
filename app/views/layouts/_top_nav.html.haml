@@ -1,14 +1,10 @@
-#top_nav.is_sticky.border_grey.clearfix
-  .logo.inner_padding_small.float_left.border_right_grey
-    = link_to root_url, class: 'icon icon_brand_color_primary icon_size_base text_left' do
-      = render 'shared/icon', icon: '#icon_dabo-logo', klass: 'hide_on_mobile vertical_align_middle'
-      = render 'shared/icon', icon: '#icon_dabo-d-logo', klass: 'hide_on_tablet_portrait hide_on_desktop vertical_align_middle'
-  .metrics.nav_btns.line_height_buffer_base.text_center
-    = link_to 'Metrics', metrics_path, class: 'border_left_grey float_left border_right_grey'
-  .search.search_starting_width.hide_on_tablet_portrait.hide_on_desktop.line_height_buffer_base
+#top_nav.is_sticky.border_bottom_grey.vertical_padding_large.clearfix
+  .menu_icon.line_height_buffer_base.hide_on_desktop
+    %span.icon.icon_size_small.icon_list
+      = render 'shared/icon', icon: '#icon_list', klass: 'vertical_align_middle'
+    %span.icon.icon_size_small.icon_arrow_large_left.hidden
+      = render 'shared/icon', icon: '#icon_arrow_large_left', klass: 'vertical_align_middle'
+  .breadcrumbs.line_height_buffer_base.text_ellipsis
+    = yield :breadcrumbs
+  .search.line_height_buffer_base
     = render partial: 'layouts/search_form'
-  .search.search_starting_width.hide_on_mobile.line_height_buffer_base.border_left_grey
-    = render partial: 'layouts/search_form'
-  .menu_icon.text_center.vertical_padding_small.border_left_grey
-    = link_to user_profiles_menu_path, class: 'top_margin_small bottom_margin_small icon icon_size_base' do
-      = render 'shared/icon', icon: '#icon_user', klass: 'vertical_align_middle'

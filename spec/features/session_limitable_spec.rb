@@ -26,8 +26,8 @@ RSpec.feature 'Limiting user to one session' do
   it 'displays a flash message and signs out first session' do
     log_in_session session_one
     log_in_session session_two
-    session_one.click_link('Metrics')
+    session_one.click_link('Public Data')
     expect(session_one).to have_content flash_message
-    expect(session_one.current_path).to eq metrics_path
+    expect(session_one.current_path).to eq '/metrics/public-data'
   end
 end

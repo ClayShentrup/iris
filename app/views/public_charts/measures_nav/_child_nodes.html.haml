@@ -1,0 +1,7 @@
+- node.children.each do |child|
+  - if child == current_node
+    %li.current_node.measures_nav_btn
+      %span.current_node_text= child.title
+  - else
+    %li.children.measures_nav_btn.forward_btn
+      = link_to child.title, id: child.id

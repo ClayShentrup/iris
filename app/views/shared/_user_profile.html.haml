@@ -1,0 +1,17 @@
+.user_profile.horizontal_padding_base.vertical_padding_base
+  .row
+    .col10.col9-xs
+      %h4.no_margin
+        = "#{current_user.first_name} #{current_user.last_name}"
+      %p.text_small
+        = "Last logged in at #{last_sign_on} from "
+        = current_user.current_sign_in_ip
+    .col2.col3-xs
+      .user_profile_img.text_center
+        = link_to user_profiles_info_path, class: 'icon border_grey icon_size_base inner_padding_small float_right' do
+          = render 'shared/icon', icon: '#icon_user'
+
+  .left_nav_btn.line_height_buffer_base Settings
+  - if current_user.is_dabo_admin
+    .left_nav_btn.line_height_buffer_base= link_to 'Admin', user_profiles_admin_path
+  .left_nav_btn.line_height_buffer_base= link_to 'Logout', destroy_user_session_path, method: :delete

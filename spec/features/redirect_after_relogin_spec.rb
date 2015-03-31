@@ -8,7 +8,7 @@ RSpec.feature 'Clicking a link after session expires' do
       log_out
       page.driver.browser.close
     end
-    click_link 'Metrics'
+    visit metrics_path
     log_in_user
     expect(page).to have_content 'Public Data'
     expect(current_path).to eq metrics_path

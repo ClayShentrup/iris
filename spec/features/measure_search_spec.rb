@@ -4,16 +4,16 @@ RSpec.feature 'measure search bar' do
   login_user
 
   def ensure_initial_page_state
-    ensure_main_content_is_opaque
+    ensure_inner_content_is_opaque
     ensure_nav_btns_are_visible
   end
 
-  def ensure_main_content_is_opaque
-    expect(find('.main_content')[:style]).to match('')
+  def ensure_inner_content_is_opaque
+    expect(find('.inner_content')[:style]).to match('')
   end
 
-  def ensure_main_content_is_transparent
-    expect(find('.main_content')[:style]).to match(/opacity: 0.5/)
+  def ensure_inner_content_is_transparent
+    expect(find('.inner_content')[:style]).to match(/opacity: 0.5/)
   end
 
   def ensure_nav_btns_are_visible
@@ -30,13 +30,13 @@ RSpec.feature 'measure search bar' do
 
   def open_search
     find('.search .icon_search').click
-    ensure_main_content_is_transparent
+    ensure_inner_content_is_transparent
     ensure_nav_btns_not_visible
   end
 
   def close_search
     find('.search .icon_close').click
-    ensure_main_content_is_opaque
+    ensure_inner_content_is_opaque
     ensure_nav_btns_are_visible
   end
 

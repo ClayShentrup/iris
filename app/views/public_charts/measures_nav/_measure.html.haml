@@ -1,3 +1,17 @@
-= render 'public_charts/measures_nav/node',
-  node: node.parent,
-  current_node: node
+- if node.parent.parent.type == 'measure_source'
+  %li.parent.measures_nav_btn
+    = link_to(node.parent_title, back_button_options(node))
+    %ul.unstyled
+      = render 'public_charts/measures_nav/child_nodes',
+        node: node.parent,
+        current_node: node
+- else
+  %li.grandparent.measures_nav_btn
+    = link_to(node.parent.parent_title, back_button_options(node.parent))
+    %ul.unstyled
+      %li.parent.measures_nav_btn
+        = link_to(node.parent_title, back_button_options(node))
+        %ul.unstyled
+          = render 'public_charts/measures_nav/child_nodes',
+            node: node.parent,
+            current_node: node

@@ -12,6 +12,6 @@ module AuthenticationHelpers
   end
 
   def log_out
-    click_link 'Sign out'
+    click_link 'Logout'
   end
 end

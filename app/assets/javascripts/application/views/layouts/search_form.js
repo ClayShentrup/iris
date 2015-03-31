@@ -2,7 +2,7 @@
 
 Iris.Views['layouts/search_form'] = Backbone.View.extend({
   events: {
-    'click .icon_search'           : '_searchClick',
+    'click .icon_search'           : '_expandSearch',
     'click .icon_close'            : '_toggleCloseIcon',
     'focus input'                  : '_handleInputFocus',
     'blur input'                   : '_handleInputBlur',
@@ -25,7 +25,7 @@ Iris.Views['layouts/search_form'] = Backbone.View.extend({
 
   _handleInputFocus: function() {
     this._toggleSearchIcon(true);
-    this._toggleNavButtonsAndResizeSearchBar(false);
+    this._toggleBreadcrumbsAndResizeSearchBar(false);
     if (_.isEmpty(this._input().val())) {
       this.options.applicationView.lightenBackground();
     }
@@ -33,7 +33,7 @@ Iris.Views['layouts/search_form'] = Backbone.View.extend({
 
   _handleInputBlur: function() {
     if (!this._blurDisabled) {
-      this._toggleNavButtonsAndResizeSearchBar(true);
+      this._toggleBreadcrumbsAndResizeSearchBar(true);
       this._toggleInputVisibility(false);
       this._hideSearchResults();
       this._toggleSearchIcon(false);
@@ -72,7 +72,7 @@ Iris.Views['layouts/search_form'] = Backbone.View.extend({
     return this.$('ul.results');
   },
 
-  _searchClick: function() {
+  _expandSearch: function() {
     this._toggleInputVisibility(true);
     this._input().focus();
   },
@@ -88,18 +88,12 @@ Iris.Views['layouts/search_form'] = Backbone.View.extend({
   },
 
   _toggleInputVisibility: function(show) {
-    if (this._isDesktop()) {
-      return;
-    }
     this._input().toggle(show);
   },
 
-  _toggleNavButtonsAndResizeSearchBar: function(show) {
-    this.options.applicationView.toggleNavButtonsAndResizeSearchBar(show);
-  },
-
-  _isDesktop: function() {
-    return this.$el.hasClass('hide_on_mobile');
+  _toggleBreadcrumbsAndResizeSearchBar: function(show) {
+    this.$('.breadcrumbs').toggleClass('hidden', !show);
+    this.$('.search').toggleClass('search_expanded', show);
   },
 
   _input: function() {

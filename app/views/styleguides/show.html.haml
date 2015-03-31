@@ -1,19 +1,18 @@
 .styleguide
   .styleguide_nav.border_bottom_grey.inner_padding_base.clearfix.line_height_buffer_base
-    .inner_content
-      %ul.unstyled.clearfix.vertical_align_middle
-        %li.icon.icon_brand_color_primary.icon_size_large.float_left
-          = render 'shared/icon', icon: '#icon_dabo-d-logo', klass: 'vertical_align_middle'
-        %li.float_left.vertical_padding_small= link_to 'Typography', '#typography'
-        %li.float_left.vertical_padding_small= link_to 'Buttons', '#buttons'
-        %li.float_left.vertical_padding_small= link_to 'Grids', '#grids'
-        %li.float_left.vertical_padding_small= link_to 'Forms', '#forms'
-        %li.float_left.vertical_padding_small= link_to 'Tables', '#tables'
-        %li.float_left.vertical_padding_small= link_to 'Colors', '#colors'
-        %li.float_left.vertical_padding_small= link_to 'Icons', '#icons'
-        %li.float_left.vertical_padding_small= link_to 'Layout', '#layout'
+    %ul.unstyled.clearfix.vertical_align_middle
+      %li.icon.icon_brand_color_primary.icon_size_large.float_left
+        = render 'shared/icon', icon: '#icon_dabo-d-logo', klass: 'vertical_align_middle'
+      %li.float_left.vertical_padding_small= link_to 'Typography', '#typography'
+      %li.float_left.vertical_padding_small= link_to 'Buttons', '#buttons'
+      %li.float_left.vertical_padding_small= link_to 'Grids', '#grids'
+      %li.float_left.vertical_padding_small= link_to 'Forms', '#forms'
+      %li.float_left.vertical_padding_small= link_to 'Tables', '#tables'
+      %li.float_left.vertical_padding_small= link_to 'Colors', '#colors'
+      %li.float_left.vertical_padding_small= link_to 'Icons', '#icons'
+      %li.float_left.vertical_padding_small= link_to 'Layout', '#layout'
 
-  .main_content
+  .inner_padding_base
     = render 'text'
     = render 'buttons'
     = render 'grids'
