@@ -1,3 +1,47 @@
-.sidebar_offcanvas
-  min-height: 100vh
+.row_offcanvas_left
+  left: 0
 
++media($desktop)
+  .sidebar_offcanvas_spacer,
+  .inner_content_offcanvas,
+  .sidebar_offcanvas
+    height: 100vh
+    overflow: scroll
+
+.sidebar_offcanvas
+  overflow: scroll
+  +omega
+  +media($desktop)
+    +span-columns(3 of 12, block-collapse)
+    position: fixed
+
++media($mobile)
+  .sidebar_offcanvas
+    background: $white
+    left: -90%
+    width: 0
+    +transition(left .25s ease-out)
+
+    &.expanded,
+    &:after
+      position: absolute
+      top: 0
+      z-index: 1000
+
+    &.expanded
+      left: 0
+      width: 90%
+      overflow: visible
+
+      &:after
+        background: #000
+        content: ' '
+        cursor: pointer
+        height: 100%
+        left: 100%
+        opacity: 0.75
+        width: 12%
+
+      & ~ .inner_content_offcanvas
+        height: 100vh
+        overflow: hidden

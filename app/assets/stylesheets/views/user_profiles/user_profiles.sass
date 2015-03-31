@@ -1,9 +1,18 @@
-#segmented_controls,
-.user_profile_img,
+.user_profile
+  background: lighten($grey_lighter, 0.5%)
+
+.user_profile_img
   a.icon
+    border-radius: rem(100)
+    display: block
+    height: $line_height_buffer_base
+    width: $line_height_buffer_base
+    line-height: $line_height_buffer_base
+
     svg
       transition: fill 0.5s ease
 
     &:hover
       svg
         fill: $brand_color_primary
+

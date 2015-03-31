@@ -1,8 +1,8 @@
-%li.parent.horizontal_padding_small
+%li.parent.horizontal_padding_small.measures_nav_btn
   = link_to(node.parent_title, back_button_options(node))
   %ul.unstyled
-    %li.current_node
-      %span.current_node_text.measures_nav_btn= node.title
+    %li.current_node.measures_nav_btn
+      %span.current_node_text= node.title
       %ul.unstyled
         = render 'public_charts/measures_nav/child_nodes',
           node: node,

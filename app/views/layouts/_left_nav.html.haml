@@ -1,4 +1,4 @@
-#left_nav.bottom_margin_base.vertical_padding_base
+#left_nav.vertical_padding_base
   .dabo_icon.line_height_buffer_base
     = link_to root_path, class: 'icon icon_size_small icon_brand_color_primary' do
       = render 'shared/icon', icon: '#icon_dabo-d-logo', klass: 'vertical_align_middle'
@@ -28,3 +28,5 @@
         = render 'shared/icon', icon: '#icon_graph_bar', klass: 'vertical_align_middle'
       %span.line_height_buffer_base.vertical_padding_small Public Data
   = yield :left_nav
+
+= render 'shared/user_profile'

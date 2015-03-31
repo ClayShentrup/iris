@@ -2,20 +2,12 @@
   .row.row_offcanvas_left
     .col3.sidebar_offcanvas
       = render 'layouts/left_nav'
-    .col9.border_left_grey
+    .col3.sidebar_offcanvas_spacer.hide_on_mobile.hide_on_tablet_portrait
+    .col9.border_left_grey.inner_content_offcanvas
       = render 'layouts/top_nav'
       .inner_content
         = yield
-      -# These links are for engineering. Please do not remove.
-      - if user_signed_in?
-        .inner_padding_base
-          %p.no_margin
-            = "#{current_user.email} logged in at #{last_sign_on} from "
-            = current_user.current_sign_in_ip
-          %p.no_margin= link_to 'Sign out', destroy_user_session_path, method: :delete
 
-          - if current_user.is_dabo_admin
-            %p= link_to 'Dabo Admin Panel', user_profiles_admin_path
     - unless @custom_feedback_bar
       = render 'layouts/feedback_bar'
 
