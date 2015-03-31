@@ -1,7 +1,6 @@
 require './app/models/dimension_sample/measure'
 require_relative '../../dimension_sample_importer'
 require_relative '../../simple_soda_client_base'
-require './app/jobs/dimension_sample_manager_import_job'
 
 module Socrata
   module DimensionSampleManagers
@@ -80,12 +79,12 @@ module Socrata
         end
 
         def import
-          DimensionSampleManagerImportJob.perform_later(
+          DimensionSampleImporter.call(
             dimension_samples: dimension_samples,
             model_attributes: base_options,
-            model_class_string: 'DimensionSample::Measure',
+            model_class: DimensionSample::Measure,
             rename_hash: rename_hash,
-            value_column_name: value_column_name.to_s,
+            value_column_name: value_column_name,
           )
         end
 
@@ -124,7 +123,7 @@ module Socrata
         end
 
         def base_options
-          { measure_id: @measure_id.to_s }
+          { measure_id: @measure_id }
         end
 
         def dataset_id

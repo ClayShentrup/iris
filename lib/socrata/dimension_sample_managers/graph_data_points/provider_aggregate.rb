@@ -1,7 +1,6 @@
 require './app/models/dimension_sample/provider_aggregate'
 require_relative '../../dimension_sample_importer'
 require_relative '../../simple_soda_client'
-require './app/jobs/dimension_sample_manager_import_job'
 
 # .
 module Socrata
@@ -24,14 +23,14 @@ module Socrata
         end
 
         def import
-          DimensionSampleManagerImportJob.perform_later(
+          DimensionSampleImporter.call(
             dimension_samples: dimension_samples,
             model_attributes: base_options.merge(
-              column_name: value_column_name.to_s,
+              column_name: value_column_name,
             ),
-            model_class_string: 'DimensionSample::ProviderAggregate',
+            model_class: DimensionSample::ProviderAggregate,
             rename_hash: {},
-            value_column_name: value_column_name.to_s,
+            value_column_name: value_column_name,
           )
         end
 
