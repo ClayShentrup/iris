@@ -5,12 +5,16 @@ require_relative '../../simple_soda_client'
 # .
 module Socrata
   module DimensionSampleManagers
-    # Satisfies the DimensionSampleManager interface to retrieve and refresh
-    # data.
     module GraphDataPoints
-      ProviderAggregate = Struct.new(:value_column_name, :dataset_id) do
+      # Satisfies the DimensionSampleManager interface to retrieve and refresh
+      # data.
+      class ProviderAggregate
+        MODEL_CLASS = DimensionSample::ProviderAggregate
+        attr_reader :value_column_name, :dataset_id
+
         def initialize(value_column_name:, dataset_id:)
-          super(value_column_name, dataset_id)
+          @value_column_name = value_column_name
+          @dataset_id = dataset_id
         end
 
         def data(providers)
@@ -25,10 +29,8 @@ module Socrata
         def import
           DimensionSampleImporter.call(
             dimension_samples: dimension_samples,
-            model_attributes: base_options.merge(
-              column_name: value_column_name,
-            ),
-            model_class: DimensionSample::ProviderAggregate,
+            model_attributes: model_attributes,
+            model_class: MODEL_CLASS,
             rename_hash: {},
             value_column_name: value_column_name,
           )
@@ -37,7 +39,17 @@ module Socrata
         def subtitle
         end
 
+        def national_best_performer_value
+          MODEL_CLASS.where(model_attributes).minimum(:value)
+        end
+
         private
+
+        def model_attributes
+          base_options.merge(
+            column_name: value_column_name,
+          )
+        end
 
         def dimension_samples
           SimpleSodaClient.call(

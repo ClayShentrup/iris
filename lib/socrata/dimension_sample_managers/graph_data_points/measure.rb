@@ -42,6 +42,12 @@ module Socrata
           '77hc-ibv8' => :score,
           'dgck-syfz' => :hcahps_answer_percent,
         }
+        DATASET_TO_BEST_VALUE_METHOD = {
+          'dgck-syfz' => :maximum,
+          '7xux-kdpw' => :minimum,
+          '77hc-ibv8' => :minimum,
+        }
+        MODEL_CLASS = DimensionSample::Measure
 
         # .
         module ValueColumnManager
@@ -82,7 +88,7 @@ module Socrata
           DimensionSampleImporter.call(
             dimension_samples: dimension_samples,
             model_attributes: base_options,
-            model_class: DimensionSample::Measure,
+            model_class: MODEL_CLASS,
             rename_hash: rename_hash,
             value_column_name: value_column_name,
           )
@@ -91,7 +97,15 @@ module Socrata
         def subtitle
         end
 
+        def national_best_performer_value
+          MODEL_CLASS.where(base_options).public_send(best_value_method, :value)
+        end
+
         private
+
+        def best_value_method
+          DATASET_TO_BEST_VALUE_METHOD.fetch(dataset_id)
+        end
 
         def column_manager
           if hcahps_measure?

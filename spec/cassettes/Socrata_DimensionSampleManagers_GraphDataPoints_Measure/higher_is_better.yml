@@ -1,0 +1,89 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://data.medicare.gov/resource/dgck-syfz.json?$limit=50000&$offset=0&$select=provider_id,hcahps_answer_percent&$where=hcahps_measure_id%20=%20%27H_COMP_1_A_P%27
+    body:
+      encoding: UTF-8
+      string: 'null'
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      X-App-Token:
+      - ''
+      Content-Type:
+      - application/json
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Tue, 31 Mar 2015 18:13:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Origin:
+      - "*"
+      Last-Modified:
+      - Wed, 17 Dec 2014 23:13:38 UTC
+      X-Soda2-Warning:
+      - X-SODA2-Fields, X-SODA2-Types, and X-SODA2-Legacy-Types are deprecated
+      X-Soda2-Fields:
+      - '["hcahps_answer_percent",":updated_at","provider_id",":id",":created_at"]'
+      X-Soda2-Types:
+      - '["number","meta_data","text","meta_data","meta_data"]'
+      X-Soda2-Legacy-Types:
+      - 'true'
+      X-Socrata-Region:
+      - production
+      Age:
+      - '6'
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        [ {
+          "hcahps_answer_percent" : "76",
+          "provider_id" : "010001"
+        }
+        , {
+          "hcahps_answer_percent" : "83",
+          "provider_id" : "010005"
+        }
+        , {
+          "hcahps_answer_percent" : "77",
+          "provider_id" : "010006"
+        }
+        , {
+          "hcahps_answer_percent" : "76",
+          "provider_id" : "010007"
+        }
+        , {
+          "hcahps_answer_percent" : "76",
+          "provider_id" : "010008"
+        }
+        , {
+          "hcahps_answer_percent" : "76",
+          "provider_id" : "010011"
+        }
+        , {
+          "hcahps_answer_percent" : "80",
+          "provider_id" : "010012"
+        }
+        , {
+          "hcahps_answer_percent" : "74",
+          "provider_id" : "010016"
+        }
+         ]
+    http_version:
+  recorded_at: Tue, 31 Mar 2015 18:13:12 GMT
+recorded_with: VCR 2.9.3
