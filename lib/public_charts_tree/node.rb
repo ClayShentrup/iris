@@ -51,10 +51,6 @@ class PublicChartsTree
       end
     end
 
-    def detail_chart?
-      value_dimension_manager.present?
-    end
-
     def parent
       Node.new(internal_node.parent, providers: providers)
     end

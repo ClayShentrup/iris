@@ -17,10 +17,6 @@ RSpec.describe PublicChartsTree do
                        :MORT_30_HF
             end
           end
-
-          domain 'Has no detail chart' do
-            category 'Foobar'
-          end
         end
       end
 
@@ -119,7 +115,6 @@ RSpec.describe PublicChartsTree do
     specify { expect(subject.parent_id).to eq expected_parent_id }
     specify { expect(subject.type).to eq expected_type }
     specify { expect(subject.id_component).to eq expected_id_component }
-    specify { expect(subject.detail_chart?).to eq detail_chart? }
   end
 
   shared_examples 'a chart node' do
@@ -167,7 +162,7 @@ RSpec.describe PublicChartsTree do
     end
   end
 
-  describe 'a measure source node' do
+  context 'at a measure source node' do
     let(:node_id) { 'public-data' }
     let(:expected_title) { 'Public Data' }
     let(:expected_parent_id) { '' }
@@ -176,12 +171,11 @@ RSpec.describe PublicChartsTree do
     let(:expected_breadcrumbs) { [subject.title] }
     let(:private_data) { tree.find('private-data') }
     let(:expected_id_component) { 'public-data' }
-    let(:detail_chart?) { false }
 
     it_behaves_like 'a child node'
   end
 
-  describe 'a metric module node' do
+  context 'at a metric module node' do
     let(:parent_id) { 'public-data' }
     let(:expected_id_component) { 'value-based-purchasing' }
     let(:node_id) { "#{parent_id}/#{expected_id_component}" }
@@ -191,17 +185,15 @@ RSpec.describe PublicChartsTree do
     let(:expected_child_ids) do
       %w[
         public-data/value-based-purchasing/outcome-of-care
-        public-data/value-based-purchasing/has-no-detail-chart
       ]
     end
-    let(:detail_chart?) { true }
 
     it_behaves_like 'a chart node'
 
     specify { expect(subject.parent_title).to eq 'Public Data' }
   end
 
-  describe 'a domain node' do
+  context 'at a domain node' do
     let(:expected_parent_id) { 'public-data/value-based-purchasing' }
     let(:expected_id_component) { 'outcome-of-care' }
     let(:node_id) { "#{expected_parent_id}/#{expected_id_component}" }
@@ -210,7 +202,6 @@ RSpec.describe PublicChartsTree do
     let(:expected_child_ids) do
       ['public-data/value-based-purchasing/outcome-of-care/mortality']
     end
-    let(:detail_chart?) { true }
 
     it_behaves_like 'a chart node'
 
@@ -219,7 +210,7 @@ RSpec.describe PublicChartsTree do
     end
   end
 
-  describe 'a category node' do
+  context 'at a category node' do
     let(:expected_parent_id) do
       'public-data/value-based-purchasing/outcome-of-care'
     end
@@ -239,14 +230,13 @@ RSpec.describe PublicChartsTree do
         mort_30_hf_id,
       ]
     end
-    let(:detail_chart?) { false }
 
     it_behaves_like 'a child node'
 
     specify { expect(subject.parent_title).to eq 'Outcome of Care' }
   end
 
-  describe 'a measure node' do
+  context 'at a measure node' do
     let(:expected_parent_id) do
       %w[
         public-data
@@ -258,7 +248,6 @@ RSpec.describe PublicChartsTree do
     let(:expected_title) { measure.title }
     let(:expected_type) { 'measure' }
     let(:expected_child_ids) { [] }
-    let(:detail_chart?) { true }
 
     shared_examples 'a mortality measure node' do
       specify { expect(subject.parent_title).to eq 'Mortality' }
@@ -292,13 +281,6 @@ RSpec.describe PublicChartsTree do
       expect { subject }.to raise_error(
         PublicChartsTree::PublicChartNotFoundError,
       )
-    end
-  end
-
-  describe 'a node with no detail chart' do
-    specify do
-      node = find('public-data/value-based-purchasing/has-no-detail-chart')
-      expect(node).not_to have_detail_chart
     end
   end
 

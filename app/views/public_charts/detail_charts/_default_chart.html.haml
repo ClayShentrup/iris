@@ -1,2 +1,3 @@
-= render "public_charts/detail_charts/has_detail_chart_#{node.detail_chart?}",
- node: node
+.detail_chart.border_grey.inner_padding_base.top_margin_base
+  A default chart
+  %pre= JSON.pretty_generate(node.data)
